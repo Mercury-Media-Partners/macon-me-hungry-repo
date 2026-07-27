@@ -13,9 +13,6 @@ import { PartnerForm } from '../components/list-business/PartnerForm';
 import { FinalCTA } from '../components/list-business/FinalCTA';
 import { MobileStickyBar } from '../components/list-business/MobileStickyBar';
 
-import { isPostWorldCup } from '../utils/transition';
-const postWorldCup = isPostWorldCup();
-
 const entry = await getEntry('landing_pages', 'list-your-business');
 if (!entry) {
   throw new Error("Could not find list-your-business page content");
@@ -23,8 +20,7 @@ if (!entry) {
 
 let content = { ...entry.data };
 
-if (postWorldCup) {
-  content.description = "List your business on Macon Me Hungry, Macon's premier food directory. Join as a partner and get discovered by thousands of locals and visitors.";
+content.description = "List your business on Macon Me Hungry, Macon's premier food directory. Join as a partner and get discovered by thousands of locals and visitors.";
   content.hero = {
     ...content.hero,
     eyebrow: "Macon Me Hungry Partner Network",
@@ -186,7 +182,6 @@ if (postWorldCup) {
     sublabel: "Standard partner rates apply",
     cta: "Claim Spot →"
   };
-}
 
 const allBusinesses = await getCollection('businesses');
 const businessNames = allBusinesses.map(b => b.data.title);

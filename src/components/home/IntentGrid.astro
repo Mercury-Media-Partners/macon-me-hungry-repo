@@ -1,14 +1,11 @@
 ---
 import { Utensils, Flame, Compass, Navigation } from "lucide-react";
-import { isPostWorldCup } from "../../utils/transition";
 
 interface Props {
   lang?: string;
 }
 
 const { lang = "en" } = Astro.props;
-
-const postWorldCup = isPostWorldCup();
 
 const cards = [
   {
@@ -22,8 +19,8 @@ const cards = [
     badgeColor: "text-primary bg-primary/10 border-primary/20",
   },
   {
-    title: "Dance & Party",
-    desc: "High-energy dance clubs, drag shows, and nightlife icons.",
+    title: "Nightlife",
+    desc: "Late-night spots, breweries, and nightlife icons.",
     href: "/#bar-finder?category=Dance%20Club&mode=night",
     iconName: "dance",
     badge: "Nightlife",
@@ -33,35 +30,24 @@ const cards = [
   },
   {
     title: "Discover Areas",
-    desc: "Explore Midtown, East Macon EAV, and local queer culture.",
-    href: "/#bar-finder?hood=midtown",
+    desc: "Explore Downtown, Mercer Village, and local cultural hotspots.",
+    href: "/#bar-finder?hood=downtown",
     iconName: "discover",
     badge: "Neighborhoods",
     color: "from-amber-500/10 to-yellow-500/5 hover:border-amber-500/40 border-amber-500/10",
     glowColor: "glow-border-secondary",
     badgeColor: "text-amber-500 bg-amber-500/10 border-amber-500/20"
   },
-  postWorldCup
-    ? {
-        title: "Neighborhood Map",
-        desc: "Explore neighborhood boundaries, routes, and transit keys.",
-        href: "/#map",
-        iconName: "navigate",
-        badge: "Live Map",
-        color: "from-teal-500/10 to-emerald-500/5 hover:border-teal-500/40 border-teal-500/10",
-        glowColor: "glow-border-indigo",
-        badgeColor: "text-teal-500 bg-teal-500/10 border-teal-500/20"
-      }
-    : {
-        title: "World Cup Guide",
-        desc: "MARTA transit directions, stadium info, and survival tips.",
-        href: "/#worldcup",
-        iconName: "navigate",
-        badge: "Transit & Safety",
-        color: "from-teal-500/10 to-emerald-500/5 hover:border-teal-500/40 border-teal-500/10",
-        glowColor: "glow-border-indigo",
-        badgeColor: "text-teal-500 bg-teal-500/10 border-teal-500/20"
-      }
+  {
+    title: "Neighborhood Map",
+    desc: "Explore neighborhood boundaries and culinary trails.",
+    href: "/#map",
+    iconName: "navigate",
+    badge: "Live Map",
+    color: "from-teal-500/10 to-emerald-500/5 hover:border-teal-500/40 border-teal-500/10",
+    glowColor: "glow-border-indigo",
+    badgeColor: "text-teal-500 bg-teal-500/10 border-teal-500/20"
+  }
 ];
 ---
 

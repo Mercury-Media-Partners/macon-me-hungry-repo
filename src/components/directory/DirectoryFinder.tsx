@@ -372,7 +372,7 @@ export const DirectoryFinder = ({ initialBusinesses, lang: initialLang = "en" }:
             {"FIND YOUR SPACE"}
           </h2>
           <p className="text-muted-foreground max-w-xl">
-            {"Restaurants, cafes, local services & more — your day-to-day queer Macon."}
+            {"Restaurants, cafes, local services & more — your day-to-day Macon."}
           </p>
         </div>
 

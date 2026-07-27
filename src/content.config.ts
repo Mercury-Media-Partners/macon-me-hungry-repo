@@ -56,10 +56,10 @@ const businesses = defineCollection({
     cta_label: z.string().optional(), // e.g. "Buy Tickets", "Book a Table"
     cta_url: z.string().optional(),
 
-    // ── World Cup Specific ────────────────────────────────
-    stadiumMin: z.number(),
+    // ── Legacy / Feature Tags ──────────────────────────────
+    stadiumMin: z.number().optional(),
     rating: z.number(),
-    world_cup_ready: z.boolean().default(true),
+    world_cup_ready: z.boolean().default(true).optional(),
     has_patio: z.boolean().default(false),
     bilingual_staff: z.boolean().default(false), // Never default to true — only set explicitly for a listing once actually confirmed.
 

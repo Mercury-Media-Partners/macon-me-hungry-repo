@@ -190,9 +190,7 @@ export const VenueQuickDrawer = ({ businesses }: VenueQuickDrawerProps) => {
                 💬 {"Bilingual Staff"}
               </span>
             )}
-            <span className="px-3 py-1 rounded-full text-xs font-semibold bg-primary/10 text-primary border border-primary/20">
-              🏳️‍🌈 {"Queer Space"}
-            </span>
+
           </div>
         </div>
 

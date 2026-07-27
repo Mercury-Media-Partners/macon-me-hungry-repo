@@ -71,7 +71,7 @@ export const LeafletMapContainer = ({ items }: LeafletMapContainerProps) => {
 
     const map = L.map(containerRef.current, {
       center: [32.8407, -83.6324],
-      zoom: 13,
+      zoom: 15,
       zoomControl: true,
       scrollWheelZoom: false,
     });
