@@ -16,33 +16,14 @@ const basePath = "";
   <div class="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none"></div>
 
   <div class="container max-w-6xl mx-auto relative z-10">
-    <!-- 1. Verified Status Ticker Segment -->
-    <div class="border border-border/40 bg-card/50 rounded-2xl px-6 py-4 mb-12 shadow-sm backdrop-blur-md">
-      <div class="flex flex-col md:flex-row items-center justify-around gap-4 text-xs font-semibold tracking-wider uppercase text-muted-foreground/90">
-        <div class="flex items-center gap-2">
-          <span class="text-base">🍔</span>
-          <span>{"Eat Local"}</span>
-        </div>
-        <div class="hidden md:block text-muted-foreground/20 text-lg">•</div>
-        <div class="flex items-center gap-2">
-          <span class="text-base">🤝</span>
-          <span>{"Support Macon"}</span>
-        </div>
-        <div class="hidden md:block text-muted-foreground/20 text-lg">•</div>
-        <div class="flex items-center gap-2">
-          <span class="text-base">✨</span>
-          <span>{"Good Vibes Only"}</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- 2. Three-Column Middle Navigation Layout -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+    <!-- Main 60/40 Layout -->
+    <div class="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-8 mb-16">
       
-      <!-- Column 1: Identity & Motto -->
-      <div class="flex flex-col items-center md:items-start space-y-4 text-center md:text-left">
-        <a href={`${basePath}/`} class="flex items-center gap-2 font-display text-2xl tracking-widest text-foreground hover:text-primary transition-colors shrink-0">
-          <svg class="w-8 h-8 fill-current" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <!-- Left Column: Brand & Conversion (60% -> col-span-3) -->
+      <div class="lg:col-span-3 flex flex-col items-center md:items-start space-y-6 text-center md:text-left">
+        <!-- Logo -->
+        <a href={`${basePath}/`} class="flex items-center gap-3 font-display text-3xl md:text-4xl tracking-widest text-foreground hover:text-primary transition-colors shrink-0">
+          <svg class="w-10 h-10 fill-current" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
             <path d="M 50 5 C 60 5, 65 10, 68 15 C 78 12, 85 18, 85 28 C 92 32, 95 40, 95 50 C 95 60, 92 68, 85 72 C 85 82, 78 88, 68 85 C 65 90, 60 95, 50 95 C 40 95, 35 90, 32 85 C 22 88, 15 82, 15 72 C 8 68, 5 60, 5 50 C 5 40, 8 32, 15 28 C 15 18, 22 12, 32 15 C 35 10, 40 5, 50 5 Z"/>
             <g transform="translate(50,50) rotate(45) translate(-50,-50)">
             <path d="M 38 25 L 38 45 A 12 12 0 0 0 62 45 L 62 25 L 56 25 L 56 42 A 6 6 0 0 1 44 42 L 44 25 Z" fill="var(--color-background)" />
@@ -61,78 +42,68 @@ const basePath = "";
           </svg>
           MACON ME HUNGRY
         </a>
-        <p class="text-sm text-muted-foreground leading-relaxed max-w-xs font-body">
-          {"Your guide to the best bites in Macon, Georgia."}
+        <p class="text-base text-muted-foreground leading-relaxed max-w-sm font-body">
+          {"Your daily guide to Macon's best bites. Discover restaurants, cafes, and hidden gems."}
         </p>
+
+        <!-- Newsletter Form -->
+        <div class="w-full max-w-md mt-2">
+          <form class="flex items-center w-full relative" action="/api/subscribe" method="POST">
+            <input 
+              type="email" 
+              name="email"
+              placeholder="Enter your email address" 
+              class="w-full bg-card/50 border border-border text-foreground placeholder:text-muted-foreground text-sm rounded-full py-3.5 pl-5 pr-32 focus:outline-none focus:border-primary transition-colors shadow-sm"
+              required
+            />
+            <button 
+              type="submit" 
+              class="absolute right-1.5 top-1.5 bottom-1.5 bg-primary hover:bg-primary/90 text-primary-foreground text-xs font-bold uppercase tracking-wider rounded-full px-6 transition-transform hover:scale-105 active:scale-95"
+            >
+              Subscribe
+            </button>
+          </form>
+        </div>
       </div>
 
-      <!-- Column 2: Navigation Links -->
-      <div class="grid grid-cols-2 gap-6">
-        <div>
-          <h4 class="text-xs font-bold text-foreground/80 uppercase tracking-widest font-label mb-4">
+      <!-- Right Column: Navigation (40% -> col-span-2) -->
+      <div class="lg:col-span-2 grid grid-cols-2 gap-8 lg:gap-12 w-full mt-6 lg:mt-0">
+        
+        <!-- Explore -->
+        <div class="text-center md:text-left">
+          <h4 class="text-xs font-bold text-foreground/80 uppercase tracking-widest font-label mb-6">
             {"Explore"}
           </h4>
-          <ul class="space-y-2.5 text-sm font-body">
-            <li>
-              <a href={`${basePath}/#bar-finder`} class="text-muted-foreground hover:text-primary transition-colors">
-                🗂️ {"Directory"}
-              </a>
-            </li>
-            <li>
-              <a href={`${basePath}/blog`} class="text-muted-foreground hover:text-primary transition-colors">
-                ✍️ {"Blog"}
-              </a>
-            </li>
+          <ul class="space-y-4 text-sm font-body">
+            <li><a href={`${basePath}/#bar-finder`} class="text-muted-foreground hover:text-primary transition-colors">Directory</a></li>
+            <li><a href={`${basePath}/map`} class="text-muted-foreground hover:text-primary transition-colors">Interactive Map</a></li>
+            <li><a href={`${basePath}/blog`} class="text-muted-foreground hover:text-primary transition-colors">Blog</a></li>
+            <li><a href={`${basePath}/guides/downtown-patios`} class="text-muted-foreground hover:text-primary transition-colors">Local Guides</a></li>
           </ul>
         </div>
 
-        <div>
-          <h4 class="text-xs font-bold text-foreground/80 uppercase tracking-widest font-label mb-4">
-            {"Tools"}
+        <!-- Connect -->
+        <div class="text-center md:text-left">
+          <h4 class="text-xs font-bold text-foreground/80 uppercase tracking-widest font-label mb-6">
+            {"Connect"}
           </h4>
-          <ul class="space-y-2.5 text-sm font-body">
-            <li>
-              <a href={`${basePath}/map`} class="text-muted-foreground hover:text-primary transition-colors">
-                🗺️ {"Interactive Map"}
-              </a>
-            </li>
+          <ul class="space-y-4 text-sm font-body">
+            <li><a href={`${basePath}/list-your-business`} class="text-muted-foreground hover:text-primary transition-colors font-semibold">Add Your Business</a></li>
+            <li><a href={`${basePath}/faq`} class="text-muted-foreground hover:text-primary transition-colors">FAQ</a></li>
+            <li><a href={`${basePath}/about`} class="text-muted-foreground hover:text-primary transition-colors">About Us</a></li>
           </ul>
         </div>
-      </div>
 
-      <!-- Column 3: Partner & Support -->
-      <div class="flex flex-col items-center md:items-start space-y-4 text-center md:text-left">
-        <h4 class="text-xs font-bold text-foreground/80 uppercase tracking-widest font-label mb-1">
-          {"Community & Support"}
-        </h4>
-        <ul class="space-y-2.5 text-sm font-body">
-          <li>
-            <a href={`${basePath}/list-your-business`} class="text-muted-foreground hover:text-primary transition-colors font-semibold">
-              📢 {"Add Your Business"}
-            </a>
-          </li>
-          <li>
-            <a href={`${basePath}/faq`} class="text-muted-foreground hover:text-primary transition-colors">
-              ❓ {"FAQ"}
-            </a>
-          </li>
-          <li>
-            <a href={`${basePath}/about`} class="text-muted-foreground hover:text-primary transition-colors">
-              👋 {"About Us"}
-            </a>
-          </li>
-        </ul>
       </div>
-
     </div>
 
-    <!-- 3. Bottom Compliance & Copyright Row -->
+    <!-- Bottom Compliance & Copyright Row -->
     <div class="border-t border-border/30 pt-8 flex flex-col md:flex-row items-center justify-between gap-6 text-xs text-muted-foreground text-center md:text-left">
-      <div>
+      <div class="flex flex-col md:flex-row md:items-center gap-4 md:gap-8">
         <p class="leading-relaxed font-body">
           {"© 2026 Macon Me Hungry. All rights reserved."}
         </p>
-        <div class="mt-4 flex flex-wrap gap-4 items-center justify-center md:justify-start">
+        <div class="flex flex-wrap gap-4 items-center justify-center md:justify-start">
           <a href={`${basePath}/privacy`} class="hover:text-primary transition-colors">{"Privacy Policy"}</a>
           <a href={`${basePath}/terms`} class="hover:text-primary transition-colors">{"Terms of Service"}</a>
           <a href="/sitemap-index.xml" class="hover:text-primary transition-colors">{"Sitemap"}</a>
