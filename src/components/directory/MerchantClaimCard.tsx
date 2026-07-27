@@ -1,11 +1,10 @@
 import { useStore } from "@nanostores/react";
-import { $lang } from "@/stores/langStore";
 import { Sparkles, ArrowRight, ShieldCheck } from "lucide-react";
 
 export const MerchantClaimCard = () => {
-  const lang = useStore($lang);
-  const isEs = lang === "es";
-  const basePath = isEs ? "/es" : "";
+  const lang = "en";
+  
+  const basePath = "";
 
   return (
     <div className="p-6 rounded-2xl border border-primary/40 bg-gradient-to-br from-primary/10 via-card to-muted/40 shadow-lg flex flex-col justify-between relative overflow-hidden group hover:border-primary/70 transition-all duration-300">
@@ -16,19 +15,17 @@ export const MerchantClaimCard = () => {
         {/* Badge */}
         <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest bg-primary/20 text-primary border border-primary/30 mb-4">
           <ShieldCheck size={12} />
-          <span>{isEs ? "Negocios Locales" : "Local Venues"}</span>
+          <span>{"Local Venues"}</span>
         </div>
 
         {/* Title */}
         <h3 className="font-display text-2xl text-foreground uppercase tracking-tight mb-2 leading-tight">
-          {isEs ? "¿TIENES UN LUGAR EN MACON?" : "OWN A LOCAL VENUE IN MACON?"}
+          {"OWN A LOCAL VENUE IN MACON?"}
         </h3>
 
         {/* Description */}
         <p className="text-xs text-muted-foreground leading-relaxed mb-6 font-body">
-          {isEs
-            ? "Únete a la guía LGBTQ+ bilingüe de Macon. Registra tu bar, café o espacio en menos de 2 minutos."
-            : "Connect with locals and visitors. Claim your venue listing for free in less than 2 minutes."}
+          {"Connect with locals and visitors. Claim your venue listing for free in less than 2 minutes."}
         </p>
       </div>
 
@@ -38,7 +35,7 @@ export const MerchantClaimCard = () => {
           href={`${basePath}/list-your-business`}
           className="w-full py-3 px-4 bg-primary text-primary-foreground rounded-xl text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 glow-primary hover:scale-[1.02] transition-all font-label"
         >
-          <span>{isEs ? "Registrar Mi Negocio" : "Add Your Business"}</span>
+          <span>{"Add Your Business"}</span>
           <ArrowRight size={14} />
         </a>
 
@@ -46,7 +43,7 @@ export const MerchantClaimCard = () => {
           href={`${basePath}/businesses/blakes-on-the-park?preview=true`}
           className="block text-center text-[11px] text-muted-foreground hover:text-foreground underline underline-offset-2 pt-1 transition-colors font-label"
         >
-          {isEs ? "⚡ Ver Demostración de Perfil" : "⚡ See Owner Preview Demo"}
+          {"⚡ See Owner Preview Demo"}
         </a>
       </div>
     </div>

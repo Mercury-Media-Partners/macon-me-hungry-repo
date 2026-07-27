@@ -6,7 +6,6 @@ import {
   clearItinerary,
   getItineraryShareUrl,
 } from "@/stores/itineraryStore";
-import { $lang } from "@/stores/langStore";
 import { Share2, X, Trash2, Check, Sparkles, MapPin } from "lucide-react";
 
 interface DirectoryItem {
@@ -24,8 +23,8 @@ interface ItineraryBarProps {
 
 export const ItineraryBar = ({ businesses }: ItineraryBarProps) => {
   const itinerary = useStore($itineraryStore);
-  const lang = useStore($lang);
-  const isEs = lang === "es";
+  const lang = "en";
+  
 
   const [isOpen, setIsOpen] = useState(false);
   const [copied, setCopied] = useState(false);
@@ -57,9 +56,7 @@ export const ItineraryBar = ({ businesses }: ItineraryBarProps) => {
           >
             <span className="text-base">🍷</span>
             <span>
-              {isEs
-                ? `Plan de Noche (${itinerary.length})`
-                : `Night Out Plan (${itinerary.length})`}
+              {`Night Out Plan (${itinerary.length})`}
             </span>
           </button>
 
@@ -68,7 +65,7 @@ export const ItineraryBar = ({ businesses }: ItineraryBarProps) => {
             className="px-3 py-2 bg-primary text-primary-foreground rounded-full text-xs font-bold uppercase tracking-wider flex items-center gap-1.5 hover:scale-105 transition-transform"
           >
             {copied ? <Check size={14} /> : <Share2 size={14} />}
-            <span>{copied ? (isEs ? "Copiado!" : "Copied!") : isEs ? "Compartir" : "Share"}</span>
+            <span>{copied ? ("Copied!") : "Share"}</span>
           </button>
         </div>
       </div>
@@ -88,7 +85,7 @@ export const ItineraryBar = ({ businesses }: ItineraryBarProps) => {
               <div className="flex items-center gap-2">
                 <Sparkles size={18} className="text-primary" />
                 <h3 className="font-display text-xl uppercase text-foreground">
-                  {isEs ? "Tu Plan de Noche" : "Your Night Out Plan"}
+                  {"Your Night Out Plan"}
                 </h3>
               </div>
               <button
@@ -140,11 +137,7 @@ export const ItineraryBar = ({ businesses }: ItineraryBarProps) => {
                 {copied ? <Check size={16} /> : <Share2 size={16} />}
                 <span>
                   {copied
-                    ? isEs
-                      ? "¡Enlace Copiado al Portapapeles!"
-                      : "Link Copied to Clipboard!"
-                    : isEs
-                    ? "Copiar Enlace para Compartir"
+                    ? "Link Copied to Clipboard!"
                     : "Copy Shareable Itinerary Link"}
                 </span>
               </button>
@@ -157,7 +150,7 @@ export const ItineraryBar = ({ businesses }: ItineraryBarProps) => {
                 className="w-full py-2.5 text-muted-foreground hover:text-rose-500 text-xs font-semibold uppercase tracking-wider flex items-center justify-center gap-1.5 transition-colors font-label"
               >
                 <Trash2 size={14} />
-                <span>{isEs ? "Borrar Plan" : "Clear Plan"}</span>
+                <span>{"Clear Plan"}</span>
               </button>
             </div>
           </div>

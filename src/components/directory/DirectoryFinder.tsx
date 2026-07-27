@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { useStore } from "@nanostores/react";
-import { $lang } from "@/stores/langStore";
 import { MapPin, Clock, Zap, Music, Star, Coffee, Dumbbell, Briefcase, ShoppingBag, BookOpen, Scissors, Heart, Trees } from "lucide-react";
 import { getCategoryLabel } from "../../utils/categoryTranslations";
 import { openVenueDrawer } from "@/stores/drawerStore";
@@ -198,9 +197,9 @@ export function getOpenStatus(hoursStr: string): { status: 'open' | 'closed' | '
 
 export const DirectoryFinder = ({ initialBusinesses, lang: initialLang = "en" }: DirectoryFinderProps & { lang?: string }) => {
   if (typeof window === "undefined") {
-    $lang.set(initialLang === "es" ? "es" : "en");
+    
   }
-  const lang = useStore($lang);
+  const lang = "en";
     const t = (en: string, es: string) => (lang === "es" ? es : en);
 
   // ── State hooks must come before any derived values that depend on them ──
@@ -368,12 +367,12 @@ export const DirectoryFinder = ({ initialBusinesses, lang: initialLang = "en" }:
       <div className="container max-w-6xl mx-auto">
         {/* Header */}
         <div className="mb-10">
-          <p className="section-label mb-2">{t("Directory", "Directorio")}</p>
+          <p className="section-label mb-2">{"Directory"}</p>
           <h2 className="font-display text-5xl md:text-6xl text-foreground leading-none mb-4 uppercase">
-            {t("FIND YOUR SPACE", "ENCUENTRA TU LUGAR")}
+            {"FIND YOUR SPACE"}
           </h2>
           <p className="text-muted-foreground max-w-xl">
-            {t("Restaurants, cafes, local services & more — your day-to-day queer Macon.", "Restaurantes, cafeterías, servicios locales y más — la vida cotidiana queer de Macon.")}
+            {"Restaurants, cafes, local services & more — your day-to-day queer Macon."}
           </p>
         </div>
 
@@ -404,14 +403,14 @@ export const DirectoryFinder = ({ initialBusinesses, lang: initialLang = "en" }:
         <div className="hidden md:block space-y-4 mb-10">
           <input
             type="text"
-            placeholder={t("Search...", "Buscar...")}
+            placeholder={"Search..."}
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             className="w-full md:w-72 px-4 py-2 rounded-lg bg-muted border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary transition-colors text-sm"
           />
           <div className="flex flex-wrap gap-2">
             <span className="text-xs text-muted-foreground self-center pr-2">
-              {t("Category:", "Categoría:")}
+              {"Category:"}
             </span>
             {activeCategories.map((cat) => {
               const count = getCategoryCount(cat.key);
@@ -432,7 +431,7 @@ export const DirectoryFinder = ({ initialBusinesses, lang: initialLang = "en" }:
           </div>
           <div className="flex flex-wrap gap-2">
             <span className="text-xs text-muted-foreground self-center pr-2">
-              {t("Area:", "Barrio:")}
+              {"Area:"}
             </span>
             {hoods.map((h) => {
               const count = getHoodCount(h.key);
@@ -452,7 +451,7 @@ export const DirectoryFinder = ({ initialBusinesses, lang: initialLang = "en" }:
           </div>
           <div className="flex flex-wrap gap-2">
             <span className="text-xs text-muted-foreground self-center pr-2">
-              {t("Features:", "Filtros:")}
+              {"Features:"}
             </span>
             <button
               onClick={() => setOnlyOpenNow(!onlyOpenNow)}
@@ -462,19 +461,19 @@ export const DirectoryFinder = ({ initialBusinesses, lang: initialLang = "en" }:
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
               </span>
-              <span>{t("Open Right Now", "Abierto Ahora")}</span>
+              <span>{"Open Right Now"}</span>
             </button>
             <button
               onClick={() => setHasPatioOnly(!hasPatioOnly)}
               className={`filter-chip flex items-center gap-1.5 ${hasPatioOnly ? "filter-chip-active" : ""}`}
             >
-              🌳 {t("Patios & Outdoor", "Terrazas y Patios")}
+              🌳 {"Patios & Outdoor"}
             </button>
             <button
               onClick={() => setBilingualStaffOnly(!bilingualStaffOnly)}
               className={`filter-chip flex items-center gap-1.5 ${bilingualStaffOnly ? "filter-chip-active" : ""}`}
             >
-              💬 {t("Bilingual Staff", "Personal Bilingüe")}
+              💬 {"Bilingual Staff"}
             </button>
           </div>
         </div>
@@ -484,7 +483,7 @@ export const DirectoryFinder = ({ initialBusinesses, lang: initialLang = "en" }:
           {filtered.length === 0 && (
             <div className="col-span-full text-center py-16 px-4 bg-muted/20 rounded-2xl border border-border/50">
               <p className="text-muted-foreground text-base mb-4 font-body">
-                {t("No listings match those filters.", "No se encontraron resultados con esos filtros.")}
+                {"No listings match those filters."}
               </p>
               <button
                 onClick={() => {
@@ -497,12 +496,12 @@ export const DirectoryFinder = ({ initialBusinesses, lang: initialLang = "en" }:
                 }}
                 className="px-5 py-2.5 rounded-full bg-primary text-primary-foreground text-xs font-bold uppercase tracking-wider font-label hover:scale-105 transition-transform cursor-pointer"
               >
-                {t("Reset All Filters", "Restablecer Todos los Filtros")}
+                {"Reset All Filters"}
               </button>
             </div>
           )}
           {filtered.map((biz, idx) => {
-            const basePath = lang === "es" ? "/es" : "";
+            const basePath = "";
             const detailUrl = biz.type === "park" || biz.type === "attraction" ? `${basePath}/outdoors-culture/${biz.id}` : `${basePath}/businesses/${biz.id}`;
             const renderClaimCard = idx > 0 && idx % 6 === 0;
 
@@ -525,14 +524,14 @@ export const DirectoryFinder = ({ initialBusinesses, lang: initialLang = "en" }:
                   {(biz.data.tier === "partner" || biz.data.tier === "headliner" || biz.data.tier === "promoter") && (
                     <div className="flex items-center gap-1 mb-2 text-[10px] font-bold tracking-widest uppercase text-secondary">
                       <Zap size={10} fill="currentColor" />
-                      <span>{t("Sponsored Spotlight", "Patrocinado")}</span>
+                      <span>{"Sponsored Spotlight"}</span>
                     </div>
                   )}
                   {/* Professional badge */}
                   {biz.data.tier === "professional" && (
                     <div className="flex items-center gap-1 mb-2 text-[10px] font-bold tracking-widest uppercase text-accent">
                       <Briefcase size={10} fill="currentColor" />
-                      <span>{t("Verified Professional", "Profesional Verificado")}</span>
+                      <span>{"Verified Professional"}</span>
                     </div>
                   )}
 
@@ -590,7 +589,7 @@ export const DirectoryFinder = ({ initialBusinesses, lang: initialLang = "en" }:
 
         {/* Count */}
         <p className="mt-6 text-xs text-muted-foreground text-right">
-          {filtered.length} {t("listings found", "resultados")}
+          {filtered.length} {"listings found"}
         </p>
       </div>
 

@@ -2,14 +2,13 @@ import React from 'react';
 import { Music, Star, ArrowRight, ExternalLink } from 'lucide-react';
 import lineupData from '../../data/lineup.json';
 import { en } from '../../i18n/en';
-import { es } from '../../i18n/es';
 
 interface Props {
   lang?: string;
 }
 
 export const FanFestLineupBanner: React.FC<Props> = ({ lang = 'en' }) => {
-  const t = lang === 'es' ? es : en;
+  const t = en;
 
   // Client-side date determination
   const [dateStr, setDateStr] = React.useState<string>('2026-06-18');
@@ -53,7 +52,7 @@ export const FanFestLineupBanner: React.FC<Props> = ({ lang = 'en' }) => {
   const isMatchday = dateStr in lineupData.maconMatches;
 
   const displayDate = new Date(dateStr + 'T12:00:00').toLocaleDateString(
-    lang === 'es' ? 'es-ES' : 'en-US',
+    'en-US',
     { weekday: 'short', month: 'short', day: 'numeric' }
   );
 
@@ -110,7 +109,7 @@ export const FanFestLineupBanner: React.FC<Props> = ({ lang = 'en' }) => {
           {/* Supporting schedule note */}
           {headliner && regularArtists.length > 0 && (
             <p className="text-xs text-muted-foreground leading-relaxed font-body">
-              {lang === 'es' ? 'También se presentan:' : 'Also performing:'}{' '}
+              {'Also performing:'}{' '}
               <span className="font-medium text-foreground">
                 {regularArtists.slice(0, 4).map((a) => a.name).join(', ')}
                 {regularArtists.length > 4 && ' ...'}
@@ -122,7 +121,7 @@ export const FanFestLineupBanner: React.FC<Props> = ({ lang = 'en' }) => {
         {/* CTA Actions */}
         <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto shrink-0">
           <a
-            href={lang === 'es' ? '/es/matches' : '/matches'}
+            href={'/matches'}
             className="flex items-center justify-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-full font-label text-sm font-semibold hover:scale-105 active:scale-95 transition-all glow-primary text-center"
           >
             <span>{t.viewFullLineup}</span>

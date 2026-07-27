@@ -3,7 +3,6 @@ import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import { useStore } from "@nanostores/react";
 import { $activeVenueSlug, openVenueDrawer } from "@/stores/drawerStore";
-import { $lang } from "@/stores/langStore";
 import { getOpenStatus } from "../directory/DirectoryFinder";
 
 interface MapItem {
@@ -59,8 +58,8 @@ export const LeafletMapContainer = ({ items }: LeafletMapContainerProps) => {
   const markersRef = useRef<Record<string, L.Marker>>({});
 
   const activeSlug = useStore($activeVenueSlug);
-  const lang = useStore($lang);
-  const isEs = lang === "es";
+  const lang = "en";
+  
 
   // Initialize Leaflet Map
   useEffect(() => {
@@ -132,11 +131,11 @@ export const LeafletMapContainer = ({ items }: LeafletMapContainerProps) => {
             <span style="font-size: 10px; font-weight: 700; text-transform: uppercase; padding: 2px 6px; border-radius: 4px; background: ${
               openStatus.status === "open" ? "rgba(16,185,129,0.2)" : "rgba(244,63,94,0.2)"
             }; color: ${openStatus.status === "open" ? "#10b981" : "#f43f5e"};">
-              ${isEs ? openStatus.labelEs : openStatus.labelEn}
+              ${openStatus.labelEn}
             </span>
           </div>
           <button id="drawer-btn-${item.id}" style="width: 100%; padding: 6px 10px; background: #ec4899; color: #ffffff; border: none; border-radius: 6px; font-weight: 700; font-size: 11px; text-transform: uppercase; cursor: pointer;">
-            ${isEs ? "Ver Vista Previa" : "Quick View"} →
+            ${"Quick View"} →
           </button>
         </div>
       `;

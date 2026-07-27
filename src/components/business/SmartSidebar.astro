@@ -2,7 +2,6 @@
 import { MapPin, Clock, Phone, Globe, Star, Zap, Briefcase } from 'lucide-react';
 import { getCollection } from 'astro:content';
 import { en } from '../../i18n/en';
-import { es } from '../../i18n/es';
 
 interface Props {
   address: string;
@@ -26,8 +25,8 @@ interface Props {
 }
 
 const { address, hours, phone, website, socials, stadiumMin, rating, world_cup_ready, tier, slug, lang = "en", transit_station, transit_time_en, transit_time_es } = Astro.props;
-const isEs = lang === "es";
-const t = isEs ? es : en;
+
+const t = en;
 const isPaid = tier === 'partner' || tier === 'promoter' || tier === 'professional' || tier === 'headliner';
 
 // Fetch jobs if applicable
@@ -46,10 +45,10 @@ if (slug) {
 }
 
 // Parse hours of operation into 7 days, 2 columns format
-const parseHours = (hoursStr: string, isEs: boolean) => {
+const parseHours = (hoursStr: string) => {
   const daysEn = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
   const daysEs = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"];
-  const days = isEs ? daysEs : daysEn;
+  const days = daysEn;
 
   const hoursMap: Record<string, string> = {
     "Monday": "Closed",
@@ -62,7 +61,7 @@ const parseHours = (hoursStr: string, isEs: boolean) => {
   };
 
   if (!hoursStr) {
-    return daysEn.map((d, idx) => ({ day: days[idx], hours: isEs ? "Cerrado" : "Closed" }));
+    return daysEn.map((d, idx) => ({ day: days[idx], hours: "Closed" }));
   }
 
   // If the hoursStr has no commas and no day references, apply it to all days
@@ -169,16 +168,6 @@ const parseHours = (hoursStr: string, isEs: boolean) => {
   return daysEn.map((d, idx) => {
     let dayHours = hoursMap[d];
     const rawRange = dayHours;
-    if (isEs) {
-      if (dayHours.toLowerCase() === "closed") {
-        dayHours = "Cerrado";
-      } else {
-        dayHours = dayHours
-          .replace(/closed/i, "Cerrado")
-          .replace(/by appointment/i, "Con cita previa")
-          .replace(/weekends/i, "fines de semana");
-      }
-    }
     return {
       day: days[idx],
       hours: dayHours,
@@ -187,21 +176,21 @@ const parseHours = (hoursStr: string, isEs: boolean) => {
   });
 };
 
-const parsedHours = parseHours(hours, isEs);
+const parsedHours = parseHours(hours);
 ---
 
 <aside class="space-y-6">
   <div class="bg-card/50 backdrop-blur-xl border border-border rounded-2xl p-6 shadow-deep">
     <h3 class="font-display text-2xl mb-6 flex items-center gap-2">
       <Zap class="text-primary" size={20} />
-      {isEs ? "Resumen" : "At a Glance"}
+      {"At a Glance"}
     </h3>
 
     <div class="space-y-5">
       <div class="flex gap-4">
         <MapPin class="text-primary shrink-0 mt-0.5" size={18} />
         <div>
-          <p class="text-xs text-muted-foreground uppercase tracking-wider mb-1">{isEs ? "Dirección" : "Address"}</p>
+          <p class="text-xs text-muted-foreground uppercase tracking-wider mb-1">{"Address"}</p>
           <p class="text-sm font-medium">{address}</p>
         </div>
       </div>
@@ -210,9 +199,9 @@ const parsedHours = parseHours(hours, isEs);
         <div class="flex gap-4 border-t border-border/20 pt-4">
           <span class="text-lg shrink-0 mt-0.5 text-primary">🚆</span>
           <div>
-            <p class="text-xs text-muted-foreground uppercase tracking-wider mb-1">{isEs ? "MARTA Acceso" : "MARTA Transit"}</p>
+            <p class="text-xs text-muted-foreground uppercase tracking-wider mb-1">{"MARTA Transit"}</p>
             <p class="text-sm font-medium">
-              {transit_station} Station — {isEs ? transit_time_es : transit_time_en}
+              {transit_station} Station — {transit_time_en}
             </p>
             <a 
               href={`https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(transit_station + ' Station, Macon, GA')}&destination=${encodeURIComponent(address)}&travelmode=walking`}
@@ -220,7 +209,7 @@ const parsedHours = parseHours(hours, isEs);
               rel="noopener"
               class="text-xs text-primary font-semibold hover:underline block mt-1"
             >
-              {isEs ? "Ver indicaciones a pie →" : "Get walking directions →"}
+              {"Get walking directions →"}
             </a>
           </div>
         </div>
@@ -230,9 +219,9 @@ const parsedHours = parseHours(hours, isEs);
         <Clock class="text-primary shrink-0 mt-0.5" size={18} />
         <div class="flex-1 min-w-0">
           <div class="flex items-center justify-between mb-2">
-            <p class="text-xs text-muted-foreground uppercase tracking-wider">{isEs ? "Horario" : "Hours"}</p>
+            <p class="text-xs text-muted-foreground uppercase tracking-wider">{"Hours"}</p>
             <span id="hours-status-badge" class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-muted text-muted-foreground transition-all duration-300">
-              {isEs ? "Cargando..." : "Loading..."}
+              {"Loading..."}
             </span>
           </div>
           <div id="hours-table" data-hours={JSON.stringify(parsedHours)} data-lang={lang} class="w-full space-y-1">
@@ -251,7 +240,7 @@ const parsedHours = parseHours(hours, isEs);
         <div class="flex gap-4">
           <Phone class="text-primary shrink-0 mt-0.5" size={18} />
           <div>
-            <p class="text-xs text-muted-foreground uppercase tracking-wider mb-1">{isEs ? "Teléfono" : "Phone"}</p>
+            <p class="text-xs text-muted-foreground uppercase tracking-wider mb-1">{"Phone"}</p>
             <a href={`tel:${phone}`} class="text-sm font-medium hover:text-primary transition-colors">{phone}</a>
           </div>
         </div>
@@ -262,7 +251,7 @@ const parsedHours = parseHours(hours, isEs);
         <div class="flex gap-4">
           <Globe class="text-primary shrink-0 mt-0.5" size={18} />
           <div>
-            <p class="text-xs text-muted-foreground uppercase tracking-wider mb-1">{isEs ? "Sitio Web" : "Website"}</p>
+            <p class="text-xs text-muted-foreground uppercase tracking-wider mb-1">{"Website"}</p>
             <div class={isPaid ? "" : "locked-upsell-wrapper is-locked"} data-locked-tier="promoter">
               <a href={website} target="_blank" rel="noopener" class="text-sm font-medium text-primary hover:underline transition-all">
                 {website.replace(/^https?:\/\/(www\.)?/, '')}
@@ -270,7 +259,7 @@ const parsedHours = parseHours(hours, isEs);
             </div>
             {!isPaid && (
               <span class="text-[10px] text-muted-foreground/45 block mt-0.5 locked-hint">
-                {isEs ? "🔒 Bloqueado (Promoter)" : "🔒 Locked (Promoter)"}
+                {"🔒 Locked (Promoter)"}
               </span>
             )}
           </div>
@@ -281,7 +270,7 @@ const parsedHours = parseHours(hours, isEs);
       {socials && (
         <div class="flex flex-col gap-1 pt-2">
           {!isPaid && (
-            <span class="text-xs text-muted-foreground uppercase tracking-wider mb-1">{isEs ? "Redes Sociales" : "Social Links"}</span>
+            <span class="text-xs text-muted-foreground uppercase tracking-wider mb-1">{"Social Links"}</span>
           )}
           <div class={isPaid ? "flex flex-wrap gap-2" : "locked-upsell-wrapper is-locked flex flex-wrap gap-2"} data-locked-tier="promoter">
             {socials.instagram && (
@@ -317,7 +306,7 @@ const parsedHours = parseHours(hours, isEs);
           </div>
           {!isPaid && (
             <span class="text-[10px] text-muted-foreground/45 block mt-0.5 locked-hint">
-              {isEs ? "🔒 Bloqueado (Promoter)" : "🔒 Locked (Promoter)"}
+              {"🔒 Locked (Promoter)"}
             </span>
           )}
         </div>
@@ -332,7 +321,7 @@ const parsedHours = parseHours(hours, isEs);
       <div class="text-right">
         <p class="text-xl font-display text-foreground leading-none">{stadiumMin} min</p>
         <p class="text-[10px] text-muted-foreground uppercase tracking-tighter">
-          {isEs ? "al Mercedes-Benz Stadium" : "to Mercedes-Benz Stadium"}
+          {"to Mercedes-Benz Stadium"}
         </p>
       </div>
     </div>
@@ -362,12 +351,12 @@ const parsedHours = parseHours(hours, isEs);
           ))}
         </div>
         {(tier === 'promoter' || tier === 'professional' || tier === 'free') && (
-          <p class="text-[10px] text-center mt-3 text-muted-foreground/60">{isEs ? "Mostrando hasta 2 vacantes" : "Showing up to 2 openings"}</p>
+          <p class="text-[10px] text-center mt-3 text-muted-foreground/60">{"Showing up to 2 openings"}</p>
         )}
       </div>
       {!isPaid && (
         <span class="text-[10px] text-muted-foreground/45 block mt-2 text-center locked-hint">
-          {isEs ? "🔒 Oportunidades Laborales Bloqueadas (Promoter)" : "🔒 Job Openings Locked (Promoter)"}
+          {"🔒 Job Openings Locked (Promoter)"}
         </span>
       )}
     </div>
@@ -376,10 +365,10 @@ const parsedHours = parseHours(hours, isEs);
   {!isPaid && (
     <div class="text-center py-1 claim-badge">
       <a
-        href={isEs ? "/es/list-your-business" : "/list-your-business"}
+        href={"/list-your-business"}
         class="text-[11px] text-muted-foreground/50 hover:text-primary transition-colors inline-flex items-center gap-1.5 font-body underline underline-offset-2 decoration-muted-foreground/30 hover:decoration-primary"
       >
-        <span>💡 {isEs ? "¿Eres el propietario? Reclama o mejora este perfil" : "Own this business? Claim or upgrade this listing"} →</span>
+        <span>💡 {"Own this business? Claim or upgrade this listing"} →</span>
       </a>
     </div>
   )}
@@ -431,8 +420,7 @@ const parsedHours = parseHours(hours, isEs);
     if (!table || !badge) return;
 
     const parsedHours = JSON.parse(table.dataset.hours || '[]');
-    const isEs = table.dataset.lang === 'es';
-
+    
     // Get current Macon time
     const maconString = new Date().toLocaleString("en-US", { timeZone: "America/New_York" });
     const maconDate = new Date(maconString);
@@ -493,13 +481,13 @@ const parsedHours = parseHours(hours, isEs);
     // Update status badge
     badge.className = "px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider border transition-all duration-300";
     if (isOpen) {
-      badge.textContent = isEs ? "Abierto ahora" : "Open Now";
+      badge.textContent = "Open Now";
       badge.className = "px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider border transition-all duration-300 bg-emerald-500/10 text-emerald-500 border-emerald-500/20";
     } else if (isByAppointment) {
-      badge.textContent = isEs ? "Con cita" : "Appointment Only";
+      badge.textContent = "Appointment Only";
       badge.className = "px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider border transition-all duration-300 bg-amber-500/10 text-amber-500 border-amber-500/20";
     } else {
-      badge.textContent = isEs ? "Cerrado" : "Closed";
+      badge.textContent = "Closed";
       badge.className = "px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider border transition-all duration-300 bg-rose-500/10 text-rose-500 border-rose-500/20";
     }
   })();

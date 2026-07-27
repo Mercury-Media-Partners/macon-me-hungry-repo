@@ -2,7 +2,6 @@
 import type { CollectionEntry } from 'astro:content';
 import { getEntry } from 'astro:content';
 import { en } from '../../i18n/en';
-import { es } from '../../i18n/es';
 
 interface Props {
   job: CollectionEntry<'jobs'>;
@@ -10,7 +9,7 @@ interface Props {
 }
 
 const { job, lang = 'en' } = Astro.props;
-const t = lang === 'es' ? es : en;
+const t = en;
 
 // Fetch parent business for the name
 const business = await getEntry('businesses', job.data.business_slug);

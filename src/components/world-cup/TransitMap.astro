@@ -5,28 +5,20 @@ interface Props {
 }
 
 const { lang = "en" } = Astro.props;
-const isEs = lang === "es";
+
 
 const t = {
-  eyebrow: isEs ? "Tránsito y Acceso" : "Transit & Access",
-  title: isEs ? "Acceso a MARTA y Estadio" : "MARTA & Stadium Access",
-  desc: isEs 
-    ? "Planifica tu ruta al Mercedes-Benz Stadium. Utiliza esta guía de tránsito para ubicar líneas ferroviarias de MARTA, salidas de estaciones y senderos peatonales clave en el centro de la ciudad."
-    : "Navigate your way to Mercedes-Benz Stadium. Use this transit guide to trace MARTA rail lines, station exits, and downtown pedestrian pathways.",
-  actionText: isEs ? "Clic en el mapa para expandir y desplazar" : "Click map to expand & pan",
-  listTitle: isEs ? "Conexiones Clave de Tránsito" : "Key Transit Connections",
-  station1Title: isEs ? "Estación Dome/GWCC/Philips/CNN" : "Dome/GWCC/Philips/CNN Station",
-  station1Desc: isEs 
-    ? "Acceso directo a las puertas del Mercedes-Benz Stadium (Línea Azul/Verde)." 
-    : "Direct access right outside the gates of Mercedes-Benz Stadium (Blue/Green Line).",
-  station2Title: isEs ? "Estación Five Points" : "Five Points Station",
-  station2Desc: isEs 
-    ? "Centro de transferencia central para conectar todas las líneas ferroviarias (Líneas Rojo, Oro, Azul y Verde)." 
-    : "Central transfer hub to connect all rail lines (Red, Gold, Blue, and Green Lines).",
-  station3Title: isEs ? "Estación Peachtree Center" : "Peachtree Center Station",
-  station3Desc: isEs 
-    ? "El punto de acceso más conveniente para los hoteles del centro y zonas de aficionados." 
-    : "The most convenient access point for downtown hotels and watch party zones."
+  eyebrow: "Transit & Access",
+  title: "MARTA & Stadium Access",
+  desc: "Navigate your way to Mercedes-Benz Stadium. Use this transit guide to trace MARTA rail lines, station exits, and downtown pedestrian pathways.",
+  actionText: "Click map to expand & pan",
+  listTitle: "Key Transit Connections",
+  station1Title: "Dome/GWCC/Philips/CNN Station",
+  station1Desc: "Direct access right outside the gates of Mercedes-Benz Stadium (Blue/Green Line).",
+  station2Title: "Five Points Station",
+  station2Desc: "Central transfer hub to connect all rail lines (Red, Gold, Blue, and Green Lines).",
+  station3Title: "Peachtree Center Station",
+  station3Desc: "The most convenient access point for downtown hotels and watch party zones."
 };
 ---
 
@@ -142,7 +134,7 @@ const t = {
 
   {/* Helper Hint */}
   <div class="py-3 text-[10px] text-muted-foreground uppercase tracking-widest font-label z-10 shrink-0">
-    {isEs ? "Arrastra para desplazar · Esc para cerrar" : "Click and Drag to Pan · Esc to Close"}
+    {"Click and Drag to Pan · Esc to Close"}
   </div>
 </div>
 

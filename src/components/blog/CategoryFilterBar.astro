@@ -5,15 +5,15 @@ interface Props {
 }
 
 const { lang = "en" } = Astro.props;
-const isEs = lang === "es";
+
 
 const filters = [
-  { id: 'all', label: isEs ? "Todo" : "All" },
-  { id: 'world-cup', label: isEs ? "Mundial 2026" : "World Cup 2026" },
-  { id: 'nightlife', label: isEs ? "Vida Nocturna" : "Nightlife" },
-  { id: 'lifestyle', label: isEs ? "Estilo de Vida" : "Lifestyle" },
-  { id: 'wellness', label: isEs ? "Bienestar" : "Wellness" },
-  { id: 'news', label: isEs ? "Noticias" : "News" }
+  { id: 'all', label: "All" },
+  { id: 'world-cup', label: "World Cup 2026" },
+  { id: 'nightlife', label: "Nightlife" },
+  { id: 'lifestyle', label: "Lifestyle" },
+  { id: 'wellness', label: "Wellness" },
+  { id: 'news', label: "News" }
 ];
 ---
 

@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useStore } from "@nanostores/react";
-import { $lang } from "@/stores/langStore";
 import { SlidersHorizontal, X, Check, RotateCcw } from "lucide-react";
 
 interface CategoryOption {
@@ -44,8 +43,8 @@ export const MobileFilterSheet = ({
   getHoodCount,
   onReset,
 }: MobileFilterSheetProps) => {
-  const lang = useStore($lang);
-  const isEs = lang === "es";
+  const lang = "en";
+  
   const [isOpen, setIsOpen] = useState(false);
 
   const activeFiltersCount =
@@ -63,11 +62,11 @@ export const MobileFilterSheet = ({
       >
         <div className="flex items-center gap-2">
           <SlidersHorizontal size={16} className="text-primary" />
-          <span>{isEs ? "Filtros y Búsqueda" : "Filter Options"}</span>
+          <span>{"Filter Options"}</span>
         </div>
         {activeFiltersCount > 0 && (
           <span className="px-2 py-0.5 rounded-full text-[10px] bg-primary text-primary-foreground font-bold">
-            {activeFiltersCount} {isEs ? "Activos" : "Active"}
+            {activeFiltersCount} {"Active"}
           </span>
         )}
       </button>
@@ -87,7 +86,7 @@ export const MobileFilterSheet = ({
               <div className="flex items-center gap-2">
                 <SlidersHorizontal size={18} className="text-primary" />
                 <h3 className="font-display text-xl uppercase text-foreground">
-                  {isEs ? "Filtros de Búsqueda" : "Search Filters"}
+                  {"Search Filters"}
                 </h3>
               </div>
               <button
@@ -101,7 +100,7 @@ export const MobileFilterSheet = ({
             {/* Categories */}
             <div className="mb-6">
               <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-3 font-label">
-                {isEs ? "Categoría" : "Category"}
+                {"Category"}
               </p>
               <div className="flex flex-wrap gap-2">
                 {categories.map((cat) => {
@@ -113,7 +112,7 @@ export const MobileFilterSheet = ({
                       onClick={() => onSelectCategory(cat.key)}
                       className={`filter-chip ${isSelected ? "filter-chip-active" : ""}`}
                     >
-                      <span>{isEs ? cat.label.es : cat.label.en}</span>
+                      <span>{cat.label.en}</span>
                       <span className="text-[10px] opacity-75">({count})</span>
                     </button>
                   );
@@ -124,7 +123,7 @@ export const MobileFilterSheet = ({
             {/* Neighborhoods */}
             <div className="mb-6">
               <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-3 font-label">
-                {isEs ? "Barrio" : "Neighborhood"}
+                {"Neighborhood"}
               </p>
               <div className="flex flex-wrap gap-2">
                 {hoods.map((h) => {
@@ -136,7 +135,7 @@ export const MobileFilterSheet = ({
                       onClick={() => onSelectHood(h.key)}
                       className={`filter-chip ${isSelected ? "filter-chip-active" : ""}`}
                     >
-                      <span>{isEs ? h.label.es : h.label.en}</span>
+                      <span>{h.label.en}</span>
                       <span className="text-[10px] opacity-75">({count})</span>
                     </button>
                   );
@@ -147,20 +146,20 @@ export const MobileFilterSheet = ({
             {/* Features */}
             <div className="mb-6">
               <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-3 font-label">
-                {isEs ? "Características" : "Features"}
+                {"Features"}
               </p>
               <div className="flex flex-wrap gap-2">
                 <button
                   onClick={onTogglePatio}
                   className={`filter-chip ${hasPatioOnly ? "filter-chip-active" : ""}`}
                 >
-                  🌳 {isEs ? "Terrazas y Patios" : "Patios & Outdoor"}
+                  🌳 {"Patios & Outdoor"}
                 </button>
                 <button
                   onClick={onToggleBilingual}
                   className={`filter-chip ${bilingualStaffOnly ? "filter-chip-active" : ""}`}
                 >
-                  💬 {isEs ? "Personal Bilingüe" : "Bilingual Staff"}
+                  💬 {"Bilingual Staff"}
                 </button>
               </div>
             </div>
@@ -172,14 +171,14 @@ export const MobileFilterSheet = ({
                 className="py-3 px-4 rounded-xl border border-border text-muted-foreground hover:text-foreground text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-1.5 font-label"
               >
                 <RotateCcw size={14} />
-                <span>{isEs ? "Limpiar" : "Reset"}</span>
+                <span>{"Reset"}</span>
               </button>
               <button
                 onClick={() => setIsOpen(false)}
                 className="flex-1 py-3 bg-primary text-primary-foreground rounded-xl text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 glow-primary font-label"
               >
                 <Check size={16} />
-                <span>{isEs ? "Aplicar Filtros" : "Apply Filters"}</span>
+                <span>{"Apply Filters"}</span>
               </button>
             </div>
           </div>

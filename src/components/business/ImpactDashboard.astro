@@ -7,7 +7,7 @@ interface Props {
 }
 
 const { jobs, local_sourcing, established, lang = "en" } = Astro.props;
-const isEs = lang === "es";
+
 ---
 
 <div class="border-y border-border py-12">
@@ -16,7 +16,7 @@ const isEs = lang === "es";
       <div class="text-center">
         <p class="text-4xl font-display text-primary leading-none mb-2">{jobs}</p>
         <p class="text-[10px] text-muted-foreground uppercase tracking-widest font-bold">
-          {isEs ? "Empleos Locales Generados" : "Local Jobs Supported"}
+          {"Local Jobs Supported"}
         </p>
       </div>
     )}
@@ -25,7 +25,7 @@ const isEs = lang === "es";
       <div class="text-center">
         <p class="text-4xl font-display text-accent leading-none mb-2">{local_sourcing}</p>
         <p class="text-[10px] text-muted-foreground uppercase tracking-widest font-bold">
-          {isEs ? "Insumos Locales de Georgia" : "Georgia-Sourced Produce"}
+          {"Georgia-Sourced Produce"}
         </p>
       </div>
     )}
@@ -34,15 +34,13 @@ const isEs = lang === "es";
       <div class="text-center">
         <p class="text-4xl font-display text-secondary leading-none mb-2">{established}</p>
         <p class="text-[10px] text-muted-foreground uppercase tracking-widest font-bold">
-          {isEs ? "Impulsando Macon Desde" : "Anchoring Macon Since"}
+          {"Anchoring Macon Since"}
         </p>
       </div>
     )}
   </div>
   
   <p class="mt-8 text-center text-[11px] text-muted-foreground max-w-lg mx-auto leading-relaxed italic">
-    {isEs 
-      ? '"Negocios como este son el pilar de nuestra comunidad. Su éxito continuo garantiza una economía local fuerte y un perfil internacional vibrante para el Mundial 2026."'
-      : '"Businesses like this are the backbone of our community. Their continued success ensures a resilient local economy and a vibrant international profile for the 2026 World Cup."'}
+    {'"Businesses like this are the backbone of our community. Their continued success ensures a resilient local economy and a vibrant international profile for the 2026 World Cup."'}
   </p>
 </div>

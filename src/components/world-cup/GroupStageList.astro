@@ -7,30 +7,19 @@ interface Props {
 }
 
 const { lang = "en" } = Astro.props;
-const isEs = lang === "es";
+
 
 const t = {
-  title: isEs ? "Fase de Grupos" : "Group Stage Matches",
-  subtitle: isEs ? "El camino hacia la gloria. Encuentra dónde ver cada partido." : "The road to glory. Find where to watch every match.",
-  upcoming: isEs ? "Próximamente" : "Upcoming",
+  title: "Group Stage Matches",
+  subtitle: "The road to glory. Find where to watch every match.",
+  upcoming: "Upcoming",
 };
 
 // Group matches by displayDate
 const groupedMatches = matchesData.reduce((acc, match) => {
   // Simple Spanish translation for display dates if needed
   let displayDate = match.displayDate;
-  if (isEs) {
-    displayDate = displayDate
-      .replace('Thu', 'Jue')
-      .replace('Fri', 'Vie')
-      .replace('Sat', 'Sáb')
-      .replace('Sun', 'Dom')
-      .replace('Mon', 'Lun')
-      .replace('Tue', 'Mar')
-      .replace('Wed', 'Mié')
-      .replace('Jun', 'Junio')
-      .replace('Jul', 'Julio');
-  }
+  
 
   if (!acc[displayDate]) {
     acc[displayDate] = [];
@@ -62,7 +51,7 @@ const groupedMatches = matchesData.reduce((acc, match) => {
                 <div class="flex justify-between items-center">
                   <span class="text-[10px] font-bold uppercase tracking-widest text-muted-foreground flex items-center gap-1">
                     <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-globe"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
-                    {isEs ? match.group.replace('Group', 'Grupo') : match.group}
+                    {match.group}
                   </span>
                   <span class={`text-[10px] font-bold px-2 py-1 rounded-md uppercase tracking-wider ${isLiveOrUpcoming ? 'bg-primary/20 text-primary border border-primary/30' : 'bg-white/5 text-muted-foreground border border-white/10'}`}>
                     {match.status === 'Upcoming' ? t.upcoming : match.status}
@@ -70,14 +59,14 @@ const groupedMatches = matchesData.reduce((acc, match) => {
                 </div>
                 
                 <div class="flex items-center justify-between gap-2">
-                  <div class="flex-1 text-right font-display text-base md:text-lg text-foreground truncate" title={translateTeam(match.team1, isEs)}>
-                    {getCountryFlag(translateTeam(match.team1, isEs))}
+                  <div class="flex-1 text-right font-display text-base md:text-lg text-foreground truncate" title={match.team1}>
+                    {getCountryFlag(match.team1)}
                   </div>
                   <div class={`px-2 text-sm font-bold whitespace-nowrap w-20 md:w-24 text-center shrink-0 ${isLiveOrUpcoming ? 'text-primary' : 'text-muted-foreground'}`}>
                     {match.timeOrScore}
                   </div>
-                  <div class="flex-1 text-left font-display text-base md:text-lg text-foreground truncate" title={translateTeam(match.team2, isEs)}>
-                    {getCountryFlag(translateTeam(match.team2, isEs))}
+                  <div class="flex-1 text-left font-display text-base md:text-lg text-foreground truncate" title={match.team2}>
+                    {getCountryFlag(match.team2)}
                   </div>
                 </div>
               </div>

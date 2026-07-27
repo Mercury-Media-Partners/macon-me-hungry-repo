@@ -8,7 +8,6 @@ interface Props {
 }
 
 const { title, description = "Macon Me Hungry — Discover Macon's Best Bites" } = Astro.props;
-const isEs = Astro.url.pathname.startsWith('/es') || Astro.url.pathname.includes('/es/');
 const umamiId = import.meta.env.PUBLIC_UMAMI_WEBSITE_ID;
 
 // Calculate alternate URLs dynamically for SEO index mappings
@@ -19,7 +18,7 @@ const esUrl = new URL('/es' + rawPath, 'https://maconmehungry.com').toString().r
 
 
 <!doctype html>
-<html lang={isEs ? "es" : "en"}>
+<html lang={"en"}>
 	<head>
 		<meta charset="UTF-8" />
 		{umamiId && (
@@ -82,7 +81,7 @@ const esUrl = new URL('/es' + rawPath, 'https://maconmehungry.com').toString().r
 		<link rel="alternate" hreflang="en" href={enUrl} />
 		<link rel="alternate" hreflang="es" href={esUrl} />
 		<link rel="alternate" hreflang="x-default" href={enUrl} />
-		<link rel="canonical" href={isEs ? esUrl : enUrl} />
+		<link rel="canonical" href={enUrl} />
 		<slot name="head" />
 		
 		<!-- Open Graph / Facebook -->
@@ -101,7 +100,7 @@ const esUrl = new URL('/es' + rawPath, 'https://maconmehungry.com').toString().r
 		</div>
 		
 		{/* Mercury Accessibility Widget */}
-		<AccessibilityWidget lang={isEs ? 'es' : 'en'} />
+		<AccessibilityWidget lang={'en'} />
 	</body>
 </html>
 

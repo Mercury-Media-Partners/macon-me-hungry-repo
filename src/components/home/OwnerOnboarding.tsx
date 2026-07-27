@@ -55,7 +55,7 @@ export const OwnerOnboarding = ({ content, lang = "en" }: Props) => {
   const [showFounding, setShowFounding] = useState(false);
 
   const getDemoLink = (tierId: string) => {
-    const prefix = lang === "es" ? "/es" : "";
+    const prefix = "";
     if (tierId === "headliner") return `${prefix}/businesses/peachtree-and-peachtree-social-club`;
     if (tierId === "professional") return `${prefix}/businesses/mercury-media-partners`;
     if (tierId === "promoter") return `${prefix}/businesses/traffic-on-the-beltline`;
@@ -254,7 +254,7 @@ export const OwnerOnboarding = ({ content, lang = "en" }: Props) => {
                     rel="noopener noreferrer"
                     className="block text-center text-xs text-muted-foreground hover:text-primary mt-3 underline decoration-muted-foreground/30 hover:decoration-primary transition-all font-body"
                   >
-                    {lang === "es" ? "Ver ejemplo de perfil →" : "View Example Profile →"}
+                    {"View Example Profile →"}
                   </a>
                 )}
               </div>

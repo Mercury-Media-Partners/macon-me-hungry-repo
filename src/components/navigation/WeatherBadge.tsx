@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { en } from '../../i18n/en';
-import { es } from '../../i18n/es';
 
 interface Props {
   lang?: string;
 }
 
 export const WeatherBadge: React.FC<Props> = ({ lang = 'en' }) => {
-  const t = lang === 'es' ? es : en;
+  const t = en;
 
   const [temp, setTemp] = useState<number | null>(null);
   const [weatherCode, setWeatherCode] = useState<number | null>(null);
@@ -18,7 +17,7 @@ export const WeatherBadge: React.FC<Props> = ({ lang = 'en' }) => {
     setMounted(true);
     const fetchWeather = async () => {
       try {
-        const unit = lang === 'es' ? 'celsius' : 'fahrenheit';
+        const unit = 'fahrenheit';
         const url = `https://api.open-meteo.com/v1/forecast?latitude=32.8407&longitude=-83.6324&current=temperature_2m,weather_code&temperature_unit=${unit}`;
         
         const response = await fetch(url);
@@ -76,7 +75,7 @@ export const WeatherBadge: React.FC<Props> = ({ lang = 'en' }) => {
       className="flex items-center gap-1.5 px-3 py-1 bg-muted/40 border border-border/60 rounded-full text-[10px] font-bold uppercase tracking-wider text-muted-foreground hover:text-foreground hover:border-primary/20 transition-all cursor-help relative group"
     >
       <span className="text-sm leading-none">{emoji}</span>
-      <span>{temp !== null ? `${Math.round(temp)}°${lang === 'es' ? 'C' : 'F'}` : '--'}</span>
+      <span>{temp !== null ? `${Math.round(temp)}°${'F'}` : '--'}</span>
       
       {/* Floating Hover Tooltip */}
       <div className="absolute top-full mt-2 right-0 bg-card border border-border px-3 py-1.5 rounded-lg shadow-deep opacity-0 pointer-events-none group-hover:opacity-100 transition-all duration-200 text-[9px] lowercase tracking-wide text-muted-foreground normal-case whitespace-nowrap z-50">

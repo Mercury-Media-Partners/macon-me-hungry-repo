@@ -5,20 +5,20 @@ interface Props {
 }
 
 const { lang = "en" } = Astro.props;
-const isEs = lang === "es";
+
 
 // Translations
 const t = {
-  toggleLabel: isEs ? "Opciones de Accesibilidad" : "Accessibility Options",
-  title: isEs ? "Protocolo de Accesibilidad" : "Accessibility Protocol",
-  contrastTitle: isEs ? "Alto Contraste" : "High Contrast",
-  contrastDesc: isEs ? "Claridad Visual Reforzada" : "Hardened Visual Clarity",
-  linksTitle: isEs ? "Destacar Enlaces" : "Highlight Links",
-  linksDesc: isEs ? "Identificar Puntos de Interacción" : "Identify Interaction Points",
-  pauseTitle: isEs ? "Pausar Animaciones" : "Pause Animations",
-  pauseDesc: isEs ? "Navegación Estática Sin Movimiento" : "Zero-G Static Navigation",
-  resetBtn: isEs ? "Restablecer Ajustes" : "Reset All Settings",
-  footerText: isEs ? "Gestión Digital ♿️ por Mercury Media" : "Digital Stewardship ♿️ by Mercury Media"
+  toggleLabel: "Accessibility Options",
+  title: "Accessibility Protocol",
+  contrastTitle: "High Contrast",
+  contrastDesc: "Hardened Visual Clarity",
+  linksTitle: "Highlight Links",
+  linksDesc: "Identify Interaction Points",
+  pauseTitle: "Pause Animations",
+  pauseDesc: "Zero-G Static Navigation",
+  resetBtn: "Reset All Settings",
+  footerText: "Digital Stewardship ♿️ by Mercury Media"
 };
 ---
 

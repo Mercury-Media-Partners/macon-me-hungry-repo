@@ -13,14 +13,13 @@ import {
 } from 'lucide-react';
 import lineupData from '../../data/lineup.json';
 import { en } from '../../i18n/en';
-import { es } from '../../i18n/es';
 
 interface Props {
   lang?: string;
 }
 
 export const FanFestLineupWidget: React.FC<Props> = ({ lang = 'en' }) => {
-  const t = lang === 'es' ? es : en;
+  const t = en;
 
   // State Management
   const [selectedDate, setSelectedDate] = React.useState<string>('2026-06-11');
@@ -129,7 +128,7 @@ export const FanFestLineupWidget: React.FC<Props> = ({ lang = 'en' }) => {
 
   // Helper date parsing for headers
   const displaySelectedDate = new Date(selectedDate + 'T12:00:00').toLocaleDateString(
-    lang === 'es' ? 'es-ES' : 'en-US',
+    'en-US',
     { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' }
   );
 
@@ -216,7 +215,7 @@ export const FanFestLineupWidget: React.FC<Props> = ({ lang = 'en' }) => {
                   activeTab === 'lineup' ? 'bg-primary text-primary-foreground shadow-sm' : 'text-muted-foreground hover:text-foreground'
                 }`}
               >
-                {lang === 'es' ? 'Presentaciones' : 'Lineup'}
+                {'Lineup'}
               </button>
               <button
                 onClick={() => setActiveTab('activations')}
@@ -224,7 +223,7 @@ export const FanFestLineupWidget: React.FC<Props> = ({ lang = 'en' }) => {
                   activeTab === 'activations' ? 'bg-primary text-primary-foreground shadow-sm' : 'text-muted-foreground hover:text-foreground'
                 }`}
               >
-                {lang === 'es' ? 'Activaciones' : 'Activations'}
+                {'Activations'}
               </button>
             </div>
           </div>
@@ -248,10 +247,10 @@ export const FanFestLineupWidget: React.FC<Props> = ({ lang = 'en' }) => {
                 const isSelected = dateStr === selectedDate;
                 const isMday = dateStr in lineupData.maconMatches;
                 const dayNum = dateObj.getDate();
-                const wday = dateObj.toLocaleDateString(lang === 'es' ? 'es-ES' : 'en-US', {
+                const wday = dateObj.toLocaleDateString('en-US', {
                   weekday: 'short'
                 });
-                const mon = dateObj.toLocaleDateString(lang === 'es' ? 'es-ES' : 'en-US', {
+                const mon = dateObj.toLocaleDateString('en-US', {
                   month: 'short'
                 });
 
@@ -323,7 +322,7 @@ export const FanFestLineupWidget: React.FC<Props> = ({ lang = 'en' }) => {
 
               {matchInfo && (
                 <p className="text-xs text-muted-foreground leading-relaxed mt-1 font-body">
-                  {lang === 'es' ? 'Partido en el Mercedes-Benz Stadium:' : 'Match at Mercedes-Benz Stadium:'}{' '}
+                  {'Match at Mercedes-Benz Stadium:'}{' '}
                   <span className="font-bold text-foreground">{matchInfo.teams}</span> ({matchInfo.phase})
                 </p>
               )}
@@ -394,7 +393,7 @@ export const FanFestLineupWidget: React.FC<Props> = ({ lang = 'en' }) => {
                       Soccer Sidekicks
                     </h5>
                     <p className="text-[10px] text-muted-foreground uppercase tracking-widest mt-0.5">
-                      {lang === 'es' ? 'Activación Deportiva Diaria' : 'Daily Sports Activation'}
+                      {'Daily Sports Activation'}
                     </p>
                   </div>
                 </div>

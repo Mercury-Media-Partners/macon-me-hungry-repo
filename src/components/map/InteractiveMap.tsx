@@ -7,15 +7,13 @@ import {
   Bus
 } from 'lucide-react';
 import { en } from '../../i18n/en';
-import { es } from '../../i18n/es';
 
 interface Props {
   lang?: string;
 }
 
 export const InteractiveMap: React.FC<Props> = ({ lang = 'en' }) => {
-  const isEs = lang === 'es';
-  const t = isEs ? es : en;
+    const t = en;
 
   const [activeFilter, setActiveFilter] = useState<string>('all');
   const [isClient, setIsClient] = useState(false);
@@ -49,37 +47,37 @@ export const InteractiveMap: React.FC<Props> = ({ lang = 'en' }) => {
       {/* Category Filter Pills */}
       <div className="flex flex-wrap items-center gap-2 pb-2">
         <span className="text-xs font-label text-muted-foreground uppercase font-bold pr-2 flex items-center gap-1">
-          <Layers size={14} /> {isEs ? 'Filtro Mapa:' : 'Map Filter:'}
+          <Layers size={14} /> {'Map Filter:'}
         </span>
         <button
           onClick={() => setActiveFilter('all')}
           className={`filter-chip ${activeFilter === 'all' ? 'filter-chip-active' : ''}`}
         >
-          {isEs ? 'Todos los Puntos' : 'All Markers'}
+          {'All Markers'}
         </button>
         <button
           onClick={() => setActiveFilter('nightlife')}
           className={`filter-chip flex items-center gap-1 ${activeFilter === 'nightlife' ? 'filter-chip-active' : ''}`}
         >
-          <Music size={12} /> {isEs ? 'Vida Nocturna' : 'Nightlife'}
+          <Music size={12} /> {'Nightlife'}
         </button>
         <button
           onClick={() => setActiveFilter('lifestyle')}
           className={`filter-chip flex items-center gap-1 ${activeFilter === 'lifestyle' ? 'filter-chip-active' : ''}`}
         >
-          <Coffee size={12} /> {isEs ? 'Cafés y Tiendas' : 'Cafes & Retail'}
+          <Coffee size={12} /> {'Cafes & Retail'}
         </button>
         <button
           onClick={() => setActiveFilter('park')}
           className={`filter-chip flex items-center gap-1 ${activeFilter === 'park' ? 'filter-chip-active' : ''}`}
         >
-          <Trees size={12} /> {isEs ? 'Parques y Cultura' : 'Parks & Culture'}
+          <Trees size={12} /> {'Parks & Culture'}
         </button>
         <button
           onClick={() => setActiveFilter('transit')}
           className={`filter-chip flex items-center gap-1 ${activeFilter === 'transit' ? 'filter-chip-active' : ''}`}
         >
-          <Bus size={12} /> {isEs ? 'Estaciones MARTA' : 'MARTA Transit'}
+          <Bus size={12} /> {'MARTA Transit'}
         </button>
       </div>
 
@@ -88,7 +86,7 @@ export const InteractiveMap: React.FC<Props> = ({ lang = 'en' }) => {
         <LeafletComponent items={filteredItems} />
       ) : (
         <div className="w-full h-[500px] rounded-2xl bg-card border border-border flex items-center justify-center text-muted-foreground text-sm font-label animate-pulse">
-          🛰️ {isEs ? 'Cargando Mapa Vectorial GIS de Macon...' : 'Loading Macon GIS Vector Map...'}
+          🛰️ {'Loading Macon GIS Vector Map...'}
         </div>
       )}
     </div>

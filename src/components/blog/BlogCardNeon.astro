@@ -8,19 +8,19 @@ interface Props {
 }
 
 const { post, lang = "en" } = Astro.props;
-const isEs = lang === "es";
+
 
 // Calculate reading time on the fly
 const wordCount = post.body ? post.body.split(/\s+/).length : 0;
 const readingTime = Math.max(1, Math.ceil(wordCount / 200));
 
-const formattedDate = new Date(post.data.publishDate).toLocaleDateString(isEs ? 'es-ES' : 'en-US', {
+const formattedDate = new Date(post.data.publishDate).toLocaleDateString('en-US', {
   year: 'numeric',
   month: 'long',
   day: 'numeric'
 });
 
-const formattedModifiedDate = new Date(post.data.lastModifiedDate).toLocaleDateString(isEs ? 'es-ES' : 'en-US', {
+const formattedModifiedDate = new Date(post.data.lastModifiedDate).toLocaleDateString('en-US', {
   year: 'numeric',
   month: 'long',
   day: 'numeric'
@@ -29,35 +29,35 @@ const formattedModifiedDate = new Date(post.data.lastModifiedDate).toLocaleDateS
 // Category theme mapping (colors and labels)
 const categoryThemes = {
   'world-cup': {
-    label: isEs ? "Copa Mundial" : "World Cup",
+    label: "World Cup",
     bg: "bg-secondary/10",
     text: "text-secondary",
     border: "group-hover:border-secondary/40",
     glow: "group-hover:shadow-[0_0_30px_rgba(245,158,11,0.2)]"
   },
   'nightlife': {
-    label: isEs ? "Vida Nocturna" : "Nightlife",
+    label: "Nightlife",
     bg: "bg-primary/10",
     text: "text-primary",
     border: "group-hover:border-primary/40",
     glow: "group-hover:shadow-[0_0_30px_rgba(236,72,153,0.2)]"
   },
   'wellness': {
-    label: isEs ? "Bienestar" : "Wellness",
+    label: "Wellness",
     bg: "bg-indigo-500/10",
     text: "text-indigo-400",
     border: "group-hover:border-indigo-500/40",
     glow: "group-hover:shadow-[0_0_30px_rgba(99,102,241,0.2)]"
   },
   'lifestyle': {
-    label: isEs ? "Estilo de Vida" : "Lifestyle",
+    label: "Lifestyle",
     bg: "bg-accent/10",
     text: "text-accent",
     border: "group-hover:border-accent/40",
     glow: "group-hover:shadow-[0_0_30px_rgba(20,184,166,0.2)]"
   },
   'news': {
-    label: isEs ? "Noticias" : "News",
+    label: "News",
     bg: "bg-blue-500/10",
     text: "text-blue-400",
     border: "group-hover:border-blue-500/40",
@@ -72,7 +72,7 @@ const slug = post.id.replace(/^es\//, ''); // Normalize ES slugs if they start w
 <article class={`group relative flex flex-col justify-between rounded-3xl border border-border bg-card/40 backdrop-blur-md overflow-hidden transition-all duration-500 hover:-translate-y-1.5 ${theme.border} ${theme.glow}`}>
   {post.data.featured && (
     <div class="absolute top-4 right-4 z-10 bg-primary/20 backdrop-blur-md border border-primary/30 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest text-primary font-label">
-      {isEs ? "Destacado" : "Featured"}
+      {"Featured"}
     </div>
   )}
 
@@ -99,13 +99,13 @@ const slug = post.id.replace(/^es\//, ''); // Normalize ES slugs if they start w
         </span>
         <span class="text-muted-foreground">•</span>
         <span class="text-muted-foreground">
-          {post.data.format === 'video' ? 'Video' : `${readingTime} ${isEs ? "min lectura" : "min read"}`}
+          {post.data.format === 'video' ? 'Video' : `${readingTime} ${"min read"}`}
         </span>
       </div>
 
       {/* Title */}
       <h3 class="text-xl md:text-2xl font-bold font-display text-foreground leading-tight tracking-tight mb-3 transition-colors duration-300 group-hover:text-foreground/95">
-        <a href={isEs ? `/es/blog/${slug}` : `/blog/${slug}`} class="focus:outline-none">
+        <a href={`/blog/${slug}`} class="focus:outline-none">
           <span class="absolute inset-0" aria-hidden="true"></span>
           {post.data.title}
         </a>
@@ -134,7 +134,7 @@ const slug = post.id.replace(/^es\//, ''); // Normalize ES slugs if they start w
     <div class="flex flex-col items-end gap-0.5">
       <span>{formattedDate}</span>
       {post.data.lastModifiedDate && post.data.lastModifiedDate > post.data.publishDate && (
-        <span class="text-[10px] opacity-75">({isEs ? "Act: " : "Upd: "} {formattedModifiedDate})</span>
+        <span class="text-[10px] opacity-75">({"Upd: "} {formattedModifiedDate})</span>
       )}
     </div>
   </div>

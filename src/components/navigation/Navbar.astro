@@ -1,5 +1,4 @@
 ---
-import LanguageToggle from './LanguageToggle.astro';
 import ModeToggle from './ModeToggle.astro';
 import { WeatherBadge } from './WeatherBadge';
 
@@ -8,8 +7,8 @@ interface Props {
 }
 
 const { lang = "en" } = Astro.props;
-const isEs = lang === "es";
-const base = isEs ? "/es" : "";
+
+const base = "";
 
 // Active-link detection (runs at SSR/SSG time — zero JS cost)
 const path = Astro.url.pathname;
@@ -20,17 +19,17 @@ const isMapActive      = path.startsWith("/map") || path.startsWith("/es/map");
 const navLinks = [
   {
     href: `${base}/#bar-finder`,
-    label: isEs ? "Directorio" : "Directory",
+    label: "Directory",
     active: isDirectoryActive,
   },
   {
     href: `${base}/map`,
-    label: isEs ? "Mapa" : "Map",
+    label: "Map",
     active: isMapActive,
   },
   {
     href: `${base}/blog`,
-    label: isEs ? "Editorial" : "Blog",
+    label: "Blog",
     active: isBlogActive,
   },
 ];
@@ -42,7 +41,7 @@ const navLinks = [
   class="nav-fullscreen-menu"
   role="dialog"
   aria-modal="true"
-  aria-label={isEs ? "Menú de navegación" : "Navigation menu"}
+  aria-label={"Navigation menu"}
 >
   <!-- Header with Close Button -->
   <div class="container max-w-6xl mx-auto px-4 h-16 flex items-center justify-between shrink-0">
@@ -68,7 +67,7 @@ const navLinks = [
     </a>
     <button
       id="nav-close"
-      aria-label={isEs ? "Cerrar menú" : "Close menu"}
+      aria-label={"Close menu"}
       class="p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-colors"
     >
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
@@ -93,13 +92,13 @@ const navLinks = [
       href={`${base}/list-your-business`}
       class="text-2xl font-bold uppercase tracking-widest text-muted-foreground hover:text-foreground transition-all duration-200 mt-4"
     >
-      {isEs ? "Anúnciate" : "List Your Business"}
+      {"List Your Business"}
     </a>
     <a
       href={`${base}/map`}
       class="px-6 py-3 mt-4 bg-primary/10 text-primary border border-primary/20 rounded-full text-sm font-bold uppercase tracking-widest hover:bg-primary/20 transition-all"
     >
-      🗺️ {isEs ? "Mapa Interactivo" : "Interactive Map"}
+      🗺️ {"Interactive Map"}
     </a>
   </nav>
 
@@ -107,32 +106,29 @@ const navLinks = [
   <div class="pb-10 pt-6 shrink-0 flex items-center justify-center gap-6">
     <WeatherBadge client:load lang={lang} />
     <ModeToggle />
-    <LanguageToggle lang={lang} />
-  </div>
+      </div>
 </div>
 
 <!-- Announcement Banner -->
 <div class="fixed top-0 left-0 right-0 h-9 z-[60] bg-secondary border-b border-secondary/50 py-2 px-4 text-center text-xs text-secondary-foreground font-bold flex items-center justify-center gap-2 drop-shadow-sm">
   <span class="truncate">
-    {isEs 
-      ? "🍖 ¡Descubre los mejores restaurantes y camiones de comida en Macon, GA!" 
-      : "🍖 Discover the best restaurants and food trucks in Macon, GA!"}
+    {"🍖 Discover the best restaurants and food trucks in Macon, GA!"}
   </span>
-  <a href={isEs ? "/es/map" : "/map"} class="underline underline-offset-2 hover:opacity-80 transition-opacity whitespace-nowrap ml-1.5">
-    {isEs ? "Ver Mapa Interactivo →" : "View Interactive Map →"}
+  <a href={"/map"} class="underline underline-offset-2 hover:opacity-80 transition-opacity whitespace-nowrap ml-1.5">
+    {"View Interactive Map →"}
   </a>
 </div>
 
 <!-- Main Navbar -->
 <nav
   class="fixed top-9 left-0 right-0 z-50 border-b border-border/50 bg-background/80 backdrop-blur-md"
-  aria-label={isEs ? "Navegación principal" : "Main navigation"}
+  aria-label={"Main navigation"}
 >
   <div class="container max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
 
     <!-- Logo -->
     <a
-      href={isEs ? "/es" : "/"}
+      href={"/"}
       class="flex items-center gap-2 font-display text-2xl tracking-widest text-foreground hover:text-primary transition-colors shrink-0"
     >
       <svg class="w-8 h-8 fill-current" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
@@ -171,12 +167,11 @@ const navLinks = [
     <div class="hidden md:flex items-center gap-3">
       <WeatherBadge client:load lang={lang} />
       <ModeToggle />
-      <LanguageToggle lang={lang} />
-      <a
+            <a
         href={`${base}/map`}
         class="px-4 py-2 bg-primary/10 text-primary border border-primary/20 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-primary/20 transition-all"
       >
-        {isEs ? "Mapa Interactivo" : "Interactive Map"}
+        {"Interactive Map"}
       </a>
     </div>
 
@@ -185,7 +180,7 @@ const navLinks = [
       <WeatherBadge client:load lang={lang} />
       <button
         id="nav-hamburger"
-        aria-label={isEs ? "Abrir menú de navegación" : "Open navigation menu"}
+        aria-label={"Open navigation menu"}
         aria-expanded="false"
         aria-controls="nav-fullscreen-menu"
         class="p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-colors"

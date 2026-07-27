@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { useStore } from "@nanostores/react";
 import { $activeVenueSlug, closeVenueDrawer } from "@/stores/drawerStore";
 import { $itineraryStore, toggleItinerary } from "@/stores/itineraryStore";
-import { $lang } from "@/stores/langStore";
 import { MapPin, Clock, Star, X, Plus, Check, ExternalLink, Navigation, Train } from "lucide-react";
 import { getOpenStatus } from "./DirectoryFinder";
 import { getCategoryLabel } from "../../utils/categoryTranslations";
@@ -38,8 +37,8 @@ interface VenueQuickDrawerProps {
 export const VenueQuickDrawer = ({ businesses }: VenueQuickDrawerProps) => {
   const activeSlug = useStore($activeVenueSlug);
   const itinerary = useStore($itineraryStore);
-  const lang = useStore($lang);
-  const isEs = lang === "es";
+  const lang = "en";
+  
 
   const venue = businesses.find((b) => b.id === activeSlug);
   const inItinerary = activeSlug ? itinerary.includes(activeSlug) : false;
@@ -70,7 +69,7 @@ export const VenueQuickDrawer = ({ businesses }: VenueQuickDrawerProps) => {
   if (!activeSlug || !venue) return null;
 
   const openStatus = getOpenStatus(venue.data.hours);
-  const basePath = isEs ? "/es" : "";
+  const basePath = "";
   const detailUrl =
     venue.type === "park"
       ? `${basePath}/outdoors-culture/${venue.id}`
@@ -107,7 +106,7 @@ export const VenueQuickDrawer = ({ businesses }: VenueQuickDrawerProps) => {
           <button
             onClick={closeVenueDrawer}
             className="p-2 rounded-full text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-colors"
-            aria-label={isEs ? "Cerrar" : "Close"}
+            aria-label={"Close"}
           >
             <X size={20} />
           </button>
@@ -156,7 +155,7 @@ export const VenueQuickDrawer = ({ businesses }: VenueQuickDrawerProps) => {
                     : "text-muted-foreground"
                 }`}
               >
-                {isEs ? openStatus.labelEs : openStatus.labelEn}
+                {openStatus.labelEn}
               </span>
               <span className="text-xs text-muted-foreground">({venue.data.hours})</span>
             </div>
@@ -169,7 +168,7 @@ export const VenueQuickDrawer = ({ businesses }: VenueQuickDrawerProps) => {
               <p className="text-xs">
                 <span className="font-semibold text-foreground">{venue.data.transit_station} Station</span>
                 {" — "}
-                <span>{isEs ? venue.data.transit_time_es : venue.data.transit_time_en}</span>
+                <span>{venue.data.transit_time_en}</span>
               </p>
             </div>
           )}
@@ -178,21 +177,21 @@ export const VenueQuickDrawer = ({ businesses }: VenueQuickDrawerProps) => {
         {/* Feature Badges */}
         <div className="py-6 border-b border-border/50">
           <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-3 font-label">
-            {isEs ? "Características" : "Key Highlights"}
+            {"Key Highlights"}
           </p>
           <div className="flex flex-wrap gap-2">
             {venue.data.has_patio && (
               <span className="px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-500 border border-emerald-500/20">
-                🌳 {isEs ? "Terraza / Patio" : "Patio & Outdoor"}
+                🌳 {"Patio & Outdoor"}
               </span>
             )}
             {venue.data.bilingual_staff && (
               <span className="px-3 py-1 rounded-full text-xs font-semibold bg-indigo-500/10 text-indigo-500 border border-indigo-500/20">
-                💬 {isEs ? "Personal Bilingüe" : "Bilingual Staff"}
+                💬 {"Bilingual Staff"}
               </span>
             )}
             <span className="px-3 py-1 rounded-full text-xs font-semibold bg-primary/10 text-primary border border-primary/20">
-              🏳️‍🌈 {isEs ? "Espacio Queer" : "Queer Space"}
+              🏳️‍🌈 {"Queer Space"}
             </span>
           </div>
         </div>
@@ -211,12 +210,12 @@ export const VenueQuickDrawer = ({ businesses }: VenueQuickDrawerProps) => {
             {inItinerary ? (
               <>
                 <Check size={18} />
-                <span>{isEs ? "En Tu Plan de Noche" : "Added to Night Out Plan"}</span>
+                <span>{"Added to Night Out Plan"}</span>
               </>
             ) : (
               <>
                 <Plus size={18} />
-                <span>{isEs ? "Agregar al Plan de Noche" : "Add to Night Out Plan"}</span>
+                <span>{"Add to Night Out Plan"}</span>
               </>
             )}
           </button>
@@ -230,13 +229,13 @@ export const VenueQuickDrawer = ({ businesses }: VenueQuickDrawerProps) => {
               className="py-3 px-4 rounded-xl border border-border bg-muted/40 hover:bg-muted text-foreground text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 transition-colors"
             >
               <Navigation size={14} />
-              <span>{isEs ? "Indicaciones" : "Directions"}</span>
+              <span>{"Directions"}</span>
             </a>
             <a
               href={detailUrl}
               className="py-3 px-4 rounded-xl border border-border bg-muted/40 hover:bg-muted text-foreground text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 transition-colors"
             >
-              <span>{isEs ? "Ver Perfil" : "Full Profile"}</span>
+              <span>{"Full Profile"}</span>
               <ExternalLink size={14} />
             </a>
           </div>

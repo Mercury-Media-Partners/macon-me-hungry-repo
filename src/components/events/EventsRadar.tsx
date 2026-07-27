@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useStore } from "@nanostores/react";
-import { $lang } from "@/stores/langStore";
 import { Calendar, Clock, MapPin, Sparkles, ExternalLink, Music, Flame, Star } from "lucide-react";
 import { openVenueDrawer } from "@/stores/drawerStore";
 
@@ -22,8 +21,8 @@ interface EventsRadarProps {
 }
 
 export const EventsRadar = ({ events }: EventsRadarProps) => {
-  const lang = useStore($lang);
-  const isEs = lang === "es";
+  const lang = "en";
+  
 
   const [selectedDay, setSelectedDay] = useState<string>("all");
 
@@ -38,31 +37,31 @@ export const EventsRadar = ({ events }: EventsRadarProps) => {
       <div className="flex flex-wrap items-center gap-2 pb-4 border-b border-border/50">
         <span className="text-xs font-label text-muted-foreground uppercase font-bold pr-2 flex items-center gap-1">
           <Calendar size={14} className="text-primary" />
-          {isEs ? "Filtrar por Día:" : "Filter by Day:"}
+          {"Filter by Day:"}
         </span>
         <button
           onClick={() => setSelectedDay("all")}
           className={`filter-chip ${selectedDay === "all" ? "filter-chip-active" : ""}`}
         >
-          {isEs ? "Todos los Eventos" : "All Events"}
+          {"All Events"}
         </button>
         <button
           onClick={() => setSelectedDay("Friday")}
           className={`filter-chip ${selectedDay === "Friday" ? "filter-chip-active" : ""}`}
         >
-          🔥 {isEs ? "Viernes" : "Friday Night"}
+          🔥 {"Friday Night"}
         </button>
         <button
           onClick={() => setSelectedDay("Saturday")}
           className={`filter-chip ${selectedDay === "Saturday" ? "filter-chip-active" : ""}`}
         >
-          💃 {isEs ? "Sábado" : "Saturday Night"}
+          💃 {"Saturday Night"}
         </button>
         <button
           onClick={() => setSelectedDay("Sunday")}
           className={`filter-chip ${selectedDay === "Sunday" ? "filter-chip-active" : ""}`}
         >
-          👑 {isEs ? "Domingo (Drag Brunch)" : "Sunday Drag Brunch"}
+          👑 {"Sunday Drag Brunch"}
         </button>
       </div>
 
@@ -70,7 +69,7 @@ export const EventsRadar = ({ events }: EventsRadarProps) => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {filteredEvents.length === 0 && (
           <p className="text-muted-foreground col-span-3 text-center py-16">
-            {isEs ? "No hay eventos programados para ese día." : "No events scheduled for that day."}
+            {"No events scheduled for that day."}
           </p>
         )}
         {filteredEvents.map((evt) => (
@@ -123,7 +122,7 @@ export const EventsRadar = ({ events }: EventsRadarProps) => {
                 onClick={() => openVenueDrawer(evt.venueId)}
                 className="flex-1 py-2.5 px-3 rounded-xl bg-primary text-primary-foreground text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-1.5 glow-primary font-label hover:scale-[1.02] transition-all"
               >
-                <span>{isEs ? "Ver Lugar" : "View Venue"}</span>
+                <span>{"View Venue"}</span>
               </button>
               {evt.ticket_url && (
                 <a

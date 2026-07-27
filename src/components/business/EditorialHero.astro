@@ -12,8 +12,7 @@ interface Props {
 }
 
 const { title, tagline, category, heroImage, is_demo } = Astro.props;
-const isEs = Astro.url.pathname.startsWith('/es') || Astro.url.pathname.includes('/es/');
-const lang = isEs ? "es" : "en";
+const lang = "en";
 const displayCategory = getCategoryLabel(category, lang);
 
 // Content-collection `image()` fields resolve to an object at build time;
@@ -54,7 +53,7 @@ const isLocalAsset = typeof heroImage === "object";
       </span>
       {is_demo && (
         <span class="inline-block px-3 py-1 rounded bg-amber-500/20 text-amber-500 border border-amber-500/30 text-xs font-bold tracking-widest uppercase mb-4 ml-2">
-          {isEs ? "Ejemplo de Anuncio" : "Example Listing"}
+          {"Example Listing"}
         </span>
       )}
       <h1 class="font-display text-7xl md:text-8xl lg:text-9xl text-foreground leading-none mb-4">

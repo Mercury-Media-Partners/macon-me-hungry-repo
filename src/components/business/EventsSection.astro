@@ -24,7 +24,7 @@ interface Props {
 }
 
 const { events, tier, lang = "en" } = Astro.props;
-const isEs = lang === "es";
+
 
 function translateDay(dayStr: string, isEs: boolean): string {
   if (!isEs) return dayStr;
@@ -56,16 +56,16 @@ const hasMoreEvents = (tier === 'promoter' || tier === 'professional') && events
 <div class="bg-muted/30 border border-border rounded-2xl p-8">
   <h3 class="font-display text-3xl mb-2 flex items-center gap-3">
     <span class="text-primary">📅</span>
-    {isEs ? "Próximos Eventos" : "What's On"}
+    {"What's On"}
   </h3>
   {tier === 'headliner' && (
     <p class="text-xs text-secondary font-semibold uppercase tracking-widest mb-8">
-      {isEs ? "Calendario Completo de Eventos" : "Full Event Calendar"}
+      {"Full Event Calendar"}
     </p>
   )}
   {(tier === 'promoter' || tier === 'professional') && (
     <p class="text-xs text-muted-foreground mb-8">
-      {isEs ? "Eventos semanales recurrentes" : "Recurring weekly events"}
+      {"Recurring weekly events"}
     </p>
   )}
 
@@ -73,7 +73,7 @@ const hasMoreEvents = (tier === 'promoter' || tier === 'professional') && events
     {displayEvents.map((event) => (
       <div class="flex flex-col sm:flex-row sm:items-start gap-4 pb-6 border-b border-border last:border-0 last:pb-0">
         <div class="shrink-0">
-          <p class="text-xs text-primary font-bold uppercase tracking-widest">{translateDay(event.day, isEs)}</p>
+          <p class="text-xs text-primary font-bold uppercase tracking-widest">{event.day}</p>
           <p class="text-sm text-muted-foreground">{event.time}</p>
         </div>
         <div class="flex-1">
@@ -90,7 +90,7 @@ const hasMoreEvents = (tier === 'promoter' || tier === 'professional') && events
               class="mt-3 inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider text-secondary-foreground transition-all hover:opacity-90 glow-gold"
               style="background: var(--gradient-gold)"
             >
-              🎟️ {isEs ? "Comprar Entradas" : "Buy Tickets"}
+              🎟️ {"Buy Tickets"}
             </a>
           )}
         </div>
@@ -101,15 +101,13 @@ const hasMoreEvents = (tier === 'promoter' || tier === 'professional') && events
   {hasMoreEvents && (
     <div class="mt-6 pt-6 border-t border-border/20 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
       <p class="text-xs text-muted-foreground leading-relaxed">
-        {isEs 
-          ? "Este perfil muestra 1 evento semanal. Actualiza a Headliner para publicar tu calendario completo." 
-          : "Showing 1 weekly recurring event. Upgrade to Headliner to unlock your full event calendar."}
+        {"Showing 1 weekly recurring event. Upgrade to Headliner to unlock your full event calendar."}
       </p>
       <a 
-        href={isEs ? "/es/list-your-business" : "/list-your-business"} 
+        href={"/list-your-business"} 
         class="text-xs text-primary font-bold uppercase tracking-wider whitespace-nowrap hover:underline"
       >
-        {isEs ? "Mejorar Nivel →" : "Upgrade Listing →"}
+        {"Upgrade Listing →"}
       </a>
     </div>
   )}

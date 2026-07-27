@@ -1,14 +1,13 @@
 ---
 import lineupData from '../../data/lineup.json';
 import { en } from '../../i18n/en';
-import { es } from '../../i18n/es';
 
 interface Props {
   lang?: string;
 }
 
 const { lang = 'en' } = Astro.props;
-const t = lang === 'es' ? es : en;
+const t = en;
 
 // Compute today's date at build/request time (UTC) — no client JS needed
 const now = new Date();
@@ -33,11 +32,11 @@ const regularArtists = todaysArtists.filter((a) => !a.isHeadliner && a.name !== 
 const isMatchday = dateStr in lineupData.maconMatches;
 
 const displayDate = new Date(dateStr + 'T12:00:00Z').toLocaleDateString(
-  lang === 'es' ? 'es-ES' : 'en-US',
+  'en-US',
   { weekday: 'short', month: 'short', day: 'numeric' }
 );
 
-const matchesUrl = lang === 'es' ? '/es/matches' : '/matches';
+const matchesUrl = '/matches';
 ---
 
 <div class="relative max-w-6xl mx-auto my-8 px-4">
@@ -92,7 +91,7 @@ const matchesUrl = lang === 'es' ? '/es/matches' : '/matches';
       {/* Supporting schedule note */}
       {headliner && regularArtists.length > 0 && (
         <p class="text-xs text-muted-foreground leading-relaxed font-body">
-          {lang === 'es' ? 'También se presentan:' : 'Also performing:'}{' '}
+          {'Also performing:'}{' '}
           <span class="font-medium text-foreground">
             {regularArtists.slice(0, 4).map((a) => a.name).join(', ')}
             {regularArtists.length > 4 && ' ...'}
