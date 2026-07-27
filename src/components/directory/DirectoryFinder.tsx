@@ -494,7 +494,7 @@ export const DirectoryFinder = ({ initialBusinesses, lang: initialLang = "en" }:
                   setBilingualStaffOnly(false);
                   setOnlyOpenNow(false);
                 }}
-                className="px-5 py-2.5 rounded-md bg-primary text-primary-foreground text-xs font-bold uppercase tracking-wider font-label hover:scale-105 transition-transform cursor-pointer"
+                className="btn btn-primary cursor-pointer"
               >
                 {"Reset All Filters"}
               </button>

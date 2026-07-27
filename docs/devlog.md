@@ -2,6 +2,11 @@
 
 A chronological log tracking migrations, features, optimizations, and roadmap progress.
 
+## 📅 July 27, 2026 — UI Component Shape & Aesthetic Redesign (Classic & Grounded)
+*   **Refactored**: Removed all `rounded-full` pill-shaped buttons and `rounded-3xl` containers (legacy Out ATL styling) across `global.css`, `index.astro`, `DirectoryFinder.tsx`, `JobCard.astro`, and `SmartSidebar.astro`.
+*   **Updated**: Replaced bubbly styling with a "Classic & Grounded" aesthetic (`rounded-md` for buttons/tags, `rounded-lg` for cards) to better fit the Macon-Bibb demographic's preference for sturdy, traditional brick-and-mortar vibes.
+*   **Updated**: Refactored `--shadow-deep` from a diffuse ethereal glow back to a solid, grounded offset drop shadow (`8px 8px 0px rgba(5, 52, 93, 0.15)`) for a tactile, printed editorial feel.
+
 ## 📅 July 27, 2026 — Spanish Architecture Removal & Macon Content Rewrite
 *   **Removed**: Completely removed Spanish localization infrastructure (`src/pages/es/`, `src/content/landing_pages/list-your-business-es.md`, `src/i18n/es.ts`, `src/stores/langStore.ts`) to simplify the project's architecture per user directive.
 *   **Refactored**: Removed all `lang` attributes, conditional translations, and language toggles from Astro pages and UI components (`Navbar.astro`, `events.astro`, `faq.astro`, etc.).

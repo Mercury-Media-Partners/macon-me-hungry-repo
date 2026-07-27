@@ -75,14 +75,14 @@ export const HeroSection = ({ content }: Props) => {
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
           <button
             onClick={scrollToForm}
-            className="px-8 py-3.5 rounded-full font-label font-bold text-xs md:text-sm uppercase tracking-widest text-white transition-all duration-200 hover:scale-105 hover:opacity-90 glow-primary"
+            className="btn btn-primary"
             style={{ background: "var(--gradient-primary)" }}
           >
             {content.cta_claim}
           </button>
           <a
             href="#pricing"
-            className="px-8 py-3.5 rounded-full font-label font-bold text-xs md:text-sm uppercase tracking-widest border border-border text-muted-foreground hover:text-foreground hover:border-primary/30 transition-all duration-200 backdrop-blur-md bg-card/40"
+            className="btn btn-secondary backdrop-blur-md bg-card/40"
           >
             {content.cta_pricing}
           </a>

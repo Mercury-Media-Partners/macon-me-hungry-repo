@@ -241,7 +241,7 @@ export const PartnerForm = ({ content }: Props) => {
           <button
             type="submit"
             disabled={status === "submitting"}
-            className="w-full flex items-center justify-center gap-2 py-4 rounded-full font-label font-bold text-sm uppercase tracking-widest text-white transition-all duration-200 hover:scale-105 hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed disabled:scale-100"
+            className="btn btn-primary w-full flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:scale-100"
             style={{ background: "var(--gradient-primary)" }}
           >
             <Send size={14} />

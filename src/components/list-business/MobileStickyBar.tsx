@@ -54,7 +54,7 @@ export const MobileStickyBar = ({ content }: Props) => {
         </div>
         <button
           onClick={scrollToForm}
-          className="flex-shrink-0 px-4 py-2.5 rounded-full font-label font-bold text-xs uppercase tracking-widest text-white transition-all active:scale-95"
+          className="btn btn-primary flex-shrink-0 text-[10px] px-4 py-2"
           style={{ background: "var(--gradient-primary)" }}
         >
           {content.cta}
