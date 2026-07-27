@@ -1,6 +1,6 @@
 # Macon Me Hungry
 
-Macon Me Hungry — bilingual (EN/ES) Astro v6 business directory for Macon, GA. Static-first, content-collection-driven (`src/content.config.ts`), React islands, NanoStores, Tailwind v4.
+Macon Me Hungry — Astro v6 business directory for Macon, GA. Static-first, content-collection-driven (`src/content.config.ts`), React islands, NanoStores, Tailwind v4.
 
 ## Business listing tiers (`src/content/businesses/*.md`, schema in `src/content.config.ts`)
 
@@ -14,11 +14,11 @@ The system auto-hides prohibited fields and shows an upsell block (`SmartSidebar
 
 ## Required reading before you touch these areas
 
-*   **Anything beyond the tier table above** (bilingual/SEO standards, data-integrity rules, devlog format) → read `docs/agents.md`.
+*   **Anything beyond the tier table above** (SEO standards, data-integrity rules, devlog format) → read `docs/agents.md`.
 *   **Any user-facing or structural change** → once finished, append a dated entry to `docs/devlog.md`, following the format in `docs/agents.md`.
 *   **Brand voice, mission framing, or copy decisions** → check `docs/soul.md`.
 *   **Quoting a price for any tier** → check `docs/contracts/` and the latest iteration in `docs/business/value_ladder_evolution.md` first. Several other business docs contain superseded figures (flagged inline where known).
-*   **i18n**: never hardcode UI strings — use `src/i18n/en.ts` / `src/i18n/es.ts` and keep both files in sync.
+*   **Text/Strings**: always use `src/i18n/en.ts` for central text dictionary storage instead of hardcoding strings in UI components.
 
 ## Docs directory map
 

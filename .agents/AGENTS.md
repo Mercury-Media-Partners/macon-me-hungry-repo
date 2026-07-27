@@ -1,6 +1,6 @@
-# OutATL AI Agent Workspace & Workflow Guide
+# Macon Me Hungry AI Agent Workspace & Workflow Guide
 
-Welcome to the **OutATL** codebase. This guide outlines repository structure, engineering standards, and metadata guidelines to ensure any AI agent can safely navigate, maintain, and expand the directory.
+Welcome to the **Macon Me Hungry** codebase. This guide outlines repository structure, engineering standards, and metadata guidelines to ensure any AI agent can safely navigate, maintain, and expand the directory.
 
 ---
 
@@ -10,8 +10,8 @@ Welcome to the **OutATL** codebase. This guide outlines repository structure, en
 *   **Styling**: [Tailwind CSS v4](https://tailwindcss.com/)
 *   **Package Manager**: `bun` (uses `bun.lockb` but runs in Node environment)
 *   **Node Version Constraint**: Requires Node.js **`>=22.12.0`** per `package.json` `engines`. (Use `nvm` or system config to enforce Node 22+ before building).
-*   **State Management**: NanoStores (`$lang`, `$siteMode`, `$userPersona`).
-*   **Routing & Localization**: Astro i18n routing (`/` for English default, `/es/` for Spanish).
+*   **State Management**: NanoStores (`$siteMode`, `$userPersona`).
+*   **Routing**: Astro static routing.
 
 ---
 
@@ -20,7 +20,7 @@ Welcome to the **OutATL** codebase. This guide outlines repository structure, en
 *   `src/content/businesses/` - Contains the markdown directory listings for all local businesses. All fields are strongly typed via Astro Content Collections.
 *   `src/components/directory/` - Core search and filtering UI, including the **Dual State Master Switch** and category tabs.
 *   `src/components/business/` - UI components for listing detail pages (SmartSidebar, EditorialHero, etc.).
-*   `src/i18n/` - Localization dictionaries (`en.ts` and `es.ts`).
+*   `src/i18n/` - Localization dictionaries (`en.ts`).
 *   `docs/` - Project documentation, business strategies, audits, and developer logs.
 
 ---
@@ -57,11 +57,10 @@ Business frontmatter represents real venues, real people, and real jobs — trea
 
 ---
 
-## 🌐 Bilingual & SEO Standards
+## 🌐 SEO Standards
 
-1.  **Zero-Hardcoded Translations**: Component text must use translation hooks (`t(en, es)`) or fetch keys from `src/i18n/es.ts` and `src/i18n/en.ts`.
-2.  **i18n Sync**: Whenever you add a category key or UI string, update **both** translation files.
-3.  **Schema Markup**: All business detail routes (`src/pages/businesses/[slug].astro` and `src/pages/es/businesses/[slug].astro`) must render a structured JSON-LD (`LocalBusiness`) block in the `<head>` using frontmatter metadata.
+1.  **Central Dictionary**: Component text must use translation hooks (`t(en)`) or fetch keys from `src/i18n/en.ts` rather than hardcoding copy everywhere.
+2.  **Schema Markup**: All business detail routes (`src/pages/businesses/[slug].astro`) must render a structured JSON-LD (`LocalBusiness`) block in the `<head>` using frontmatter metadata.
 
 ---
 

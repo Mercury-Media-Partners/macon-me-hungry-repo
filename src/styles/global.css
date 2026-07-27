@@ -17,50 +17,50 @@
 }
 
 @theme {
-  --font-display: 'Playfair Display', Georgia, serif;
-  --font-body: 'Montserrat', Helvetica, sans-serif;
-  --font-label: 'Montserrat', Helvetica, sans-serif;
+  --font-display: 'TAN Tangkiwood', 'Georgia', serif;
+  --font-body: 'Garet Regular', 'Montserrat', 'Helvetica', sans-serif;
+  --font-label: 'Garet Bold', 'Montserrat', 'Helvetica', sans-serif;
 
   --color-background: #FBF8EF;
-  --color-foreground: #2B3210;
+  --color-foreground: #05345d;
 
   --color-card: #FBF8EF;
-  --color-card-foreground: #2B3210;
+  --color-card-foreground: #05345d;
 
   --color-popover: #E5E2D9;
-  --color-popover-foreground: #2B3210;
+  --color-popover-foreground: #05345d;
 
-  --color-primary: #ffc07d;
-  --color-primary-foreground: #2B3210;
+  --color-primary: #a3e35d;
+  --color-primary-foreground: #05345d;
 
   --color-secondary: #E5E2D9;
-  --color-secondary-foreground: #2B3210;
+  --color-secondary-foreground: #05345d;
 
   --color-muted: #E5E2D9;
-  --color-muted-foreground: #828a5a;
+  --color-muted-foreground: #05345d;
 
-  --color-accent: #828a5a;
-  --color-accent-foreground: #FBF8EF;
+  --color-accent: #ffe57c;
+  --color-accent-foreground: #05345d;
 
   --color-destructive: hsl(0 84% 60%);
   --color-destructive-foreground: hsl(0 0% 100%);
 
-  --color-border: #828a5a;
+  --color-border: #ffe57c;
   --color-input: #E5E2D9;
-  --color-ring: #ffc07d;
+  --color-ring: #a3e35d;
 
   --animate-spin-slow: spin 8s linear infinite;
 
   --radius-lg: 0.5rem;
 
-  --shadow-deep: 0 12px 24px rgba(43, 50, 16, 0.12);
+  --shadow-deep: 12px 12px 0px rgba(5, 52, 93, 0.1);
 
-  --shadow-glow-primary: 0 8px 16px rgba(43, 50, 16, 0.15);
+  --shadow-glow-primary: 4px 4px 0px rgba(5, 52, 93, 0.15);
   --shadow-glow-gold: 0 0 30px color-mix(in srgb, var(--color-secondary), transparent 65%);
 
-  --gradient-primary: linear-gradient(135deg, #ffc07d, #ffae57);
+  --gradient-primary: linear-gradient(135deg, #a3e35d, #8cc54d);
   --gradient-gold: linear-gradient(135deg, #E5E2D9, #FBF8EF);
-  --gradient-accent: linear-gradient(135deg, #828a5a, #6c734b);
+  --gradient-accent: linear-gradient(135deg, #ffe57c, #e6ce6f);
   --gradient-hero: linear-gradient(160deg, #FBF8EF 0%, #E5E2D9 100%);
 }
 
@@ -234,16 +234,16 @@
   }
   .tier-card-promoter {
     @apply border-primary/40;
-    box-shadow: 0 0 40px hsl(330 100% 58% / 0.08);
+    box-shadow: 0 0 40px color-mix(in srgb, var(--color-primary), transparent 92%);
   }
   .tier-card-headliner {
-    border-color: hsl(42 100% 52% / 0.4);
-    box-shadow: 0 0 40px hsl(42 100% 52% / 0.1);
+    border-color: color-mix(in srgb, var(--color-accent), transparent 60%);
+    box-shadow: 0 0 40px color-mix(in srgb, var(--color-accent), transparent 90%);
   }
 
   /* ── Lead Magnet Gradient ── */
   .bg-gradient-leadmagnet {
-    background: linear-gradient(135deg, hsl(42 100% 52% / 0.08), var(--color-card), hsl(330 100% 58% / 0.06));
+    background: linear-gradient(135deg, color-mix(in srgb, var(--color-accent), transparent 92%), var(--color-card), color-mix(in srgb, var(--color-primary), transparent 94%));
   }
 }
 
@@ -269,15 +269,15 @@
 }
 
 .glow-text {
-  text-shadow: 0 0 10px hsl(330 100% 58%);
+  text-shadow: 0 0 10px var(--color-primary);
 }
 
 .glow-border {
-  box-shadow: 0 0 15px hsl(330 100% 58% / 0.35);
+  box-shadow: 0 0 15px color-mix(in srgb, var(--color-primary), transparent 65%);
 }
 
 .glow-border-secondary {
-  box-shadow: 0 0 15px hsl(42 100% 52% / 0.35);
+  box-shadow: 0 0 15px color-mix(in srgb, var(--color-accent), transparent 65%);
 }
 
 .glow-border-amber {
@@ -289,10 +289,10 @@
 }
 
 .glow-primary-btn {
-  box-shadow: 0 4px 25px hsl(330 100% 58% / 0.4);
+  box-shadow: 0 4px 25px color-mix(in srgb, var(--color-primary), transparent 60%);
 }
 .glow-primary-btn:hover {
-  box-shadow: 0 4px 35px hsl(330 100% 58% / 0.6);
+  box-shadow: 0 4px 35px color-mix(in srgb, var(--color-primary), transparent 40%);
 }
 
 /* ── Marquee / Logo Strip ── */
@@ -441,8 +441,8 @@ select option {
 
 /* ── Macon Me Hungry Bespoke Theming ── */
 ::selection {
-  background-color: var(--color-primary);
-  color: var(--color-foreground);
+  background-color: var(--color-interactive, var(--color-primary));
+  color: var(--color-text-main, var(--color-foreground));
 }
 
 ::-webkit-scrollbar {
@@ -450,27 +450,36 @@ select option {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--color-secondary);
+  background: var(--color-background);
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: var(--color-accent);
+  background-color: var(--color-foreground);
   border-radius: 6px;
-  border: 3px solid var(--color-secondary);
+  border: 3px solid var(--color-background);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background-color: var(--color-foreground);
+  background-color: var(--color-primary);
 }
 
-.food-pattern {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='500' height='500' viewBox='0 0 400 400' fill='none' stroke='%23828a5a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' opacity='0.25'%3E%3C!-- Burger --%3E%3Cg transform='translate(50, 50) rotate(-10) scale(1.5)'%3E%3Cpath d='M10 30 Q 30 5 50 30 Z' /%3E%3Crect x='8' y='32' width='44' height='6' rx='3' /%3E%3Cpath d='M10 40 Q 30 55 50 40 Z' /%3E%3C/g%3E%3C!-- Drink --%3E%3Cg transform='translate(280, 80) rotate(15) scale(1.5)'%3E%3Cpath d='M15 20 L 45 20 L 40 60 L 20 60 Z' /%3E%3Cpath d='M10 20 L 50 20 L 48 10 L 12 10 Z' /%3E%3Cline x1='30' y1='10' x2='35' y2='-10' /%3E%3C/g%3E%3C!-- Bowl --%3E%3Cg transform='translate(300, 300) rotate(-5) scale(1.5)'%3E%3Cpath d='M10 30 Q 30 60 50 30 Z' /%3E%3Cpath d='M10 30 L 50 30' /%3E%3Cpath d='M20 20 Q 25 10 30 20 T 40 20' /%3E%3C/g%3E%3C!-- Hot Dog --%3E%3Cg transform='translate(80, 280) rotate(25) scale(1.5)'%3E%3Cpath d='M10 20 Q 30 0 50 20 Q 55 35 30 35 Q 5 35 10 20' /%3E%3Crect x='15' y='16' width='30' height='8' rx='4' /%3E%3C/g%3E%3C!-- Pizza --%3E%3Cg transform='translate(180, 180) rotate(-20) scale(1.5)'%3E%3Cpath d='M10 10 L 40 10 Q 45 15 40 20 L 25 50 Z' /%3E%3Ccircle cx='22' cy='22' r='2' /%3E%3Ccircle cx='32' cy='18' r='2' /%3E%3Ccircle cx='27' cy='32' r='2' /%3E%3C/g%3E%3C/svg%3E");
-  background-repeat: repeat;
-  background-size: 500px 500px;
-  animation: driftPattern 60s linear infinite;
+.bg-pattern {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 100%;
+  opacity: 0.4;
+  pointer-events: none;
+  z-index: 0;
+  background-color: var(--color-accent);
+  mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200"><path fill="none" stroke="black" stroke-width="2" d="M30 40 q 15 -10 30 0 t 0 20 t -30 0 t 0 -20 m 100 80 c 0 -20 40 -20 40 0 c 0 20 -40 20 -40 0 m -60 -40 l 30 15 l -10 20 z m 80 -60 c 10 0 10 20 0 20 c -10 0 -10 -20 0 -20 m -120 100 q 20 -10 40 10 q -20 10 -40 -10"/></svg>');
+  mask-size: 200px 200px;
+  mask-repeat: repeat;
+  animation: panBackground 60s linear infinite;
 }
 
-@keyframes driftPattern {
-  from { background-position: 0 0; }
-  to { background-position: 500px 500px; }
+@keyframes panBackground {
+  0% { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(-50%, 0, 0); }
 }
