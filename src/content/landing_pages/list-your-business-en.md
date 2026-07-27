@@ -1,13 +1,13 @@
 ---
-title: "List Your Queer Business in Macon | Macon Me Hungry Founding Partner Program"
-description: "Macon Me Hungry is Macon's queer-friendly business directory. 500K+ World Cup visitors are coming — founding partner rates close July 19, 2026. Get listed today."
+title: "List Your Business in Macon | Macon Me Hungry Founding Partner Program"
+description: "Macon Me Hungry is Macon's premier food and restaurant directory. Get listed today."
 hero:
   eyebrow: "Founding Partner · Limited Spots"
   title_lines:
     - "THE WORLD CUP"
     - "IS COMING."
   title_highlight: "ARE YOU ON THE MAP?"
-  subtitle: "500,000+ international visitors arrive in Macon in June 2026. Macon Me Hungry is the queer-friendly discovery platform they'll use to find bars, cafes, salons, and services — and founding partner spots close July 19, 2026."
+  subtitle: "Macon Me Hungry is the discovery platform locals and visitors use to find the best restaurants, cafes, and bars — and founding partner spots are filling up."
   countdown_label: "Founding Partner pricing closes in:"
   countdown_date: "2026-07-19T23:59:59-04:00"
   countdown_closes_in: "Founding Partner pricing closes in:"
@@ -42,7 +42,7 @@ how_it_works:
     - icon: "🌍"
       step: "03"
       heading: "Get discovered"
-      body: "You go live on Macon Me Hungry and appear in searches for queer-friendly spaces in Macon."
+      body: "You go live on Macon Me Hungry and appear in searches for the best food and drink spaces in Macon."
 pricing:
   section_label: "For Macon Business Owners"
   title_line_1: "TRANSPARENT PRICING,"
@@ -66,7 +66,7 @@ pricing:
       desc: "Your profile goes live fast"
     - icon: "🏳️‍🌈"
       title: "Community first"
-      desc: "Built for queer Macon"
+      desc: "Built for local Macon"
   tiers:
     - id: "headliner"
       name: "Headliner"
@@ -171,14 +171,14 @@ faq:
   section_label: "Common Questions"
   title: "FREQUENTLY ASKED"
   items:
-    - q: "My business isn't exclusively LGBTQ+ — can I still list?"
-      a: "Yes. Macon Me Hungry is for inclusive, welcoming spaces. If your business is queer-affirming, you belong here."
+    - q: "My business isn't a traditional restaurant — can I still list?"
+      a: "Yes. Macon Me Hungry is for any food, drink, or entertainment space. If you serve the Macon community, you belong here."
       category: "Getting Started"
     - q: "What happens after the World Cup?"
-      a: "Macon Me Hungry continues as Macon's queer lifestyle directory. Your listing drives local foot traffic and organic SEO search year-round."
+      a: "Macon Me Hungry is Macon's premier local food directory. Your listing drives local foot traffic and organic SEO search year-round."
       category: "Getting Started"
     - q: "How is this different from my Google Business Profile?"
-      a: "Google is for everyone. Macon Me Hungry is for visitors specifically searching for queer-affirming spaces. We curate, verify, and build community around our listings."
+      a: "Google is for everyone. Macon Me Hungry is for visitors specifically searching for the best local food and dining experiences. We curate, verify, and build community around our listings."
       category: "Getting Started"
     - q: "Do you reach Spanish-speaking customers too?"
       a: "Yes — every listing and the whole site ships in full English and Spanish, not machine-translated fragments. That's a large share of World Cup visitor traffic a plain Google Business Profile doesn't specifically reach."
@@ -196,7 +196,7 @@ faq:
       a: "We seed the directory with public information (name, address, hours) for real local businesses so the directory is useful on day one. Your Free listing is exactly that: public information only, no claims about you beyond what's true. You can claim, edit, or upgrade it any time — or ask us to remove it."
       category: "Trust & How We Work"
     - q: "How do I know this will drive actual customers?"
-      a: "We can't guarantee foot traffic — no platform honestly can. What we do is capture high-intent search queries looking for queer-owned/affirming businesses in Macon and route them to our paid partners."
+      a: "We can't guarantee foot traffic — no platform honestly can. What we do is capture high-intent search queries looking for the best food and restaurants in Macon and route them to our paid partners."
       category: "Trust & How We Work"
 form:
   section_label: "Claim Your Spot"
