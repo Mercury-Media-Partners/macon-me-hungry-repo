@@ -1,0 +1,128 @@
+---
+import { Utensils, Flame, Compass, Navigation } from "lucide-react";
+import { isPostWorldCup } from "../../utils/transition";
+
+interface Props {
+  lang?: string;
+}
+
+const { lang = "en" } = Astro.props;
+const isEs = lang === "es";
+const postWorldCup = isPostWorldCup();
+
+const cards = [
+  {
+    title: isEs ? "Cenar y Beber" : "Dine & Drink",
+    desc: isEs 
+      ? "Terrazas al aire libre, cafés acogedores y comida nocturna."
+      : "Outdoor patios, cozy cafes, and late-night eats.",
+    href: isEs ? "/es/#bar-finder?filter=patio" : "/#bar-finder?filter=patio",
+    iconName: "dine",
+    badge: isEs ? "Patios y Cafés" : "Patios & Cafes",
+    color: "from-pink-500/10 to-rose-500/5 hover:border-pink-500/40 border-pink-500/10",
+    glowColor: "glow-border",
+    badgeColor: "text-pink-500 bg-pink-500/10 border-pink-500/20"
+  },
+  {
+    title: isEs ? "Bailar y Fiesta" : "Dance & Party",
+    desc: isEs
+      ? "Clubes de alta energía, espectáculos drag y bares emblemáticos."
+      : "High-energy dance clubs, drag shows, and nightlife icons.",
+    href: isEs ? "/es/#bar-finder?category=Dance%20Club&mode=night" : "/#bar-finder?category=Dance%20Club&mode=night",
+    iconName: "dance",
+    badge: isEs ? "Vida Nocturna" : "Nightlife",
+    color: "from-purple-500/10 to-indigo-500/5 hover:border-purple-500/40 border-purple-500/10",
+    glowColor: "glow-border-indigo",
+    badgeColor: "text-purple-500 bg-purple-500/10 border-purple-500/20"
+  },
+  {
+    title: isEs ? "Descubrir Barrios" : "Discover Areas",
+    desc: isEs
+      ? "Explora Midtown, East Atlanta EAV y la cultura queer local."
+      : "Explore Midtown, East Atlanta EAV, and local queer culture.",
+    href: isEs ? "/es/#bar-finder?hood=midtown" : "/#bar-finder?hood=midtown",
+    iconName: "discover",
+    badge: isEs ? "Barrios" : "Neighborhoods",
+    color: "from-amber-500/10 to-yellow-500/5 hover:border-amber-500/40 border-amber-500/10",
+    glowColor: "glow-border-secondary",
+    badgeColor: "text-amber-500 bg-amber-500/10 border-amber-500/20"
+  },
+  postWorldCup
+    ? {
+        title: isEs ? "Mapa de Barrios" : "Neighborhood Map",
+        desc: isEs
+          ? "Explore los límites de los barrios queer, rutas e indicaciones."
+          : "Explore neighborhood boundaries, routes, and transit keys.",
+        href: isEs ? "/es/#map" : "/#map",
+        iconName: "navigate",
+        badge: isEs ? "Mapa en Vivo" : "Live Map",
+        color: "from-teal-500/10 to-emerald-500/5 hover:border-teal-500/40 border-teal-500/10",
+        glowColor: "glow-border-indigo",
+        badgeColor: "text-teal-500 bg-teal-500/10 border-teal-500/20"
+      }
+    : {
+        title: isEs ? "Guía del Mundial" : "World Cup Guide",
+        desc: isEs
+          ? "Tránsito MARTA, cercanía al estadio y consejos de supervivencia."
+          : "MARTA transit directions, stadium info, and survival tips.",
+        href: isEs ? "/es/#worldcup" : "/#worldcup",
+        iconName: "navigate",
+        badge: isEs ? "Tránsito y Seguridad" : "Transit & Safety",
+        color: "from-teal-500/10 to-emerald-500/5 hover:border-teal-500/40 border-teal-500/10",
+        glowColor: "glow-border-indigo",
+        badgeColor: "text-teal-500 bg-teal-500/10 border-teal-500/20"
+      }
+];
+---
+
+<section id="intent-grid" class="py-16 px-4 bg-background border-b border-border/50">
+  <div class="container max-w-6xl mx-auto">
+    <div class="mb-10 text-center md:text-left">
+      <p class="section-label mb-2">{isEs ? "Explora con Intención" : "Explore with Intent"}</p>
+      <h2 class="font-display text-4xl md:text-5xl text-foreground uppercase tracking-tight">
+        {isEs ? "¿Qué Estás Buscando?" : "What are you looking for?"}
+      </h2>
+      <p class="text-muted-foreground text-sm max-w-xl mt-2">
+        {isEs 
+          ? "Acceso directo a las mejores recomendaciones de Atlanta según tus deseos actuales."
+          : "Direct access to Atlanta's best recommendations based on what you need right now."}
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      {cards.map(card => (
+        <a 
+          href={card.href}
+          class={`group flex flex-col justify-between p-6 rounded-2xl border bg-gradient-to-br transition-all duration-300 hover:scale-[1.02] shadow-sm hover:shadow-md ${card.color} ${card.glowColor}`}
+        >
+          <div>
+            <div class="flex items-center justify-between mb-6">
+              <div class="w-10 h-10 rounded-xl bg-card border border-border flex items-center justify-center text-foreground group-hover:text-primary transition-colors">
+                {card.iconName === "dine" && <Utensils size={20} className="group-hover:scale-110 transition-transform duration-200" />}
+                {card.iconName === "dance" && <Flame size={20} className="group-hover:scale-110 transition-transform duration-200" />}
+                {card.iconName === "discover" && <Compass size={20} className="group-hover:scale-110 transition-transform duration-200" />}
+                {card.iconName === "navigate" && <Navigation size={20} className="group-hover:scale-110 transition-transform duration-200" />}
+              </div>
+              <span class={`text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full border ${card.badgeColor}`}>
+                {card.badge}
+              </span>
+            </div>
+
+            <h3 class="font-display text-xl text-foreground mb-2 group-hover:text-primary transition-colors uppercase">
+              {card.title}
+            </h3>
+            
+            <p class="text-xs text-muted-foreground leading-relaxed font-body">
+              {card.desc}
+            </p>
+          </div>
+
+          <div class="mt-6 flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-muted-foreground group-hover:text-primary transition-colors">
+            <span>{isEs ? "Explorar" : "Explore"}</span>
+            <span class="transform group-hover:translate-x-1 transition-transform">→</span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>

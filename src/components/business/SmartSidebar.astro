@@ -1,0 +1,513 @@
+---
+import { MapPin, Clock, Phone, Globe, Star, Zap, Briefcase } from 'lucide-react';
+import { getCollection } from 'astro:content';
+import { en } from '../../i18n/en';
+import { es } from '../../i18n/es';
+
+interface Props {
+  address: string;
+  hours: string;
+  phone?: string;
+  website?: string;
+  socials?: {
+    instagram?: string;
+    facebook?: string;
+    twitter?: string;
+  };
+  stadiumMin: number;
+  rating: number;
+  world_cup_ready?: boolean;
+  tier: 'free' | 'partner' | 'promoter' | 'professional' | 'headliner';
+  slug?: string;
+  lang?: string;
+  transit_station?: string;
+  transit_time_en?: string;
+  transit_time_es?: string;
+}
+
+const { address, hours, phone, website, socials, stadiumMin, rating, world_cup_ready, tier, slug, lang = "en", transit_station, transit_time_en, transit_time_es } = Astro.props;
+const isEs = lang === "es";
+const t = isEs ? es : en;
+const isPaid = tier === 'partner' || tier === 'promoter' || tier === 'professional' || tier === 'headliner';
+
+// Fetch jobs if applicable
+let activeJobs: any[] = [];
+if (slug) {
+  const allJobs = await getCollection('jobs');
+  activeJobs = allJobs.filter((job: any) => {
+    if (job.data.business_slug !== slug) return false;
+    if (job.data.expiration_date && new Date(job.data.expiration_date) < new Date()) return false;
+    return true;
+  }).sort((a: any, b: any) => new Date(b.data.pub_date).valueOf() - new Date(a.data.pub_date).valueOf());
+
+  if (tier === 'promoter' || tier === 'professional' || tier === 'free') {
+    activeJobs = activeJobs.slice(0, 2);
+  }
+}
+
+// Parse hours of operation into 7 days, 2 columns format
+const parseHours = (hoursStr: string, isEs: boolean) => {
+  const daysEn = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+  const daysEs = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"];
+  const days = isEs ? daysEs : daysEn;
+
+  const hoursMap: Record<string, string> = {
+    "Monday": "Closed",
+    "Tuesday": "Closed",
+    "Wednesday": "Closed",
+    "Thursday": "Closed",
+    "Friday": "Closed",
+    "Saturday": "Closed",
+    "Sunday": "Closed"
+  };
+
+  if (!hoursStr) {
+    return daysEn.map((d, idx) => ({ day: days[idx], hours: isEs ? "Cerrado" : "Closed" }));
+  }
+
+  // If the hoursStr has no commas and no day references, apply it to all days
+  if (!hoursStr.includes(',') && !hoursStr.includes('Mon') && !hoursStr.includes('Sun') && !hoursStr.includes('Lunes') && !hoursStr.includes('Dom')) {
+    const defaultHours = hoursStr.trim();
+    return daysEn.map((d, idx) => ({
+      day: days[idx],
+      hours: defaultHours
+    }));
+  }
+
+  const parts = hoursStr.split(',');
+
+  for (let part of parts) {
+    part = part.trim();
+    if (!part) continue;
+
+    // Special case for weekends
+    if (part.toLowerCase().includes("weekends")) {
+      let hw = part.replace(/weekends/i, "").trim();
+      hw = hw.replace(/^[\s\-\–\—\:]+|[\s\-\–\—\:]+$/g, "").trim();
+      if (!hw) hw = "Open";
+      hoursMap["Saturday"] = hw;
+      hoursMap["Sunday"] = hw;
+      continue;
+    }
+
+    let daysPart = "";
+    let hoursPart = "";
+
+    // Check for " - " or " – " or " — "
+    if (part.includes(" - ")) {
+      const splitIdx = part.indexOf(" - ");
+      daysPart = part.substring(0, splitIdx).trim();
+      hoursPart = part.substring(splitIdx + 3).trim();
+    } else if (part.includes(" – ")) {
+      const splitIdx = part.indexOf(" – ");
+      daysPart = part.substring(0, splitIdx).trim();
+      hoursPart = part.substring(splitIdx + 3).trim();
+    } else {
+      // Regexp fallback for: "9am–6pm Mon–Fri"
+      const match = part.match(/(.*?)\s+(Mon[^\s]*|Tue[^\s]*|Wed[^\s]*|Thu[^\s]*|Fri[^\s]*|Sat[^\s]*|Sun[^\s]*)/i);
+      if (match) {
+        hoursPart = match[1].trim();
+        daysPart = match[2].trim();
+      } else {
+        const partsInner = part.split(/ - | – | — /);
+        if (partsInner.length >= 2) {
+          daysPart = partsInner[0].trim();
+          hoursPart = partsInner.slice(1).join(" - ").trim();
+        } else {
+          hoursPart = part;
+        }
+      }
+    }
+
+    daysPart = daysPart.trim();
+    hoursPart = hoursPart.trim();
+
+    if (!daysPart) {
+      for (const d of daysEn) {
+        hoursMap[d] = hoursPart;
+      }
+      continue;
+    }
+
+    const dayIndices: Record<string, number> = {
+      "mon": 0, "monday": 0, "lunes": 0, "lun": 0,
+      "tue": 1, "tues": 1, "tuesday": 1, "martes": 1, "mar": 1,
+      "wed": 2, "wednesday": 2, "miércoles": 2, "miercoles": 2, "mié": 2, "mie": 2,
+      "thu": 3, "thurs": 3, "thursday": 3, "jueves": 3, "jue": 3,
+      "fri": 4, "friday": 4, "viernes": 4, "vie": 4,
+      "sat": 5, "saturday": 5, "sábado": 5, "sabado": 5, "sáb": 5, "sab": 5,
+      "sun": 6, "sunday": 6, "domingo": 6, "dom": 6
+    };
+
+    const rangeSeparator = /-|–|—|to/i;
+    if (rangeSeparator.test(daysPart)) {
+      const dayParts = daysPart.split(rangeSeparator).map(d => d.trim().toLowerCase());
+      if (dayParts.length === 2) {
+        const startDay = dayParts[0];
+        const endDay = dayParts[1];
+        const startIdx = dayIndices[startDay];
+        const endIdx = dayIndices[endDay];
+
+        if (startIdx !== undefined && endIdx !== undefined) {
+          let i = startIdx;
+          while (true) {
+            hoursMap[daysEn[i]] = hoursPart;
+            if (i === endIdx) break;
+            i = (i + 1) % 7;
+          }
+        }
+      }
+    } else {
+      const dayKey = daysPart.toLowerCase();
+      const idx = dayIndices[dayKey];
+      if (idx !== undefined) {
+        hoursMap[daysEn[idx]] = hoursPart;
+      }
+    }
+  }
+
+  return daysEn.map((d, idx) => {
+    let dayHours = hoursMap[d];
+    const rawRange = dayHours;
+    if (isEs) {
+      if (dayHours.toLowerCase() === "closed") {
+        dayHours = "Cerrado";
+      } else {
+        dayHours = dayHours
+          .replace(/closed/i, "Cerrado")
+          .replace(/by appointment/i, "Con cita previa")
+          .replace(/weekends/i, "fines de semana");
+      }
+    }
+    return {
+      day: days[idx],
+      hours: dayHours,
+      rawRange: rawRange
+    };
+  });
+};
+
+const parsedHours = parseHours(hours, isEs);
+---
+
+<aside class="space-y-6">
+  <div class="bg-card/50 backdrop-blur-xl border border-border rounded-2xl p-6 shadow-deep">
+    <h3 class="font-display text-2xl mb-6 flex items-center gap-2">
+      <Zap class="text-primary" size={20} />
+      {isEs ? "Resumen" : "At a Glance"}
+    </h3>
+
+    <div class="space-y-5">
+      <div class="flex gap-4">
+        <MapPin class="text-primary shrink-0 mt-0.5" size={18} />
+        <div>
+          <p class="text-xs text-muted-foreground uppercase tracking-wider mb-1">{isEs ? "Dirección" : "Address"}</p>
+          <p class="text-sm font-medium">{address}</p>
+        </div>
+      </div>
+
+      {transit_station && (
+        <div class="flex gap-4 border-t border-border/20 pt-4">
+          <span class="text-lg shrink-0 mt-0.5 text-primary">🚆</span>
+          <div>
+            <p class="text-xs text-muted-foreground uppercase tracking-wider mb-1">{isEs ? "MARTA Acceso" : "MARTA Transit"}</p>
+            <p class="text-sm font-medium">
+              {transit_station} Station — {isEs ? transit_time_es : transit_time_en}
+            </p>
+            <a 
+              href={`https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(transit_station + ' Station, Atlanta, GA')}&destination=${encodeURIComponent(address)}&travelmode=walking`}
+              target="_blank"
+              rel="noopener"
+              class="text-xs text-primary font-semibold hover:underline block mt-1"
+            >
+              {isEs ? "Ver indicaciones a pie →" : "Get walking directions →"}
+            </a>
+          </div>
+        </div>
+      )}
+
+      <div class="flex gap-4">
+        <Clock class="text-primary shrink-0 mt-0.5" size={18} />
+        <div class="flex-1 min-w-0">
+          <div class="flex items-center justify-between mb-2">
+            <p class="text-xs text-muted-foreground uppercase tracking-wider">{isEs ? "Horario" : "Hours"}</p>
+            <span id="hours-status-badge" class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-muted text-muted-foreground transition-all duration-300">
+              {isEs ? "Cargando..." : "Loading..."}
+            </span>
+          </div>
+          <div id="hours-table" data-hours={JSON.stringify(parsedHours)} data-lang={lang} class="w-full space-y-1">
+            {parsedHours.map(({ day, hours }) => (
+              <div class="flex items-start justify-between gap-3 border-b border-border/10 last:border-0 py-1.5 hover:bg-muted/10 transition-colors rounded-sm px-0.5">
+                <span class="text-muted-foreground font-semibold text-xs shrink-0 w-24">{day}</span>
+                <span class="text-foreground font-medium text-xs text-right leading-relaxed">{hours}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+
+      {phone && (
+        <div class="flex gap-4">
+          <Phone class="text-primary shrink-0 mt-0.5" size={18} />
+          <div>
+            <p class="text-xs text-muted-foreground uppercase tracking-wider mb-1">{isEs ? "Teléfono" : "Phone"}</p>
+            <a href={`tel:${phone}`} class="text-sm font-medium hover:text-primary transition-colors">{phone}</a>
+          </div>
+        </div>
+      )}
+
+      {/* Website */}
+      {website && (
+        <div class="flex gap-4">
+          <Globe class="text-primary shrink-0 mt-0.5" size={18} />
+          <div>
+            <p class="text-xs text-muted-foreground uppercase tracking-wider mb-1">{isEs ? "Sitio Web" : "Website"}</p>
+            <div class={isPaid ? "" : "locked-upsell-wrapper is-locked"} data-locked-tier="promoter">
+              <a href={website} target="_blank" rel="noopener" class="text-sm font-medium text-primary hover:underline transition-all">
+                {website.replace(/^https?:\/\/(www\.)?/, '')}
+              </a>
+            </div>
+            {!isPaid && (
+              <span class="text-[10px] text-muted-foreground/45 block mt-0.5 locked-hint">
+                {isEs ? "🔒 Bloqueado (Promoter)" : "🔒 Locked (Promoter)"}
+              </span>
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* Social Links — Promoter & Headliner only */}
+      {socials && (
+        <div class="flex flex-col gap-1 pt-2">
+          {!isPaid && (
+            <span class="text-xs text-muted-foreground uppercase tracking-wider mb-1">{isEs ? "Redes Sociales" : "Social Links"}</span>
+          )}
+          <div class={isPaid ? "flex flex-wrap gap-2" : "locked-upsell-wrapper is-locked flex flex-wrap gap-2"} data-locked-tier="promoter">
+            {socials.instagram && (
+              <a
+                href={`https://instagram.com/${socials.instagram.replace('@', '')}`}
+                target="_blank"
+                rel="noopener"
+                class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-muted border border-border text-xs text-muted-foreground hover:text-primary hover:border-primary/50 transition-all"
+              >
+                {/* Instagram icon SVG */}
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                  <circle cx="12" cy="12" r="4"/>
+                  <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+                </svg>
+                {socials.instagram}
+              </a>
+            )}
+            {socials.facebook && (
+              <a
+                href={`https://facebook.com/${socials.facebook}`}
+                target="_blank"
+                rel="noopener"
+                class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-muted border border-border text-xs text-muted-foreground hover:text-primary hover:border-primary/50 transition-all"
+              >
+                {/* Facebook icon SVG */}
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+                </svg>
+                Facebook
+              </a>
+            )}
+          </div>
+          {!isPaid && (
+            <span class="text-[10px] text-muted-foreground/45 block mt-0.5 locked-hint">
+              {isEs ? "🔒 Bloqueado (Promoter)" : "🔒 Locked (Promoter)"}
+            </span>
+          )}
+        </div>
+      )}
+
+    <div class="mt-8 pt-6 border-t border-border flex items-center justify-between">
+      <div class="flex items-center gap-1.5">
+        <Star class="text-secondary" size={16} fill="currentColor" />
+        <span class="text-lg font-bold">{rating}</span>
+        <span class="text-xs text-muted-foreground">/ 5.0</span>
+      </div>
+      <div class="text-right">
+        <p class="text-xl font-display text-foreground leading-none">{stadiumMin} min</p>
+        <p class="text-[10px] text-muted-foreground uppercase tracking-tighter">
+          {isEs ? "al Mercedes-Benz Stadium" : "to Mercedes-Benz Stadium"}
+        </p>
+      </div>
+    </div>
+  </div>
+
+  {/* Jobs Section */}
+  {activeJobs.length > 0 && (
+    <div class="mt-6 bg-card/50 backdrop-blur-xl border border-border rounded-2xl p-6 shadow-deep relative">
+      <div class={isPaid ? "" : "locked-upsell-wrapper is-locked"} data-locked-tier="promoter">
+        <h3 class="font-display text-xl mb-4 flex items-center gap-2">
+          <Briefcase class="text-primary" size={18} />
+          {t.jobsCurrentOpenings}
+        </h3>
+        <div class="space-y-3">
+          {activeJobs.map(job => (
+            <a href={job.data.apply_url} target="_blank" rel="noopener noreferrer" class="block p-3 rounded-lg border border-border/50 bg-muted/30 hover:bg-muted hover:border-primary/50 transition-all group">
+              <div class="flex justify-between items-start mb-1">
+                <h4 class="font-bold text-sm text-foreground group-hover:text-primary transition-colors">{job.data.title}</h4>
+                <span class="text-[9px] uppercase tracking-wider bg-background px-1.5 py-0.5 rounded text-muted-foreground border border-border/50">
+                  {job.data.job_type === 'full-time' ? t.jobsFullTime : job.data.job_type === 'part-time' ? t.jobsPartTime : job.data.job_type === 'freelance' ? t.jobsFreelance : t.jobsContract}
+                </span>
+              </div>
+              {job.data.wage_range && (
+                <p class="text-xs text-muted-foreground">{job.data.wage_range}</p>
+              )}
+            </a>
+          ))}
+        </div>
+        {(tier === 'promoter' || tier === 'professional' || tier === 'free') && (
+          <p class="text-[10px] text-center mt-3 text-muted-foreground/60">{isEs ? "Mostrando hasta 2 vacantes" : "Showing up to 2 openings"}</p>
+        )}
+      </div>
+      {!isPaid && (
+        <span class="text-[10px] text-muted-foreground/45 block mt-2 text-center locked-hint">
+          {isEs ? "🔒 Oportunidades Laborales Bloqueadas (Promoter)" : "🔒 Job Openings Locked (Promoter)"}
+        </span>
+      )}
+    </div>
+  )}
+
+  {!isPaid && (
+    <div class="text-center py-1 claim-badge">
+      <a
+        href={isEs ? "/es/list-your-business" : "/list-your-business"}
+        class="text-[11px] text-muted-foreground/50 hover:text-primary transition-colors inline-flex items-center gap-1.5 font-body underline underline-offset-2 decoration-muted-foreground/30 hover:decoration-primary"
+      >
+        <span>💡 {isEs ? "¿Eres el propietario? Reclama o mejora este perfil" : "Own this business? Claim or upgrade this listing"} →</span>
+      </a>
+    </div>
+  )}
+</aside>
+
+<script is:inline>
+  (function() {
+    function parseTime(timeStr) {
+      if (!timeStr) return null;
+      timeStr = timeStr.trim().toLowerCase();
+      if (timeStr === 'midnight') return 0;
+      if (timeStr === 'noon') return 12;
+      
+      const match = timeStr.match(/^(\d+)(?::(\d+))?\s*(am|pm)$/);
+      if (!match) return null;
+      
+      let hours = parseInt(match[1], 10);
+      const minutes = match[2] ? parseInt(match[2], 10) : 0;
+      const ampm = match[3];
+      
+      if (ampm === 'pm' && hours < 12) {
+        hours += 12;
+      } else if (ampm === 'am' && hours === 12) {
+        hours = 0;
+      }
+      
+      return hours + minutes / 60;
+    }
+
+    function parseRange(rangeStr) {
+      if (!rangeStr) return null;
+      rangeStr = rangeStr.trim().toLowerCase();
+      if (rangeStr === 'closed' || rangeStr === 'cerrado') return null;
+      if (rangeStr.includes('appointment') || rangeStr.includes('cita')) return null;
+      
+      const parts = rangeStr.split(/[-–—]/);
+      if (parts.length !== 2) return null;
+      
+      const start = parseTime(parts[0]);
+      const end = parseTime(parts[1]);
+      
+      if (start === null || end === null) return null;
+      
+      return { start, end };
+    }
+
+    const table = document.getElementById('hours-table');
+    const badge = document.getElementById('hours-status-badge');
+    if (!table || !badge) return;
+
+    const parsedHours = JSON.parse(table.dataset.hours || '[]');
+    const isEs = table.dataset.lang === 'es';
+
+    // Get current Atlanta time
+    const atlantaString = new Date().toLocaleString("en-US", { timeZone: "America/New_York" });
+    const atlantaDate = new Date(atlantaString);
+    const currDayIdx = (atlantaDate.getDay() + 6) % 7; // Mon=0, ..., Sun=6
+    const currHour = atlantaDate.getHours() + atlantaDate.getMinutes() / 60;
+
+    // Highlight current day row (new div-based layout)
+    const rows = table.querySelectorAll('[data-day-row]');
+    // Fallback: select all direct children divs if no data attr
+    const allRows = rows.length ? rows : table.querySelectorAll(':scope > div');
+    if (allRows[currDayIdx]) {
+      allRows[currDayIdx].classList.add('bg-primary/10');
+      const daySpan = allRows[currDayIdx].querySelector('span:first-child');
+      const hoursSpan = allRows[currDayIdx].querySelector('span:last-child');
+      if (daySpan) {
+        daySpan.classList.remove('text-muted-foreground');
+        daySpan.classList.add('text-primary', 'font-bold');
+      }
+      if (hoursSpan) hoursSpan.classList.add('font-bold');
+    }
+
+    // Determine status
+    let isOpen = false;
+    let isByAppointment = false;
+
+    // Today's hours
+    const todayHoursObj = parsedHours[currDayIdx];
+    const todayRange = todayHoursObj ? parseRange(todayHoursObj.rawRange) : null;
+    
+    // Yesterday's hours
+    const yesterdayIdx = (currDayIdx + 6) % 7;
+    const yesterdayHoursObj = parsedHours[yesterdayIdx];
+    const yesterdayRange = yesterdayHoursObj ? parseRange(yesterdayHoursObj.rawRange) : null;
+
+    if (todayHoursObj && (todayHoursObj.rawRange.toLowerCase().includes('appointment') || todayHoursObj.rawRange.toLowerCase().includes('cita'))) {
+      isByAppointment = true;
+    }
+
+    // Check Open status
+    if (todayRange) {
+      if (todayRange.end < todayRange.start) {
+        if (currHour >= todayRange.start) {
+          isOpen = true;
+        }
+      } else {
+        if (currHour >= todayRange.start && currHour < todayRange.end) {
+          isOpen = true;
+        }
+      }
+    }
+
+    if (yesterdayRange && yesterdayRange.end < yesterdayRange.start) {
+      if (currHour < yesterdayRange.end) {
+        isOpen = true;
+      }
+    }
+
+    // Update status badge
+    badge.className = "px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider border transition-all duration-300";
+    if (isOpen) {
+      badge.textContent = isEs ? "Abierto ahora" : "Open Now";
+      badge.className = "px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider border transition-all duration-300 bg-emerald-500/10 text-emerald-500 border-emerald-500/20";
+    } else if (isByAppointment) {
+      badge.textContent = isEs ? "Con cita" : "Appointment Only";
+      badge.className = "px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider border transition-all duration-300 bg-amber-500/10 text-amber-500 border-amber-500/20";
+    } else {
+      badge.textContent = isEs ? "Cerrado" : "Closed";
+      badge.className = "px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider border transition-all duration-300 bg-rose-500/10 text-rose-500 border-rose-500/20";
+    }
+  })();
+</script>
+
+<style>
+  @keyframes pulseSlow {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.9; }
+  }
+</style>

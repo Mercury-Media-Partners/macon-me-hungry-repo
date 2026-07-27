@@ -1,0 +1,256 @@
+---
+import { getCollection, getEntry } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/navigation/Navbar.astro';
+import Footer from '../components/navigation/Footer.astro';
+import { HeroSection } from '../components/list-business/HeroSection';
+import { FoundingMemberStrip } from '../components/list-business/FoundingMemberStrip';
+import { HowItWorks } from '../components/list-business/HowItWorks';
+import { OwnerOnboarding } from '../components/home/OwnerOnboarding';
+import { TestimonialSlot } from '../components/list-business/TestimonialSlot';
+import { FAQSection } from '../components/list-business/FAQSection';
+import { PartnerForm } from '../components/list-business/PartnerForm';
+import { FinalCTA } from '../components/list-business/FinalCTA';
+import { MobileStickyBar } from '../components/list-business/MobileStickyBar';
+
+import { isPostWorldCup } from '../utils/transition';
+const postWorldCup = isPostWorldCup();
+
+const entry = await getEntry('landing_pages', 'list-your-business-en');
+if (!entry) {
+  throw new Error("Could not find English list-your-business page content");
+}
+
+let content = { ...entry.data };
+
+if (postWorldCup) {
+  content.description = "List your queer-friendly business on OutATL, Atlanta's premier LGBTQ+ directory. Join as a partner and get discovered by thousands of locals and visitors.";
+  content.hero = {
+    ...content.hero,
+    eyebrow: "OutATL Partner Network",
+    title_lines: ["GET YOUR BUSINESS", "DISCOVERED."],
+    title_highlight: "ARE YOU ON THE MAP?",
+    subtitle: "Thousands of locals and visitors use OutATL every week to find bars, cafes, salons, and services in Atlanta. Join our partner network and get discovered today.",
+    countdown_label: "Become a Partner Today",
+    countdown_closes_in: "Become a Partner Today",
+    countdown_final: "Standard rates are now in effect for all new listings.",
+    countdown_expired: "Grandfathered founder rates are now closed.",
+    stats: [
+      { value: "40+", label: "Queer Spaces Listed" },
+      { value: "15k+", label: "Monthly Active Users" },
+      { value: "100%", label: "Atlanta LGBTQ+ Focused" }
+    ]
+  };
+
+  content.pricing = {
+    ...content.pricing,
+    title_line_1: "TRANSPARENT PRICING FOR",
+    title_line_2: "EVERY ATLANTA BUSINESS",
+    title_highlight: "COMMUNITY RATES",
+    tiers: [
+      {
+        id: "free",
+        name: "On the Map",
+        subtitle: "Basic directory listing. 100% free.",
+        monthly: null,
+        annual: null,
+        annualMonthly: null,
+        badge: "Free Catalog",
+        badgeClass: "bg-muted/40 text-muted-foreground border-border",
+        borderClass: "border-border opacity-90",
+        mobileOrder: 1,
+        headingClass: "text-foreground",
+        description: "Standard catalog listing with complete SEO search indexing.",
+        whoFor: "Ideal for: new local businesses, grassroots community projects, non-profits.",
+        features: [
+          "Indexed in OutATL Directory & GIS Map",
+          "Full address, transit & MARTA directions",
+          "Operating hours & status badges",
+          "Schema.org LocalBusiness JSON-LD",
+          "1 Gallery photo & rating badges"
+        ],
+        roiProof: "Always free for Atlanta's local business community.",
+        cta: "Claim Free Listing",
+        ctaClass: "text-foreground bg-muted hover:bg-muted/80 border border-border"
+      },
+      {
+        id: "community",
+        name: "Community & Lifestyle",
+        subtitle: "For cafes, bookstores, barbers & retail.",
+        monthly: 29,
+        annual: 290,
+        annualMonthly: 24,
+        badge: "Community Favorite",
+        badgeClass: "bg-primary/15 text-primary border-primary/30",
+        borderClass: "tier-card-promoter",
+        mobileOrder: 2,
+        headingClass: "text-gradient-primary",
+        description: "Everything unlocked. For independent cafes, vintage boutiques, barbers, and local retail.",
+        whoFor: "Ideal for: cafes, bakeries, bookstores, barbershops, wellness & small retail.",
+        features: [
+          "100% Features Unlocked",
+          "Direct website link & social handles",
+          "Post weekly recurring events & specials",
+          "Post job openings on OutATL Job Board",
+          "Featured verified partner badge",
+          "Google Maps directions integration"
+        ],
+        roiProof: "Just 2 extra coffee or book sales per week covers your entire listing.",
+        cta: "Join as Community Partner",
+        ctaClass: "text-primary-foreground bg-primary hover:bg-primary/90 glow-primary"
+      },
+      {
+        id: "nightlife",
+        name: "Nightlife & Hospitality",
+        subtitle: "For bars, dance clubs & restaurants.",
+        monthly: 89,
+        annual: 890,
+        annualMonthly: 74,
+        badge: "Most Popular",
+        badgeClass: "bg-secondary/15 text-secondary border-secondary/30",
+        borderClass: "tier-card-headliner",
+        mobileOrder: 3,
+        headingClass: "text-gradient-gold",
+        description: "Maximum nightlife traffic. For high-volume bars, drag stages, clubs, and dining.",
+        whoFor: "Ideal for: dance clubs, dive bars, drag brunch venues, restaurants & party spaces.",
+        features: [
+          "Everything in Community Partner",
+          "Top-grid priority search placement",
+          "Custom conversion CTA ('Book Table', 'RSVP')",
+          "Unlimited event listings & party announcements",
+          "Featured spotlight on homepage & intent grid",
+          "Clean profile with zero competitor ads"
+        ],
+        roiProof: "A single party table reservation or 3 cover charges pays for your entire month.",
+        cta: "Join as Nightlife Partner",
+        ctaClass: "text-background",
+        ctaGradient: "var(--gradient-gold)"
+      },
+      {
+        id: "commercial",
+        name: "Commercial & Professional",
+        subtitle: "For real estate, legal, medical & B2B.",
+        monthly: 199,
+        annual: 1990,
+        annualMonthly: 165,
+        badge: "High ROI B2B",
+        badgeClass: "bg-accent/15 text-accent border-accent/30",
+        borderClass: "tier-card-promoter border-accent/30 shadow-[0_0_15px_rgba(var(--color-accent),0.1)]",
+        mobileOrder: 4,
+        headingClass: "text-gradient-accent",
+        description: "Establish trust & capture high-value client leads in Atlanta's LGBTQ+ market.",
+        whoFor: "Ideal for: realtors, attorneys, medical clinics, therapists, mortgage & home services.",
+        features: [
+          "Everything in Verified Partner",
+          "Priority B2B directory placement",
+          "Direct client inquiry lead form",
+          "Structured JSON-LD schema optimization",
+          "Featured inclusion in OutATL relocation guides"
+        ],
+        roiProof: "A single client closing or patient acquisition pays for years of partner status.",
+        cta: "Join as Professional Partner",
+        ctaClass: "text-white bg-accent/90 hover:bg-accent border border-accent"
+      }
+    ]
+  };
+
+  content.form = {
+    ...content.form,
+    tiers: [
+      { value: "free", label: "Free Basic Listing" },
+      { value: "community", label: "Community & Lifestyle Partner ($29/mo)" },
+      { value: "nightlife", label: "Nightlife & Hospitality Partner ($89/mo)" },
+      { value: "commercial", label: "Commercial & Professional Partner ($199/mo)" }
+    ]
+  };
+
+  content.testimonial = {
+    section_label: "Featured Partner Showcase",
+    title: "FiNCA to FiLTER",
+    body: "Discover design-forward spaces, local retail, and community hubs. See how FiNCA to FiLTER uses their OutATL Promoter profile to advertise weekly events, list active jobs, and guide clients directly to their doors in West End and Boulevard Heights.",
+    cta: "See Profile Example →"
+  };
+
+  content.final_cta = {
+    ...content.final_cta,
+    title: "YOUR SPOT IS WAITING",
+    subtitle: "Standard pricing is now in effect for all new signups. Join our partner network and get your business on the map today.",
+    cta: "Get Listed Today →",
+    closes_label: "Standard partner pricing is live:",
+    deadline_label: "Atlanta's Evergreen LGBTQ+ Directory"
+  };
+
+  content.sticky_bar = {
+    ...content.sticky_bar,
+    label: "Get listed from $49/mo",
+    sublabel: "Standard partner rates apply",
+    cta: "Claim Spot →"
+  };
+}
+
+const allBusinesses = await getCollection('businesses');
+const businessNames = allBusinesses.map(b => b.data.title);
+---
+
+<Layout
+  title={content.title}
+  description={content.description}
+>
+  <Navbar lang="en" />
+
+  {/*
+    ── Netlify Form Detection ──
+    Netlify scans static HTML at build time. Because PartnerForm is a React
+    island (client:load), we render a hidden duplicate here so Netlify registers
+    the "partner-inquiry" form.
+  */}
+  <form name="partner-inquiry" data-netlify="true" netlify-honeypot="bot-field" hidden>
+    <input type="hidden" name="form-name" value="partner-inquiry" />
+    <input name="bot-field" />
+    <input name="business-name" />
+    <input name="contact-name" />
+    <input name="email" type="email" />
+    <input name="phone" type="tel" />
+    <select name="tier">
+      <option value="free">free</option>
+      <option value="promoter">promoter</option>
+      <option value="headliner">headliner</option>
+    </select>
+    <select name="billing">
+      <option value="monthly">monthly</option>
+      <option value="annual">annual</option>
+    </select>
+    <textarea name="message"></textarea>
+  </form>
+
+  {/* Visually-hidden h1 for SEO */}
+  <h1 class="sr-only">{content.title}</h1>
+
+  <main class="bg-background pt-20">
+    <HeroSection content={content.hero} client:load />
+    <FoundingMemberStrip marqueeLabel={content.marquee.label} businesses={businessNames} client:load />
+    <HowItWorks content={content.how_it_works} client:load />
+    <OwnerOnboarding content={content.pricing} lang="en" client:load />
+    <TestimonialSlot content={content.testimonial} client:load />
+    <FAQSection content={content.faq} client:load />
+    <PartnerForm content={content.form} client:load />
+    <FinalCTA content={{ ...content.final_cta, countdown_date: content.hero.countdown_date, countdown_expired: content.hero.countdown_expired, unit_days: content.hero.unit_days, unit_hours: content.hero.unit_hours, unit_min: content.hero.unit_min, unit_sec: content.hero.unit_sec }} client:load />
+    <MobileStickyBar content={content.sticky_bar} client:load />
+  </main>
+
+  <Footer lang="en" />
+
+  {/* FAQ JSON-LD Schema for SEO */}
+  <script type="application/ld+json" set:text={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": content.faq.items.map(item => ({
+      "@type": "Question",
+      "name": item.q,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": item.a
+      }
+    }))
+  })} />
+</Layout>

@@ -1,0 +1,103 @@
+---
+// src/pages/es/blog.astro
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/navigation/Navbar.astro';
+import Footer from '../../components/navigation/Footer.astro';
+import BlogCardNeon from '../../components/blog/BlogCardNeon.astro';
+import CategoryFilterBar from '../../components/blog/CategoryFilterBar.astro';
+
+// Fetch Spanish blogs
+const blogs = await getCollection('blog', ({ data }) => {
+  return data.lang === 'es' && !data.draft;
+});
+
+// Combine and sort chronologically (newest first)
+const allFeedItems = blogs.map(post => ({
+  id: post.id,
+  type: 'blog' as const,
+  date: new Date(post.data.publishDate),
+  category: post.data.category,
+  featured: post.data.featured,
+  item: post
+})).sort((a, b) => b.date.getTime() - a.date.getTime());
+
+// Split out featured items if any
+const featuredItems = allFeedItems.filter(item => item.featured);
+const standardItems = allFeedItems.filter(item => !item.featured);
+---
+
+<Layout 
+  title="Editorial"
+  description="Portal Editorial OutATL. Guías de expertos, destaques de negocios locales e información sobre el torneo para el Mundial 2026."
+>
+  <Navbar lang="es" />
+
+  <main class="relative min-h-screen pt-32 pb-24 px-4 overflow-hidden bg-gradient-hero">
+    
+    {/* Page Header */}
+    <div class="container max-w-6xl mx-auto text-center mb-12 relative z-10">
+      <span class="section-label mb-4 block">Diario OutATL</span>
+      <h1 class="font-display text-4xl md:text-6xl text-foreground leading-none tracking-tight uppercase mb-4">
+        EDITORIAL
+      </h1>
+      <p class="text-muted-foreground text-base md:text-lg max-w-2xl mx-auto leading-relaxed font-body">
+        Historias, guías locales de supervivencia y novedades de la comunidad queer de Atlanta.
+      </p>
+    </div>
+
+    {/* Interactive Category Filters */}
+    <div class="container max-w-6xl mx-auto relative z-10">
+      <CategoryFilterBar lang="es" />
+    </div>
+
+    {/* Mixed Grid of Cards */}
+    <div class="container max-w-6xl mx-auto relative z-10">
+      <div id="blog-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        {/* Render Featured Items First */}
+        {featuredItems.map(item => (
+          <div 
+            key={item.id} 
+            data-post-card 
+            data-category={item.category} 
+            data-type={item.type}
+            class="h-full"
+          >
+            <BlogCardNeon post={item.item as any} lang="es" />
+          </div>
+        ))}
+
+        {/* Render Standard Items */}
+        {standardItems.map(item => (
+          <div 
+            key={item.id} 
+            data-post-card 
+            data-category={item.category} 
+            data-type={item.type}
+            class="h-full"
+          >
+            <BlogCardNeon post={item.item as any} lang="es" />
+          </div>
+        ))}
+      </div>
+
+      {/* No Posts Found Fallback State */}
+      <div 
+        id="no-posts-found" 
+        class="hidden text-center py-20 border border-dashed border-border rounded-3xl bg-card/10 backdrop-blur-sm mt-8"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 text-muted-foreground mx-auto mb-4 opacity-55" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 7.5h.008v.008H12V7.5zM12 11.25h.008v.008H12v-.008zm0 3.75h.008v.008H12V15zm0 3.75h.008v.008H12v-.008zM14.25 18h-.008v.008h.008V18zm-.008-3.75h.008v.008h-.008v-.008zm0-3.75h.008v.008h-.008v-.008zm0-3.75h.008v.008h-.008V7.5zM9.75 18h-.008v.008h.008V18zm-.008-3.75h.008v.008h-.008v-.008zm0-3.75h.008v.008h-.008v-.008zm0-3.75h.008v.008h-.008V7.5z" />
+        </svg>
+        <h3 class="text-lg font-semibold text-foreground mb-1">No se encontraron artículos</h3>
+        <p class="text-sm text-muted-foreground">Intenta seleccionar una categoría de filtro diferente.</p>
+      </div>
+    </div>
+
+    {/* Background Glow */}
+    <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-primary/5 rounded-full blur-[160px] pointer-events-none"></div>
+  </main>
+
+  <Footer lang="es" />
+</Layout>

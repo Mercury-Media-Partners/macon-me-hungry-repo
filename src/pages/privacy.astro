@@ -1,0 +1,24 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/navigation/Navbar.astro';
+import Footer from '../components/navigation/Footer.astro';
+---
+<Layout title="Privacy Policy">
+  <Navbar lang="en" />
+  <main class="min-h-screen pt-32 pb-12 px-4 max-w-4xl mx-auto">
+    <div class="prose prose-invert prose-lg max-w-none font-body">
+      <h1 class="font-display">Privacy Policy</h1>
+      <p>Last updated: July 12, 2026</p>
+      <p>This Privacy Policy outlines how OutATL collects, uses, and protects your information.</p>
+      <h2 class="font-display">Information We Collect</h2>
+      <p>We do not collect sensitive personal data. We store your application preferences (such as language and site mode) locally on your device using NanoStores and browser local storage.</p>
+      <h2 class="font-display">Cookies and Local Storage</h2>
+      <p>We use essential local storage to remember your display preferences (e.g., list vs. grid mode, language selection) and enhance your user experience.</p>
+      <h2 class="font-display">Third-Party Services</h2>
+      <p>Our site includes curated links and embedded content (such as TikTok videos or YouTube embeds). These third-party platforms may collect data according to their own privacy policies.</p>
+      <h2 class="font-display">Contact Us</h2>
+      <p>If you have any questions about this Privacy Policy, please contact us at info@outatl.com.</p>
+    </div>
+  </main>
+  <Footer lang="en" />
+</Layout>

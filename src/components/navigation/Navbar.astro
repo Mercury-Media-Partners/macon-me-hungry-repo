@@ -1,0 +1,301 @@
+---
+import LanguageToggle from './LanguageToggle.astro';
+import ModeToggle from './ModeToggle.astro';
+import { WeatherBadge } from './WeatherBadge';
+import matchesData from '../../data/matches.json';
+import { getCountryFlag, translateTeam } from '../../utils/countryFlags';
+
+interface Props {
+  lang?: string;
+}
+
+const { lang = "en" } = Astro.props;
+const isEs = lang === "es";
+const base = isEs ? "/es" : "";
+
+import { isPostWorldCup } from '../../utils/transition';
+
+// Find next upcoming match. We prioritize Atlanta matches, but if there are no upcoming
+// Atlanta matches (e.g. after July 15), we fall back to the next upcoming tournament match
+// (like the Final) to ensure we always show an upcoming match rather than a past one.
+const todayStr = new Date().toISOString().split('T')[0];
+const atlMatches = matchesData.filter(m => m.location === 'Atlanta');
+
+let nextMatch = atlMatches.find(m => m.status !== 'FT' && m.date >= todayStr);
+let isAtlMatch = true;
+
+if (!nextMatch) {
+  nextMatch = matchesData.find(m => m.status !== 'FT' && m.date >= todayStr);
+  isAtlMatch = false;
+}
+
+if (!nextMatch) {
+  nextMatch = atlMatches.length > 0 ? atlMatches[atlMatches.length - 1] : matchesData[matchesData.length - 1];
+  isAtlMatch = nextMatch.location === 'Atlanta';
+}
+
+const isPastMatch = nextMatch.status === 'FT' || nextMatch.date < todayStr;
+
+let bannerLabelEn = "";
+let bannerLabelEs = "";
+
+if (isPastMatch) {
+  bannerLabelEn = isAtlMatch ? "Latest ATL Result" : "Latest Match Result";
+  bannerLabelEs = isAtlMatch ? "Último Resultado en ATL" : "Último Resultado";
+} else {
+  if (nextMatch.group === "Final") {
+    bannerLabelEn = "World Cup Final";
+    bannerLabelEs = "Final de la Copa Mundial";
+  } else {
+    bannerLabelEn = isAtlMatch ? "Next ATL Match" : "Next Match";
+    bannerLabelEs = isAtlMatch ? "Próximo Partido en ATL" : "Próximo Partido";
+  }
+}
+
+// Localize display date
+let displayDate = nextMatch.displayDate;
+if (isEs) {
+  displayDate = displayDate
+    .replace('Thu', 'Jue')
+    .replace('Fri', 'Vie')
+    .replace('Sat', 'Sáb')
+    .replace('Sun', 'Dom')
+    .replace('Mon', 'Lun')
+    .replace('Tue', 'Mar')
+    .replace('Wed', 'Mié')
+    .replace('Jun', 'Junio')
+    .replace('Jul', 'Julio');
+}
+
+// Active-link detection (runs at SSR/SSG time — zero JS cost)
+const path = Astro.url.pathname;
+const isDirectoryActive = path === "/" || path === "/es" || path === "/es/";
+const isCultureActive   = path.startsWith("/outdoors-culture") || path.startsWith("/es/outdoors-culture");
+const isWorldCupActive  = path.startsWith("/matches") || path.startsWith("/es/matches");
+const isBlogActive      = path.startsWith("/blog") || path.startsWith("/es/blog");
+
+const postWorldCup = isPostWorldCup();
+
+const navLinks = [
+  {
+    href: `${base}/#bar-finder`,
+    label: isEs ? "Directorio" : "Directory",
+    active: isDirectoryActive,
+  },
+  {
+    href: `${base}/outdoors-culture`,
+    label: isEs ? "Cultura" : "Culture",
+    active: isCultureActive,
+  },
+  ...(postWorldCup
+    ? [{
+        href: `${base}/map`,
+        label: isEs ? "Mapa" : "Map",
+        active: path.startsWith("/map") || path.startsWith("/es/map") || path.startsWith("/map/") || path.startsWith("/es/map/"),
+      }]
+    : [{
+        href: `${base}/matches`,
+        label: isEs ? "Copa del Mundo" : "World Cup",
+        active: isWorldCupActive,
+      }]
+  ),
+  {
+    href: `${base}/blog`,
+    label: isEs ? "Editorial" : "Blog",
+    active: isBlogActive,
+  },
+];
+---
+
+<!-- Mobile Full-Screen Menu -->
+<div
+  id="nav-fullscreen-menu"
+  class="nav-fullscreen-menu"
+  role="dialog"
+  aria-modal="true"
+  aria-label={isEs ? "Menú de navegación" : "Navigation menu"}
+>
+  <!-- Header with Close Button -->
+  <div class="container max-w-6xl mx-auto px-4 h-16 flex items-center justify-between shrink-0">
+    <a href={`${base}/`} class="font-display text-2xl tracking-widest text-foreground hover:text-primary transition-colors">
+      OUT<span class="text-primary">ATL</span>
+    </a>
+    <button
+      id="nav-close"
+      aria-label={isEs ? "Cerrar menú" : "Close menu"}
+      class="p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-colors"
+    >
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+        <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Centered Navigation Links -->
+  <nav class="flex-1 flex flex-col items-center justify-center gap-6 overflow-y-auto">
+    {navLinks.map(link => (
+      <a
+        href={link.href}
+        class={`text-2xl font-bold uppercase tracking-widest transition-all duration-200 ${
+          link.active ? "text-primary" : "text-muted-foreground hover:text-foreground"
+        }`}
+      >
+        {link.label}
+      </a>
+    ))}
+    <a
+      href={`${base}/list-your-business`}
+      class="text-2xl font-bold uppercase tracking-widest text-muted-foreground hover:text-foreground transition-all duration-200 mt-4"
+    >
+      {isEs ? "Anúnciate" : "List Your Business"}
+    </a>
+    <a
+      href={`${base}/map`}
+      class="px-6 py-3 mt-4 bg-primary/10 text-primary border border-primary/20 rounded-full text-sm font-bold uppercase tracking-widest hover:bg-primary/20 transition-all"
+    >
+      🗺️ {isEs ? "Mapa Interactivo" : "Interactive Map"}
+    </a>
+  </nav>
+
+  <!-- Footer Controls -->
+  <div class="pb-10 pt-6 shrink-0 flex items-center justify-center gap-6">
+    <WeatherBadge client:load lang={lang} />
+    <ModeToggle />
+    <LanguageToggle lang={lang} />
+  </div>
+</div>
+
+<!-- Announcement Banner -->
+<div class="fixed top-0 left-0 right-0 h-9 z-[60] bg-secondary border-b border-secondary/50 py-2 px-4 text-center text-xs text-secondary-foreground font-bold flex items-center justify-center gap-2 drop-shadow-sm">
+  {!postWorldCup && (
+    <span class="relative flex h-2 w-2 shrink-0">
+      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary-foreground opacity-75"></span>
+      <span class="relative inline-flex rounded-full h-2 w-2 bg-secondary-foreground"></span>
+    </span>
+  )}
+  {postWorldCup ? (
+    <>
+      <span class="truncate">
+        {isEs 
+          ? "🏳️‍🌈 ¡Explora los mejores bares, cafés y espacios LGBTQ+ de Atlanta!" 
+          : "🏳️‍🌈 Explore Atlanta's best LGBTQ+ bars, cafes, and community spaces!"}
+      </span>
+      <a href={isEs ? "/es/map" : "/map"} class="underline underline-offset-2 hover:opacity-80 transition-opacity whitespace-nowrap ml-1.5">
+        {isEs ? "Ver Mapa Interactivo →" : "View Interactive Map →"}
+      </a>
+    </>
+  ) : (
+    <>
+      <span class="truncate">
+        {isEs 
+          ? `${bannerLabelEs}: ${getCountryFlag(translateTeam(nextMatch.team1, true))} vs ${getCountryFlag(translateTeam(nextMatch.team2, true))} (${displayDate} ${isPastMatch ? '-' : 'a las'} ${nextMatch.timeOrScore})` 
+          : `${bannerLabelEn}: ${getCountryFlag(nextMatch.team1)} vs ${getCountryFlag(nextMatch.team2)} (${displayDate} ${isPastMatch ? '-' : 'at'} ${nextMatch.timeOrScore})`}
+      </span>
+      <a href={isEs ? "/es/matches" : "/matches"} class="underline underline-offset-2 hover:opacity-80 transition-opacity whitespace-nowrap ml-1.5">
+        {isEs ? "Ver Calendario →" : "View Match Hub →"}
+      </a>
+    </>
+  )}
+</div>
+
+<!-- Main Navbar -->
+<nav
+  class="fixed top-9 left-0 right-0 z-50 border-b border-border/50 bg-background/80 backdrop-blur-md"
+  aria-label={isEs ? "Navegación principal" : "Main navigation"}
+>
+  <div class="container max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+
+    <!-- Logo -->
+    <a
+      href={isEs ? "/es" : "/"}
+      class="font-display text-2xl tracking-widest text-foreground hover:text-primary transition-colors shrink-0"
+    >
+      OUT<span class="text-primary">ATL</span>
+    </a>
+
+    <!-- Desktop Nav Links -->
+    <div class="hidden md:flex items-center gap-7">
+      {navLinks.map(link => (
+        <a
+          href={link.href}
+          class={`nav-link ${link.active ? "nav-link-active" : ""}`}
+        >
+          {link.label}
+        </a>
+      ))}
+    </div>
+
+    <!-- Desktop Right Controls -->
+    <div class="hidden md:flex items-center gap-3">
+      <WeatherBadge client:load lang={lang} />
+      <ModeToggle />
+      <LanguageToggle lang={lang} />
+      <a
+        href={`${base}/map`}
+        class="px-4 py-2 bg-primary/10 text-primary border border-primary/20 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-primary/20 transition-all"
+      >
+        {isEs ? "Mapa Interactivo" : "Interactive Map"}
+      </a>
+    </div>
+
+    <!-- Mobile Right Controls (Weather & Hamburger) -->
+    <div class="md:hidden flex items-center gap-2">
+      <WeatherBadge client:load lang={lang} />
+      <button
+        id="nav-hamburger"
+        aria-label={isEs ? "Abrir menú de navegación" : "Open navigation menu"}
+        aria-expanded="false"
+        aria-controls="nav-fullscreen-menu"
+        class="p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-colors"
+      >
+        <!-- Hamburger icon -->
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <line x1="3" y1="12" x2="21" y2="12"/>
+          <line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
+    </div>
+
+  </div>
+</nav>
+
+<script is:inline>
+  (function () {
+    const hamburger = document.getElementById('nav-hamburger');
+    const closeBtn  = document.getElementById('nav-close');
+    const menu      = document.getElementById('nav-fullscreen-menu');
+    if (!hamburger || !closeBtn || !menu) return;
+
+    function openMenu() {
+      menu.classList.add('nav-menu-open');
+      hamburger.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+      // Focus first focusable element in menu
+      const firstLink = menu.querySelector('a, button');
+      if (firstLink) firstLink.focus();
+    }
+
+    function closeMenu() {
+      menu.classList.remove('nav-menu-open');
+      hamburger.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+      hamburger.focus();
+    }
+
+    hamburger.addEventListener('click', openMenu);
+    closeBtn.addEventListener('click', closeMenu);
+
+    // Close on Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && menu.classList.contains('nav-menu-open')) {
+        closeMenu();
+      }
+    });
+
+    // Close menu on nav link click (SPA-style hash navigation)
+    menu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', closeMenu);
+    });
+  })();
+</script>

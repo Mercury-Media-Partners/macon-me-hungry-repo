@@ -1,0 +1,116 @@
+---
+interface Event {
+  name: string;
+  day: string;
+  time: string;
+  description?: string;
+  ticket_url?: string;
+  is_recurring?: boolean;
+}
+
+interface Event {
+  name: string;
+  day: string;
+  time: string;
+  description?: string;
+  ticket_url?: string;
+  is_recurring?: boolean;
+}
+
+interface Props {
+  events: Event[];
+  tier: 'free' | 'promoter' | 'professional' | 'headliner';
+  lang?: string;
+}
+
+const { events, tier, lang = "en" } = Astro.props;
+const isEs = lang === "es";
+
+function translateDay(dayStr: string, isEs: boolean): string {
+  if (!isEs) return dayStr;
+  return dayStr
+    .replace(/Every\s+Monday/i, "Cada Lunes")
+    .replace(/Every\s+Tuesday/i, "Cada Martes")
+    .replace(/Every\s+Wednesday/i, "Cada Miércoles")
+    .replace(/Every\s+Thursday/i, "Cada Jueves")
+    .replace(/Every\s+Friday/i, "Cada Viernes")
+    .replace(/Every\s+Saturday/i, "Cada Sábado")
+    .replace(/Every\s+Sunday/i, "Cada Domingo")
+    .replace(/Monday/i, "Lunes")
+    .replace(/Tuesday/i, "Martes")
+    .replace(/Wednesday/i, "Miércoles")
+    .replace(/Thursday/i, "Jueves")
+    .replace(/Friday/i, "Viernes")
+    .replace(/Saturday/i, "Sábado")
+    .replace(/Sunday/i, "Domingo");
+}
+
+// Promoter: max 1 recurring event; Headliner: all events
+const displayEvents = tier === 'headliner'
+  ? events
+  : events.filter(e => e.is_recurring).slice(0, 1);
+
+const hasMoreEvents = (tier === 'promoter' || tier === 'professional') && events.length > 1;
+---
+
+<div class="bg-muted/30 border border-border rounded-2xl p-8">
+  <h3 class="font-display text-3xl mb-2 flex items-center gap-3">
+    <span class="text-primary">📅</span>
+    {isEs ? "Próximos Eventos" : "What's On"}
+  </h3>
+  {tier === 'headliner' && (
+    <p class="text-xs text-secondary font-semibold uppercase tracking-widest mb-8">
+      {isEs ? "Calendario Completo de Eventos" : "Full Event Calendar"}
+    </p>
+  )}
+  {(tier === 'promoter' || tier === 'professional') && (
+    <p class="text-xs text-muted-foreground mb-8">
+      {isEs ? "Eventos semanales recurrentes" : "Recurring weekly events"}
+    </p>
+  )}
+
+  <div class="space-y-6">
+    {displayEvents.map((event) => (
+      <div class="flex flex-col sm:flex-row sm:items-start gap-4 pb-6 border-b border-border last:border-0 last:pb-0">
+        <div class="shrink-0">
+          <p class="text-xs text-primary font-bold uppercase tracking-widest">{translateDay(event.day, isEs)}</p>
+          <p class="text-sm text-muted-foreground">{event.time}</p>
+        </div>
+        <div class="flex-1">
+          <h4 class="font-display text-xl text-foreground mb-1">{event.name}</h4>
+          {event.description && (
+            <p class="text-sm text-muted-foreground leading-relaxed">{event.description}</p>
+          )}
+          {/* Ticket link — Headliner only */}
+          {tier === 'headliner' && event.ticket_url && (
+            <a
+              href={event.ticket_url}
+              target="_blank"
+              rel="noopener"
+              class="mt-3 inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider text-secondary-foreground transition-all hover:opacity-90 glow-gold"
+              style="background: var(--gradient-gold)"
+            >
+              🎟️ {isEs ? "Comprar Entradas" : "Buy Tickets"}
+            </a>
+          )}
+        </div>
+      </div>
+    ))}
+  </div>
+
+  {hasMoreEvents && (
+    <div class="mt-6 pt-6 border-t border-border/20 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+      <p class="text-xs text-muted-foreground leading-relaxed">
+        {isEs 
+          ? "Este perfil muestra 1 evento semanal. Actualiza a Headliner para publicar tu calendario completo." 
+          : "Showing 1 weekly recurring event. Upgrade to Headliner to unlock your full event calendar."}
+      </p>
+      <a 
+        href={isEs ? "/es/list-your-business" : "/list-your-business"} 
+        class="text-xs text-primary font-bold uppercase tracking-wider whitespace-nowrap hover:underline"
+      >
+        {isEs ? "Mejorar Nivel →" : "Upgrade Listing →"}
+      </a>
+    </div>
+  )}
+</div>

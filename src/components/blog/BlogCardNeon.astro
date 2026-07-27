@@ -1,0 +1,141 @@
+---
+// src/components/blog/BlogCardNeon.astro
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+  lang?: string;
+}
+
+const { post, lang = "en" } = Astro.props;
+const isEs = lang === "es";
+
+// Calculate reading time on the fly
+const wordCount = post.body ? post.body.split(/\s+/).length : 0;
+const readingTime = Math.max(1, Math.ceil(wordCount / 200));
+
+const formattedDate = new Date(post.data.publishDate).toLocaleDateString(isEs ? 'es-ES' : 'en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric'
+});
+
+const formattedModifiedDate = new Date(post.data.lastModifiedDate).toLocaleDateString(isEs ? 'es-ES' : 'en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric'
+});
+
+// Category theme mapping (colors and labels)
+const categoryThemes = {
+  'world-cup': {
+    label: isEs ? "Copa Mundial" : "World Cup",
+    bg: "bg-secondary/10",
+    text: "text-secondary",
+    border: "group-hover:border-secondary/40",
+    glow: "group-hover:shadow-[0_0_30px_rgba(245,158,11,0.2)]"
+  },
+  'nightlife': {
+    label: isEs ? "Vida Nocturna" : "Nightlife",
+    bg: "bg-primary/10",
+    text: "text-primary",
+    border: "group-hover:border-primary/40",
+    glow: "group-hover:shadow-[0_0_30px_rgba(236,72,153,0.2)]"
+  },
+  'wellness': {
+    label: isEs ? "Bienestar" : "Wellness",
+    bg: "bg-indigo-500/10",
+    text: "text-indigo-400",
+    border: "group-hover:border-indigo-500/40",
+    glow: "group-hover:shadow-[0_0_30px_rgba(99,102,241,0.2)]"
+  },
+  'lifestyle': {
+    label: isEs ? "Estilo de Vida" : "Lifestyle",
+    bg: "bg-accent/10",
+    text: "text-accent",
+    border: "group-hover:border-accent/40",
+    glow: "group-hover:shadow-[0_0_30px_rgba(20,184,166,0.2)]"
+  },
+  'news': {
+    label: isEs ? "Noticias" : "News",
+    bg: "bg-blue-500/10",
+    text: "text-blue-400",
+    border: "group-hover:border-blue-500/40",
+    glow: "group-hover:shadow-[0_0_30px_rgba(59,130,246,0.2)]"
+  }
+};
+
+const theme = categoryThemes[post.data.category] || categoryThemes.news;
+const slug = post.id.replace(/^es\//, ''); // Normalize ES slugs if they start with es/
+---
+
+<article class={`group relative flex flex-col justify-between rounded-3xl border border-border bg-card/40 backdrop-blur-md overflow-hidden transition-all duration-500 hover:-translate-y-1.5 ${theme.border} ${theme.glow}`}>
+  {post.data.featured && (
+    <div class="absolute top-4 right-4 z-10 bg-primary/20 backdrop-blur-md border border-primary/30 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest text-primary font-label">
+      {isEs ? "Destacado" : "Featured"}
+    </div>
+  )}
+
+  <div>
+    {/* Card Header (Image) */}
+    {post.data.heroImage && (
+      <div class="relative w-full aspect-video overflow-hidden border-b border-border/40">
+        <img 
+          src={post.data.heroImage} 
+          alt={post.data.title}
+          class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+          loading="lazy"
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent opacity-80"></div>
+      </div>
+    )}
+
+    {/* Card Content */}
+    <div class="p-6 md:p-8">
+      {/* Category & Reading Time */}
+      <div class="flex items-center gap-3 mb-4 text-xs font-semibold uppercase tracking-wider font-label">
+        <span class={`px-3 py-1 rounded-full ${theme.bg} ${theme.text}`}>
+          {theme.label}
+        </span>
+        <span class="text-muted-foreground">•</span>
+        <span class="text-muted-foreground">
+          {post.data.format === 'video' ? 'Video' : `${readingTime} ${isEs ? "min lectura" : "min read"}`}
+        </span>
+      </div>
+
+      {/* Title */}
+      <h3 class="text-xl md:text-2xl font-bold font-display text-foreground leading-tight tracking-tight mb-3 transition-colors duration-300 group-hover:text-foreground/95">
+        <a href={isEs ? `/es/blog/${slug}` : `/blog/${slug}`} class="focus:outline-none">
+          <span class="absolute inset-0" aria-hidden="true"></span>
+          {post.data.title}
+        </a>
+      </h3>
+
+      {/* Description */}
+      <p class="text-muted-foreground text-sm leading-relaxed font-body line-clamp-3 mb-6">
+        {post.data.description}
+      </p>
+    </div>
+  </div>
+
+  {/* Card Footer */}
+  <div class="p-6 md:p-8 pt-0 border-t border-border/10 mt-auto flex items-center justify-between text-xs text-muted-foreground">
+    <div class="flex items-center gap-2.5">
+      {post.data.authorAvatar && (
+        <img 
+          src={post.data.authorAvatar} 
+          alt={post.data.author} 
+          class="w-6 h-6 rounded-full border border-border"
+          onerror="this.style.display='none'"
+        />
+      )}
+      <span class="font-medium text-foreground/80">{post.data.author}</span>
+    </div>
+    <div class="flex flex-col items-end gap-0.5">
+      <span>{formattedDate}</span>
+      {post.data.lastModifiedDate && post.data.lastModifiedDate > post.data.publishDate && (
+        <span class="text-[10px] opacity-75">({isEs ? "Act: " : "Upd: "} {formattedModifiedDate})</span>
+      )}
+    </div>
+  </div>
+</article>

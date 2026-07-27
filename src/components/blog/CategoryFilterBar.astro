@@ -1,0 +1,92 @@
+---
+// src/components/blog/CategoryFilterBar.astro
+interface Props {
+  lang?: string;
+}
+
+const { lang = "en" } = Astro.props;
+const isEs = lang === "es";
+
+const filters = [
+  { id: 'all', label: isEs ? "Todo" : "All" },
+  { id: 'world-cup', label: isEs ? "Mundial 2026" : "World Cup 2026" },
+  { id: 'nightlife', label: isEs ? "Vida Nocturna" : "Nightlife" },
+  { id: 'lifestyle', label: isEs ? "Estilo de Vida" : "Lifestyle" },
+  { id: 'wellness', label: isEs ? "Bienestar" : "Wellness" },
+  { id: 'news', label: isEs ? "Noticias" : "News" }
+];
+---
+
+<div class="category-filter-container w-full overflow-x-auto pb-4 mb-10 select-none no-scrollbar">
+  <div class="flex items-center gap-3 md:justify-center min-w-max px-4">
+    {filters.map((filter, i) => (
+      <button
+        type="button"
+        data-filter={filter.id}
+        class={`filter-chip ${i === 0 ? 'filter-chip-active' : ''} text-xs font-semibold uppercase tracking-wider font-label transition-all duration-300 py-2.5 px-5`}
+      >
+        {filter.label}
+      </button>
+    ))}
+  </div>
+</div>
+
+<style>
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .no-scrollbar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+</style>
+
+<script>
+  // Client-side filtering logic
+  document.addEventListener("DOMContentLoaded", () => {
+    const filterButtons = document.querySelectorAll("[data-filter]");
+    const cards = document.querySelectorAll("[data-post-card]");
+    const noResults = document.getElementById("no-posts-found");
+
+    filterButtons.forEach(button => {
+      button.addEventListener("click", () => {
+        // 1. Update active button state
+        filterButtons.forEach(btn => btn.classList.remove("filter-chip-active"));
+        button.classList.add("filter-chip-active");
+
+        const filterVal = button.getAttribute("data-filter");
+        let visibleCount = 0;
+
+        // 2. Filter card list
+        cards.forEach(cardEl => {
+          const card = cardEl as HTMLElement;
+          const category = card.getAttribute("data-category");
+          const type = card.getAttribute("data-type");
+
+          if (filterVal === "all") {
+            card.classList.remove("hidden");
+            visibleCount++;
+          } else {
+            if (category === filterVal && type === "blog") {
+              card.classList.remove("hidden");
+              visibleCount++;
+            } else {
+              card.classList.add("hidden");
+            }
+          }
+        });
+
+        // 3. Show/hide "No posts found" message
+        if (noResults) {
+          if (visibleCount === 0) {
+            noResults.classList.remove("hidden");
+          } else {
+            noResults.classList.add("hidden");
+          }
+        }
+      });
+    });
+  });
+</script>

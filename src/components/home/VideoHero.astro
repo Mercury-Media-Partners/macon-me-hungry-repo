@@ -1,0 +1,60 @@
+---
+---
+
+<div class="absolute inset-0 overflow-hidden bg-black">
+  {/* Static Fallback Poster (Visible while video loads, or if video is paused/hidden) */}
+  <img 
+    src="/media/hero-drone-poster.jpg" 
+    alt="Aerial view of Atlanta" 
+    class="absolute inset-0 w-full h-full object-cover fallback-poster" 
+  />
+
+  {/* The looping drone video */}
+  <video 
+    id="hero-bg-video"
+    class="absolute inset-0 w-full h-full object-cover animate-video-fade-in"
+    autoplay 
+    loop 
+    muted 
+    playsinline 
+    poster="/media/hero-drone-poster.jpg"
+    aria-hidden="true"
+  >
+    <source src="/media/hero-drone-loop.webm" type="video/webm" />
+    <source src="/media/hero-drone-loop.mp4" type="video/mp4" />
+  </video>
+
+  {/* Studio Noir Overlay: Solid dark overlay for typography contrast (no expensive backdrop-filter) */}
+  <div class="absolute inset-0 bg-black/50"></div>
+  <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,rgba(0,0,0,0.8)_100%)]"></div>
+</div>
+
+<style>
+  .animate-video-fade-in {
+    animation: fadeIn 2s ease-in-out;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  /* Hardware-accelerated blur on the media elements themselves to avoid backdrop-filter overhead */
+  #hero-bg-video,
+  .fallback-poster {
+    filter: blur(2px);
+    transform: scale(1.03) translate3d(0, 0, 0);
+    will-change: transform;
+  }
+
+  /* Accessibility: Hide video and show static poster if user prefers reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    video {
+      display: none !important;
+    }
+    .fallback-poster {
+      filter: none;
+      transform: none;
+      will-change: auto;
+    }
+  }
+</style>

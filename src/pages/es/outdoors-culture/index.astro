@@ -1,0 +1,134 @@
+---
+// src/pages/es/outdoors-culture/index.astro
+import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
+import Layout from '../../../layouts/Layout.astro';
+import Navbar from '../../../components/navigation/Navbar.astro';
+import Footer from '../../../components/navigation/Footer.astro';
+import { Star, MapPin, Clock, Compass } from 'lucide-react';
+
+const attractions = await getCollection('attractions');
+const sortedAttractions = attractions.sort((a, b) => b.data.rating - a.data.rating);
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "itemListElement": sortedAttractions.map((att, index) => ({
+    "@type": "ListItem",
+    "position": index + 1,
+    "url": `https://outatl.com/es/outdoors-culture/${att.id}`,
+    "name": att.data.title,
+    "description": att.data.tagline
+  }))
+};
+---
+
+<Layout 
+  title="Aire Libre y Cultura"
+  description="Explore los hermosos parques públicos, museos de clase mundial y monumentos LGBTQ+ de Atlanta seleccionados para el Mundial 2026."
+>
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(jsonLd)} />
+
+  <Navbar lang="es" />
+
+  <main class="relative min-h-screen pt-32 pb-24 px-4 overflow-hidden bg-gradient-hero">
+    
+    {/* Page Header */}
+    <div class="container max-w-6xl mx-auto text-center mb-16 relative z-10">
+      <span class="section-label mb-4 block">EXPLORA ATLANTA</span>
+      <h1 class="font-display text-5xl md:text-7xl text-foreground leading-none tracking-tight uppercase mb-4">
+        AIRE LIBRE Y <span class="text-gradient-primary">CULTURA</span>
+      </h1>
+      <p class="text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto leading-relaxed font-body">
+        Desde exuberantes parques históricos hasta museos de nivel internacional y espacios de patrimonio queer. Encuentre su próximo destino cultural.
+      </p>
+    </div>
+
+    {/* Attraction Cards Grid */}
+    <div class="container max-w-6xl mx-auto relative z-10">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {sortedAttractions.map(att => {
+          const data = att.data;
+          const detailUrl = `/es/outdoors-culture/${att.id}`;
+          return (
+            <div class="bar-card flex flex-col h-full group hover:border-primary/50 transition-all duration-300">
+              {/* Card Image */}
+              {data.heroImage && (
+                <div class="relative h-48 overflow-hidden rounded-t-2xl">
+                  <Image
+                    src={data.heroImage}
+                    alt={data.title}
+                    width={800}
+                    height={450}
+                    loading="lazy"
+                    decoding="async"
+                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div class="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent"></div>
+                  <span class="absolute top-4 left-4 inline-block px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest bg-black/70 text-white border border-white/10 backdrop-blur-md shadow-md">
+                    {data.category === "Park" ? "Parque" : data.category === "Museum" ? "Museo" : data.category}
+                  </span>
+                </div>
+              )}
+
+              {/* Card Content */}
+              <div class="p-6 flex flex-col flex-grow">
+                <div class="flex items-start justify-between mb-3">
+                  <h3 class="font-display text-2xl text-foreground group-hover:text-primary transition-colors uppercase leading-none">
+                    {data.title}
+                  </h3>
+                  <div class="flex items-center gap-1 text-secondary text-sm font-semibold shrink-0 ml-2">
+                    <Star size={14} fill="currentColor" />
+                    <span>{data.rating}</span>
+                  </div>
+                </div>
+
+                <p class="text-sm text-muted-foreground mb-6 italic leading-relaxed flex-grow">
+                  "{data.tagline}"
+                </p>
+
+                {/* Quick Stats Grid */}
+                <div class="border-t border-border/50 pt-4 space-y-3 text-xs text-muted-foreground font-body">
+                  <div class="flex items-center gap-2">
+                    <MapPin size={13} className="text-primary shrink-0" />
+                    <span class="truncate">{data.neighborhood} · {data.address.split(',')[0]}</span>
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <Clock size={13} className="text-primary shrink-0" />
+                    <span class="truncate">{data.hours}</span>
+                  </div>
+                  <div class="flex items-center justify-between border-t border-border/20 pt-3 text-[11px]">
+                    <div class="flex items-center gap-1">
+                      <span>🏟️</span>
+                      <span>A {data.stadiumMin} min del Estadio</span>
+                    </div>
+                    {data.isPetFriendly && (
+                      <span class="text-emerald-800 dark:text-emerald-400 font-semibold uppercase tracking-wider text-[9px] bg-emerald-100 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-500/20 px-2 py-0.5 rounded-full">
+                        🐾 Mascotas OK
+                      </span>
+                    )}
+                  </div>
+                </div>
+
+                {/* Action Button */}
+                <div class="mt-6">
+                  <a 
+                    href={detailUrl}
+                    class="block w-full py-3 text-center bg-muted text-foreground border border-border group-hover:bg-primary group-hover:text-primary-foreground group-hover:border-primary rounded-xl font-label text-sm uppercase tracking-wider transition-all duration-300"
+                  >
+                    Ver Detalles
+                  </a>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+
+    {/* Background Glow */}
+    <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-primary/5 rounded-full blur-[160px] pointer-events-none"></div>
+  </main>
+
+  <Footer lang="es" />
+</Layout>

@@ -1,0 +1,51 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/navigation/Navbar.astro';
+import Footer from '../../components/navigation/Footer.astro';
+import { InteractiveMap } from '../../components/map/InteractiveMap';
+import { es } from '../../i18n/es';
+
+const lang = "es";
+const t = es;
+---
+
+<Layout title={`${t.interactiveMapTitle} | ${t.brand}`} description={t.interactiveMapDesc}>
+  <Navbar lang={lang} />
+  
+  <main class="pt-32 pb-16 min-h-screen">
+    <div class="container max-w-7xl mx-auto px-4 animate-fade-in">
+      
+      <!-- Hero / Header -->
+      <div class="mb-8">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold uppercase tracking-widest mb-6">
+          <span class="relative flex h-2 w-2">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+          </span>
+          Guía en Vivo
+        </div>
+        <h1 class="text-4xl md:text-6xl font-display font-bold tracking-tight mb-4 uppercase text-foreground leading-none">
+          {t.interactiveMapTitle}
+        </h1>
+        <p class="text-lg md:text-xl text-muted-foreground max-w-3xl mt-4 font-body">
+          {t.interactiveMapDesc}
+        </p>
+      </div>
+
+      <InteractiveMap client:load lang={lang} />
+
+    </div>
+  </main>
+  
+  <Footer lang={lang} />
+</Layout>
+
+<style>
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  .animate-fade-in {
+    animation: fadeIn 0.8s ease-out forwards;
+  }
+</style>

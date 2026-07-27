@@ -1,0 +1,50 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { getEntry } from 'astro:content';
+import { en } from '../../i18n/en';
+import { es } from '../../i18n/es';
+
+interface Props {
+  job: CollectionEntry<'jobs'>;
+  lang?: 'en' | 'es';
+}
+
+const { job, lang = 'en' } = Astro.props;
+const t = lang === 'es' ? es : en;
+
+// Fetch parent business for the name
+const business = await getEntry('businesses', job.data.business_slug);
+const businessName = business?.data.title || "Business";
+---
+
+<div class="bg-card/50 backdrop-blur-xl border border-border rounded-xl p-6 hover:border-primary/50 transition-colors group flex flex-col justify-between h-full shadow-sm hover:shadow-md">
+  <div>
+    <div class="flex justify-between items-start gap-4 mb-4">
+      <div>
+        <h3 class="text-xl font-display font-bold text-foreground mb-1 group-hover:text-primary transition-colors">
+          {job.data.title}
+        </h3>
+        <p class="text-muted-foreground text-sm font-medium">
+          {businessName}
+        </p>
+      </div>
+      <span class="px-2.5 py-1 bg-muted text-muted-foreground text-[10px] font-bold rounded-full uppercase tracking-wider whitespace-nowrap">
+        {job.data.job_type === 'full-time' ? t.jobsFullTime : 
+         job.data.job_type === 'part-time' ? t.jobsPartTime : 
+         job.data.job_type === 'freelance' ? t.jobsFreelance : t.jobsContract}
+      </span>
+    </div>
+    
+    {job.data.wage_range && (
+      <div class="mb-6 flex items-center gap-2 text-muted-foreground text-sm">
+        <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+        <span class="text-xs uppercase tracking-wider">{t.jobsWage}</span> <span class="font-medium text-foreground">{job.data.wage_range}</span>
+      </div>
+    )}
+  </div>
+
+  <a href={job.data.apply_url} target="_blank" rel="noopener noreferrer" 
+     class="block w-full py-2.5 mt-4 text-center bg-primary hover:bg-primary/90 text-primary-foreground text-sm font-bold uppercase tracking-wider rounded-lg transition-colors">
+    {t.jobsApplyNow}
+  </a>
+</div>

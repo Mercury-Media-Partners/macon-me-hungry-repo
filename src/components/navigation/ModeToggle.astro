@@ -1,0 +1,85 @@
+---
+// Pure Astro ModeToggle — zero React, zero JS bundle weight
+// Reads initial state from the <html> class set by the inline theme script
+interface Props {
+  class?: string;
+}
+---
+
+<button
+  role="switch"
+  aria-checked="false"
+  aria-label="Toggle Day/Night Mode"
+  class="mode-toggle-btn relative inline-flex h-7 w-12 shrink-0 items-center rounded-full border border-border bg-muted/50 p-0.5 transition-all duration-300 hover:border-primary/30 cursor-pointer select-none"
+>
+  <span
+    class="mode-toggle-thumb flex h-5.5 w-5.5 items-center justify-center rounded-full bg-background shadow-md transform transition-all duration-300 translate-x-0 text-amber-500"
+  >
+    <!-- Sun icon (day) -->
+    <svg class="mode-icon-sun" xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+    </svg>
+    <!-- Moon icon (night) — hidden by default -->
+    <svg class="mode-icon-moon" xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="display:none; transform:rotate(-10deg)">
+      <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>
+    </svg>
+  </span>
+</button>
+
+<script is:inline>
+(function () {
+  var btns = document.querySelectorAll('.mode-toggle-btn');
+  if (btns.length === 0) return;
+
+  function applyMode(btn, isNight) {
+    var thumb = btn.querySelector('.mode-toggle-thumb');
+    var sun = btn.querySelector('.mode-icon-sun');
+    var moon = btn.querySelector('.mode-icon-moon');
+    if (!thumb || !sun || !moon) return;
+
+    btn.setAttribute('aria-checked', isNight ? 'true' : 'false');
+    thumb.style.transform = isNight ? 'translateX(1.25rem)' : 'translateX(0)';
+    thumb.classList.toggle('text-indigo-400', isNight);
+    thumb.classList.toggle('text-amber-500', !isNight);
+    sun.style.display = isNight ? 'none' : '';
+    moon.style.display = isNight ? '' : 'none';
+  }
+
+  function applyAll(isNight) {
+    btns.forEach(function (btn) {
+      applyMode(btn, isNight);
+    });
+  }
+
+  // Sync with existing HTML class (set by inline theme script in <head>)
+  var isNight = document.documentElement.classList.contains('dark') ||
+    (!document.documentElement.classList.contains('light'));
+  applyAll(isNight);
+
+  btns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var currentlyNight = btn.getAttribute('aria-checked') === 'true';
+      var newMode = currentlyNight ? 'day' : 'night';
+
+      // Update localStorage + HTML class (mirrors modeStore.setSiteMode logic)
+      localStorage.setItem('outatl-mode', newMode);
+      var root = document.documentElement;
+      if (newMode === 'day') {
+        root.classList.remove('dark');
+        root.classList.add('light');
+      } else {
+        root.classList.remove('light');
+        root.classList.add('dark');
+      }
+
+      // Notify any hydrated islands (DirectoryFinder) via a custom event
+      window.dispatchEvent(new CustomEvent('outatl:modechange', { detail: { mode: newMode } }));
+    });
+  });
+
+  // Also respond to mode changes triggered by DirectoryFinder's own mode switch
+  window.addEventListener('outatl:modechange', function (e) {
+    applyAll(e.detail.mode === 'night');
+  });
+})();
+</script>

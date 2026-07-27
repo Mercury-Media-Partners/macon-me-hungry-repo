@@ -1,0 +1,195 @@
+---
+// src/pages/es/blog/[...slug].astro
+import { getCollection, render } from 'astro:content';
+import Layout from '../../../layouts/Layout.astro';
+import Navbar from '../../../components/navigation/Navbar.astro';
+import Footer from '../../../components/navigation/Footer.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => {
+    return data.lang === 'es' && !data.draft;
+  });
+  
+  return posts.map(post => ({
+    params: { slug: post.id.replace(/^es\//, '') },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const wordCount = post.body ? post.body.split(/\s+/).length : 0;
+const readingTime = Math.max(1, Math.ceil(wordCount / 200));
+
+const formattedDate = new Date(post.data.publishDate).toLocaleDateString('es-ES', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric'
+});
+
+const formattedModifiedDate = post.data.lastModifiedDate 
+  ? new Date(post.data.lastModifiedDate).toLocaleDateString('es-ES', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    })
+  : null;
+
+const pageTitle = post.data.metaTitle || post.data.title;
+const pageDesc = post.data.metaDescription || post.data.description;
+
+// JSON-LD Article Schema in Spanish
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": post.data.title,
+  "description": post.data.description,
+  "image": post.data.heroImage ? `https://outatl.com${post.data.heroImage}` : undefined,
+  "datePublished": post.data.publishDate.toISOString(),
+  "dateModified": post.data.lastModifiedDate.toISOString(),
+  "author": {
+    "@type": "Person",
+    "name": post.data.author
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "OutATL",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://outatl.com/favicon.svg"
+    }
+  }
+};
+---
+
+<Layout title={pageTitle} description={pageDesc}>
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(jsonLd)} />
+
+  <Navbar lang="es" />
+
+  <main class="relative min-h-screen pt-32 pb-24 px-4 bg-gradient-hero">
+    <div class="container max-w-4xl mx-auto relative z-10">
+      
+      {/* Back button */}
+      <a href="/es/blog" class="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground hover:text-primary transition-colors duration-300 mb-8 font-label">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        Volver a Editorial
+      </a>
+
+      <article class="glass-panel bg-card/40 backdrop-blur-md rounded-3xl border border-border p-6 md:p-12 overflow-hidden shadow-deep">
+        
+        {/* Post Metadata Header */}
+        <header class="mb-8 border-b border-border/20 pb-8">
+          <div class="flex items-center gap-3 mb-4 text-xs font-semibold uppercase tracking-wider font-label">
+            <span class="px-3 py-1 rounded-full bg-primary/10 text-primary">
+              {post.data.category === 'world-cup' ? 'Copa Mundial' : post.data.category.replace('-', ' ')}
+            </span>
+            <span class="text-muted-foreground">•</span>
+            <span class="text-muted-foreground">{readingTime} min de lectura</span>
+          </div>
+
+          <h1 class="font-display text-3xl md:text-5xl font-bold text-foreground leading-tight tracking-tight mb-6">
+            {post.data.title}
+          </h1>
+
+          {/* Author & Dates */}
+          <div class="flex flex-wrap items-center justify-between gap-4 text-xs text-muted-foreground">
+            <div class="flex items-center gap-3">
+              {post.data.authorAvatar && (
+                <img src={post.data.authorAvatar} alt={post.data.author} class="w-8 h-8 rounded-full border border-border" />
+              )}
+              <div>
+                <span class="block font-medium text-foreground">{post.data.author}</span>
+                <span class="block text-[10px]">Autor</span>
+              </div>
+            </div>
+
+            <div class="text-right">
+              <span class="block font-medium text-foreground/80">Publicado: {formattedDate}</span>
+              {formattedModifiedDate && formattedModifiedDate !== formattedDate && (
+                <span class="block text-[10px] opacity-75">Actualizado: {formattedModifiedDate}</span>
+              )}
+            </div>
+          </div>
+        </header>
+
+        {/* Hero Image */}
+        {post.data.heroImage && (
+          <div class="relative w-full aspect-video rounded-2xl overflow-hidden border border-border mb-10">
+            <img src={post.data.heroImage} alt={post.data.title} class="w-full h-full object-cover" />
+          </div>
+        )}
+
+        {/* Article Body Content */}
+        <div class="prose prose-invert max-w-none font-body text-base md:text-lg leading-relaxed text-muted-foreground">
+          <Content />
+        </div>
+
+        {/* Tags Footer */}
+        {post.data.tags && post.data.tags.length > 0 && (
+          <footer class="mt-12 pt-8 border-t border-border/20">
+            <div class="flex flex-wrap items-center gap-2">
+              <span class="text-xs font-semibold uppercase tracking-wider text-muted-foreground font-label mr-2">Etiquetas:</span>
+              {post.data.tags.map(tag => (
+                <span key={tag} class="text-xs bg-muted border border-border px-3 py-1 rounded-full text-foreground/80 font-medium">
+                  #{tag}
+                </span>
+              ))}
+            </div>
+          </footer>
+        )}
+      </article>
+    </div>
+
+    {/* Background Glow */}
+    <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-primary/5 rounded-full blur-[160px] pointer-events-none"></div>
+  </main>
+
+  <Footer lang="es" />
+</Layout>
+
+<style is:global>
+  /* Premium vanilla styling for markdown content */
+  .prose p {
+    margin-bottom: 1.5rem;
+    color: var(--color-muted-foreground);
+  }
+  .prose h2 {
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--color-foreground);
+    margin-top: 2.25rem;
+    margin-bottom: 1rem;
+    line-height: 1.3;
+  }
+  .prose h3 {
+    font-family: var(--font-label);
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-foreground);
+    margin-top: 1.75rem;
+    margin-bottom: 0.75rem;
+  }
+  .prose ul, .prose ol {
+    margin-bottom: 1.5rem;
+    padding-left: 1.5rem;
+  }
+  .prose ul {
+    list-style-type: disc;
+  }
+  .prose ol {
+    list-style-type: decimal;
+  }
+  .prose li {
+    margin-bottom: 0.5rem;
+  }
+  .prose strong {
+    color: var(--color-foreground);
+    font-weight: 600;
+  }
+</style>

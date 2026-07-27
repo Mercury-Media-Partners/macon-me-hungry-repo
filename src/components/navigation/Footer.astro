@@ -1,0 +1,180 @@
+---
+interface Props {
+  lang?: string;
+}
+
+const { lang = "en" } = Astro.props;
+const isEs = lang === "es";
+
+const colors = ["#E40303", "#FF8C00", "#FFED00", "#008026", "#004DFF", "#750787"];
+
+const basePath = isEs ? "/es" : "";
+---
+
+<footer class="border-t border-border bg-card/25 py-16 px-6 relative overflow-hidden">
+  <!-- Dynamic grid background -->
+  <div class="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none"></div>
+
+  <div class="container max-w-6xl mx-auto relative z-10">
+    <!-- 1. Verified Status Ticker Segment -->
+    <div class="border border-border/40 bg-card/50 rounded-2xl px-6 py-4 mb-12 shadow-sm backdrop-blur-md">
+      <div class="flex flex-col md:flex-row items-center justify-around gap-4 text-xs font-semibold tracking-wider uppercase text-muted-foreground/90">
+        <div class="flex items-center gap-2">
+          <span class="text-base">🚆</span>
+          <span>{isEs ? "Curados con Acceso MARTA" : "Curated for MARTA Access"}</span>
+        </div>
+        <div class="hidden md:block text-muted-foreground/20 text-lg">•</div>
+        <div class="flex items-center gap-2">
+          <span class="text-base">💬</span>
+          <span>{isEs ? "Personal Bilingüe Disponible" : "Bilingual Staff Available"}</span>
+        </div>
+        <div class="hidden md:block text-muted-foreground/20 text-lg">•</div>
+        <div class="flex items-center gap-2">
+          <span class="text-base">🏳️‍🌈</span>
+          <span>{isEs ? "Espacios Queer y Aliados" : "Queer-Owned & Allied Spaces"}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. Three-Column Middle Navigation Layout -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+      
+      <!-- Column 1: Identity & Motto -->
+      <div class="flex flex-col items-center md:items-start space-y-4 text-center md:text-left">
+        <div class="font-display text-4xl text-foreground tracking-widest leading-none">
+          OUT<span class="text-primary font-bold">ATL</span>
+        </div>
+        <p class="text-sm text-muted-foreground leading-relaxed max-w-xs font-body">
+          {isEs 
+            ? "Creado para la Gente Hermosa que Disfruta y Vive Atlanta." 
+            : "Built for the Beautiful People Out & About in Atlanta."}
+        </p>
+      </div>
+
+
+      <!-- Column 2: Navigation Links -->
+      <div class="grid grid-cols-2 gap-6">
+        <div>
+          <h4 class="text-xs font-bold text-foreground/80 uppercase tracking-widest font-label mb-4">
+            {isEs ? "Explorar" : "Explore"}
+          </h4>
+          <ul class="space-y-2.5 text-sm font-body">
+            <li>
+              <a href={`${basePath}/#bar-finder`} class="text-muted-foreground hover:text-primary transition-colors">
+                🗂️ {isEs ? "Directorio" : "Directory"}
+              </a>
+            </li>
+            <li>
+              <a href={`${basePath}/outdoors-culture`} class="text-muted-foreground hover:text-primary transition-colors">
+                🌳 {isEs ? "Cultura y Aire Libre" : "Culture & Outdoors"}
+              </a>
+            </li>
+            <li>
+              <a href={`${basePath}/matches`} class="text-muted-foreground hover:text-primary transition-colors">
+                ⚽ {isEs ? "Copa del Mundo" : "World Cup"}
+              </a>
+            </li>
+            <li>
+              <a href={`${basePath}/blog`} class="text-muted-foreground hover:text-primary transition-colors">
+                ✍️ {isEs ? "Editorial" : "Blog"}
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-xs font-bold text-foreground/80 uppercase tracking-widest font-label mb-4">
+            {isEs ? "Herramientas" : "Tools"}
+          </h4>
+          <ul class="space-y-2.5 text-sm font-body">
+            <li>
+              <a href={`${basePath}/map`} class="text-muted-foreground hover:text-primary transition-colors">
+                🗺️ {isEs ? "Mapa Interactivo" : "Interactive Map"}
+              </a>
+            </li>
+            <li>
+              <a href={`${basePath}/#bar-finder?mode=night`} class="text-muted-foreground hover:text-primary transition-colors">
+                🌙 {isEs ? "Vida Nocturna" : "Nightlife"}
+              </a>
+            </li>
+            <li>
+              <a href={`${basePath}/#bar-finder?mode=day`} class="text-muted-foreground hover:text-primary transition-colors">
+                ☀️ {isEs ? "De Día" : "Out & About"}
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Column 3: Partner & Support -->
+      <div class="flex flex-col items-center md:items-start space-y-4 text-center md:text-left">
+        <h4 class="text-xs font-bold text-foreground/80 uppercase tracking-widest font-label mb-1">
+          {isEs ? "Comunidad y Soporte" : "Community & Support"}
+        </h4>
+        <ul class="space-y-2.5 text-sm font-body">
+          <li>
+            <a href={`${basePath}/list-your-business`} class="text-muted-foreground hover:text-primary transition-colors font-semibold">
+              📢 {isEs ? "Registrar Negocio" : "Add Your Business"}
+            </a>
+          </li>
+          <li>
+            <a href={`${basePath}/faq`} class="text-muted-foreground hover:text-primary transition-colors">
+              ❓ {isEs ? "Preguntas Frecuentes" : "FAQ"}
+            </a>
+          </li>
+          <li>
+            <a href="https://lnfy.org/" target="_blank" rel="noopener noreferrer" class="text-muted-foreground hover:text-primary transition-colors">
+              🏠 Lost-n-Found Youth
+            </a>
+          </li>
+          <li>
+            <a href="https://www.atlantapride.org/" target="_blank" rel="noopener noreferrer" class="text-muted-foreground hover:text-primary transition-colors">
+              🏳️‍🌈 Atlanta Pride Committee
+            </a>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- 3. Bottom Compliance & Copyright Row -->
+    <div class="border-t border-border/30 pt-8 flex flex-col md:flex-row items-center justify-between gap-6 text-xs text-muted-foreground text-center md:text-left">
+      <div>
+        <p class="leading-relaxed font-body">
+          {isEs 
+            ? "© 2026 OutATL · La Guía Queer Independiente de Atlanta." 
+            : "© 2026 OutATL · The Independent Queer Guide to Atlanta."}
+        </p>
+        <p class="text-[10px] text-muted-foreground/60 mt-1 font-body">
+          {isEs
+            ? "No afiliado oficialmente con la FIFA o el Gobierno de la Ciudad de Atlanta."
+            : "Not officially affiliated with FIFA or the City of Atlanta Government."}
+        </p>
+        <div class="mt-4 flex flex-wrap gap-4 items-center justify-center md:justify-start">
+          <a href={`${basePath}/privacy`} class="hover:text-primary transition-colors">{isEs ? "Privacidad" : "Privacy Policy"}</a>
+          <a href={`${basePath}/terms`} class="hover:text-primary transition-colors">{isEs ? "Términos" : "Terms of Service"}</a>
+          <a href="/sitemap-index.xml" class="hover:text-primary transition-colors">{isEs ? "Mapa del Sitio" : "Sitemap"}</a>
+        </div>
+      </div>
+
+      <div class="flex flex-col md:items-end gap-1.5 font-label">
+        <a 
+          href="https://partnerwithmercury.com" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          class="text-[10px] font-bold text-muted-foreground/80 hover:text-primary transition-colors uppercase tracking-wider flex items-center gap-1"
+        >
+          <span>♿️</span> {isEs ? "Cumplimiento de ADA y Gestión Digital por Mercury Media Partners" : "ADA Compliance & Digital Stewardship by Mercury Media Partners"}
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Full-width Pride Rainbow strip at the absolute bottom -->
+  <div class="absolute bottom-0 left-0 right-0 h-1 flex">
+    {colors.map((c) => (
+      <div class="flex-1 h-full" style={{ backgroundColor: c }} />
+    ))}
+  </div>
+</footer>
+

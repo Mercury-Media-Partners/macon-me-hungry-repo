@@ -1,0 +1,168 @@
+{
+  "artists": [
+    { "name": "6LACK", "dates": ["2026-06-18"], "isHeadliner": false },
+    { "name": "Andre Power", "dates": ["2026-06-20"], "isHeadliner": false },
+    { "name": "Andrew Dixon", "dates": ["2026-06-20"], "isHeadliner": false },
+    { "name": "Anza", "dates": ["2026-06-27"], "isHeadliner": false },
+    { "name": "Atlanta Drum Academy", "dates": ["2026-06-12"], "isHeadliner": false },
+    { "name": "Atlanta Opera", "dates": ["2026-07-14"], "isHeadliner": false },
+    { "name": "B. Bruja", "dates": ["2026-06-11"], "isHeadliner": false },
+    { "name": "Belly Gang Kushington", "dates": ["2026-06-24"], "isHeadliner": false },
+    { "name": "Brayan Caceres", "dates": ["2026-06-27"], "isHeadliner": false },
+    {
+      "name": "Brixla",
+      "dates": ["2026-06-26", "2026-07-01", "2026-07-14", "2026-07-15"],
+      "isHeadliner": false
+    },
+    { "name": "Calderoky", "dates": ["2026-06-27"], "isHeadliner": false },
+    { "name": "CeeLo Green", "dates": ["2026-07-07"], "isHeadliner": true },
+    { "name": "Ciza", "dates": ["2026-06-18", "2026-06-24"], "isHeadliner": false },
+    { "name": "Claptone", "dates": ["2026-07-01"], "isHeadliner": false },
+    {
+      "name": "Dane Robinson",
+      "dates": [
+        "2026-06-11",
+        "2026-06-12",
+        "2026-06-13",
+        "2026-06-14",
+        "2026-06-19",
+        "2026-06-20",
+        "2026-06-25",
+        "2026-07-11",
+        "2026-07-14"
+      ],
+      "isHeadliner": false
+    },
+    { "name": "Davido", "dates": ["2026-06-26"], "isHeadliner": true },
+    { "name": "DJ Juicyy", "dates": ["2026-06-19"], "isHeadliner": false },
+    { "name": "DJ Lillie Smalls", "dates": ["2026-06-27"], "isHeadliner": false },
+    {
+      "name": "DJ Millz",
+      "dates": ["2026-06-13", "2026-06-15", "2026-06-19", "2026-06-21", "2026-06-26"],
+      "isHeadliner": false
+    },
+    { "name": "DJ Ohso", "dates": ["2026-06-18"], "isHeadliner": false },
+    { "name": "DJ Op Diggy", "dates": ["2026-06-13"], "isHeadliner": false },
+    {
+      "name": "DJ Rasta Root",
+      "dates": [
+        "2026-06-11",
+        "2026-06-14",
+        "2026-06-20",
+        "2026-07-07",
+        "2026-07-11",
+        "2026-07-14"
+      ],
+      "isHeadliner": false
+    },
+    { "name": "DJ Tag - DJ Tron", "dates": ["2026-06-21"], "isHeadliner": false },
+    { "name": "Drico (BRATL) - Dri Jack", "dates": ["2026-06-26"], "isHeadliner": false },
+    { "name": "Earthgang", "dates": ["2026-07-11"], "isHeadliner": true },
+    { "name": "Epinjuju (BRATL)", "dates": ["2026-06-19"], "isHeadliner": false },
+    { "name": "Florista", "dates": ["2026-06-11", "2026-06-20", "2026-07-01"], "isHeadliner": false },
+    {
+      "name": "Freestyle Soccer Players - Gabbie McGee",
+      "dates": ["2026-06-21"],
+      "isHeadliner": false
+    },
+    { "name": "Gente de Noche", "dates": ["2026-06-11"], "isHeadliner": false },
+    { "name": "GSU Panther Band", "dates": ["2026-06-15"], "isHeadliner": false },
+    { "name": "Guero", "dates": ["2026-06-11"], "isHeadliner": false },
+    { "name": "Hero The Band", "dates": ["2026-06-19"], "isHeadliner": false },
+    { "name": "Jack Dope", "dates": ["2026-06-17"], "isHeadliner": false },
+    { "name": "Jay Envy", "dates": ["2026-06-18", "2026-06-20", "2026-06-24"], "isHeadliner": false },
+    { "name": "Kat Graham", "dates": ["2026-06-20"], "isHeadliner": false },
+    {
+      "name": "Kevin Egan",
+      "dates": [
+        "2026-06-11",
+        "2026-06-15",
+        "2026-06-18",
+        "2026-06-21",
+        "2026-06-24",
+        "2026-06-27",
+        "2026-07-01",
+        "2026-07-07",
+        "2026-07-15"
+      ],
+      "isHeadliner": false
+    },
+    { "name": "Key!", "dates": ["2026-06-26"], "isHeadliner": false },
+    { "name": "Killer Mike", "dates": ["2026-06-21"], "isHeadliner": true },
+    { "name": "Kiva Lacey", "dates": ["2026-06-26"], "isHeadliner": false },
+    { "name": "Ludacris", "dates": ["2026-07-14"], "isHeadliner": true },
+    { "name": "Members of the Atlanta Symphony Orchestra", "dates": ["2026-06-11"], "isHeadliner": false },
+    { "name": "Mikkoh", "dates": ["2026-06-18"], "isHeadliner": false },
+    { "name": "Nappy Roots", "dates": ["2026-06-19"], "isHeadliner": false },
+    { "name": "Naomi.", "dates": ["2026-06-26"], "isHeadliner": false },
+    {
+      "name": "Nektunez",
+      "dates": ["2026-06-12", "2026-06-17", "2026-06-27", "2026-07-01"],
+      "isHeadliner": false
+    },
+    { "name": "Nikki and the Phantom Callers", "dates": ["2026-06-19"], "isHeadliner": false },
+    { "name": "Otis Redding Foundation", "dates": ["2026-07-07"], "isHeadliner": false },
+    { "name": "Path Academy FC", "dates": ["2026-06-21"], "isHeadliner": false },
+    { "name": "Relevanzia", "dates": ["2026-06-11"], "isHeadliner": false },
+    { "name": "Sadboi", "dates": ["2026-06-12"], "isHeadliner": false },
+    { "name": "Scoot Teasley", "dates": ["2026-06-12"], "isHeadliner": false },
+    { "name": "Siege", "dates": ["2026-06-17"], "isHeadliner": false },
+    {
+      "name": "Soccer Sidekicks",
+      "dates": ["all"],
+      "isHeadliner": false
+    },
+    { "name": "Sofa King Evil", "dates": ["2026-06-27", "2026-07-01"], "isHeadliner": false },
+    { "name": "Stax Hinsley", "dates": ["2026-07-07"], "isHeadliner": false },
+    { "name": "Summer Walker", "dates": ["2026-06-11"], "isHeadliner": true },
+    { "name": "The Castellows", "dates": ["2026-06-17"], "isHeadliner": false },
+    { "name": "The Haitian God", "dates": ["2026-06-19"], "isHeadliner": false },
+    { "name": "The Paradox", "dates": ["2026-06-12"], "isHeadliner": false },
+    { "name": "TXC", "dates": ["2026-06-18"], "isHeadliner": false },
+    {
+      "name": "Universoul Circus",
+      "dates": ["2026-06-11", "2026-06-15", "2026-06-17", "2026-06-24", "2026-07-07", "2026-07-15"],
+      "isHeadliner": false
+    },
+    {
+      "name": "Unidos Atlanta Escola de Samba (Atlanta School of Samba)",
+      "dates": ["2026-06-13", "2026-06-15"],
+      "isHeadliner": false
+    },
+    { "name": "Unruely", "dates": ["2026-06-13"], "isHeadliner": false },
+    { "name": "Vitillaz", "dates": ["2026-06-11"], "isHeadliner": false },
+    { "name": "Wifi Daddy", "dates": ["2026-06-11"], "isHeadliner": false }
+  ],
+  "alwaysOn": [
+    "American Heart Association",
+    "Bank of America",
+    "Balloon Artist & Face Painters",
+    "Blow Up Activation",
+    "Casamigos",
+    "Coca-Cola Fan Zone",
+    "Downtown Atlanta Inc.",
+    "Hyundai",
+    "Lego",
+    "Michelob Ultra Beer Garden",
+    "Official FIFA Store",
+    "The Home Depot"
+  ],
+  "georgiaStreet": [
+    "2 Black Beekeepers",
+    "Beats & Braids by Tiger",
+    "FRKO",
+    "George Baker III",
+    "Just Add Honey",
+    "The Nail Dragon"
+  ],
+  "atlantaMatches": {
+    "2026-06-15": { "teams": "Spain vs. Cape Verde", "phase": "Group Stage" },
+    "2026-06-18": { "teams": "South Africa vs. Czechia", "phase": "Group Stage" },
+    "2026-06-21": { "teams": "Spain vs. Saudi Arabia", "phase": "Group Stage" },
+    "2026-06-24": { "teams": "Morocco vs. Haiti", "phase": "Group Stage" },
+    "2026-06-27": { "teams": "Uzbekistan vs. DR Congo", "phase": "Group Stage" },
+    "2026-07-01": { "teams": "Round of 32 Match", "phase": "Knockout Stage" },
+    "2026-07-07": { "teams": "Round of 16 Match", "phase": "Knockout Stage" },
+    "2026-07-15": { "teams": "Semifinal Match", "phase": "Semifinal" }
+  }
+}

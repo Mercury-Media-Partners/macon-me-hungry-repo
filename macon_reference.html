@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Macon Me Hungry - Discover Macon's Best Bites</title>
+<meta name="description" content="Discover the best restaurants, food trucks, and hidden gems in Macon, GA. From Downtown soul food to Mulberry St tacos, find exactly what you're craving.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+<style>
+:root {
+/* Colors */
+--color-interactive: #ffc07d; /* Soft Orange - BUTTONS/LINKS ONLY */
+--color-bg-primary: #FBF8EF; /* Cream - Main backgrounds */
+--color-bg-secondary: #E5E2D9; /* Greige - Alternating backgrounds */
+--color-text-main: #2B3210; /* Dark Olive - Text */
+--color-accent-muted: #828a5a; /* Sage Green - Borders, non-interactive */
+/* Typography Fallbacks */
+--font-heading: 'Playfair Display', Georgia, serif;
+--font-ui: 'Montserrat', Helvetica, sans-serif;
+--font-body: 'Montserrat', Helvetica, sans-serif;
+}
+* {
+box-sizing: border-box;
+margin: 0;
+padding: 0;
+}
+html {
+scroll-behavior: smooth;
+}
+::selection {
+background-color: var(--color-interactive);
+color: var(--color-text-main);
+}
+::-webkit-scrollbar {
+width: 12px;
+}
+::-webkit-scrollbar-track {
+background: var(--color-bg-secondary);
+}
+::-webkit-scrollbar-thumb {
+background-color: var(--color-accent-muted);
+border-radius: 6px;
+border: 3px solid var(--color-bg-secondary);
+}
+::-webkit-scrollbar-thumb:hover {
+background-color: var(--color-text-main);
+}
+body {
+font-family: var(--font-body);
+color: var(--color-text-main);
+background-color: var(--color-bg-primary);
+line-height: 1.6;
+-webkit-font-smoothing: antialiased;
+}
+h1, h2, h3, .brand-name {
+font-family: var(--font-heading);
+font-weight: 900;
+margin-bottom: 1rem;
+color: var(--color-text-main);
+}
+h1 { font-size: 3.5rem; line-height: 1.1; }
+h2 { font-size: 2.5rem; text-align: center; margin-bottom: 2rem; }
+h3 { font-size: 1.5rem; font-family: var(--font-ui); font-weight: 700; }
+p { margin-bottom: 1rem; }
+a {
+color: var(--color-text-main);
+text-decoration: none;
+font-family: var(--font-ui);
+font-weight: 700;
+transition: color 0.2s ease;
+}
+a:hover, a:focus {
+color: var(--color-interactive);
+}
+.btn-primary {
+background-color: var(--color-interactive);
+color: var(--color-text-main);
+font-family: var(--font-ui);
+font-weight: 700;
+border: none;
+padding: 0.75rem 1.5rem;
+cursor: pointer;
+border-radius: 4px;
+transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease;
+text-transform: uppercase;
+letter-spacing: 0.5px;
+font-size: 0.9rem;
+}
+.btn-primary:hover {
+transform: translateY(-4px) scale(1.02);
+box-shadow: 0 8px 16px rgba(43, 50, 16, 0.15);
+}
+.btn-primary:active {
+transform: translateY(1px) scale(0.98);
+}
+.container {
+max-width: 1200px;
+margin: 0 auto;
+padding: 0 2rem;
+}
+section {
+padding: 5rem 0;
+}
+header {
+position: sticky;
+top: 0;
+background-color: var(--color-bg-primary);
+border-bottom: 1px solid var(--color-accent-muted);
+z-index: 1000;
+transition: box-shadow 0.3s ease;
+}
+header.scrolled {
+box-shadow: 0 4px 12px rgba(43, 50, 16, 0.08);
+}
+.food-pattern {
+background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='500' height='500' viewBox='0 0 400 400' fill='none' stroke='%23828a5a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' opacity='0.25'%3E%3C!-- Burger --%3E%3Cg transform='translate(50, 50) rotate(-10) scale(1.5)'%3E%3Cpath d='M10 30 Q 30 5 50 30 Z' /%3E%3Crect x='8' y='32' width='44' height='6' rx='3' /%3E%3Cpath d='M10 40 Q 30 55 50 40 Z' /%3E%3C/g%3E%3C!-- Drink --%3E%3Cg transform='translate(280, 80) rotate(15) scale(1.5)'%3E%3Cpath d='M15 20 L 45 20 L 40 60 L 20 60 Z' /%3E%3Cpath d='M10 20 L 50 20 L 48 10 L 12 10 Z' /%3E%3Cline x1='30' y1='10' x2='35' y2='-10' /%3E%3C/g%3E%3C!-- Bowl --%3E%3Cg transform='translate(300, 300) rotate(-5) scale(1.5)'%3E%3Cpath d='M10 30 Q 30 60 50 30 Z' /%3E%3Cpath d='M10 30 L 50 30' /%3E%3Cpath d='M20 20 Q 25 10 30 20 T 40 20' /%3E%3C/g%3E%3C!-- Hot Dog --%3E%3Cg transform='translate(80, 280) rotate(25) scale(1.5)'%3E%3Cpath d='M10 20 Q 30 0 50 20 Q 55 35 30 35 Q 5 35 10 20' /%3E%3Crect x='15' y='16' width='30' height='8' rx='4' /%3E%3C/g%3E%3C!-- Pizza --%3E%3Cg transform='translate(180, 180) rotate(-20) scale(1.5)'%3E%3Cpath d='M10 10 L 40 10 Q 45 15 40 20 L 25 50 Z' /%3E%3Ccircle cx='22' cy='22' r='2' /%3E%3Ccircle cx='32' cy='18' r='2' /%3E%3Ccircle cx='27' cy='32' r='2' /%3E%3C/g%3E%3C/svg%3E");
+background-repeat: repeat;
+background-size: 500px 500px;
+animation: driftPattern 60s linear infinite;
+}
+@keyframes driftPattern {
+from { background-position: 0 0; }
+to { background-position: 500px 500px; }
+}
+.header-inner {
+display: flex;
+justify-content: space-between;
+align-items: center;
+height: 80px;
+}
+.brand {
+display: flex;
+align-items: center;
+gap: 0.5rem;
+}
+.brand-name {
+font-size: 1.75rem;
+margin-bottom: 0;
+line-height: 1;
+}
+.brand-icon {
+width: 45px;
+height: 45px;
+fill: var(--color-text-main);
+}
+.nav-container {
+display: flex;
+align-items: center;
+gap: 2rem;
+}
+nav ul {
+display: flex;
+list-style: none;
+gap: 1.5rem;
+}
+#hero {
+background-color: var(--color-bg-primary);
+text-align: center;
+padding: 8rem 0 6rem;
+position: relative;
+}
+.hero-content {
+max-width: 800px;
+margin: 0 auto;
+position: relative;
+z-index: 2;
+}
+.hero-content p {
+font-size: 1.25rem;
+margin-bottom: 2.5rem;
+}
+.search-bar {
+display: flex;
+max-width: 600px;
+margin: 0 auto;
+gap: 0.5rem;
+}
+.search-input {
+flex: 1;
+padding: 1rem 1.5rem;
+border: 2px solid var(--color-accent-muted);
+border-radius: 4px;
+font-family: var(--font-body);
+font-size: 1rem;
+color: var(--color-text-main);
+background-color: var(--color-bg-primary);
+}
+.search-input:focus {
+outline: none;
+border-color: var(--color-text-main);
+}
+.search-input::placeholder {
+color: var(--color-accent-muted);
+}
+.marquee-wrapper {
+background-color: var(--color-text-main);
+color: var(--color-interactive);
+padding: 1rem 0;
+overflow: hidden;
+white-space: nowrap;
+border-top: 2px solid var(--color-text-main);
+border-bottom: 2px solid var(--color-text-main);
+font-family: var(--font-heading);
+font-weight: 900;
+font-size: 1.5rem;
+text-transform: uppercase;
+letter-spacing: 2px;
+display: flex;
+position: relative;
+z-index: 5;
+}
+.marquee-content {
+display: flex;
+animation: scrollMarquee 20s linear infinite;
+}
+.marquee-content span {
+padding: 0 2rem;
+}
+@keyframes scrollMarquee {
+0% { transform: translateX(0); }
+100% { transform: translateX(-50%); }
+}
+#directory {
+background-color: var(--color-bg-secondary);
+position: relative;
+}
+.grid-container {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+gap: 2rem;
+}
+.card {
+background-color: var(--color-bg-primary);
+border: 2px solid var(--color-accent-muted);
+border-radius: 8px;
+overflow: hidden;
+display: flex;
+flex-direction: column;
+transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+.card:hover {
+transform: translateY(-8px) scale(1.01);
+box-shadow: 0 12px 24px rgba(43, 50, 16, 0.12);
+border-color: var(--color-text-main);
+}
+.img-placeholder {
+height: 200px;
+background-color: var(--color-accent-muted);
+opacity: 0.3;
+width: 100%;
+}
+.card-content {
+padding: 1.5rem;
+display: flex;
+flex-direction: column;
+flex: 1;
+}
+.card-tags {
+display: flex;
+gap: 0.5rem;
+margin-bottom: 1rem;
+}
+.tag {
+font-size: 0.75rem;
+font-family: var(--font-ui);
+font-weight: 700;
+padding: 0.25rem 0.5rem;
+border: 1px solid var(--color-accent-muted);
+border-radius: 4px;
+color: var(--color-accent-muted);
+text-transform: uppercase;
+}
+.card-content p {
+font-size: 0.95rem;
+flex: 1;
+}
+.card .btn-primary {
+width: 100%;
+margin-top: 1rem;
+}
+#blog {
+background-color: var(--color-bg-primary);
+position: relative;
+}
+.blog-layout {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 4rem;
+align-items: center;
+}
+.blog-image-wrapper {
+position: relative;
+padding: 1rem;
+}
+.blog-img-placeholder {
+width: 100%;
+aspect-ratio: 4/3;
+background-color: var(--color-bg-secondary);
+border: 2px solid var(--color-accent-muted);
+border-radius: 8px;
+position: relative;
+z-index: 2;
+}
+.blog-image-wrapper::before {
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+right: 2rem;
+bottom: 2rem;
+border: 2px solid var(--color-accent-muted);
+border-radius: 8px;
+z-index: 1;
+transform: rotate(-3deg);
+}
+.blog-content h2 {
+text-align: left;
+}
+#newsletter {
+background-color: var(--color-bg-secondary);
+text-align: center;
+}
+.newsletter-box {
+max-width: 600px;
+margin: 0 auto;
+background-color: var(--color-bg-primary);
+padding: 3rem 2rem;
+border: 2px solid var(--color-accent-muted);
+border-radius: 8px;
+}
+.newsletter-form {
+display: flex;
+gap: 0.5rem;
+margin-top: 1.5rem;
+}
+.newsletter-form input {
+flex: 1;
+padding: 0.75rem 1rem;
+border: 2px solid var(--color-text-main);
+border-radius: 4px;
+font-family: var(--font-body);
+}
+footer {
+background-color: var(--color-text-main);
+color: var(--color-bg-primary);
+padding: 4rem 0 2rem;
+}
+.footer-grid {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 2rem;
+margin-bottom: 3rem;
+}
+footer .brand-name {
+color: var(--color-bg-primary);
+}
+footer .brand-icon {
+fill: var(--color-bg-primary);
+}
+.footer-col h4 {
+font-family: var(--font-ui);
+margin-bottom: 1rem;
+font-size: 1.1rem;
+}
+.footer-col ul {
+list-style: none;
+}
+.footer-col li {
+margin-bottom: 0.5rem;
+}
+footer a {
+color: var(--color-bg-primary);
+font-weight: 400;
+}
+footer a:hover {
+color: var(--color-interactive);
+}
+.copyright {
+text-align: center;
+font-size: 0.85rem;
+border-top: 1px solid rgba(251, 248, 239, 0.2);
+padding-top: 2rem;
+}
+@media (max-width: 768px) {
+h1 { font-size: 2.5rem; }
+h2 { font-size: 2rem; }
+.nav-container nav {
+display: none;
+}
+.search-bar {
+flex-direction: column;
+}
+.blog-layout {
+grid-template-columns: 1fr;
+gap: 2rem;
+}
+.newsletter-form {
+flex-direction: column;
+}
+.footer-grid {
+grid-template-columns: 1fr;
+text-align: center;
+}
+.brand {
+justify-content: center;
+}
+}
+</style>
+</head>
+<body>
+<header id="main-header">
+<div class="container header-inner">
+<a href="#" class="brand">
+<svg class="brand-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+<path d="M 50 5 C 60 5, 65 10, 68 15 C 78 12, 85 18, 85 28 C 92 32, 95 40, 95 50 C 95 60, 92 68, 85 72 C 85 82, 78 88, 68 85 C 65 90, 60 95, 50 95 C 40 95, 35 90, 32 85 C 22 88, 15 82, 15 72 C 8 68, 5 60, 5 50 C 5 40, 8 32, 15 28 C 15 18, 22 12, 32 15 C 35 10, 40 5, 50 5 Z" fill="currentcolor" />
+<g transform="translate(50,50) rotate(45) translate(-50,-50)">
+<path d="M 38 25 L 38 45 A 12 12 0 0 0 62 45 L 62 25 L 56 25 L 56 42 A 6 6 0 0 1 44 42 L 44 25 Z" fill="var(--color-bg-primary)" />
+<rect x="38" y="25" width="6" height="20" rx="3" fill="var(--color-bg-primary)" />
+<rect x="47" y="25" width="6" height="20" rx="3" fill="var(--color-bg-primary)" />
+<rect x="56" y="25" width="6" height="20" rx="3" fill="var(--color-bg-primary)" />
+<rect x="46" y="55" width="8" height="35" rx="4" fill="var(--color-bg-primary)" />
+<path d="M 44 45 L 56 45 L 54 58 L 46 58 Z" fill="var(--color-bg-primary)" />
+</g>
+<g transform="translate(50,50) rotate(-45) translate(-50,-50)">
+<rect x="46" y="50" width="8" height="40" rx="4" fill="var(--color-bg-primary)" stroke="var(--color-text-main)" stroke-width="4" />
+<rect x="46" y="50" width="8" height="40" rx="4" fill="var(--color-bg-primary)" />
+<ellipse cx="50" cy="35" rx="12" ry="18" fill="var(--color-bg-primary)" stroke="var(--color-text-main)" stroke-width="3" />
+<ellipse cx="50" cy="35" rx="12" ry="18" fill="var(--color-bg-primary)" />
+</g>
+</svg>
+<span class="brand-name">Macon Me Hungry</span>
+</a>
+<div class="nav-container">
+<nav>
+<ul>
+<li><a href="#directory">Directory</a></li>
+<li><a href="#blog">Blog</a></li>
+<li><a href="#about">About</a></li>
+</ul>
+</nav>
+<button class="btn-primary" onclick="alert('Submit a Spot modal would open here.')">Submit a Spot</button>
+</div>
+</div>
+</header>
+<section id="hero" class="food-pattern">
+<div class="container hero-content">
+<h1>DISCOVER MACON'S BEST BITES</h1>
+<p>Your curated guide to the greatest restaurants, food trucks, and hidden gems in Macon, GA.</p>
+<form class="search-bar" onsubmit="event.preventDefault(); alert('Searching for: ' + document.getElementById('searchInput').value);">
+<input type="text" id="searchInput" class="search-input" placeholder="Search by vibe, food, or name...">
+<button type="submit" class="btn-primary">FIND FOOD</button>
+</form>
+</div>
+</section>
+<div class="marquee-wrapper">
+<div class="marquee-content">
+<span>EAT LOCAL</span><span>•</span>
+<span>SUPPORT MACON</span><span>•</span>
+<span>GRUB HUNTING</span><span>•</span>
+<span>GOOD VIBES ONLY</span><span>•</span>
+<span>EAT LOCAL</span><span>•</span>
+<span>SUPPORT MACON</span><span>•</span>
+<span>GRUB HUNTING</span><span>•</span>
+<span>GOOD VIBES ONLY</span><span>•</span>
+</div>
+</div>
+<section id="directory" class="food-pattern">
+<div class="container" style="position: relative; z-index: 2;">
+<h2>Featured Spots</h2>
+<div class="grid-container">
+<!-- Hardcoded cards representing Macon spots based on html provided -->
+<article id="hh-soul-food" class="card">
+<div class="img-placeholder"></div>
+<div class="card-content">
+<h3>H&H Soul Food</h3>
+<div class="card-tags">
+<span class="tag">Soul Food</span>
+<span class="tag">Historic</span>
+</div>
+<p>A Macon institution serving up legendary meat-and-three plates and the famous Midnight Rider biscuit.</p>
+<a href="#hh-soul-food" class="btn-primary" style="text-align: center; display: block;">LEARN MORE</a>
+</div>
+</article>
+<!-- Added more based on sample HTML -->
+</div>
+</div>
+</section>
+<section id="blog" class="food-pattern">
+<div class="container blog-layout" style="position: relative; z-index: 2;">
+<div class="blog-image-wrapper">
+<div class="blog-img-placeholder"></div>
+</div>
+<div class="blog-content">
+<h2>Meet the Curators</h2>
+<p>We're just a couple of locals obsessed with finding the greatest restaurants, food trucks, and hidden gems in Macon, GA.</p>
+<button class="btn-primary" onclick="alert('Navigating to about page...')">READ MORE</button>
+</div>
+</div>
+</section>
+<section id="newsletter">
+<div class="container">
+<div class="newsletter-box">
+<h2>Newsletter Sign-up</h2>
+<p>Don't miss a meal. Turn your inbox into a menu.</p>
+<form class="newsletter-form" onsubmit="event.preventDefault(); alert('Subscribed with: ' + document.getElementById('emailInput').value);">
+<input type="email" id="emailInput" placeholder="Email address" required>
+<button type="submit" class="btn-primary">SUBSCRIBE</button>
+</form>
+</div>
+</div>
+</section>
+<footer id="about">
+<div class="container">
+<div class="footer-grid">
+<div class="footer-col">
+<p style="margin-top: 1rem; font-size: 0.9rem;">Your guide to the best bites in Macon, Georgia.</p>
+</div>
+<div class="footer-col">
+<h4>Links</h4>
+<ul>
+<li><a href="#">Contact Us</a></li>
+<li><a href="#">Privacy Policy</a></li>
+<li><a href="#">Terms of Service</a></li>
+</ul>
+</div>
+<div class="footer-col">
+<h4>Social</h4>
+<ul>
+<li><a href="#">Follow our Instagram</a></li>
+<li><a href="#">Like us on Facebook</a></li>
+</ul>
+</div>
+</div>
+<div class="copyright">
+<p>&copy; 2026 Macon Me Hungry. All rights reserved.</p>
+</div>
+</div>
+</footer>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+const header = document.getElementById('main-header');
+window.addEventListener('scroll', () => {
+if (window.scrollY > 10) {
+header.classList.add('scrolled');
+} else {
+header.classList.remove('scrolled');
+}
+});
+});
+</script>
+</body>
+</html>

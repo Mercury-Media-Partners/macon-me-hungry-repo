@@ -1,0 +1,138 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import EditorialHero from '../../components/business/EditorialHero.astro';
+import SmartSidebar from '../../components/business/SmartSidebar.astro';
+import Navbar from '../../components/navigation/Navbar.astro';
+import Footer from '../../components/navigation/Footer.astro';
+
+export async function getStaticPaths() {
+  const attractions = await getCollection('attractions');
+  return attractions.map(entry => ({
+    params: { slug: entry.id }, props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const data = entry.data;
+
+// JSON-LD structured data for this attraction
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": data.category === "Park" ? "Park" : "Museum",
+  "name": data.title,
+  "description": data.meta_desc ?? data.tagline,
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": data.address,
+    "addressLocality": "Atlanta",
+    "addressRegion": "GA",
+    "addressCountry": "US"
+  },
+  ...(data.lat && data.lng && {
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": data.lat,
+      "longitude": data.lng
+    }
+  }),
+  ...(data.website && { "url": data.website }),
+  "openingHours": data.hours,
+};
+---
+
+<Layout title={data.meta_title || data.title} description={data.meta_desc}>
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(jsonLd)} />
+
+  <Navbar lang="en" />
+
+  <main class="bg-background">
+    <EditorialHero
+      title={data.title}
+      tagline={data.tagline}
+      category={data.category}
+      heroImage={data.heroImage}
+      tier={data.tier}
+    />
+
+    <div class="container max-w-6xl mx-auto px-4 py-20">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-16">
+        {/* Main Content Area */}
+        <div class="lg:col-span-2 space-y-16">
+          {/* About / Story Section */}
+          <section class="prose prose-invert prose-lg max-w-none">
+            <h2 class="font-display text-4xl mb-8">The Story</h2>
+            <Content />
+          </section>
+
+          {/* Attraction Features Details */}
+          <section class="prose prose-invert max-w-none border-t border-border/30 pt-10">
+            <h3 class="font-display text-2xl mb-6 uppercase tracking-wider text-primary">Amenities & Info</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-muted-foreground font-body">
+              <div class="flex items-center gap-3">
+                <span class="text-xl">{data.isPetFriendly ? "🐾" : "🚫"}</span>
+                <span>{data.isPetFriendly ? "Pet-Friendly" : "No Pets Allowed"}</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <span class="text-xl">{data.hasPlayground ? "🛝" : "❌"}</span>
+                <span>{data.hasPlayground ? "Playground Area" : "No Playground"}</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <span class="text-xl">{data.hasFountains ? "⛲" : "❌"}</span>
+                <span>{data.hasFountains ? "Fountains / Splash Pads" : "No Water Fountains"}</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <span class="text-xl">🏛️</span>
+                <span>Cultural Heritage & Landmark Spot</span>
+              </div>
+            </div>
+          </section>
+
+          {data.established && (
+            <div class="border-y border-border py-8 text-center font-body">
+              <p class="text-4xl font-display text-secondary leading-none mb-2">{data.established}</p>
+              <p class="text-[10px] text-muted-foreground uppercase tracking-widest font-bold">
+                Established
+              </p>
+            </div>
+          )}
+        </div>
+
+        {/* Sidebar Area */}
+        <div class="lg:col-span-1">
+          <div class="sticky top-24">
+            <SmartSidebar
+              address={data.address}
+              hours={data.hours}
+              phone={data.phone}
+              website={data.website}
+              socials={data.socials}
+              stadiumMin={data.stadiumMin}
+              rating={data.rating}
+              world_cup_ready={data.world_cup_ready}
+              tier={data.tier}
+              lang="en"
+              transit_station={data.transit_station}
+              transit_time_en={data.transit_time_en}
+              transit_time_es={data.transit_time_es}
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <Footer lang="en" />
+</Layout>
+
+<style is:global>
+  .prose p {
+    color: var(--color-muted-foreground);
+    line-height: 1.625;
+    margin-bottom: 1.5rem;
+    font-family: var(--font-body);
+  }
+  .prose h2 {
+    color: var(--color-foreground);
+  }
+</style>

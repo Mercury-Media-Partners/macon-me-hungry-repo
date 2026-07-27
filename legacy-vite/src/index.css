@@ -1,0 +1,150 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+/* ============================================================
+   DESIGN SYSTEM — "Bares Gay Atlanta" Dark Nightlife Theme
+   All colors are HSL. Semantic tokens only in components.
+   ============================================================ */
+
+@layer base {
+  :root {
+    /* Surfaces */
+    --background: 224 30% 5%;
+    --foreground: 0 0% 96%;
+
+    --card: 224 25% 8%;
+    --card-foreground: 0 0% 96%;
+
+    --popover: 224 25% 8%;
+    --popover-foreground: 0 0% 96%;
+
+    /* Brand — hot magenta */
+    --primary: 330 100% 58%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Secondary — amber gold (World Cup energy) */
+    --secondary: 42 100% 52%;
+    --secondary-foreground: 224 30% 5%;
+
+    /* Muted surfaces */
+    --muted: 224 20% 12%;
+    --muted-foreground: 220 15% 55%;
+
+    /* Accent — electric teal */
+    --accent: 175 90% 42%;
+    --accent-foreground: 0 0% 100%;
+
+    /* Destructive */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* Borders & inputs */
+    --border: 224 20% 15%;
+    --input: 224 20% 12%;
+    --ring: 330 100% 58%;
+
+    --radius: 0.5rem;
+
+    /* Sidebar */
+    --sidebar-background: 224 30% 5%;
+    --sidebar-foreground: 0 0% 90%;
+    --sidebar-primary: 330 100% 58%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 224 20% 12%;
+    --sidebar-accent-foreground: 0 0% 90%;
+    --sidebar-border: 224 20% 15%;
+    --sidebar-ring: 330 100% 58%;
+
+    /* Custom tokens */
+    --gradient-hero: linear-gradient(160deg, hsl(224 30% 5%) 0%, hsl(280 40% 8%) 50%, hsl(330 50% 10%) 100%);
+    --gradient-primary: linear-gradient(135deg, hsl(330 100% 58%), hsl(300 90% 55%));
+    --gradient-gold: linear-gradient(135deg, hsl(42 100% 52%), hsl(35 100% 48%));
+    --gradient-card: linear-gradient(145deg, hsl(224 25% 8%), hsl(224 20% 12%));
+    --glow-primary: 0 0 30px hsl(330 100% 58% / 0.35);
+    --glow-gold: 0 0 30px hsl(42 100% 52% / 0.35);
+    --shadow-deep: 0 20px 60px hsl(224 30% 2% / 0.8);
+    --font-display: 'Bebas Neue', sans-serif;
+    --font-body: 'Space Grotesk', sans-serif;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3 {
+    font-family: var(--font-display);
+    letter-spacing: 0.02em;
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: var(--font-display);
+  }
+
+  .font-body {
+    font-family: var(--font-body);
+  }
+
+  .text-gradient-primary {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-gradient-gold {
+    background: var(--gradient-gold);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .bg-gradient-hero {
+    background: var(--gradient-hero);
+  }
+
+  .bg-gradient-card {
+    background: var(--gradient-card);
+  }
+
+  .glow-primary {
+    box-shadow: var(--glow-primary);
+  }
+
+  .glow-gold {
+    box-shadow: var(--glow-gold);
+  }
+
+  .shadow-deep {
+    box-shadow: var(--shadow-deep);
+  }
+
+  .filter-chip {
+    @apply px-4 py-1.5 rounded-full text-sm font-medium border border-border bg-muted text-muted-foreground transition-all duration-200 cursor-pointer hover:border-primary hover:text-primary;
+  }
+
+  .filter-chip-active {
+    @apply border-primary text-primary bg-primary/10 glow-primary;
+  }
+
+  .bar-card {
+    background: var(--gradient-card);
+    @apply rounded-xl border border-border overflow-hidden transition-all duration-300 hover:border-primary/50 hover:shadow-[0_0_20px_hsl(330_100%_58%_/_0.15)];
+  }
+
+  .section-label {
+    @apply font-display text-primary tracking-widest uppercase text-sm;
+  }
+}

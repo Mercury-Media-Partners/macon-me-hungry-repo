@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+Disallow: /_astro/
+Disallow: /_image/
+
+# AI Stewardship
+User-agent: GPTBot
+Allow: /
+User-agent: ChatGPT-User
+Allow: /
+
+Sitemap: https://outatl.com/sitemap-index.xml

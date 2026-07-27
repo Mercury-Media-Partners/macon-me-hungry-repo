@@ -1,0 +1,197 @@
+---
+// src/components/AccessibilityWidget.astro
+interface Props {
+  lang?: string;
+}
+
+const { lang = "en" } = Astro.props;
+const isEs = lang === "es";
+
+// Translations
+const t = {
+  toggleLabel: isEs ? "Opciones de Accesibilidad" : "Accessibility Options",
+  title: isEs ? "Protocolo de Accesibilidad" : "Accessibility Protocol",
+  contrastTitle: isEs ? "Alto Contraste" : "High Contrast",
+  contrastDesc: isEs ? "Claridad Visual Reforzada" : "Hardened Visual Clarity",
+  linksTitle: isEs ? "Destacar Enlaces" : "Highlight Links",
+  linksDesc: isEs ? "Identificar Puntos de Interacción" : "Identify Interaction Points",
+  pauseTitle: isEs ? "Pausar Animaciones" : "Pause Animations",
+  pauseDesc: isEs ? "Navegación Estática Sin Movimiento" : "Zero-G Static Navigation",
+  resetBtn: isEs ? "Restablecer Ajustes" : "Reset All Settings",
+  footerText: isEs ? "Gestión Digital ♿️ por Mercury Media" : "Digital Stewardship ♿️ by Mercury Media"
+};
+---
+
+<div class="fixed bottom-4 right-4 z-50">
+  <!-- Toggle Button (The Seal of Authority) -->
+  <button 
+    id="a11y-toggle" 
+    class="bg-card/90 text-foreground p-4 rounded-full shadow-lg backdrop-blur-md hover:bg-card border border-border focus:outline-none ring-2 ring-primary/60 ring-offset-2 ring-offset-background transition-all group cursor-pointer"
+    aria-label={t.toggleLabel}
+    aria-haspopup="true"
+    aria-expanded="false"
+  >
+    <!-- Official Accessibility Icon -->
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-accessibility text-primary group-hover:scale-105 transition-transform"><circle cx="16" cy="4" r="1"/><path d="m18 19 1-7-6 1"/><path d="m5 8 3-3 5.5 3-2.36 3.5"/><path d="M4.24 14.5a5 5 0 0 0 6.88 6"/><path d="M13.76 17.5a5 5 0 0 0-6.88-6"/></svg>
+  </button>
+
+  <!-- THE PROTOCOL Menu -->
+  <div 
+    id="a11y-menu" 
+    class="hidden absolute bottom-16 right-0 bg-card/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-border p-6 w-80 mb-2 text-foreground"
+  >
+    <div class="flex justify-between items-center mb-6 border-b border-border/40 pb-4">
+      <p class="font-display font-bold text-lg tracking-wide uppercase text-foreground">
+        {t.title}
+      </p>
+      <button id="a11y-close" class="text-muted-foreground hover:text-foreground transition-colors cursor-pointer" aria-label="Close">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+      </button>
+    </div>
+    
+    <div class="space-y-6">
+      <!-- High Contrast -->
+      <button id="a11y-contrast-toggle" class="flex items-center justify-between w-full text-left group focus:outline-none cursor-pointer">
+        <div>
+          <span class="block font-bold text-xs uppercase tracking-widest text-foreground font-label">{t.contrastTitle}</span>
+          <span class="block text-[10px] text-muted-foreground uppercase tracking-wider mt-0.5">{t.contrastDesc}</span>
+        </div>
+        <div class="w-12 h-6 rounded-full relative transition-colors duration-300 bg-muted border border-border group-[.is-active]:bg-primary group-[.is-active]:border-primary/20">
+          <div class="w-4 h-4 bg-foreground rounded-full absolute top-0.5 left-0.5 transition-transform duration-300 group-[.is-active]:translate-x-6 shadow-sm"></div>
+        </div>
+      </button>
+
+      <!-- Highlight Links -->
+      <button id="a11y-links-toggle" class="flex items-center justify-between w-full text-left group focus:outline-none cursor-pointer">
+        <div>
+          <span class="block font-bold text-xs uppercase tracking-widest text-foreground font-label">{t.linksTitle}</span>
+          <span class="block text-[10px] text-muted-foreground uppercase tracking-wider mt-0.5">{t.linksDesc}</span>
+        </div>
+        <div class="w-12 h-6 rounded-full relative transition-colors duration-300 bg-muted border border-border group-[.is-active]:bg-secondary group-[.is-active]:border-secondary/20">
+          <div class="w-4 h-4 bg-foreground rounded-full absolute top-0.5 left-0.5 transition-transform duration-300 group-[.is-active]:translate-x-6 shadow-sm"></div>
+        </div>
+      </button>
+
+      <!-- Pause Animations -->
+      <button id="a11y-pause-toggle" class="flex items-center justify-between w-full text-left group focus:outline-none cursor-pointer">
+        <div>
+          <span class="block font-bold text-xs uppercase tracking-widest text-foreground font-label">{t.pauseTitle}</span>
+          <span class="block text-[10px] text-muted-foreground uppercase tracking-wider mt-0.5">{t.pauseDesc}</span>
+        </div>
+        <div class="w-12 h-6 rounded-full relative transition-colors duration-300 bg-muted border border-border group-[.is-active]:bg-primary group-[.is-active]:border-primary/20">
+          <div class="w-4 h-4 bg-foreground rounded-full absolute top-0.5 left-0.5 transition-transform duration-300 group-[.is-active]:translate-x-6 shadow-sm"></div>
+        </div>
+      </button>
+    </div>
+    
+    <div class="mt-8 pt-4 border-t border-border/40">
+      <button id="a11y-reset" class="text-[10px] font-bold text-primary hover:text-primary/80 transition-colors w-full text-center uppercase tracking-widest mb-4 font-label cursor-pointer">
+        {t.resetBtn}
+      </button>
+      <div class="text-center pt-2">
+        <a 
+          href="https://partnerwithmercury.com" 
+          target="_blank" 
+          rel="noopener" 
+          class="text-[9px] font-bold text-muted-foreground hover:text-primary transition-colors leading-tight block uppercase tracking-[0.2em] font-label"
+        >
+          {t.footerText}
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Accessibility Controller Script
+  const initMercuryA11y = () => {
+    const a11yToggle = document.getElementById('a11y-toggle');
+    const a11yMenu = document.getElementById('a11y-menu');
+    const a11yClose = document.getElementById('a11y-close');
+    
+    const btnContrast = document.getElementById('a11y-contrast-toggle');
+    const btnLinks = document.getElementById('a11y-links-toggle');
+    const btnPause = document.getElementById('a11y-pause-toggle');
+    const btnReset = document.getElementById('a11y-reset');
+
+    const state = {
+      contrast: localStorage.getItem('a11y-contrast') === 'true',
+      links: localStorage.getItem('a11y-links') === 'true',
+      pause: localStorage.getItem('a11y-pause') === 'true',
+    };
+
+    const applyA11y = () => {
+      // High Contrast Logic
+      document.documentElement.classList.toggle('a11y-high-contrast', state.contrast);
+      btnContrast?.classList.toggle('is-active', state.contrast);
+
+      // Link Highlight Logic
+      document.documentElement.classList.toggle('a11y-highlight-links', state.links);
+      btnLinks?.classList.toggle('is-active', state.links);
+
+      // Pause Animations Logic
+      document.documentElement.classList.toggle('a11y-pause-animations', state.pause);
+      btnPause?.classList.toggle('is-active', state.pause);
+
+      // Persist states
+      localStorage.setItem('a11y-contrast', state.contrast.toString());
+      localStorage.setItem('a11y-links', state.links.toString());
+      localStorage.setItem('a11y-pause', state.pause.toString());
+    };
+
+    // Toggle Menu
+    a11yToggle?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isHidden = a11yMenu?.classList.contains('hidden');
+      a11yMenu?.classList.toggle('hidden');
+      a11yToggle?.setAttribute('aria-expanded', isHidden ? 'true' : 'false');
+    });
+
+    a11yClose?.addEventListener('click', () => {
+      a11yMenu?.classList.add('hidden');
+      a11yToggle?.setAttribute('aria-expanded', 'false');
+    });
+
+    // Close on outside click
+    document.addEventListener('click', (e) => {
+      if (
+        a11yMenu && 
+        !a11yMenu.classList.contains('hidden') && 
+        !a11yMenu.contains(e.target as Node) && 
+        a11yToggle && 
+        !a11yToggle.contains(e.target as Node)
+      ) {
+        a11yMenu.classList.add('hidden');
+        a11yToggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    // Controls
+    btnContrast?.addEventListener('click', () => { 
+      state.contrast = !state.contrast; 
+      applyA11y(); 
+    });
+    
+    btnLinks?.addEventListener('click', () => { 
+      state.links = !state.links; 
+      applyA11y(); 
+    });
+    
+    btnPause?.addEventListener('click', () => { 
+      state.pause = !state.pause; 
+      applyA11y(); 
+    });
+    
+    btnReset?.addEventListener('click', () => {
+      state.contrast = false;
+      state.links = false;
+      state.pause = false;
+      applyA11y();
+    });
+
+    applyA11y();
+  };
+
+  // Run on page loads (including view transitions if any)
+  document.addEventListener('DOMContentLoaded', initMercuryA11y);
+</script>

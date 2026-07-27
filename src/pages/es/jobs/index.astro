@@ -1,0 +1,52 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../../layouts/Layout.astro';
+import Navbar from '../../../components/navigation/Navbar.astro';
+import Footer from '../../../components/navigation/Footer.astro';
+import JobCard from '../../../components/directory/JobCard.astro';
+import { es } from '../../../i18n/es';
+
+const allJobs = await getCollection('jobs');
+// Filter out expired jobs if expiration_date exists and is in the past
+const activeJobs = allJobs.filter(job => {
+  if (job.data.expiration_date) {
+    return new Date(job.data.expiration_date) >= new Date();
+  }
+  return true;
+}).sort((a, b) => new Date(b.data.pub_date).valueOf() - new Date(a.data.pub_date).valueOf());
+---
+
+<Layout
+  title="Bolsa de Trabajo | OutATL"
+  description="Encuentra vacantes en los mejores negocios, cafés y lugares nocturnos amigables con LGBTQ+ de Atlanta."
+>
+  <Navbar lang="es" />
+
+  <main class="pt-28 pb-20 min-h-screen bg-background">
+    <div class="container max-w-5xl mx-auto px-4">
+      <div class="mb-12 text-center">
+        <span class="section-label mb-3 block">{es.jobsTitle}</span>
+        <h1 class="font-display text-5xl md:text-7xl text-foreground uppercase tracking-tight leading-none mb-4">
+          Vacantes en Atlanta
+        </h1>
+        <p class="text-muted-foreground max-w-2xl mx-auto font-body text-lg leading-relaxed">
+          Encuentra tu próxima oportunidad en negocios que apoyan a la comunidad LGBTQ+ local.
+        </p>
+      </div>
+
+      {activeJobs.length === 0 ? (
+        <div class="text-center py-20 bg-muted/20 rounded-2xl border border-border">
+          <p class="text-xl text-muted-foreground font-display">{es.jobsNoOpenings}</p>
+        </div>
+      ) : (
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {activeJobs.map(job => (
+            <JobCard job={job} lang="es" />
+          ))}
+        </div>
+      )}
+    </div>
+  </main>
+
+  <Footer lang="es" />
+</Layout>

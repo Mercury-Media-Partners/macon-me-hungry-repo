@@ -1,0 +1,85 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/navigation/Navbar.astro';
+import Footer from '../../components/navigation/Footer.astro';
+import { EventsRadar } from '../../components/events/EventsRadar';
+import { VenueQuickDrawer } from '../../components/directory/VenueQuickDrawer';
+import { ItineraryBar } from '../../components/directory/ItineraryBar';
+
+const lang = "es";
+const businesses = (await getCollection('businesses')).filter(b => !b.data.is_demo);
+
+const eventsList = businesses.flatMap(b => {
+  if (!b.data.events) return [];
+  return b.data.events.map((evt, idx) => ({
+    id: `${b.id}-evt-${idx}`,
+    venueId: b.id,
+    venueTitle: b.data.title,
+    venueNeighborhood: b.data.neighborhood,
+    venueCategory: b.data.category,
+    name: evt.name,
+    day: evt.day,
+    time: evt.time,
+    description: evt.description,
+    ticket_url: evt.ticket_url,
+  }));
+});
+
+const combinedItems = businesses.map(b => ({ ...b, type: 'business' as const }));
+
+const eventsJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Radar de Eventos LGBTQ+ en Atlanta",
+  "itemListElement": eventsList.map((evt, idx) => ({
+    "@type": "ListItem",
+    "position": idx + 1,
+    "item": {
+      "@type": "Event",
+      "name": evt.name,
+      "description": evt.description || `${evt.name} en ${evt.venueTitle} en ${evt.venueNeighborhood}`,
+      "location": {
+        "@type": "Place",
+        "name": evt.venueTitle,
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Atlanta",
+          "addressRegion": "GA"
+        }
+      }
+    }
+  }))
+};
+---
+
+<Layout
+  title="Radar de Eventos LGBTQ+ en Atlanta"
+  description="Descubre los mejores eventos queer, drag shows, fiestas de fin de semana y promociones en Atlanta."
+>
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(eventsJsonLd)} />
+
+  <Navbar lang={lang} />
+
+  <main class="pt-32 pb-24 min-h-screen">
+    <div class="container max-w-6xl mx-auto px-4">
+      {/* Header */}
+      <div class="mb-10 text-center md:text-left">
+        <span class="section-label mb-2 block">Calendario de Eventos en Vivo</span>
+        <h1 class="font-display text-4xl md:text-6xl text-foreground uppercase tracking-tight leading-none mb-4">
+          RADAR DE EVENTOS EN ATLANTA
+        </h1>
+        <p class="text-muted-foreground text-base md:text-lg max-w-2xl font-body">
+          Drag brunches, DJs en vivo, noches de karaoke y fiestas seleccionadas en Midtown, East Atlanta y Cheshire Bridge.
+        </p>
+      </div>
+
+      <EventsRadar events={eventsList} client:load />
+
+      <VenueQuickDrawer businesses={combinedItems as any} client:idle />
+      <ItineraryBar businesses={combinedItems as any} client:idle />
+    </div>
+  </main>
+
+  <Footer lang={lang} />
+</Layout>

@@ -1,0 +1,51 @@
+---
+interface Props {
+  images: string[];
+}
+
+const { images } = Astro.props;
+
+// We need 3 columns. We'll split the images roughly evenly.
+const col1 = images.slice(0, Math.ceil(images.length / 3));
+const col2 = images.slice(Math.ceil(images.length / 3), Math.ceil(images.length / 3) * 2);
+const col3 = images.slice(Math.ceil(images.length / 3) * 2);
+
+// To ensure a seamless infinite scroll, we duplicate the arrays inside the columns.
+---
+
+<div class="absolute inset-0 -z-10 overflow-hidden bg-background opacity-40 mix-blend-screen pointer-events-none" aria-hidden="true">
+  {/* The transformed wrapper that scales up and rotates */}
+  <div class="absolute inset-0 -top-[20%] -bottom-[20%] -left-[10%] -right-[10%] -rotate-6 scale-110 flex gap-4 md:gap-6 justify-center">
+    
+    {/* Column 1 (Slower) */}
+    <div class="flex flex-col gap-4 md:gap-6 animate-drift-up" style="animation-duration: 60s;">
+      {[...col1, ...col1].map((src, i) => (
+        <div class="relative w-32 md:w-48 lg:w-56 aspect-[3/4] rounded-2xl overflow-hidden border border-border shadow-2xl shrink-0">
+          <img src={src} alt="" class="w-full h-full object-cover" loading="lazy" />
+        </div>
+      ))}
+    </div>
+
+    {/* Column 2 (Faster, starts offset) */}
+    <div class="flex flex-col gap-4 md:gap-6 animate-drift-up -mt-24" style="animation-duration: 45s;">
+      {[...col2, ...col2].map((src, i) => (
+        <div class="relative w-32 md:w-48 lg:w-56 aspect-[3/4] rounded-2xl overflow-hidden border border-border shadow-2xl shrink-0">
+          <img src={src} alt="" class="w-full h-full object-cover" loading="lazy" />
+        </div>
+      ))}
+    </div>
+
+    {/* Column 3 (Medium speed) */}
+    <div class="flex flex-col gap-4 md:gap-6 animate-drift-up mt-12 hidden sm:flex" style="animation-duration: 55s;">
+      {[...col3, ...col3].map((src, i) => (
+        <div class="relative w-32 md:w-48 lg:w-56 aspect-[3/4] rounded-2xl overflow-hidden border border-border shadow-2xl shrink-0">
+          <img src={src} alt="" class="w-full h-full object-cover" loading="lazy" />
+        </div>
+      ))}
+    </div>
+
+  </div>
+
+  {/* Radial gradient mask to ensure text readability in the center */}
+  <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,rgba(9,9,11,1)_80%)]"></div>
+</div>
