@@ -214,7 +214,7 @@
 
   /* ── Section Label ── */
   .section-label {
-    @apply font-label text-primary tracking-widest uppercase text-xs font-bold;
+    @apply font-label text-accent tracking-widest uppercase text-xs font-bold;
   }
 
   /* ── Navbar Links (Option C Content-First) ── */
