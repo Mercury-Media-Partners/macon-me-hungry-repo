@@ -2,6 +2,11 @@
 
 A chronological log tracking migrations, features, optimizations, and roadmap progress.
 
+## 📅 July 27, 2026 — Monetization Strategy Pivot (B2B Sponsorship)
+*   **Refactored**: Removed the legacy 4-tier SaaS pricing model from `list-your-business.astro` and `OwnerOnboarding.tsx`.
+*   **Added**: Implemented a two-path "Community Patron" monetization structure: 100% Free for Local Restaurants and a $500/mo tier for B2B Community Sponsors.
+*   **Updated**: Simplified the `PartnerForm.tsx` and hidden Netlify form by replacing the billing toggle and dropdown with the new two-tier model.
+
 ## 📅 July 27, 2026 — DRY Button Architecture
 *   **Refactored**: Swept codebase and stripped all inline button class definitions across `.astro` and `.tsx` files.
 *   **Added**: Centralized utility classes `.btn`, `.btn-primary` and `.btn-secondary` in `global.css` for a single source of truth.

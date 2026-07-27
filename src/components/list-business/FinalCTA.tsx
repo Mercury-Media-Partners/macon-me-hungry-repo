@@ -45,23 +45,7 @@ export const FinalCTA = ({ content }: Props) => {
           {content.subtitle}
         </p>
 
-        {/* Compact countdown */}
-        <div className="flex justify-center mb-10">
-          <div className="inline-flex flex-col items-center gap-2 px-6 py-4 rounded-2xl border border-border/50 bg-card/30">
-            <CountdownTimer
-              size="compact"
-              deadline={content.countdown_date}
-              expiredLabel={content.countdown_expired || "Pricing has closed"}
-              unitDays={content.unit_days || "Days"}
-              unitHours={content.unit_hours || "Hours"}
-              unitMin={content.unit_min || "Min"}
-              unitSec={content.unit_sec || "Sec"}
-            />
-            <p className="text-[10px] text-muted-foreground/60 font-label uppercase tracking-widest">
-              {content.deadline_label}
-            </p>
-          </div>
-        </div>
+
 
         <button
           onClick={scrollToForm}

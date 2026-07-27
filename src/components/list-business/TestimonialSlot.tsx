@@ -54,7 +54,7 @@ export const TestimonialSlot = ({ content }: Props) => {
 
             {content.cta.includes("→") && (content.cta.toLowerCase().includes("see") || content.cta.toLowerCase().includes("explore") || content.cta.toLowerCase().includes("ver") || content.cta.toLowerCase().includes("ejemplo")) ? (
               <a
-                href={content.cta.toLowerCase().includes("ver") || content.cta.toLowerCase().includes("ejemplo") ? "/es/businesses/finca-to-filter" : "/businesses/finca-to-filter"}
+                href={content.cta.toLowerCase().includes("ver") || content.cta.toLowerCase().includes("ejemplo") ? "/es/businesses/ocmulgee-brewpub" : "/businesses/ocmulgee-brewpub"}
                 className="inline-flex px-6 py-3 rounded-full font-label font-bold text-xs uppercase tracking-widest text-background transition-all duration-200 hover:scale-105 hover:opacity-90"
                 style={{ background: "var(--gradient-gold)" }}
               >

@@ -118,12 +118,14 @@ export const EventsRadar = ({ events }: EventsRadarProps) => {
 
             {/* Actions */}
             <div className="flex items-center gap-2 pt-4 border-t border-border/40">
-              <button
-                onClick={() => openVenueDrawer(evt.venueId)}
-                className="flex-1 py-2.5 px-3 rounded-xl bg-primary text-primary-foreground text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-1.5 glow-primary font-label hover:scale-[1.02] transition-all"
-              >
-                <span>{"View Venue"}</span>
-              </button>
+              {evt.venueId !== 'standalone' && (
+                <button
+                  onClick={() => openVenueDrawer(evt.venueId)}
+                  className="flex-1 py-2.5 px-3 rounded-xl bg-primary text-primary-foreground text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-1.5 glow-primary font-label hover:scale-[1.02] transition-all"
+                >
+                  <span>{"View Venue"}</span>
+                </button>
+              )}
               {evt.ticket_url && (
                 <a
                   href={evt.ticket_url}

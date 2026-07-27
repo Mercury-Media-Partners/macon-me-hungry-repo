@@ -8,22 +8,37 @@ import { VenueQuickDrawer } from '../components/directory/VenueQuickDrawer';
 import { ItineraryBar } from '../components/directory/ItineraryBar';
 
 const businesses = (await getCollection('businesses')).filter(b => !b.data.is_demo);
+const standaloneEvents = await getCollection('events');
 
-const eventsList = businesses.flatMap(b => {
-  if (!b.data.events) return [];
-  return b.data.events.map((evt, idx) => ({
-    id: `${b.id}-evt-${idx}`,
-    venueId: b.id,
-    venueTitle: b.data.title,
-    venueNeighborhood: b.data.neighborhood,
-    venueCategory: b.data.category,
-    name: evt.name,
-    day: evt.day,
-    time: evt.time,
-    description: evt.description,
-    ticket_url: evt.ticket_url,
-  }));
-});
+const eventsList = [
+  ...businesses.flatMap(b => {
+    if (!b.data.events) return [];
+    return b.data.events.map((evt, idx) => ({
+      id: `${b.id}-evt-${idx}`,
+      venueId: b.id,
+      venueTitle: b.data.title,
+      venueNeighborhood: b.data.neighborhood,
+      venueCategory: b.data.category,
+      name: evt.name,
+      day: evt.day,
+      time: evt.time,
+      description: evt.description,
+      ticket_url: evt.ticket_url,
+    }));
+  }),
+  ...standaloneEvents.map(evt => ({
+    id: `standalone-${evt.id}`,
+    venueId: 'standalone',
+    venueTitle: evt.data.venueTitle,
+    venueNeighborhood: evt.data.venueNeighborhood,
+    venueCategory: evt.data.venueCategory,
+    name: evt.data.name,
+    day: evt.data.day,
+    time: evt.data.time,
+    description: evt.data.description,
+    ticket_url: evt.data.ticket_url,
+  }))
+];
 
 const combinedItems = businesses.map(b => ({ ...b, type: 'business' as const }));
 

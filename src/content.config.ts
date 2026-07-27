@@ -294,11 +294,26 @@ const jobs = defineCollection({
   })
 });
 
+const events = defineCollection({
+  loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: "./src/content/events" }),
+  schema: z.object({
+    name: z.string(),
+    venueTitle: z.string(),
+    venueNeighborhood: z.string(),
+    venueCategory: z.string(),
+    day: z.string(),
+    time: z.string(),
+    description: z.string().optional(),
+    ticket_url: z.string().optional(),
+  })
+});
+
 export const collections = {
   'businesses': businesses,
   'landing_pages': landingPages,
   'blog': blog,
   'attractions': attractions,
-  'jobs': jobs
+  'jobs': jobs,
+  'events': events
 };
 
