@@ -12,7 +12,7 @@ const base = "";
 
 // Active-link detection (runs at SSR/SSG time — zero JS cost)
 const path = Astro.url.pathname;
-const isDirectoryActive = path === "/" || path === "/es" || path === "/es/";
+const isDirectoryActive = false; // It's an anchor link on the homepage, so we don't want it permanently highlighted when on /
 const isBlogActive      = path.startsWith("/blog") || path.startsWith("/es/blog");
 const isMapActive      = path.startsWith("/map") || path.startsWith("/es/map");
 const isJobsActive     = path.startsWith("/jobs") || path.startsWith("/es/jobs");
