@@ -72,7 +72,7 @@ export const WeatherBadge: React.FC<Props> = ({ lang = 'en' }) => {
   return (
     <div
       title={`${t.weatherMacon}: ${weatherText}`}
-      className="flex items-center gap-1.5 px-3 py-1 bg-muted/40 border border-border/60 rounded-full text-[10px] font-bold uppercase tracking-wider text-muted-foreground hover:text-foreground hover:border-primary/20 transition-all cursor-help relative group"
+      className="flex items-center gap-1.5 px-3 py-1 bg-muted/40 border border-border/60 rounded-full text-[10px] font-bold uppercase tracking-wider text-muted-foreground hover:text-foreground hover:border-accent/30 transition-all cursor-help relative group"
     >
       <span className="text-sm leading-none">{emoji}</span>
       <span>{temp !== null ? `${Math.round(temp)}°${'F'}` : '--'}</span>

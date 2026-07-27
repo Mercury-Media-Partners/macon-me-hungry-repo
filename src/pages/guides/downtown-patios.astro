@@ -27,7 +27,7 @@ const patioSpots = allBusinesses.filter(b =>
 
       <div class="grid gap-6">
         {patioSpots.map(spot => (
-          <a href={`/businesses/${spot.id}`} class="group block border border-border/40 bg-card rounded-2xl overflow-hidden hover:border-primary/50 transition-colors">
+          <a href={`/businesses/${spot.id}`} class="group block border border-border/40 bg-card rounded-2xl overflow-hidden hover:border-accent/30 transition-colors">
             <div class="flex flex-col md:flex-row">
               {spot.data.heroImage && (
                 <div class="md:w-1/3 aspect-video md:aspect-auto overflow-hidden relative">
@@ -39,7 +39,7 @@ const patioSpots = allBusinesses.filter(b =>
                   <span class="text-xs font-bold text-primary uppercase tracking-widest">{spot.data.category}</span>
                   <span class="text-sm font-semibold flex items-center gap-1 text-muted-foreground"><span class="text-yellow-400">★</span> {spot.data.rating}</span>
                 </div>
-                <h3 class="text-2xl font-display mb-2 group-hover:text-primary transition-colors">{spot.data.title}</h3>
+                <h3 class="text-2xl font-display mb-2 group-hover:text-accent transition-colors">{spot.data.title}</h3>
                 <p class="text-muted-foreground mb-4 line-clamp-2">{spot.data.tagline}</p>
                 <div class="text-sm font-medium text-foreground/80 flex gap-4">
                   <span>📍 {spot.data.neighborhood}</span>

@@ -106,7 +106,7 @@ export const OwnerOnboarding = ({ content, lang = "en" }: Props) => {
           <h2 className="font-display text-5xl md:text-7xl text-foreground leading-none mb-6 uppercase">
             {content.title_line_1}
             <br />
-            <span className="text-gradient-primary">{content.title_line_2}</span>
+            <span className="text-gradient-accent">{content.title_line_2}</span>
           </h2>
 
         </div>

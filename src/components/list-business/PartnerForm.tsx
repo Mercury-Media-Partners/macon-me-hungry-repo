@@ -69,7 +69,7 @@ export const PartnerForm = ({ content }: Props) => {
   };
 
   const inputClass =
-    "w-full px-4 py-3 rounded-xl border border-border bg-muted/30 text-foreground text-sm font-body placeholder:text-muted-foreground/50 focus:outline-none focus:border-primary/50 focus:bg-muted/50 transition-all duration-200";
+    "w-full px-4 py-3 rounded-xl border border-border bg-muted/30 text-foreground text-sm font-body placeholder:text-muted-foreground/50 focus:outline-none focus:border-accent/30 focus:bg-muted/50 transition-all duration-200";
 
   if (status === "success") {
     return (

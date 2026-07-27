@@ -63,7 +63,7 @@ export const HeroSection = ({ content }: Props) => {
           {content.title_lines.map((line, idx) => (
             <span key={idx} className="text-foreground block">{line}</span>
           ))}
-          <span className="text-gradient-primary block mt-1">{content.title_highlight}</span>
+          <span className="text-gradient-accent block mt-1">{content.title_highlight}</span>
         </h1>
 
         {/* Subhead */}

@@ -21,7 +21,7 @@ export const HowItWorks = ({ content }: Props) => {
         <div className="text-center mb-16">
           <p className="section-label mb-3">{content.title}</p>
           <h2 className="font-display text-4xl md:text-6xl uppercase text-foreground">
-            LIVE IN <span className="text-gradient-primary">24 HOURS</span>
+            LIVE IN <span className="text-gradient-accent">24 HOURS</span>
           </h2>
         </div>
 
@@ -33,10 +33,10 @@ export const HowItWorks = ({ content }: Props) => {
             <div key={i} className="flex flex-col items-center text-center relative group">
               {/* Step bubble */}
               <div className="relative mb-6">
-                <div className="w-20 h-20 rounded-full border border-border bg-card flex items-center justify-center text-3xl transition-all duration-300 group-hover:border-primary/50 group-hover:scale-110">
+                <div className="w-20 h-20 rounded-full border border-border bg-card flex items-center justify-center text-3xl transition-all duration-300 group-hover:border-accent/30 group-hover:scale-110">
                   {item.icon}
                 </div>
-                <span className="absolute -top-1 -right-1 w-6 h-6 rounded-full bg-primary/20 border border-primary/30 flex items-center justify-center text-[10px] font-label font-bold text-primary">
+                <span className="absolute -top-1 -right-1 w-6 h-6 rounded-full bg-primary/20 border border-accent/30 flex items-center justify-center text-[10px] font-label font-bold text-primary">
                   {item.step}
                 </span>
               </div>

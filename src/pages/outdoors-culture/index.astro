@@ -37,7 +37,7 @@ const jsonLd = {
     <div class="container max-w-6xl mx-auto text-center mb-16 relative z-10">
       <span class="section-label mb-4 block">EXPLORE MACON</span>
       <h1 class="font-display text-5xl md:text-7xl text-foreground leading-none tracking-tight uppercase mb-4">
-        OUTDOORS & <span class="text-gradient-primary">CULTURE</span>
+        OUTDOORS & <span class="text-gradient-accent">CULTURE</span>
       </h1>
       <p class="text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto leading-relaxed font-body">
         From lush historic parks to world-class museums and historical landmarks. Find your next outdoor escape or cultural destination.
@@ -51,7 +51,7 @@ const jsonLd = {
           const data = att.data;
           const detailUrl = `/outdoors-culture/${att.id}`;
           return (
-            <div class="bar-card flex flex-col h-full group hover:border-primary/50 transition-all duration-300">
+            <div class="bar-card flex flex-col h-full group hover:border-accent/30 transition-all duration-300">
               {/* Card Image */}
               {data.heroImage && (
                 <div class="relative h-48 overflow-hidden rounded-t-2xl">
@@ -74,7 +74,7 @@ const jsonLd = {
               {/* Card Content */}
               <div class="p-6 flex flex-col flex-grow">
                 <div class="flex items-start justify-between mb-3">
-                  <h3 class="font-display text-2xl text-foreground group-hover:text-primary transition-colors uppercase leading-none">
+                  <h3 class="font-display text-2xl text-foreground group-hover:text-accent transition-colors uppercase leading-none">
                     {data.title}
                   </h3>
                   <div class="flex items-center gap-1 text-secondary text-sm font-semibold shrink-0 ml-2">
@@ -90,11 +90,11 @@ const jsonLd = {
                 {/* Quick Stats Grid */}
                 <div class="border-t border-border/50 pt-4 space-y-3 text-xs text-muted-foreground font-body">
                   <div class="flex items-center gap-2">
-                    <MapPin size={13} className="text-primary shrink-0" />
+                    <MapPin size={13} className="text-accent shrink-0" />
                     <span class="truncate">{data.neighborhood} · {data.address.split(',')[0]}</span>
                   </div>
                   <div class="flex items-center gap-2">
-                    <Clock size={13} className="text-primary shrink-0" />
+                    <Clock size={13} className="text-accent shrink-0" />
                     <span class="truncate">{data.hours}</span>
                   </div>
                   <div class="flex items-center justify-between border-t border-border/20 pt-3 text-[11px]">
@@ -114,7 +114,7 @@ const jsonLd = {
                 <div class="mt-6">
                   <a 
                     href={detailUrl}
-                    class="block w-full py-3 text-center bg-muted text-foreground border border-border group-hover:bg-primary group-hover:text-primary-foreground group-hover:border-primary rounded-xl font-label text-sm uppercase tracking-wider transition-all duration-300"
+                    class="block w-full py-3 text-center bg-muted text-foreground border border-border group-hover:bg-primary group-hover:text-accent-foreground group-hover:border-primary rounded-xl font-label text-sm uppercase tracking-wider transition-all duration-300"
                   >
                     View Details
                   </a>

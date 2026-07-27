@@ -517,7 +517,7 @@ export const DirectoryFinder = ({ initialBusinesses, lang: initialLang = "en" }:
                     }
                   }}
                   className={`block p-5 transition-all group ${
-                    biz.data.tier === "headliner" ? "bar-card-headliner" : biz.data.tier === "professional" ? "bar-card-professional" : "bar-card hover:border-primary/50"
+                    biz.data.tier === "headliner" ? "bar-card-headliner" : biz.data.tier === "professional" ? "bar-card-professional" : "bar-card hover:border-accent/30"
                   }`}
                 >
                   {/* Partner / Spotlight badge */}
@@ -536,7 +536,7 @@ export const DirectoryFinder = ({ initialBusinesses, lang: initialLang = "en" }:
                   )}
 
                   <div className="flex items-start justify-between mb-3">
-                    <span className="inline-block px-2.5 py-1 rounded-md text-[11px] font-semibold uppercase tracking-wider bg-primary/15 text-primary border border-primary/30">
+                    <span className="inline-block px-2.5 py-1 rounded-md text-[11px] font-semibold uppercase tracking-wider bg-accent/20 text-foreground border border-accent/30">
                       {getCategoryLabel(biz.data.category, lang)}
                     </span>
                     <div className="flex items-center gap-1 text-secondary text-sm font-semibold">
@@ -545,7 +545,7 @@ export const DirectoryFinder = ({ initialBusinesses, lang: initialLang = "en" }:
                     </div>
                   </div>
 
-                  <h3 className="font-display text-2xl text-foreground mb-1 uppercase group-hover:text-primary transition-colors">
+                  <h3 className="font-display text-2xl text-foreground mb-1 uppercase group-hover:text-accent transition-colors">
                     {biz.data.title}
                   </h3>
                   <p className="text-sm text-muted-foreground mb-4 leading-relaxed italic line-clamp-2">
@@ -558,7 +558,7 @@ export const DirectoryFinder = ({ initialBusinesses, lang: initialLang = "en" }:
                       <div className="border-t border-border pt-4 space-y-2 text-xs text-muted-foreground">
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-1.5 min-w-0">
-                            <MapPin size={12} className="text-primary shrink-0" />
+                            <MapPin size={12} className="text-accent shrink-0" />
                             <span className="truncate">{biz.data.neighborhood}</span>
                           </div>
                           <div className="flex items-center gap-1.5 shrink-0">

@@ -182,13 +182,13 @@ const parsedHours = parseHours(hours);
 <aside class="space-y-6">
   <div class="bg-card/50 backdrop-blur-xl border border-border rounded-lg p-6 shadow-deep">
     <h3 class="font-display text-2xl mb-6 flex items-center gap-2">
-      <Zap class="text-primary" size={20} />
+      <Zap class="text-accent" size={20} />
       {"At a Glance"}
     </h3>
 
     <div class="space-y-5">
       <div class="flex gap-4">
-        <MapPin class="text-primary shrink-0 mt-0.5" size={18} />
+        <MapPin class="text-accent shrink-0 mt-0.5" size={18} />
         <div>
           <p class="text-xs text-muted-foreground uppercase tracking-wider mb-1">{"Address"}</p>
           <p class="text-sm font-medium">{address}</p>
@@ -197,7 +197,7 @@ const parsedHours = parseHours(hours);
 
       {transit_station && (
         <div class="flex gap-4 border-t border-border/20 pt-4">
-          <span class="text-lg shrink-0 mt-0.5 text-primary">🚆</span>
+          <span class="text-lg shrink-0 mt-0.5 text-accent">🚆</span>
           <div>
             <p class="text-xs text-muted-foreground uppercase tracking-wider mb-1">{"MARTA Transit"}</p>
             <p class="text-sm font-medium">
@@ -216,7 +216,7 @@ const parsedHours = parseHours(hours);
       )}
 
       <div class="flex gap-4">
-        <Clock class="text-primary shrink-0 mt-0.5" size={18} />
+        <Clock class="text-accent shrink-0 mt-0.5" size={18} />
         <div class="flex-1 min-w-0">
           <div class="flex items-center justify-between mb-2">
             <p class="text-xs text-muted-foreground uppercase tracking-wider">{"Hours"}</p>
@@ -238,7 +238,7 @@ const parsedHours = parseHours(hours);
 
       {phone && (
         <div class="flex gap-4">
-          <Phone class="text-primary shrink-0 mt-0.5" size={18} />
+          <Phone class="text-accent shrink-0 mt-0.5" size={18} />
           <div>
             <p class="text-xs text-muted-foreground uppercase tracking-wider mb-1">{"Phone"}</p>
             <a href={`tel:${phone}`} class="text-sm font-medium hover:text-primary transition-colors">{phone}</a>
@@ -249,7 +249,7 @@ const parsedHours = parseHours(hours);
       {/* Website */}
       {website && (
         <div class="flex gap-4">
-          <Globe class="text-primary shrink-0 mt-0.5" size={18} />
+          <Globe class="text-accent shrink-0 mt-0.5" size={18} />
           <div>
             <p class="text-xs text-muted-foreground uppercase tracking-wider mb-1">{"Website"}</p>
             <div class={isPaid ? "" : "locked-upsell-wrapper is-locked"} data-locked-tier="promoter">
@@ -278,7 +278,7 @@ const parsedHours = parseHours(hours);
                 href={`https://instagram.com/${socials.instagram.replace('@', '')}`}
                 target="_blank"
                 rel="noopener"
-                class="flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-muted border border-border text-xs text-muted-foreground hover:text-primary hover:border-primary/50 transition-all"
+                class="flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-muted border border-border text-xs text-muted-foreground hover:text-primary hover:border-accent/30 transition-all"
               >
                 {/* Instagram icon SVG */}
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -294,7 +294,7 @@ const parsedHours = parseHours(hours);
                 href={`https://facebook.com/${socials.facebook}`}
                 target="_blank"
                 rel="noopener"
-                class="flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-muted border border-border text-xs text-muted-foreground hover:text-primary hover:border-primary/50 transition-all"
+                class="flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-muted border border-border text-xs text-muted-foreground hover:text-primary hover:border-accent/30 transition-all"
               >
                 {/* Facebook icon SVG */}
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
@@ -326,14 +326,14 @@ const parsedHours = parseHours(hours);
     <div class="mt-6 bg-card/50 backdrop-blur-xl border border-border rounded-lg p-6 shadow-deep relative">
       <div class={isPaid ? "" : "locked-upsell-wrapper is-locked"} data-locked-tier="promoter">
         <h3 class="font-display text-xl mb-4 flex items-center gap-2">
-          <Briefcase class="text-primary" size={18} />
+          <Briefcase class="text-accent" size={18} />
           {t.jobsCurrentOpenings}
         </h3>
         <div class="space-y-3">
           {activeJobs.map(job => (
-            <a href={job.data.apply_url} target="_blank" rel="noopener noreferrer" class="block p-3 rounded-lg border border-border/50 bg-muted/30 hover:bg-muted hover:border-primary/50 transition-all group">
+            <a href={job.data.apply_url} target="_blank" rel="noopener noreferrer" class="block p-3 rounded-lg border border-border/50 bg-muted/30 hover:bg-muted hover:border-accent/30 transition-all group">
               <div class="flex justify-between items-start mb-1">
-                <h4 class="font-bold text-sm text-foreground group-hover:text-primary transition-colors">{job.data.title}</h4>
+                <h4 class="font-bold text-sm text-foreground group-hover:text-accent transition-colors">{job.data.title}</h4>
                 <span class="text-[9px] uppercase tracking-wider bg-background px-1.5 py-0.5 rounded text-muted-foreground border border-border/50">
                   {job.data.job_type === 'full-time' ? t.jobsFullTime : job.data.job_type === 'part-time' ? t.jobsPartTime : job.data.job_type === 'freelance' ? t.jobsFreelance : t.jobsContract}
                 </span>

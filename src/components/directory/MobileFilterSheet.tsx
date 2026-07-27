@@ -58,10 +58,10 @@ export const MobileFilterSheet = ({
       {/* Mobile Filter Trigger Button */}
       <button
         onClick={() => setIsOpen(true)}
-        className="w-full py-3 px-4 rounded-xl bg-muted border border-border text-foreground font-label text-xs font-bold uppercase tracking-wider flex items-center justify-between shadow-sm hover:border-primary/50 transition-all"
+        className="w-full py-3 px-4 rounded-xl bg-muted border border-border text-foreground font-label text-xs font-bold uppercase tracking-wider flex items-center justify-between shadow-sm hover:border-accent/30 transition-all"
       >
         <div className="flex items-center gap-2">
-          <SlidersHorizontal size={16} className="text-primary" />
+          <SlidersHorizontal size={16} className="text-accent" />
           <span>{"Filter Options"}</span>
         </div>
         {activeFiltersCount > 0 && (
@@ -84,7 +84,7 @@ export const MobileFilterSheet = ({
             {/* Header */}
             <div className="flex items-center justify-between pb-4 border-b border-border mb-6">
               <div className="flex items-center gap-2">
-                <SlidersHorizontal size={18} className="text-primary" />
+                <SlidersHorizontal size={18} className="text-accent" />
                 <h3 className="font-display text-xl uppercase text-foreground">
                   {"Search Filters"}
                 </h3>

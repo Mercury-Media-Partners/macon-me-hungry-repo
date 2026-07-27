@@ -14,9 +14,9 @@ const cards = [
     href: "/#bar-finder?filter=patio",
     iconName: "dine",
     badge: "Patios & Cafes",
-    color: "from-primary/10 to-accent/5 hover:border-primary/40 border-primary/10",
+    color: "from-primary/10 to-accent/5 hover:border-accent/30 border-accent/30",
     glowColor: "glow-border",
-    badgeColor: "text-primary bg-primary/10 border-primary/20",
+    badgeColor: "text-primary bg-primary/10 border-accent/30",
   },
   {
     title: "Nightlife",
@@ -71,7 +71,7 @@ const cards = [
         >
           <div>
             <div class="flex items-center justify-between mb-6">
-              <div class="w-10 h-10 rounded-xl bg-card border border-border flex items-center justify-center text-foreground group-hover:text-primary transition-colors">
+              <div class="w-10 h-10 rounded-xl bg-card border border-border flex items-center justify-center text-foreground group-hover:text-accent transition-colors">
                 {card.iconName === "dine" && <Utensils size={20} className="group-hover:scale-110 transition-transform duration-200" />}
                 {card.iconName === "dance" && <Flame size={20} className="group-hover:scale-110 transition-transform duration-200" />}
                 {card.iconName === "discover" && <Compass size={20} className="group-hover:scale-110 transition-transform duration-200" />}
@@ -82,7 +82,7 @@ const cards = [
               </span>
             </div>
 
-            <h3 class="font-display text-xl text-foreground mb-2 group-hover:text-primary transition-colors uppercase">
+            <h3 class="font-display text-xl text-foreground mb-2 group-hover:text-accent transition-colors uppercase">
               {card.title}
             </h3>
             
@@ -91,7 +91,7 @@ const cards = [
             </p>
           </div>
 
-          <div class="mt-6 flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-muted-foreground group-hover:text-primary transition-colors">
+          <div class="mt-6 flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-muted-foreground group-hover:text-accent transition-colors">
             <span>{"Explore"}</span>
             <span class="transform group-hover:translate-x-1 transition-transform">→</span>
           </div>

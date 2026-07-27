@@ -36,7 +36,7 @@ export const EventsRadar = ({ events }: EventsRadarProps) => {
       {/* Day Filter Pills */}
       <div className="flex flex-wrap items-center gap-2 pb-4 border-b border-border/50">
         <span className="text-xs font-label text-muted-foreground uppercase font-bold pr-2 flex items-center gap-1">
-          <Calendar size={14} className="text-primary" />
+          <Calendar size={14} className="text-accent" />
           {"Filter by Day:"}
         </span>
         <button
@@ -75,12 +75,12 @@ export const EventsRadar = ({ events }: EventsRadarProps) => {
         {filteredEvents.map((evt) => (
           <div
             key={evt.id}
-            className="p-6 rounded-2xl border border-border bg-gradient-to-br from-card via-card to-muted/30 shadow-md hover:border-primary/50 transition-all group flex flex-col justify-between"
+            className="p-6 rounded-2xl border border-border bg-gradient-to-br from-card via-card to-muted/30 shadow-md hover:border-accent/30 transition-all group flex flex-col justify-between"
           >
             <div>
               {/* Event Badge */}
               <div className="flex items-center justify-between mb-3">
-                <span className="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-primary/15 text-primary border border-primary/30 flex items-center gap-1">
+                <span className="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-accent/20 text-foreground border border-accent/30 flex items-center gap-1">
                   <Sparkles size={10} />
                   {evt.venueCategory}
                 </span>
@@ -91,14 +91,14 @@ export const EventsRadar = ({ events }: EventsRadarProps) => {
               </div>
 
               {/* Event Name */}
-              <h3 className="font-display text-2xl text-foreground uppercase tracking-tight mb-2 group-hover:text-primary transition-colors">
+              <h3 className="font-display text-2xl text-foreground uppercase tracking-tight mb-2 group-hover:text-accent transition-colors">
                 {evt.name}
               </h3>
 
               {/* Venue & Time */}
               <div className="space-y-1.5 mb-4 text-xs text-muted-foreground font-body">
                 <p className="font-semibold text-foreground flex items-center gap-1.5">
-                  <MapPin size={12} className="text-primary" />
+                  <MapPin size={12} className="text-accent" />
                   <span>{evt.venueTitle}</span>
                   <span className="text-muted-foreground/60">• {evt.venueNeighborhood}</span>
                 </p>

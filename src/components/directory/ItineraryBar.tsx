@@ -49,7 +49,7 @@ export const ItineraryBar = ({ businesses }: ItineraryBarProps) => {
     <>
       {/* Floating Action Pill */}
       <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-40 animate-bounce-short">
-        <div className="flex items-center gap-2 p-1.5 pl-4 pr-2 bg-card/95 border border-primary/40 rounded-full shadow-2xl backdrop-blur-md glow-primary">
+        <div className="flex items-center gap-2 p-1.5 pl-4 pr-2 bg-card/95 border border-accent/30 rounded-full shadow-2xl backdrop-blur-md glow-primary">
           <button
             onClick={() => setIsOpen(true)}
             className="flex items-center gap-2.5 text-xs font-bold uppercase tracking-wider text-foreground hover:text-primary transition-colors font-label"
@@ -83,7 +83,7 @@ export const ItineraryBar = ({ businesses }: ItineraryBarProps) => {
             {/* Header */}
             <div className="flex items-center justify-between pb-4 border-b border-border mb-4">
               <div className="flex items-center gap-2">
-                <Sparkles size={18} className="text-primary" />
+                <Sparkles size={18} className="text-accent" />
                 <h3 className="font-display text-xl uppercase text-foreground">
                   {"Your Night Out Plan"}
                 </h3>
@@ -104,7 +104,7 @@ export const ItineraryBar = ({ businesses }: ItineraryBarProps) => {
                   className="flex items-center justify-between p-3 rounded-xl bg-muted/40 border border-border/60"
                 >
                   <div className="flex items-center gap-3 min-w-0">
-                    <span className="w-6 h-6 rounded-full bg-primary/20 text-primary font-bold text-xs flex items-center justify-center shrink-0">
+                    <span className="w-6 h-6 rounded-full bg-accent/20 text-foreground font-bold text-xs flex items-center justify-center shrink-0">
                       {idx + 1}
                     </span>
                     <div className="min-w-0">
@@ -112,7 +112,7 @@ export const ItineraryBar = ({ businesses }: ItineraryBarProps) => {
                         {biz.data.title}
                       </p>
                       <p className="text-[11px] text-muted-foreground flex items-center gap-1">
-                        <MapPin size={10} className="text-primary" />
+                        <MapPin size={10} className="text-accent" />
                         <span>{biz.data.neighborhood}</span>
                       </p>
                     </div>

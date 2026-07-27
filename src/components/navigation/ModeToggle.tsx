@@ -16,7 +16,7 @@ export const ModeToggle = () => {
       role="switch"
       aria-checked={isNight}
       aria-label="Toggle Day/Night Mode"
-      className="relative inline-flex h-7 w-12 shrink-0 items-center rounded-full border border-border bg-muted/50 p-0.5 transition-all duration-300 hover:border-primary/30 cursor-pointer select-none"
+      className="relative inline-flex h-7 w-12 shrink-0 items-center rounded-full border border-border bg-muted/50 p-0.5 transition-all duration-300 hover:border-accent/30 cursor-pointer select-none"
     >
       <span
         className={`flex h-5.5 w-5.5 items-center justify-center rounded-full bg-background shadow-md transform transition-all duration-300 ${

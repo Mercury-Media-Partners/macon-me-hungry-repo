@@ -38,7 +38,7 @@ export const FinalCTA = ({ content }: Props) => {
         </p>
 
         <h2 className="font-display text-6xl md:text-8xl uppercase leading-none mb-6">
-          <span className="text-gradient-primary block">{content.title}</span>
+          <span className="text-gradient-accent block">{content.title}</span>
         </h2>
 
         <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed mb-10">

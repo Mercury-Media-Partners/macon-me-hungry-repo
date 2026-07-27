@@ -83,7 +83,7 @@ export const FAQSection = ({ content }: Props) => {
                       key={i}
                       id={slugify(item.q)}
                       className={`rounded-xl border transition-all duration-200 overflow-hidden scroll-mt-24 ${
-                        open === i ? "border-primary/30 bg-card/60" : "border-border bg-card/30 hover:border-border/80"
+                        open === i ? "border-accent/30 bg-card/60" : "border-border bg-card/30 hover:border-border/80"
                       }`}
                     >
                       <button

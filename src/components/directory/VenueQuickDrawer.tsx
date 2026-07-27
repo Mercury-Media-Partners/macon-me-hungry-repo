@@ -95,7 +95,7 @@ export const VenueQuickDrawer = ({ businesses }: VenueQuickDrawerProps) => {
         {/* Header Bar */}
         <div className="flex items-center justify-between pb-4 border-b border-border">
           <div className="flex items-center gap-2">
-            <span className="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-primary/15 text-primary border border-primary/30">
+            <span className="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-accent/20 text-foreground border border-accent/30">
               {getCategoryLabel(venue.data.category, lang)}
             </span>
             <div className="flex items-center gap-1 text-secondary text-sm font-bold">
@@ -126,7 +126,7 @@ export const VenueQuickDrawer = ({ businesses }: VenueQuickDrawerProps) => {
         <div className="py-6 space-y-4 border-b border-border/50 text-sm">
           {/* Address */}
           <div className="flex items-start gap-3 text-muted-foreground">
-            <MapPin size={18} className="text-primary shrink-0 mt-0.5" />
+            <MapPin size={18} className="text-accent shrink-0 mt-0.5" />
             <div>
               <p className="font-semibold text-foreground">{venue.data.neighborhood}</p>
               <p className="text-xs">{venue.data.address}</p>
