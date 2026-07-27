@@ -25,15 +25,13 @@ interface LeafletMapContainerProps {
 }
 
 const hoodCoords: Record<string, [number, number]> = {
-  midtown: [33.7816, -84.3828],
-  "east macon": [33.7402, -84.3465],
-  buckhead: [33.8398, -84.3797],
-  downtown: [33.7573, -84.3963],
-  default: [33.7750, -84.3750],
+  downtown: [32.8365, -83.6280],
+  "mercer university": [32.8290, -83.6499],
+  default: [32.8407, -83.6324],
 };
 
 function getMarkerIcon(categoryType: string) {
-  let color = "#ec4899"; // pink (nightlife)
+  let color = "#ffc07d"; // primary (orange)
   if (categoryType === "lifestyle" || categoryType === "cafe") color = "#f59e0b"; // amber
   if (categoryType === "outdoors" || categoryType === "park") color = "#10b981"; // emerald
   if (categoryType === "wellness" || categoryType === "professional") color = "#14b8a6"; // teal
@@ -72,7 +70,7 @@ export const LeafletMapContainer = ({ items }: LeafletMapContainerProps) => {
       : "https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png";
 
     const map = L.map(containerRef.current, {
-      center: [33.7780, -84.3750],
+      center: [32.8407, -83.6324],
       zoom: 13,
       zoomControl: true,
       scrollWheelZoom: false,
@@ -120,7 +118,7 @@ export const LeafletMapContainer = ({ items }: LeafletMapContainerProps) => {
 
       const popupHtml = `
         <div style="font-family: inherit; min-width: 180px;">
-          <span style="font-size: 10px; font-weight: 700; text-transform: uppercase; color: #ec4899; tracking: 0.05em;">
+          <span style="font-size: 10px; font-weight: 700; text-transform: uppercase; color: #ffc07d; tracking: 0.05em;">
             ${item.data.category}
           </span>
           <h4 style="font-weight: 700; font-size: 15px; margin: 2px 0 4px; text-transform: uppercase; color: #ffffff;">
@@ -129,12 +127,12 @@ export const LeafletMapContainer = ({ items }: LeafletMapContainerProps) => {
           <p style="font-size: 11px; color: #a1a1aa; margin-bottom: 6px;">📍 ${item.data.neighborhood}</p>
           <div style="margin-bottom: 8px;">
             <span style="font-size: 10px; font-weight: 700; text-transform: uppercase; padding: 2px 6px; border-radius: 4px; background: ${
-              openStatus.status === "open" ? "rgba(16,185,129,0.2)" : "rgba(244,63,94,0.2)"
-            }; color: ${openStatus.status === "open" ? "#10b981" : "#f43f5e"};">
+              openStatus.status === "open" ? "rgba(16,185,129,0.2)" : "rgba(220,38,38,0.2)"
+            }; color: ${openStatus.status === "open" ? "#10b981" : "#dc2626"};">
               ${openStatus.labelEn}
             </span>
           </div>
-          <button id="drawer-btn-${item.id}" style="width: 100%; padding: 6px 10px; background: #ec4899; color: #ffffff; border: none; border-radius: 6px; font-weight: 700; font-size: 11px; text-transform: uppercase; cursor: pointer;">
+          <button id="drawer-btn-${item.id}" style="width: 100%; padding: 6px 10px; background: #ffc07d; color: #2b3210; border: none; border-radius: 6px; font-weight: 700; font-size: 11px; text-transform: uppercase; cursor: pointer;">
             ${"Quick View"} →
           </button>
         </div>
@@ -151,7 +149,7 @@ export const LeafletMapContainer = ({ items }: LeafletMapContainerProps) => {
 
       markersRef.current[item.id] = marker;
     });
-  }, [items, isEs]);
+  }, [items]);
 
   // Sync active venue selection (fly to venue when activeSlug changes)
   useEffect(() => {

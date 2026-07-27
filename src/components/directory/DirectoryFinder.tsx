@@ -562,8 +562,8 @@ export const DirectoryFinder = ({ initialBusinesses, lang: initialLang = "en" }:
                             <span className="truncate">{biz.data.neighborhood}</span>
                           </div>
                           <div className="flex items-center gap-1.5 shrink-0">
-                            <Clock size={12} className={`${openStatus.status === 'open' ? 'text-emerald-500' : openStatus.status === 'closed' ? 'text-rose-500' : 'text-muted-foreground'} shrink-0`} />
-                            <span className={`font-semibold ${openStatus.status === 'open' ? 'text-emerald-500' : openStatus.status === 'closed' ? 'text-rose-500' : 'text-muted-foreground'}`}>
+                            <Clock size={12} className={`${openStatus.status === 'open' ? 'text-emerald-500' : openStatus.status === 'closed' ? 'text-destructive' : 'text-muted-foreground'} shrink-0`} />
+                            <span className={`font-semibold ${openStatus.status === 'open' ? 'text-emerald-500' : openStatus.status === 'closed' ? 'text-destructive' : 'text-muted-foreground'}`}>
                               {lang === 'es' ? openStatus.labelEs : openStatus.labelEn}
                             </span>
                           </div>
