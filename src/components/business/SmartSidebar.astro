@@ -180,7 +180,7 @@ const parsedHours = parseHours(hours);
 ---
 
 <aside class="space-y-6">
-  <div class="bg-card/50 backdrop-blur-xl border border-border rounded-2xl p-6 shadow-deep">
+  <div class="bg-card/50 backdrop-blur-xl border border-border rounded-lg p-6 shadow-deep">
     <h3 class="font-display text-2xl mb-6 flex items-center gap-2">
       <Zap class="text-primary" size={20} />
       {"At a Glance"}
@@ -278,7 +278,7 @@ const parsedHours = parseHours(hours);
                 href={`https://instagram.com/${socials.instagram.replace('@', '')}`}
                 target="_blank"
                 rel="noopener"
-                class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-muted border border-border text-xs text-muted-foreground hover:text-primary hover:border-primary/50 transition-all"
+                class="flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-muted border border-border text-xs text-muted-foreground hover:text-primary hover:border-primary/50 transition-all"
               >
                 {/* Instagram icon SVG */}
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -294,7 +294,7 @@ const parsedHours = parseHours(hours);
                 href={`https://facebook.com/${socials.facebook}`}
                 target="_blank"
                 rel="noopener"
-                class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-muted border border-border text-xs text-muted-foreground hover:text-primary hover:border-primary/50 transition-all"
+                class="flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-muted border border-border text-xs text-muted-foreground hover:text-primary hover:border-primary/50 transition-all"
               >
                 {/* Facebook icon SVG */}
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
@@ -323,7 +323,7 @@ const parsedHours = parseHours(hours);
 
   {/* Jobs Section */}
   {activeJobs.length > 0 && (
-    <div class="mt-6 bg-card/50 backdrop-blur-xl border border-border rounded-2xl p-6 shadow-deep relative">
+    <div class="mt-6 bg-card/50 backdrop-blur-xl border border-border rounded-lg p-6 shadow-deep relative">
       <div class={isPaid ? "" : "locked-upsell-wrapper is-locked"} data-locked-tier="promoter">
         <h3 class="font-display text-xl mb-4 flex items-center gap-2">
           <Briefcase class="text-primary" size={18} />

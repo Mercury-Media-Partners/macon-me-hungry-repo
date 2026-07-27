@@ -53,7 +53,7 @@
 
   --radius-lg: 1rem;
 
-  --shadow-deep: 0 10px 30px -10px rgba(5, 52, 93, 0.15);
+  --shadow-deep: 8px 8px 0px rgba(5, 52, 93, 0.15);
 
   --shadow-glow-primary: 0 4px 15px rgba(5, 52, 93, 0.15);
   --shadow-glow-gold: 0 0 30px color-mix(in srgb, var(--color-secondary), transparent 65%);
@@ -136,16 +136,16 @@
   /* ── Standard Card ── */
   .bar-card {
     background: linear-gradient(145deg, var(--color-card), var(--color-muted));
-    @apply rounded-3xl border border-border overflow-hidden transition-all duration-300 shadow-xl shadow-foreground/10;
+    @apply rounded-lg border border-border overflow-hidden transition-all duration-300 shadow-[4px_4px_0px_rgba(5,52,93,0.1)];
   }
   .bar-card:hover {
-    @apply border-primary/50 scale-[1.01] shadow-2xl shadow-foreground/15;
+    @apply border-primary/50 scale-[1.01] shadow-[6px_6px_0px_rgba(5,52,93,0.15)];
   }
 
   /* ── Headliner Premium Card ── */
   .bar-card-headliner {
     background: linear-gradient(145deg, var(--color-card), var(--color-muted));
-    @apply rounded-3xl overflow-hidden transition-all duration-300 shadow-xl shadow-foreground/10;
+    @apply rounded-lg overflow-hidden transition-all duration-300 shadow-[4px_4px_0px_rgba(5,52,93,0.1)];
     border: 1px solid color-mix(in srgb, var(--color-primary), transparent 35%);
     box-shadow:
       0 0 0 1px color-mix(in srgb, var(--color-primary), transparent 88%),
@@ -164,7 +164,7 @@
   /* ── Professional Premium Card ── */
   .bar-card-professional {
     background: linear-gradient(145deg, var(--color-card), var(--color-muted));
-    @apply rounded-3xl overflow-hidden transition-all duration-300 shadow-xl shadow-foreground/10;
+    @apply rounded-lg overflow-hidden transition-all duration-300 shadow-[4px_4px_0px_rgba(5,52,93,0.1)];
     border: 1px solid color-mix(in srgb, var(--color-accent), transparent 50%);
     box-shadow:
       0 0 0 1px color-mix(in srgb, var(--color-accent), transparent 88%),
@@ -182,7 +182,7 @@
 
   /* ── Filter Chips ── */
   .filter-chip {
-    @apply font-label px-3 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider bg-muted border border-border text-foreground/80 transition-all duration-200 cursor-pointer;
+    @apply font-label px-3 py-1.5 rounded-md text-xs font-semibold uppercase tracking-wider bg-muted border border-border text-foreground/80 transition-all duration-200 cursor-pointer;
   }
   .filter-chip:hover {
     @apply border-primary/50 text-foreground;
@@ -193,7 +193,7 @@
 
   /* ── Skeleton Loading ── */
   .skeleton {
-    @apply rounded-2xl bg-muted;
+    @apply rounded-lg bg-muted;
     animation: skeleton-pulse 1.8s ease-in-out infinite;
   }
   @keyframes skeleton-pulse {
@@ -229,7 +229,7 @@
 
   /* ── Pricing Tier Cards ── */
   .tier-card {
-    @apply rounded-3xl border border-border p-8 flex flex-col gap-5 transition-all duration-300 shadow-lg shadow-foreground/5;
+    @apply rounded-lg border border-border p-8 flex flex-col gap-5 transition-all duration-300 shadow-deep;
     background: linear-gradient(145deg, var(--color-card), var(--color-muted));
   }
   .tier-card-promoter {

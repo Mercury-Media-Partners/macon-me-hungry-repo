@@ -494,7 +494,7 @@ export const DirectoryFinder = ({ initialBusinesses, lang: initialLang = "en" }:
                   setBilingualStaffOnly(false);
                   setOnlyOpenNow(false);
                 }}
-                className="px-5 py-2.5 rounded-full bg-primary text-primary-foreground text-xs font-bold uppercase tracking-wider font-label hover:scale-105 transition-transform cursor-pointer"
+                className="px-5 py-2.5 rounded-md bg-primary text-primary-foreground text-xs font-bold uppercase tracking-wider font-label hover:scale-105 transition-transform cursor-pointer"
               >
                 {"Reset All Filters"}
               </button>
@@ -536,7 +536,7 @@ export const DirectoryFinder = ({ initialBusinesses, lang: initialLang = "en" }:
                   )}
 
                   <div className="flex items-start justify-between mb-3">
-                    <span className="inline-block px-2.5 py-1 rounded-full text-[11px] font-semibold uppercase tracking-wider bg-primary/15 text-primary border border-primary/30">
+                    <span className="inline-block px-2.5 py-1 rounded-md text-[11px] font-semibold uppercase tracking-wider bg-primary/15 text-primary border border-primary/30">
                       {getCategoryLabel(biz.data.category, lang)}
                     </span>
                     <div className="flex items-center gap-1 text-secondary text-sm font-semibold">

@@ -16,7 +16,7 @@ const business = await getEntry('businesses', job.data.business_slug);
 const businessName = business?.data.title || "Business";
 ---
 
-<div class="bg-card/50 backdrop-blur-xl border border-border rounded-2xl p-6 hover:border-primary/50 transition-colors group flex flex-col justify-between h-full shadow-lg shadow-foreground/5 hover:shadow-xl hover:shadow-foreground/10">
+<div class="bg-card/50 backdrop-blur-xl border border-border rounded-lg p-6 hover:border-primary/50 transition-colors group flex flex-col justify-between h-full shadow-[4px_4px_0px_rgba(5,52,93,0.1)] hover:shadow-[6px_6px_0px_rgba(5,52,93,0.15)]">
   <div>
     <div class="flex justify-between items-start gap-4 mb-4">
       <div>
@@ -27,7 +27,7 @@ const businessName = business?.data.title || "Business";
           {businessName}
         </p>
       </div>
-      <span class="px-2.5 py-1 bg-muted text-muted-foreground text-[10px] font-bold rounded-full uppercase tracking-wider whitespace-nowrap">
+      <span class="px-2.5 py-1 bg-muted text-muted-foreground text-[10px] font-bold rounded-md uppercase tracking-wider whitespace-nowrap">
         {job.data.job_type === 'full-time' ? t.jobsFullTime : 
          job.data.job_type === 'part-time' ? t.jobsPartTime : 
          job.data.job_type === 'freelance' ? t.jobsFreelance : t.jobsContract}
@@ -43,7 +43,7 @@ const businessName = business?.data.title || "Business";
   </div>
 
   <a href={job.data.apply_url} target="_blank" rel="noopener noreferrer" 
-     class="block w-full py-3 mt-4 text-center bg-primary hover:bg-primary/90 text-primary-foreground text-sm font-bold uppercase tracking-wider rounded-full transition-colors">
+     class="block w-full py-3 mt-4 text-center bg-primary hover:bg-primary/90 text-primary-foreground text-sm font-bold uppercase tracking-wider rounded-md transition-colors">
     {t.jobsApplyNow}
   </a>
 </div>
