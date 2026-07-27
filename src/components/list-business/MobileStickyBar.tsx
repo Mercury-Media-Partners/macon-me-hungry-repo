@@ -16,7 +16,7 @@ export const MobileStickyBar = ({ content }: Props) => {
   const [dismissed, setDismissed] = useState(false);
 
   useEffect(() => {
-    if (sessionStorage.getItem("outatl-sticky-dismissed") === "true") {
+    if (sessionStorage.getItem("maconmehungry-sticky-dismissed") === "true") {
       setDismissed(true);
       return;
     }
@@ -31,7 +31,7 @@ export const MobileStickyBar = ({ content }: Props) => {
 
   const dismiss = () => {
     setDismissed(true);
-    sessionStorage.setItem("outatl-sticky-dismissed", "true");
+    sessionStorage.setItem("maconmehungry-sticky-dismissed", "true");
   };
 
   const scrollToForm = () => {

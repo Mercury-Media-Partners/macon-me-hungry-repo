@@ -215,7 +215,7 @@ const parsedHours = parseHours(hours, isEs);
               {transit_station} Station — {isEs ? transit_time_es : transit_time_en}
             </p>
             <a 
-              href={`https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(transit_station + ' Station, Atlanta, GA')}&destination=${encodeURIComponent(address)}&travelmode=walking`}
+              href={`https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(transit_station + ' Station, Macon, GA')}&destination=${encodeURIComponent(address)}&travelmode=walking`}
               target="_blank"
               rel="noopener"
               class="text-xs text-primary font-semibold hover:underline block mt-1"
@@ -433,11 +433,11 @@ const parsedHours = parseHours(hours, isEs);
     const parsedHours = JSON.parse(table.dataset.hours || '[]');
     const isEs = table.dataset.lang === 'es';
 
-    // Get current Atlanta time
-    const atlantaString = new Date().toLocaleString("en-US", { timeZone: "America/New_York" });
-    const atlantaDate = new Date(atlantaString);
-    const currDayIdx = (atlantaDate.getDay() + 6) % 7; // Mon=0, ..., Sun=6
-    const currHour = atlantaDate.getHours() + atlantaDate.getMinutes() / 60;
+    // Get current Macon time
+    const maconString = new Date().toLocaleString("en-US", { timeZone: "America/New_York" });
+    const maconDate = new Date(maconString);
+    const currDayIdx = (maconDate.getDay() + 6) % 7; // Mon=0, ..., Sun=6
+    const currHour = maconDate.getHours() + maconDate.getMinutes() / 60;
 
     // Highlight current day row (new div-based layout)
     const rows = table.querySelectorAll('[data-day-row]');

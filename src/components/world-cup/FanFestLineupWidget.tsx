@@ -125,7 +125,7 @@ export const FanFestLineupWidget: React.FC<Props> = ({ lang = 'en' }) => {
   const hasSidekicks = filteredArtists.some((a) => a.name === 'Soccer Sidekicks');
 
   // Match info
-  const matchInfo = lineupData.atlantaMatches[selectedDate as keyof typeof lineupData.atlantaMatches];
+  const matchInfo = lineupData.maconMatches[selectedDate as keyof typeof lineupData.maconMatches];
 
   // Helper date parsing for headers
   const displaySelectedDate = new Date(selectedDate + 'T12:00:00').toLocaleDateString(
@@ -246,7 +246,7 @@ export const FanFestLineupWidget: React.FC<Props> = ({ lang = 'en' }) => {
               {datesList.map((dateStr) => {
                 const dateObj = new Date(dateStr + 'T12:00:00');
                 const isSelected = dateStr === selectedDate;
-                const isMday = dateStr in lineupData.atlantaMatches;
+                const isMday = dateStr in lineupData.maconMatches;
                 const dayNum = dateObj.getDate();
                 const wday = dateObj.toLocaleDateString(lang === 'es' ? 'es-ES' : 'en-US', {
                   weekday: 'short'
@@ -312,11 +312,11 @@ export const FanFestLineupWidget: React.FC<Props> = ({ lang = 'en' }) => {
                   {displaySelectedDate}
                 </span>
 
-                {/* Atlanta Host Matchday Alert Banner */}
+                {/* Macon Host Matchday Alert Banner */}
                 {matchInfo && (
                   <div className="flex items-center gap-1.5 text-xs text-secondary font-bold uppercase tracking-widest bg-secondary/10 border border-secondary/20 px-3 py-1 rounded-full">
                     <Trophy size={13} className="fill-secondary/20" />
-                    <span>{t.atlantaMatchdayAlert}</span>
+                    <span>{t.maconMatchdayAlert}</span>
                   </div>
                 )}
               </div>
@@ -358,7 +358,7 @@ export const FanFestLineupWidget: React.FC<Props> = ({ lang = 'en' }) => {
 
                   <div className="mt-4 flex items-center gap-2 text-xs text-muted-foreground font-body">
                     <MapPin size={13} className="text-primary" />
-                    <span>FIFA Fan Fest Main Stage (Downtown Atlanta)</span>
+                    <span>FIFA Fan Fest Main Stage (Downtown Macon)</span>
                   </div>
                 </div>
               ))}

@@ -32,12 +32,12 @@ export const POST: APIRoute = async ({ request }) => {
     // });
     // ─────────────────────────────────────────────────────────────────
 
-    console.log(`[OutATL] New map subscriber: ${email} — ${new Date().toISOString()}`);
+    console.log(`[Macon Me Hungry] New map subscriber: ${email} — ${new Date().toISOString()}`);
 
     return new Response(
       JSON.stringify({
         success: true,
-        message: 'Welcome to OutATL!',
+        message: 'Welcome to Macon Me Hungry!',
         downloadUrl: '/map',
       }),
       { status: 200, headers: { 'Content-Type': 'application/json' } }

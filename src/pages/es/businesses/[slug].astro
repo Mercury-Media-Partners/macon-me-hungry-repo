@@ -79,7 +79,7 @@ const jsonLd = {
   "address": {
     "@type": "PostalAddress",
     "streetAddress": data.address,
-    "addressLocality": "Atlanta",
+    "addressLocality": "Macon",
     "addressRegion": "GA",
     "addressCountry": "US"
   },
@@ -114,7 +114,7 @@ const jsonLd = {
         "address": {
           "@type": "PostalAddress",
           "streetAddress": data.address,
-          "addressLocality": "Atlanta",
+          "addressLocality": "Macon",
           "addressRegion": "GA",
           "addressCountry": "US"
         }
@@ -133,7 +133,7 @@ const jsonLd = {
 };
 ---
 
-<Layout title={`${data.title} | OutATL — Portal Queer`} description={data.meta_desc}>
+<Layout title={`${data.title} | Macon Me Hungry — Portal Queer`} description={data.meta_desc}>
   <script type="application/ld+json" slot="head" set:html={JSON.stringify(jsonLd)} />
 
   <Navbar lang="es" />

@@ -30,7 +30,7 @@ const todaysArtists = lineupData.artists.filter((artist) => {
 
 const headliner = todaysArtists.find((a) => a.isHeadliner);
 const regularArtists = todaysArtists.filter((a) => !a.isHeadliner && a.name !== 'Soccer Sidekicks');
-const isMatchday = dateStr in lineupData.atlantaMatches;
+const isMatchday = dateStr in lineupData.maconMatches;
 
 const displayDate = new Date(dateStr + 'T12:00:00Z').toLocaleDateString(
   lang === 'es' ? 'es-ES' : 'en-US',
@@ -53,7 +53,7 @@ const matchesUrl = lang === 'es' ? '/es/matches' : '/matches';
         </span>
         {isMatchday && (
           <span class="text-[10px] font-bold uppercase tracking-widest text-secondary bg-secondary/15 border border-secondary/20 px-2.5 py-0.5 rounded-full flex items-center gap-1 animate-pulse">
-            {t.atlantaMatchdayAlert}
+            {t.maconMatchdayAlert}
           </span>
         )}
         <span class="text-xs text-muted-foreground font-semibold px-1">

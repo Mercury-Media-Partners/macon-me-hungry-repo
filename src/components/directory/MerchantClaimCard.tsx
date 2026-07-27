@@ -21,13 +21,13 @@ export const MerchantClaimCard = () => {
 
         {/* Title */}
         <h3 className="font-display text-2xl text-foreground uppercase tracking-tight mb-2 leading-tight">
-          {isEs ? "¿TIENES UN LUGAR EN ATLANTA?" : "OWN A LOCAL VENUE IN ATLANTA?"}
+          {isEs ? "¿TIENES UN LUGAR EN MACON?" : "OWN A LOCAL VENUE IN MACON?"}
         </h3>
 
         {/* Description */}
         <p className="text-xs text-muted-foreground leading-relaxed mb-6 font-body">
           {isEs
-            ? "Únete a la guía LGBTQ+ bilingüe de Atlanta. Registra tu bar, café o espacio en menos de 2 minutos."
+            ? "Únete a la guía LGBTQ+ bilingüe de Macon. Registra tu bar, café o espacio en menos de 2 minutos."
             : "Connect with locals and visitors. Claim your venue listing for free in less than 2 minutes."}
         </p>
       </div>

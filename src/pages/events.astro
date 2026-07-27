@@ -31,7 +31,7 @@ const combinedItems = businesses.map(b => ({ ...b, type: 'business' as const }))
 const eventsJsonLd = {
   "@context": "https://schema.org",
   "@type": "ItemList",
-  "name": "Atlanta LGBTQ+ Events & Nightlife Radar",
+  "name": "Macon LGBTQ+ Events & Nightlife Radar",
   "itemListElement": eventsList.map((evt, idx) => ({
     "@type": "ListItem",
     "position": idx + 1,
@@ -44,7 +44,7 @@ const eventsJsonLd = {
         "name": evt.venueTitle,
         "address": {
           "@type": "PostalAddress",
-          "addressLocality": "Atlanta",
+          "addressLocality": "Macon",
           "addressRegion": "GA"
         }
       }
@@ -54,8 +54,8 @@ const eventsJsonLd = {
 ---
 
 <Layout
-  title="Atlanta LGBTQ+ Events & Nightlife Radar"
-  description="Discover Atlanta's top queer events, drag shows, weekend parties, and weekly specials."
+  title="Macon LGBTQ+ Events & Nightlife Radar"
+  description="Discover Macon's top queer events, drag shows, weekend parties, and weekly specials."
 >
   <script type="application/ld+json" slot="head" set:html={JSON.stringify(eventsJsonLd)} />
 
@@ -67,10 +67,10 @@ const eventsJsonLd = {
       <div class="mb-10 text-center md:text-left">
         <span class="section-label mb-2 block">Live Nightlife Calendar</span>
         <h1 class="font-display text-4xl md:text-6xl text-foreground uppercase tracking-tight leading-none mb-4">
-          ATLANTA QUEER EVENTS RADAR
+          MACON QUEER EVENTS RADAR
         </h1>
         <p class="text-muted-foreground text-base md:text-lg max-w-2xl font-body">
-          Drag brunches, DJ sets, trivia nights, and weekend parties handpicked across Midtown, East Atlanta, and Cheshire Bridge.
+          Drag brunches, DJ sets, trivia nights, and weekend parties handpicked across Midtown, East Macon, and Cheshire Bridge.
         </p>
       </div>
 

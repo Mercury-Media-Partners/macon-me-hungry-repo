@@ -25,14 +25,14 @@ const combinedItems = businesses.map(b => ({ ...b, type: 'business' as const }))
 
 const tickerItems = [
   "🏳️‍🌈 Blake's on the Park",
-  "⚽ Mundial 2026 · Atlanta",
+  "⚽ Mundial 2026 · Macon",
   "🎭 Mary's EAV",
   "☕ FiNCA to FiLTER",
   "🔥 The Heretic",
-  "💃 Lips Atlanta",
+  "💃 Lips Macon",
   "🌮 Guac y Margys",
-  "🏠 Elements Atlanta",
-  "🌎 Atlanta Queer 2026",
+  "🏠 Elements Macon",
+  "🌎 Macon Queer 2026",
   "🍺 Bulldogs Bar",
 ];
 
@@ -40,13 +40,13 @@ const tickerItems = [
 const websiteJsonLd = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  "name": "OutATL",
-  "url": "https://outatl.com/es",
-  "description": "El portal LGBTQ+ bilingüe de Atlanta: vida nocturna, comunidad y cultura para el Mundial 2026.",
+  "name": "Macon Me Hungry",
+  "url": "https://maconmehungry.com/es",
+  "description": "El portal LGBTQ+ bilingüe de Macon: vida nocturna, comunidad y cultura para el Mundial 2026.",
   "inLanguage": ["es", "en"],
   "potentialAction": {
     "@type": "SearchAction",
-    "target": "https://outatl.com/es/#bar-finder?q={search_term_string}",
+    "target": "https://maconmehungry.com/es/#bar-finder?q={search_term_string}",
     "query-input": "required name=search_term_string"
   }
 };
@@ -54,11 +54,11 @@ const websiteJsonLd = {
 
 <Layout
   title={postWorldCup 
-    ? "Bares Gay en Atlanta | Directorio y Guía LGBTQ+" 
-    : "Bares Gay en Atlanta | Guía LGBTQ+ Mundial 2026"}
+    ? "Bares Gay en Macon | Directorio y Guía LGBTQ+" 
+    : "Bares Gay en Macon | Guía LGBTQ+ Mundial 2026"}
   description={postWorldCup 
-    ? "OutATL es tu guía bilingüe de bares gay en Atlanta y el directorio LGBTQ+ oficial de la ciudad. Encuentra discotecas, cafés y eventos queer en Midtown y EAV."
-    : "OutATL es tu guía bilingüe de bares gay en Atlanta y el directorio LGBTQ+ oficial de la ciudad para el Mundial 2026. Encuentra discotecas, cafés y eventos queer."}
+    ? "Macon Me Hungry es tu guía bilingüe de bares gay en Macon y el directorio LGBTQ+ oficial de la ciudad. Encuentra discotecas, cafés y eventos queer en Midtown y EAV."
+    : "Macon Me Hungry es tu guía bilingüe de bares gay en Macon y el directorio LGBTQ+ oficial de la ciudad para el Mundial 2026. Encuentra discotecas, cafés y eventos queer."}
 >
   <script type="application/ld+json" slot="head" set:html={JSON.stringify(websiteJsonLd)} />
 
@@ -70,14 +70,14 @@ const websiteJsonLd = {
       <VideoHero />
 
       <div class="container max-w-6xl mx-auto text-center relative z-10 animate-fade-in text-white">
-        <span class="section-label mb-6 block drop-shadow-md">Guía Bilingüe de Atlanta</span>
+        <span class="section-label mb-6 block drop-shadow-md">Guía Bilingüe de Macon</span>
         
         <div>
           <h1 class="font-display text-7xl md:text-9xl text-white leading-none mb-8 tracking-tighter uppercase drop-shadow-xl">
-            TU ATLANTA. <span class="text-gradient-primary">TUS REGLAS.</span>
+            TU MACON. <span class="text-gradient-primary">TUS REGLAS.</span>
           </h1>
           <p class="text-white text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed font-body drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] font-medium">
-            La guía independiente del estilo de vida curado de Atlanta. Descubre cafés de diseño, tiendas locales, espacios de bienestar y vida nocturna seleccionados para explorar.
+            La guía independiente del estilo de vida curado de Macon. Descubre cafés de diseño, tiendas locales, espacios de bienestar y vida nocturna seleccionados para explorar.
           </p>
 
           <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">
@@ -159,7 +159,7 @@ const websiteJsonLd = {
             Mapa de Barrios Interactivo
           </h2>
           <p class="text-muted-foreground max-w-2xl mx-auto font-body text-base md:text-lg leading-relaxed">
-            Explore los barrios LGBTQ+ más vibrantes de Atlanta, las líneas de tránsito y los puntos clave de los partidos.
+            Explore los barrios LGBTQ+ más vibrantes de Macon, las líneas de tránsito y los puntos clave de los partidos.
           </p>
         </div>
         <InteractiveMap client:visible lang="es" />

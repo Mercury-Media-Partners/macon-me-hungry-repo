@@ -35,9 +35,9 @@ export const InteractiveMap: React.FC<Props> = ({ lang = 'en' }) => {
     { id: 'bulldogs-bar', data: { title: 'Bulldogs Bar', neighborhood: 'Midtown', category: 'Dive Bar', category_type: 'nightlife', address: '893 Peachtree St NE', hours: '4:00 PM - 3:00 AM', rating: 4.4, lat: 33.7788, lng: -84.3846 } },
     { id: 'the-heretic', data: { title: 'The Heretic', neighborhood: 'Cheshire Bridge', category: 'Dance Club', category_type: 'nightlife', address: '2069 Cheshire Bridge Rd', hours: '8:00 PM - 3:00 AM', rating: 4.6, lat: 33.8152, lng: -84.3524 } },
     { id: 'finca-to-filter', data: { title: 'FiNCA to FiLTER', neighborhood: 'Midtown', category: 'Coffee Shop', category_type: 'lifestyle', address: '1010 Peachtree St NE', hours: '7:00 AM - 6:00 PM', rating: 4.9, lat: 33.7821, lng: -84.3837 } },
-    { id: 'marys', data: { title: "Mary's EAV", neighborhood: 'East Atlanta', category: 'Dive Bar', category_type: 'nightlife', address: '1287 Glenwood Ave SE', hours: '5:00 PM - 2:00 AM', rating: 4.7, lat: 33.7402, lng: -84.3465 } },
+    { id: 'marys', data: { title: "Mary's EAV", neighborhood: 'East Macon', category: 'Dive Bar', category_type: 'nightlife', address: '1287 Glenwood Ave SE', hours: '5:00 PM - 2:00 AM', rating: 4.7, lat: 33.7402, lng: -84.3465 } },
     { id: 'my-sisters-room', data: { title: "My Sister's Room", neighborhood: 'Midtown', category: 'Dance Club', category_type: 'nightlife', address: '84 12th St NE', hours: '6:00 PM - 3:00 AM', rating: 4.8, lat: 33.7834, lng: -84.3852 } },
-    { id: 'woofs-atlanta', data: { title: "Woofs Atlanta", neighborhood: 'Plaza Midtown', category: 'Sports Bar', category_type: 'nightlife', address: '494 Plasters Ave NE', hours: '11:00 AM - 12:00 AM', rating: 4.6, lat: 33.8051, lng: -84.3682 } },
+    { id: 'woofs-macon', data: { title: "Woofs Macon", neighborhood: 'Plaza Midtown', category: 'Sports Bar', category_type: 'nightlife', address: '494 Plasters Ave NE', hours: '11:00 AM - 12:00 AM', rating: 4.6, lat: 33.8051, lng: -84.3682 } },
     { id: 'midtown-marta', data: { title: 'Midtown MARTA Station', neighborhood: 'Midtown', category: 'Transit', category_type: 'transit', address: 'Peachtree St & 10th St', hours: '24/7 Transit', rating: 4.2, lat: 33.7811, lng: -84.3863 } },
     { id: 'piedmont-park', data: { title: 'Piedmont Park', neighborhood: 'Midtown', category: 'Park', category_type: 'park', address: '1320 Monroe Dr NE', hours: '6:00 AM - 11:00 PM', rating: 4.9, lat: 33.7850, lng: -84.3738 } }
   ];
@@ -88,7 +88,7 @@ export const InteractiveMap: React.FC<Props> = ({ lang = 'en' }) => {
         <LeafletComponent items={filteredItems} />
       ) : (
         <div className="w-full h-[500px] rounded-2xl bg-card border border-border flex items-center justify-center text-muted-foreground text-sm font-label animate-pulse">
-          🛰️ {isEs ? 'Cargando Mapa Vectorial GIS de Atlanta...' : 'Loading Atlanta GIS Vector Map...'}
+          🛰️ {isEs ? 'Cargando Mapa Vectorial GIS de Macon...' : 'Loading Macon GIS Vector Map...'}
         </div>
       )}
     </div>

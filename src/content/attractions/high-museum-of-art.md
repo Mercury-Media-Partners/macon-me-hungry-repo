@@ -7,7 +7,7 @@ neighborhood: "Midtown"
 vibe: "Artistic & Inspiring"
 tier: "free"
 operating_mode: "day"
-address: "1280 Peachtree St NE, Atlanta, GA 30309"
+address: "1280 Peachtree St NE, Macon, GA 30309"
 lat: 33.7901
 lng: -84.3856
 hours: "Tue-Sat - 10am-5pm, Sun - 12pm-5pm, Mon - Closed"
@@ -20,8 +20,8 @@ hasPlayground: false
 hasFountains: true
 established: 1905
 heroImage: "../../assets/parks/high-museum.webp"
-meta_title: "High Museum of Art | Midtown Atlanta Art & Culture"
-meta_desc: "Explore the High Museum of Art in Midtown Atlanta. Discover world-class exhibitions, stunning architecture, and regular LGBTQ+ friendly events and gallery tours."
+meta_title: "High Museum of Art | Midtown Macon Art & Culture"
+meta_desc: "Explore the High Museum of Art in Midtown Macon. Discover world-class exhibitions, stunning architecture, and regular LGBTQ+ friendly events and gallery tours."
 transit_station: "Arts Center"
 transit_time_en: "1 min walk"
 transit_time_es: "1 min a pie"

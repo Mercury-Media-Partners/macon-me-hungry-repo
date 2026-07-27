@@ -1,13 +1,13 @@
 ---
-title: "Registra tu Negocio Queer en Atlanta | Programa de Socios Fundadores de OutATL"
-description: "OutATL es el directorio de negocios queer de Atlanta. Más de 500k visitantes del Mundial están llegando — las tarifas de socios fundadores cierran el 19 de julio de 2026. Registra tu negocio hoy."
+title: "Registra tu Negocio Queer en Macon | Programa de Socios Fundadores de Macon Me Hungry"
+description: "Macon Me Hungry es el directorio de negocios queer de Macon. Más de 500k visitantes del Mundial están llegando — las tarifas de socios fundadores cierran el 19 de julio de 2026. Registra tu negocio hoy."
 hero:
   eyebrow: "Socio Fundador · Oferta Limitada"
   title_lines:
     - "EL MUNDIAL"
     - "YA VIENE."
   title_highlight: "¿ESTÁS EN EL MAPA?"
-  subtitle: "500,000+ visitantes internacionales llegarán a Atlanta en junio de 2026. OutATL es la plataforma de descubrimiento queer que usarán para encontrar bares, cafés, salones y servicios — y los lugares de socio fundador cierran el 19 de julio de 2026."
+  subtitle: "500,000+ visitantes internacionales llegarán a Macon en junio de 2026. Macon Me Hungry es la plataforma de descubrimiento queer que usarán para encontrar bares, cafés, salones y servicios — y los lugares de socio fundador cierran el 19 de julio de 2026."
   countdown_label: "El precio fundador cierra en:"
   countdown_date: "2026-07-19T23:59:59-04:00"
   countdown_closes_in: "El precio fundador cierra en:"
@@ -25,7 +25,7 @@ hero:
     - value: "500K+"
       label: "Visitantes llegando"
     - value: "8"
-      label: "Partidos en Atlanta"
+      label: "Partidos en Macon"
 marquee:
   label: "Ya en el mapa — ¿y tú?"
 how_it_works:
@@ -42,9 +42,9 @@ how_it_works:
     - icon: "🌍"
       step: "03"
       heading: "Hazte descubrir"
-      body: "Tu perfil se publicará en OutATL y aparecerá en las búsquedas de espacios queer en Atlanta."
+      body: "Tu perfil se publicará en Macon Me Hungry y aparecerá en las búsquedas de espacios queer en Macon."
 pricing:
-  section_label: "Para Dueños de Negocios en Atlanta"
+  section_label: "Para Dueños de Negocios en Macon"
   title_line_1: "PRECIOS TRANSPARENTES,"
   title_line_2: "VALOR REAL"
   title_highlight: "VALOR REAL"
@@ -66,7 +66,7 @@ pricing:
       desc: "Tu perfil aparece rápido"
     - icon: "🏳️‍🌈"
       title: "Comunidad primero"
-      desc: "Construido para Atlanta queer"
+      desc: "Construido para Macon queer"
   tiers:
     - id: "headliner"
       name: "Headliner"
@@ -86,7 +86,7 @@ pricing:
         - "Eventos ilimitados — sin restricciones"
         - 'Botones de "Comprar Entradas" / "Reservar Mesa"'
         - "Encabezado de video o integración de YouTube"
-        - "Destacado en la página de inicio de OutATL"
+        - "Destacado en la página de inicio de Macon Me Hungry"
         - "Tu página solo muestra tu negocio — sin anuncios, sin rivales"
       roiProof: "Solo 4 entradas vendidas cubren todo el mes. ¡El resto es ganancia pura!"
       cta: "Ser Headliner"
@@ -165,20 +165,20 @@ pricing:
 testimonial:
   section_label: "Destacado de Socio Fundador"
   title: "RESERVADO PARA TI"
-  body: "Este espacio está reservado para nuestro primer socio de nivel Headliner. Formar una alianza con OutATL coloca tu marca al frente y al centro de los visitantes locales y el tráfico de búsqueda."
+  body: "Este espacio está reservado para nuestro primer socio de nivel Headliner. Formar una alianza con Macon Me Hungry coloca tu marca al frente y al centro de los visitantes locales y el tráfico de búsqueda."
   cta: "Convertirse en Socio Fundador →"
 faq:
   section_label: "Preguntas Comunes"
   title: "PREGUNTAS FRECUENTES"
   items:
     - q: "¿Mi negocio no es exclusivamente LGBTQ+ — puedo listarme?"
-      a: "Sí. OutATL es para espacios inclusivos y acogedores. Si tu negocio es respetuoso y apoya a la comunidad, tienes un lugar aquí."
+      a: "Sí. Macon Me Hungry es para espacios inclusivos y acogedores. Si tu negocio es respetuoso y apoya a la comunidad, tienes un lugar aquí."
       category: "Primeros Pasos"
     - q: "¿Qué pasará después del Mundial?"
-      a: "OutATL continuará como el directorio de estilo de vida queer de Atlanta. Tu anuncio seguirá atrayendo clientes locales y mejorando tu posicionamiento SEO todo el año."
+      a: "Macon Me Hungry continuará como el directorio de estilo de vida queer de Macon. Tu anuncio seguirá atrayendo clientes locales y mejorando tu posicionamiento SEO todo el año."
       category: "Primeros Pasos"
     - q: "¿Cómo se diferencia esto de mi perfil de Google Business?"
-      a: "Google es para todo el mundo. OutATL está enfocado en visitantes y locales que buscan específicamente espacios que apoyen a la comunidad queer. Curamos, verificamos y construimos comunidad en torno a nuestros perfiles."
+      a: "Google es para todo el mundo. Macon Me Hungry está enfocado en visitantes y locales que buscan específicamente espacios que apoyen a la comunidad queer. Curamos, verificamos y construimos comunidad en torno a nuestros perfiles."
       category: "Primeros Pasos"
     - q: "¿También llegan a clientes de habla hispana?"
       a: "Sí — todo el sitio y cada perfil están disponibles en inglés y español completos, no en traducciones automáticas parciales. Eso representa una gran parte del tráfico de visitantes del Mundial que un perfil de Google Business no alcanza específicamente."
@@ -196,7 +196,7 @@ faq:
       a: "Sembramos el directorio con información pública (nombre, dirección, horario) de negocios locales reales para que el directorio sea útil desde el primer día. Tu perfil gratuito es exactamente eso: información pública, sin afirmaciones que no sean ciertas. Puedes reclamar, editar o mejorar tu perfil en cualquier momento — o pedirnos que lo eliminemos."
       category: "Confianza y Cómo Trabajamos"
     - q: "¿Cómo sé si esto realmente me traerá clientes?"
-      a: "No podemos garantizar el tráfico de clientes — ninguna plataforma puede hacerlo de forma honesta. Lo que hacemos es capturar búsquedas de alta intención que buscan negocios afines a la comunidad queer en Atlanta y dirigirlas a nuestros socios premium."
+      a: "No podemos garantizar el tráfico de clientes — ninguna plataforma puede hacerlo de forma honesta. Lo que hacemos es capturar búsquedas de alta intención que buscan negocios afines a la comunidad queer en Macon y dirigirlas a nuestros socios premium."
       category: "Confianza y Cómo Trabajamos"
 form:
   section_label: "Reclama tu Lugar"

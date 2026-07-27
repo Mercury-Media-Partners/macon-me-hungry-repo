@@ -19,7 +19,7 @@ export const WeatherBadge: React.FC<Props> = ({ lang = 'en' }) => {
     const fetchWeather = async () => {
       try {
         const unit = lang === 'es' ? 'celsius' : 'fahrenheit';
-        const url = `https://api.open-meteo.com/v1/forecast?latitude=33.7490&longitude=-84.3880&current=temperature_2m,weather_code&temperature_unit=${unit}`;
+        const url = `https://api.open-meteo.com/v1/forecast?latitude=32.8407&longitude=-83.6324&current=temperature_2m,weather_code&temperature_unit=${unit}`;
         
         const response = await fetch(url);
         const data = await response.json();
@@ -29,7 +29,7 @@ export const WeatherBadge: React.FC<Props> = ({ lang = 'en' }) => {
           setWeatherCode(data.current.weather_code);
         }
       } catch (err) {
-        console.error('Failed to fetch Atlanta weather:', err);
+        console.error('Failed to fetch Macon weather:', err);
       } finally {
         setLoading(false);
       }
@@ -72,7 +72,7 @@ export const WeatherBadge: React.FC<Props> = ({ lang = 'en' }) => {
 
   return (
     <div
-      title={`${t.weatherAtlanta}: ${weatherText}`}
+      title={`${t.weatherMacon}: ${weatherText}`}
       className="flex items-center gap-1.5 px-3 py-1 bg-muted/40 border border-border/60 rounded-full text-[10px] font-bold uppercase tracking-wider text-muted-foreground hover:text-foreground hover:border-primary/20 transition-all cursor-help relative group"
     >
       <span className="text-sm leading-none">{emoji}</span>
@@ -80,7 +80,7 @@ export const WeatherBadge: React.FC<Props> = ({ lang = 'en' }) => {
       
       {/* Floating Hover Tooltip */}
       <div className="absolute top-full mt-2 right-0 bg-card border border-border px-3 py-1.5 rounded-lg shadow-deep opacity-0 pointer-events-none group-hover:opacity-100 transition-all duration-200 text-[9px] lowercase tracking-wide text-muted-foreground normal-case whitespace-nowrap z-50">
-        <span className="font-semibold text-foreground">{t.weatherAtlanta}: </span>
+        <span className="font-semibold text-foreground">{t.weatherMacon}: </span>
         {weatherText}
       </div>
     </div>

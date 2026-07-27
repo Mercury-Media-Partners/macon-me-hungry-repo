@@ -1,6 +1,6 @@
 import { atom } from 'nanostores';
 
-const STORAGE_KEY = 'outatl-itinerary';
+const STORAGE_KEY = 'maconmehungry-itinerary';
 
 function getInitialItinerary(): string[] {
   if (typeof window === 'undefined') return [];

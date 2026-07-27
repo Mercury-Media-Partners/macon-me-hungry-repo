@@ -1,13 +1,13 @@
 ---
-title: "List Your Queer Business in Atlanta | OutATL Founding Partner Program"
-description: "OutATL is Atlanta's queer-friendly business directory. 500K+ World Cup visitors are coming — founding partner rates close July 19, 2026. Get listed today."
+title: "List Your Queer Business in Macon | Macon Me Hungry Founding Partner Program"
+description: "Macon Me Hungry is Macon's queer-friendly business directory. 500K+ World Cup visitors are coming — founding partner rates close July 19, 2026. Get listed today."
 hero:
   eyebrow: "Founding Partner · Limited Spots"
   title_lines:
     - "THE WORLD CUP"
     - "IS COMING."
   title_highlight: "ARE YOU ON THE MAP?"
-  subtitle: "500,000+ international visitors arrive in Atlanta in June 2026. OutATL is the queer-friendly discovery platform they'll use to find bars, cafes, salons, and services — and founding partner spots close July 19, 2026."
+  subtitle: "500,000+ international visitors arrive in Macon in June 2026. Macon Me Hungry is the queer-friendly discovery platform they'll use to find bars, cafes, salons, and services — and founding partner spots close July 19, 2026."
   countdown_label: "Founding Partner pricing closes in:"
   countdown_date: "2026-07-19T23:59:59-04:00"
   countdown_closes_in: "Founding Partner pricing closes in:"
@@ -25,7 +25,7 @@ hero:
     - value: "500K+"
       label: "Visitors incoming"
     - value: "8"
-      label: "Matches in Atlanta"
+      label: "Matches in Macon"
 marquee:
   label: "Already on the map — are you?"
 how_it_works:
@@ -42,9 +42,9 @@ how_it_works:
     - icon: "🌍"
       step: "03"
       heading: "Get discovered"
-      body: "You go live on OutATL and appear in searches for queer-friendly spaces in Atlanta."
+      body: "You go live on Macon Me Hungry and appear in searches for queer-friendly spaces in Macon."
 pricing:
-  section_label: "For Atlanta Business Owners"
+  section_label: "For Macon Business Owners"
   title_line_1: "TRANSPARENT PRICING,"
   title_line_2: "REAL VALUE"
   title_highlight: "REAL VALUE"
@@ -66,7 +66,7 @@ pricing:
       desc: "Your profile goes live fast"
     - icon: "🏳️‍🌈"
       title: "Community first"
-      desc: "Built for queer Atlanta"
+      desc: "Built for queer Macon"
   tiers:
     - id: "headliner"
       name: "Headliner"
@@ -86,7 +86,7 @@ pricing:
         - "Unlimited event listings — no restrictions"
         - '"Buy Tickets" / "Book a Table" buttons'
         - "Video header or YouTube embed"
-        - "Featured spotlight on the OutATL homepage"
+        - "Featured spotlight on the Macon Me Hungry homepage"
         - "Your page shows only your business — no ads, no rival listings"
       roiProof: "Just 4 cover charge ticket sales covers your entire month. The rest is pure profit."
       cta: "Go Headliner"
@@ -165,20 +165,20 @@ pricing:
 testimonial:
   section_label: "Founding Member Spotlight"
   title: "RESERVED FOR YOU"
-  body: "This spot is reserved for our first Headliner partner. Partnering with OutATL places your brand front and center before local visitors and search traffic."
+  body: "This spot is reserved for our first Headliner partner. Partnering with Macon Me Hungry places your brand front and center before local visitors and search traffic."
   cta: "Become a Founding Member →"
 faq:
   section_label: "Common Questions"
   title: "FREQUENTLY ASKED"
   items:
     - q: "My business isn't exclusively LGBTQ+ — can I still list?"
-      a: "Yes. OutATL is for inclusive, welcoming spaces. If your business is queer-affirming, you belong here."
+      a: "Yes. Macon Me Hungry is for inclusive, welcoming spaces. If your business is queer-affirming, you belong here."
       category: "Getting Started"
     - q: "What happens after the World Cup?"
-      a: "OutATL continues as Atlanta's queer lifestyle directory. Your listing drives local foot traffic and organic SEO search year-round."
+      a: "Macon Me Hungry continues as Macon's queer lifestyle directory. Your listing drives local foot traffic and organic SEO search year-round."
       category: "Getting Started"
     - q: "How is this different from my Google Business Profile?"
-      a: "Google is for everyone. OutATL is for visitors specifically searching for queer-affirming spaces. We curate, verify, and build community around our listings."
+      a: "Google is for everyone. Macon Me Hungry is for visitors specifically searching for queer-affirming spaces. We curate, verify, and build community around our listings."
       category: "Getting Started"
     - q: "Do you reach Spanish-speaking customers too?"
       a: "Yes — every listing and the whole site ships in full English and Spanish, not machine-translated fragments. That's a large share of World Cup visitor traffic a plain Google Business Profile doesn't specifically reach."
@@ -196,7 +196,7 @@ faq:
       a: "We seed the directory with public information (name, address, hours) for real local businesses so the directory is useful on day one. Your Free listing is exactly that: public information only, no claims about you beyond what's true. You can claim, edit, or upgrade it any time — or ask us to remove it."
       category: "Trust & How We Work"
     - q: "How do I know this will drive actual customers?"
-      a: "We can't guarantee foot traffic — no platform honestly can. What we do is capture high-intent search queries looking for queer-owned/affirming businesses in Atlanta and route them to our paid partners."
+      a: "We can't guarantee foot traffic — no platform honestly can. What we do is capture high-intent search queries looking for queer-owned/affirming businesses in Macon and route them to our paid partners."
       category: "Trust & How We Work"
 form:
   section_label: "Claim Your Spot"

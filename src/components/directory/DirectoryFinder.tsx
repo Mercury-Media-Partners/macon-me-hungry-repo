@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { useStore } from "@nanostores/react";
 import { $lang } from "@/stores/langStore";
-import { $siteMode, setSiteMode } from "@/stores/modeStore";
 import { MapPin, Clock, Zap, Music, Star, Coffee, Dumbbell, Briefcase, ShoppingBag, BookOpen, Scissors, Heart, Trees } from "lucide-react";
 import { getCategoryLabel } from "../../utils/categoryTranslations";
 import { openVenueDrawer } from "@/stores/drawerStore";
@@ -11,7 +10,7 @@ import { MerchantClaimCard } from "./MerchantClaimCard";
 import { MobileFilterSheet } from "./MobileFilterSheet";
 
 type CategoryFilter = string;
-type Hood = "all" | "midtown" | "east-atlanta" | "buckhead";
+type Hood = "all" | "downtown" | "historic-district";
 
 interface DirectoryItem {
   id: string;
@@ -44,35 +43,23 @@ interface DirectoryFinderProps {
   initialBusinesses: DirectoryItem[];
 }
 
-// Night mode categories
-const nightCategories = [
+// Unified categories
+const activeCategories = [
   { key: "all", label: { en: "All", es: "Todos" }, icon: <Zap size={13} /> },
-  { key: "Dance Club", label: { en: "Clubs", es: "Clubes" }, icon: <Music size={13} /> },
-  { key: "Dive Bar", label: { en: "Bars", es: "Bares" }, icon: <Zap size={13} /> },
-  { key: "Drag Dinner Show", label: { en: "Drag Shows", es: "Shows" }, icon: <Star size={13} /> },
-  { key: "Bear Bar", label: { en: "Bear Bars", es: "Bares" }, icon: <Zap size={13} /> },
-  { key: "Sports Bar", label: { en: "Sports Bars", es: "Deportes" }, icon: <Zap size={13} /> },
-];
-
-// Day mode categories
-const dayCategories = [
-  { key: "all", label: { en: "All", es: "Todos" }, icon: <Zap size={13} /> },
+  { key: "Brewpub", label: { en: "Breweries", es: "Cervecerías" }, icon: <Zap size={13} /> },
+  { key: "Burger Joint", label: { en: "Burgers", es: "Hamburguesas" }, icon: <Coffee size={13} /> },
+  { key: "Southern Cuisine", label: { en: "Southern", es: "Sureña" }, icon: <Heart size={13} /> },
+  { key: "Soul Food", label: { en: "Soul Food", es: "Comida Soul" }, icon: <Heart size={13} /> },
   { key: "Coffee Shop", label: { en: "Cafes", es: "Cafés" }, icon: <Coffee size={13} /> },
-  { key: "Bookstore", label: { en: "Bookstores", es: "Librerías" }, icon: <BookOpen size={13} /> },
   { key: "Boutique", label: { en: "Boutiques", es: "Tiendas" }, icon: <ShoppingBag size={13} /> },
-  { key: "Gym & Training Studio", label: { en: "Gyms", es: "Gimnasios" }, icon: <Dumbbell size={13} /> },
-  { key: "Barbershop", label: { en: "Barbershops", es: "Barberías" }, icon: <Scissors size={13} /> },
-  { key: "Real Estate Agency", label: { en: "Real Estate", es: "Inmobiliaria" }, icon: <Briefcase size={13} /> },
-  { key: "Medical Clinic", label: { en: "Medical", es: "Médico" }, icon: <Heart size={13} /> },
 ];
 
 const tierWeight: Record<string, number> = { headliner: 0, professional: 1, promoter: 2, free: 3 };
 
 const hoods: { key: Hood; label: { en: string; es: string } }[] = [
   { key: "all", label: { en: "All Areas", es: "Todos" } },
-  { key: "midtown", label: { en: "Midtown", es: "Midtown" } },
-  { key: "east-atlanta", label: { en: "East Atlanta", es: "East Atlanta" } },
-  { key: "buckhead", label: { en: "Buckhead", es: "Buckhead" } },
+  { key: "downtown", label: { en: "Downtown", es: "Centro" } },
+  { key: "historic-district", label: { en: "Historic District", es: "Histórico" } },
 ];
 
 export function getOpenStatus(hoursStr: string): { status: 'open' | 'closed' | 'varies'; labelEn: string; labelEs: string } {
@@ -86,7 +73,7 @@ export function getOpenStatus(hoursStr: string): { status: 'open' | 'closed' | '
     return { status: 'varies', labelEn: 'Varies', labelEs: 'Varía' };
   }
   
-  // Get current time in America/New_York (Atlanta timezone)
+  // Get current time in America/New_York (Macon timezone)
   let now: Date;
   try {
     const atlTimeStr = new Date().toLocaleString("en-US", { timeZone: "America/New_York" });
@@ -214,8 +201,7 @@ export const DirectoryFinder = ({ initialBusinesses, lang: initialLang = "en" }:
     $lang.set(initialLang === "es" ? "es" : "en");
   }
   const lang = useStore($lang);
-  const mode = useStore($siteMode);
-  const t = (en: string, es: string) => (lang === "es" ? es : en);
+    const t = (en: string, es: string) => (lang === "es" ? es : en);
 
   // ── State hooks must come before any derived values that depend on them ──
   const [categoryFilter, setCategoryFilter] = useState<CategoryFilter>("all");
@@ -225,17 +211,7 @@ export const DirectoryFinder = ({ initialBusinesses, lang: initialLang = "en" }:
   const [bilingualStaffOnly, setBilingualStaffOnly] = useState(false);
   const [onlyOpenNow, setOnlyOpenNow] = useState(false);
 
-  // Derived from mode store — must be declared before helpers that reference it
-  const isNight = mode === "night";
-  const activeCategories = isNight ? nightCategories : dayCategories;
-
-  // Get items matching active mode
-  const modeMatched = initialBusinesses.filter((b) => {
-    const opMode = b.data.operating_mode || (b.data.category_type === "nightlife" ? "night" : "day");
-    return isNight
-      ? (opMode === "night" || opMode === "both")
-      : (opMode === "day" || opMode === "both");
-  });
+  const modeMatched = initialBusinesses;
 
   // Helper to count category matches (respecting active neighborhood & custom features filter)
   const getCategoryCount = (categoryKey: string) => {
@@ -244,9 +220,8 @@ export const DirectoryFinder = ({ initialBusinesses, lang: initialLang = "en" }:
       const bHood = b.data.neighborhood.toLowerCase();
       const hoodMatch =
         hood === "all" ||
-        (hood === "midtown" && bHood === "midtown") ||
-        (hood === "east-atlanta" && bHood === "east atlanta") ||
-        (hood === "buckhead" && bHood === "buckhead");
+        (hood === "downtown" && bHood === "downtown") ||
+        (hood === "historic-district" && bHood === "historic district");
       if (!hoodMatch) return false;
 
       // Custom feature filters
@@ -289,9 +264,8 @@ export const DirectoryFinder = ({ initialBusinesses, lang: initialLang = "en" }:
       const bHood = b.data.neighborhood.toLowerCase();
       return (
         hoodKey === "all" ||
-        (hoodKey === "midtown" && bHood === "midtown") ||
-        (hoodKey === "east-atlanta" && bHood === "east atlanta") ||
-        (hoodKey === "buckhead" && bHood === "buckhead")
+        (hoodKey === "downtown" && bHood === "downtown") ||
+        (hoodKey === "historic-district" && bHood === "historic district")
       );
     }).length;
   };
@@ -310,7 +284,6 @@ export const DirectoryFinder = ({ initialBusinesses, lang: initialLang = "en" }:
       const hoodParam = params.get("hood") || queryParams.get("hood");
       const categoryParam = params.get("category") || queryParams.get("category");
       const filterParam = params.get("filter") || queryParams.get("filter");
-      const modeParam = params.get("mode") || queryParams.get("mode");
       const searchParam = params.get("search") || params.get("q") || queryParams.get("search") || queryParams.get("q");
 
       if (hoodParam) {
@@ -318,16 +291,6 @@ export const DirectoryFinder = ({ initialBusinesses, lang: initialLang = "en" }:
       }
       if (categoryParam) {
         setCategoryFilter(categoryParam);
-        const isDayCat = dayCategories.some((c) => c.key === categoryParam);
-        const isNightCat = nightCategories.some((c) => c.key === categoryParam);
-        if (isDayCat && !isNightCat) {
-          setSiteMode("day");
-        } else if (isNightCat && !isDayCat) {
-          setSiteMode("night");
-        }
-      }
-      if (modeParam === "night" || modeParam === "day") {
-        setSiteMode(modeParam);
       }
       if (filterParam) {
         if (filterParam === "patio") {
@@ -353,28 +316,12 @@ export const DirectoryFinder = ({ initialBusinesses, lang: initialLang = "en" }:
       openVenueDrawer(venueParam);
     }
 
-    // Sync with vanilla JS ModeToggle via CustomEvent bridge
-    const handleModeChange = (e: CustomEvent<{ mode: string }>) => {
-      if (e.detail.mode === "night" || e.detail.mode === "day") {
-        setSiteMode(e.detail.mode as "night" | "day");
-      }
-    };
-    window.addEventListener("outatl:modechange", handleModeChange as EventListener);
-
     return () => {
       window.removeEventListener("hashchange", parseHashParams);
-      window.removeEventListener("outatl:modechange", handleModeChange as EventListener);
     };
   }, []);
 
-  // Reset category filter and custom toggles when mode switches
-  const handleModeSwitch = (newMode: "day" | "night") => {
-    setSiteMode(newMode);
-    setCategoryFilter("all");
-    setHasPatioOnly(false);
-    setBilingualStaffOnly(false);
-    setOnlyOpenNow(false);
-  };
+
 
   const filtered = initialBusinesses
     .filter((b) => {
@@ -393,24 +340,14 @@ export const DirectoryFinder = ({ initialBusinesses, lang: initialLang = "en" }:
       const catMatch = categoryFilter === "all" || b.data.category === categoryFilter;
       if (!catMatch) return false;
 
-      // Mode filter:
-      // When searching with text or selecting a specific category, show matching venues across all modes.
-      const isExplicitFilter = categoryFilter !== "all" || q !== "";
-      if (!isExplicitFilter) {
-        const opMode = b.data.operating_mode || (b.data.category_type === "nightlife" ? "night" : "day");
-        const modeMatch = isNight
-          ? (opMode === "night" || opMode === "both")
-          : (opMode === "day" || opMode === "both");
-        if (!modeMatch) return false;
-      }
+
 
       // Neighborhood filter
       const bHood = b.data.neighborhood.toLowerCase();
       const hoodMatch =
         hood === "all" ||
-        (hood === "midtown" && bHood === "midtown") ||
-        (hood === "east-atlanta" && bHood === "east atlanta") ||
-        (hood === "buckhead" && bHood === "buckhead");
+        (hood === "downtown" && bHood === "downtown") ||
+        (hood === "historic-district" && bHood === "historic district");
       if (!hoodMatch) return false;
 
       // Custom Filters
@@ -436,50 +373,8 @@ export const DirectoryFinder = ({ initialBusinesses, lang: initialLang = "en" }:
             {t("FIND YOUR SPACE", "ENCUENTRA TU LUGAR")}
           </h2>
           <p className="text-muted-foreground max-w-xl">
-            {isNight
-              ? t("Bars, clubs, drag shows & late night eats — handpicked for your night out.", "Bares, clubes, drag shows y comida nocturna — seleccionados para tu noche.")
-              : t("Cafes, gyms, real estate & local services — your day-to-day queer Atlanta.", "Cafeterías, gimnasios, servicios locales y más — la vida cotidiana queer de Atlanta.")}
+            {t("Restaurants, cafes, local services & more — your day-to-day queer Macon.", "Restaurantes, cafeterías, servicios locales y más — la vida cotidiana queer de Macon.")}
           </p>
-        </div>
-
-        {/* ── Dual State Master Switch ── */}
-        <div className="mb-10">
-          <div
-            className="relative inline-flex w-full max-w-md rounded-full border border-border bg-muted/30 p-1 cursor-pointer select-none"
-            role="radiogroup"
-            aria-label="Directory mode"
-          >
-            {/* Sliding background pill */}
-            <div
-              className="absolute top-1 bottom-1 w-[calc(50%-4px)] rounded-full transition-all duration-300 ease-in-out"
-              style={{
-                left: isNight ? "calc(50% + 4px)" : "4px",
-                background: isNight
-                  ? "linear-gradient(135deg, hsl(330 100% 45%), hsl(280 90% 40%))"
-                  : "linear-gradient(135deg, hsl(42 100% 48%), hsl(35 100% 55%))",
-              }}
-            />
-            <button
-              role="radio"
-              aria-checked={!isNight}
-              onClick={() => handleModeSwitch("day")}
-              className={`relative z-10 flex-1 flex items-center justify-center gap-2 py-3 rounded-full font-label text-sm tracking-widest uppercase transition-colors duration-200 ${
-                !isNight ? "text-background font-bold" : "text-muted-foreground hover:text-foreground"
-              }`}
-            >
-              ☀️ {t("Out & About", "De Día")}
-            </button>
-            <button
-              role="radio"
-              aria-checked={isNight}
-              onClick={() => handleModeSwitch("night")}
-              className={`relative z-10 flex-1 flex items-center justify-center gap-2 py-3 rounded-full font-label text-sm tracking-widest uppercase transition-colors duration-200 ${
-                isNight ? "text-white font-bold" : "text-muted-foreground hover:text-foreground"
-              }`}
-            >
-              🌙 {t("After Hours", "Noche")}
-            </button>
-          </div>
         </div>
 
         {/* Mobile Filter Sheet Component */}
@@ -686,20 +581,7 @@ export const DirectoryFinder = ({ initialBusinesses, lang: initialLang = "en" }:
                     );
                   })()}
 
-                  {/* Stadium proximity bar (nightlife only) */}
-                  {isNight && (
-                    <div className="mt-3 flex items-center gap-2">
-                      <div className="flex-1 h-1.5 bg-muted rounded-full overflow-hidden">
-                        <div
-                          className="h-full bg-gradient-to-r from-primary to-accent rounded-full transition-all"
-                          style={{ width: `${Math.max(10, 100 - biz.data.stadiumMin * 2.5)}%` }}
-                        />
-                      </div>
-                      <span className="text-[11px] text-muted-foreground whitespace-nowrap uppercase">
-                        {biz.data.stadiumMin} min {t("to stadium", "al estadio")}
-                      </span>
-                    </div>
-                  )}
+
                 </a>
               </div>
             );

@@ -77,7 +77,7 @@ export const VenueQuickDrawer = ({ businesses }: VenueQuickDrawerProps) => {
       : `${basePath}/businesses/${venue.id}`;
 
   const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-    `${venue.data.title} ${venue.data.address} Atlanta GA`
+    `${venue.data.title} ${venue.data.address} Macon GA`
   )}`;
 
   return (

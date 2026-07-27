@@ -62,7 +62,7 @@ interface Props {
       var newMode = currentlyNight ? 'day' : 'night';
 
       // Update localStorage + HTML class (mirrors modeStore.setSiteMode logic)
-      localStorage.setItem('outatl-mode', newMode);
+      localStorage.setItem('maconmehungry-mode', newMode);
       var root = document.documentElement;
       if (newMode === 'day') {
         root.classList.remove('dark');
@@ -73,12 +73,12 @@ interface Props {
       }
 
       // Notify any hydrated islands (DirectoryFinder) via a custom event
-      window.dispatchEvent(new CustomEvent('outatl:modechange', { detail: { mode: newMode } }));
+      window.dispatchEvent(new CustomEvent('maconmehungry:modechange', { detail: { mode: newMode } }));
     });
   });
 
   // Also respond to mode changes triggered by DirectoryFinder's own mode switch
-  window.addEventListener('outatl:modechange', function (e) {
+  window.addEventListener('maconmehungry:modechange', function (e) {
     applyAll(e.detail.mode === 'night');
   });
 })();

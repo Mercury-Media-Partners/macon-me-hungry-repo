@@ -11,7 +11,7 @@ rating: 4.5
 world_cup_ready: true
 order_highlights:
   - { item: "Classic Long Island", note: "Strong and steady" }
-meta_title: "Bulldogs Bar Atlanta | Classic Midtown Gay Bar"
+meta_title: "Bulldogs Bar Macon | Classic Midtown Gay Bar"
 meta_desc: "Midtown's beloved classic — great drinks, great people, zero pretense. Your home for World Cup 2026."
 ---
 

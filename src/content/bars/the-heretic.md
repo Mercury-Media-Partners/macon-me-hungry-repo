@@ -1,6 +1,6 @@
 ---
 title: "The Heretic"
-tagline: "Atlanta's premier dance and kink destination."
+tagline: "Macon's premier dance and kink destination."
 category: "Dance Club"
 neighborhood: "Midtown"
 vibe: "Leather"
@@ -14,8 +14,8 @@ local_sourcing: "60%"
 established: 1991
 order_highlights:
   - { item: "Espresso Martini", note: "Fuel for the dancefloor" }
-meta_title: "The Heretic Atlanta | Leather & Dance Nightlife"
-meta_desc: "Atlanta's premier leather and kink club. Big room energy, serious sound system, and World Cup vibes."
+meta_title: "The Heretic Macon | Leather & Dance Nightlife"
+meta_desc: "Macon's premier leather and kink club. Big room energy, serious sound system, and World Cup vibes."
 ---
 
-The Heretic is a legend in Atlanta's nightlife. With a focus on big room energy and a world-class sound system, it offers an unparalleled experience for those looking to dance the night away.
+The Heretic is a legend in Macon's nightlife. With a focus on big room energy and a world-class sound system, it offers an unparalleled experience for those looking to dance the night away.

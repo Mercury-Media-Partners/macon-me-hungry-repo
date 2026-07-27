@@ -40,13 +40,13 @@ const esUrl = new URL('/es' + rawPath, 'https://maconmehungry.com').toString().r
 				const params = new URLSearchParams(window.location.search);
 				const modeParam = params.get('mode');
 				if (modeParam === 'tournament' || modeParam === 'night') {
-					localStorage.setItem('outatl-mode', 'night');
+					localStorage.setItem('maconmehungry-mode', 'night');
 				} else if (modeParam === 'community' || modeParam === 'day') {
-					localStorage.setItem('outatl-mode', 'day');
+					localStorage.setItem('maconmehungry-mode', 'day');
 				}
 
 				// Theme
-				const savedMode = localStorage.getItem('outatl-mode') || 'night';
+				const savedMode = localStorage.getItem('maconmehungry-mode') || 'night';
 				const root = document.documentElement;
 				if (savedMode === 'day') {
 					root.classList.remove('dark');

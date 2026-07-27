@@ -15,8 +15,8 @@ established: 1990
 order_highlights:
   - { item: "Frozen Margarita", note: "Strong and iconic" }
   - { item: "Rooftop Tacos", note: "Best at sunset" }
-meta_title: "Blake's on the Park | Atlanta's Iconic Gay Bar"
+meta_title: "Blake's on the Park | Macon's Iconic Gay Bar"
 meta_desc: "The Gayborhood's anchor bar with an iconic rooftop overlooking Piedmont Park. Perfect for World Cup 2026."
 ---
 
-Blake's on the Park has been a staple of Atlanta's LGBTQ+ nightlife for decades. Known for its rooftop views and high-energy dance floor, it's the perfect place to catch the energy of the 2026 World Cup.
+Blake's on the Park has been a staple of Macon's LGBTQ+ nightlife for decades. Known for its rooftop views and high-energy dance floor, it's the perfect place to catch the energy of the 2026 World Cup.

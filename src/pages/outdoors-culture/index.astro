@@ -16,7 +16,7 @@ const jsonLd = {
   "itemListElement": sortedAttractions.map((att, index) => ({
     "@type": "ListItem",
     "position": index + 1,
-    "url": `https://outatl.com/outdoors-culture/${att.id}`,
+    "url": `https://maconmehungry.com/outdoors-culture/${att.id}`,
     "name": att.data.title,
     "description": att.data.tagline
   }))
@@ -25,7 +25,7 @@ const jsonLd = {
 
 <Layout 
   title="Outdoors & Culture"
-  description="Explore Atlanta's beautiful public parks, world-class museums, and LGBTQ+ landmarks curated for the 2026 World Cup."
+  description="Explore Macon's beautiful public parks, world-class museums, and LGBTQ+ landmarks curated for the 2026 World Cup."
 >
   <script type="application/ld+json" slot="head" set:html={JSON.stringify(jsonLd)} />
 
@@ -35,7 +35,7 @@ const jsonLd = {
     
     {/* Page Header */}
     <div class="container max-w-6xl mx-auto text-center mb-16 relative z-10">
-      <span class="section-label mb-4 block">EXPLORE ATLANTA</span>
+      <span class="section-label mb-4 block">EXPLORE MACON</span>
       <h1 class="font-display text-5xl md:text-7xl text-foreground leading-none tracking-tight uppercase mb-4">
         OUTDOORS & <span class="text-gradient-primary">CULTURE</span>
       </h1>

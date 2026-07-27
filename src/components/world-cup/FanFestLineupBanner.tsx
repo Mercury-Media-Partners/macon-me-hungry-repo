@@ -50,7 +50,7 @@ export const FanFestLineupBanner: React.FC<Props> = ({ lang = 'en' }) => {
 
   const headliner = todaysArtists.find((a) => a.isHeadliner);
   const regularArtists = todaysArtists.filter((a) => !a.isHeadliner && a.name !== 'Soccer Sidekicks');
-  const isMatchday = dateStr in lineupData.atlantaMatches;
+  const isMatchday = dateStr in lineupData.maconMatches;
 
   const displayDate = new Date(dateStr + 'T12:00:00').toLocaleDateString(
     lang === 'es' ? 'es-ES' : 'en-US',
@@ -71,7 +71,7 @@ export const FanFestLineupBanner: React.FC<Props> = ({ lang = 'en' }) => {
             </span>
             {isMatchday && (
               <span className="text-[10px] font-bold uppercase tracking-widest text-secondary bg-secondary/15 border border-secondary/20 px-2.5 py-0.5 rounded-full flex items-center gap-1 animate-pulse">
-                {t.atlantaMatchdayAlert}
+                {t.maconMatchdayAlert}
               </span>
             )}
             <span className="text-xs text-muted-foreground font-semibold px-1">

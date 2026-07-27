@@ -234,7 +234,7 @@ export const PartnerForm = ({ content }: Props) => {
 
           {status === "error" && (
             <p className="text-sm text-red-400 text-center">
-              Something went wrong. Try again or email us at howdy@outatl.com
+              Something went wrong. Try again or email us at howdy@maconmehungry.com
             </p>
           )}
 

@@ -16,7 +16,7 @@ const jsonLd = {
   "itemListElement": sortedAttractions.map((att, index) => ({
     "@type": "ListItem",
     "position": index + 1,
-    "url": `https://outatl.com/es/outdoors-culture/${att.id}`,
+    "url": `https://maconmehungry.com/es/outdoors-culture/${att.id}`,
     "name": att.data.title,
     "description": att.data.tagline
   }))
@@ -25,7 +25,7 @@ const jsonLd = {
 
 <Layout 
   title="Aire Libre y Cultura"
-  description="Explore los hermosos parques públicos, museos de clase mundial y monumentos LGBTQ+ de Atlanta seleccionados para el Mundial 2026."
+  description="Explore los hermosos parques públicos, museos de clase mundial y monumentos LGBTQ+ de Macon seleccionados para el Mundial 2026."
 >
   <script type="application/ld+json" slot="head" set:html={JSON.stringify(jsonLd)} />
 
@@ -35,7 +35,7 @@ const jsonLd = {
     
     {/* Page Header */}
     <div class="container max-w-6xl mx-auto text-center mb-16 relative z-10">
-      <span class="section-label mb-4 block">EXPLORA ATLANTA</span>
+      <span class="section-label mb-4 block">EXPLORA MACON</span>
       <h1 class="font-display text-5xl md:text-7xl text-foreground leading-none tracking-tight uppercase mb-4">
         AIRE LIBRE Y <span class="text-gradient-primary">CULTURA</span>
       </h1>

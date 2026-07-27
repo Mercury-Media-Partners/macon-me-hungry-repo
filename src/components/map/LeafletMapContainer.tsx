@@ -27,7 +27,7 @@ interface LeafletMapContainerProps {
 
 const hoodCoords: Record<string, [number, number]> = {
   midtown: [33.7816, -84.3828],
-  "east atlanta": [33.7402, -84.3465],
+  "east macon": [33.7402, -84.3465],
   buckhead: [33.8398, -84.3797],
   downtown: [33.7573, -84.3963],
   default: [33.7750, -84.3750],
