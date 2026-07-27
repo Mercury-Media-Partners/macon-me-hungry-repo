@@ -1,0 +1,64 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Footer from '../components/navigation/Footer.astro';
+---
+
+<Layout title="Sitemap - Macon Me Hungry">
+  <main class="min-h-screen pt-24 pb-16 bg-background relative overflow-hidden">
+    <div class="absolute top-0 right-0 w-[800px] h-[800px] bg-primary/5 rounded-full blur-[160px] pointer-events-none"></div>
+
+    <div class="container max-w-4xl mx-auto px-4 relative z-10">
+      <h1 class="text-5xl font-display text-foreground mb-4">Site Map</h1>
+      <p class="text-muted-foreground text-lg mb-12 font-body max-w-2xl">
+        Looking for something specific? Here is a complete overview of the Macon Me Hungry directory.
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+        <!-- Main Pages -->
+        <div>
+          <h2 class="text-2xl font-display text-foreground mb-4 pb-2 border-b border-border">Main Sections</h2>
+          <ul class="space-y-3 font-body">
+            <li><a href="/" class="text-foreground hover:text-accent font-medium transition-colors">Home</a></li>
+            <li><a href="/#bar-finder" class="text-foreground hover:text-accent font-medium transition-colors">Restaurant Directory</a></li>
+            <li><a href="/map" class="text-foreground hover:text-accent font-medium transition-colors">Interactive Map</a></li>
+            <li><a href="/events" class="text-foreground hover:text-accent font-medium transition-colors">Events Radar</a></li>
+            <li><a href="/jobs" class="text-foreground hover:text-accent font-medium transition-colors">Industry Jobs</a></li>
+            <li><a href="/blog" class="text-foreground hover:text-accent font-medium transition-colors">Blog</a></li>
+          </ul>
+        </div>
+
+        <!-- Guides -->
+        <div>
+          <h2 class="text-2xl font-display text-foreground mb-4 pb-2 border-b border-border">Local Guides</h2>
+          <ul class="space-y-3 font-body">
+            <li><a href="/guides/soul-food-macon" class="text-foreground hover:text-accent font-medium transition-colors">Authentic Soul Food in Macon</a></li>
+            <li><a href="/guides/downtown-patios" class="text-foreground hover:text-accent font-medium transition-colors">Best Downtown Patios</a></li>
+            <li><a href="/guides/mercer-late-night" class="text-foreground hover:text-accent font-medium transition-colors">Mercer Late Night Eats</a></li>
+            <li><a href="/outdoors-culture" class="text-foreground hover:text-accent font-medium transition-colors">Outdoors & Culture Hub</a></li>
+          </ul>
+        </div>
+
+        <!-- Resources -->
+        <div>
+          <h2 class="text-2xl font-display text-foreground mb-4 pb-2 border-b border-border">Resources</h2>
+          <ul class="space-y-3 font-body">
+            <li><a href="/about" class="text-foreground hover:text-accent font-medium transition-colors">About Us</a></li>
+            <li><a href="/faq" class="text-foreground hover:text-accent font-medium transition-colors">FAQ</a></li>
+            <li><a href="/list-your-business" class="text-foreground hover:text-accent font-medium transition-colors">Add Your Business</a></li>
+          </ul>
+        </div>
+
+        <!-- Legal -->
+        <div>
+          <h2 class="text-2xl font-display text-foreground mb-4 pb-2 border-b border-border">Legal & Data</h2>
+          <ul class="space-y-3 font-body">
+            <li><a href="/privacy" class="text-foreground hover:text-accent font-medium transition-colors">Privacy Policy</a></li>
+            <li><a href="/terms" class="text-foreground hover:text-accent font-medium transition-colors">Terms of Service</a></li>
+            <li><a href="/sitemap-index.xml" class="text-foreground hover:text-accent font-medium transition-colors">XML Sitemap (For Bots)</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </main>
+  <Footer />
+</Layout>

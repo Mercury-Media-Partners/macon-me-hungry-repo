@@ -15,6 +15,7 @@ const path = Astro.url.pathname;
 const isDirectoryActive = path === "/" || path === "/es" || path === "/es/";
 const isBlogActive      = path.startsWith("/blog") || path.startsWith("/es/blog");
 const isMapActive      = path.startsWith("/map") || path.startsWith("/es/map");
+const isJobsActive     = path.startsWith("/jobs") || path.startsWith("/es/jobs");
 
 const navLinks = [
   {
@@ -31,6 +32,11 @@ const navLinks = [
     href: `${base}/blog`,
     label: "Blog",
     active: isBlogActive,
+  },
+  {
+    href: `${base}/jobs`,
+    label: "Jobs",
+    active: isJobsActive,
   },
 ];
 ---
