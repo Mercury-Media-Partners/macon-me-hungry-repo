@@ -1,6 +1,6 @@
-# CLAUDE.md
+# Macon Me Hungry
 
-OutATL — bilingual (EN/ES) Astro v6 business directory for Atlanta's LGBTQ+ community, built for the 2026 World Cup. Static-first, content-collection-driven (`src/content.config.ts`), React islands, NanoStores, Tailwind v4.
+Macon Me Hungry — bilingual (EN/ES) Astro v6 business directory for Macon, GA. Static-first, content-collection-driven (`src/content.config.ts`), React islands, NanoStores, Tailwind v4.
 
 ## Business listing tiers (`src/content/businesses/*.md`, schema in `src/content.config.ts`)
 

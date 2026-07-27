@@ -45,19 +45,20 @@ const jsonLd = {
   "@type": "BlogPosting",
   "headline": post.data.title,
   "description": post.data.description,
-  "image": post.data.heroImage ? `https://maconmehungry.com${post.data.heroImage}` : undefined,
+  "image": post.data.heroImage ? `https://macon-me-hungry-repo.pages.dev${post.data.heroImage}` : undefined,
   "datePublished": post.data.publishDate.toISOString(),
   "dateModified": post.data.lastModifiedDate.toISOString(),
   "author": {
     "@type": "Person",
-    "name": post.data.author
+    "name": post.data.author,
+    "image": post.data.authorAvatar ? `https://macon-me-hungry-repo.pages.dev${post.data.authorAvatar}` : undefined
   },
   "publisher": {
     "@type": "Organization",
     "name": "Macon Me Hungry",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://maconmehungry.com/favicon.svg"
+      "url": "https://macon-me-hungry-repo.pages.dev/favicon.svg"
     }
   }
 };

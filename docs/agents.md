@@ -1,6 +1,6 @@
-# OutATL AI Agent Workspace & Workflow Guide
+# Macon Me Hungry AI Agent Workspace & Workflow Guide
 
-Welcome to the **OutATL** codebase. This guide outlines repository structure, engineering standards, and metadata guidelines to ensure any AI agent can safely navigate, maintain, and expand the directory.
+Welcome to the **Macon Me Hungry** codebase. This guide outlines repository structure, engineering standards, and metadata guidelines to ensure any AI agent can safely navigate, maintain, and expand the directory.
 
 ---
 

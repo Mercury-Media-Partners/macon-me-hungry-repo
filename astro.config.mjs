@@ -7,7 +7,7 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://outatl.com',
+  site: 'https://macon-me-hungry-repo.pages.dev',
 
   vite: {
     plugins: [tailwindcss()],

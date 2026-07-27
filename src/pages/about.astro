@@ -17,12 +17,22 @@ import Footer from '../components/navigation/Footer.astro';
       <article class="prose prose-lg dark:prose-invert prose-headings:font-display mx-auto">
         <div class="bg-card border border-border/50 rounded-2xl p-8 mb-10 shadow-sm">
           <h2 class="text-2xl mt-0 mb-4 text-primary">Our Roots in Macon</h2>
-          <p class="text-foreground/80 leading-relaxed mb-6">
-            Macon Me Hungry was born out of a lifelong love for Middle Georgia. Our founder, <strong>Jacob Thompson</strong>, is a proud Macon native whose entire family calls this city home. Growing up surrounded by the rich culinary traditions and vibrant communities of Macon, Jacob always felt there was a need for a modern, dedicated platform to celebrate the city's incredible food scene.
-          </p>
-          <p class="text-foreground/80 leading-relaxed">
-            From historic soul food joints to the booming downtown brewery scene, Macon Me Hungry is Jacob's love letter to his hometown—a curated guide designed to help locals and visitors alike discover the absolute best bites Macon has to offer.
-          </p>
+          <div class="flex flex-col md:flex-row gap-6 items-start">
+            <img 
+              src="/images/jacob-headshot.webp" 
+              alt="Jacob Thompson" 
+              class="w-32 h-32 rounded-full object-cover shrink-0 shadow-md border-4 border-card"
+              onError="this.onerror=null;this.src='/images/jacob-headshot.png';"
+            />
+            <div>
+              <p class="text-foreground/80 leading-relaxed mb-6">
+                Macon Me Hungry was born out of a lifelong love for Middle Georgia. Our founder, <strong>Jacob Thompson</strong>, is a proud Macon native whose entire family calls this city home. Growing up surrounded by the rich culinary traditions and vibrant communities of Macon, Jacob always felt there was a need for a modern, dedicated platform to celebrate the city's incredible food scene.
+              </p>
+              <p class="text-foreground/80 leading-relaxed">
+                From historic soul food joints to the booming downtown brewery scene, Macon Me Hungry is Jacob's love letter to his hometown—a curated guide designed to help locals and visitors alike discover the absolute best bites Macon has to offer.
+              </p>
+            </div>
+          </div>
         </div>
 
         <div class="bg-card border border-border/50 rounded-2xl p-8 shadow-sm">

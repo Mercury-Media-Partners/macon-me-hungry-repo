@@ -9,4 +9,4 @@ Allow: /
 User-agent: ChatGPT-User
 Allow: /
 
-Sitemap: https://outatl.com/sitemap-index.xml
+Sitemap: https://macon-me-hungry-repo.pages.dev/sitemap-index.xml

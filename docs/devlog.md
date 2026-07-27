@@ -2,6 +2,23 @@
 
 A chronological log tracking migrations, features, optimizations, and roadmap progress.
 
+## 📅 July 27, 2026 — Spanish Architecture Removal & Macon Content Rewrite
+*   **Removed**: Completely removed Spanish localization infrastructure (`src/pages/es/`, `src/content/landing_pages/list-your-business-es.md`, `src/i18n/es.ts`, `src/stores/langStore.ts`) to simplify the project's architecture per user directive.
+*   **Refactored**: Removed all `lang` attributes, conditional translations, and language toggles from Astro pages and UI components (`Navbar.astro`, `events.astro`, `faq.astro`, etc.).
+*   **Rewrote**: Completely rebuilt `list-your-business.md` (English version renamed from `-en.md`) to scrub all legacy World Cup, Atlanta, and LGBTQ+ tourist references, replacing them with evergreen Macon local-community branding (Macon Me Hungry).
+*   **Rewrote**: Overhauled the central `src/i18n/en.ts` dictionary and `index.astro`/`events.astro` with Macon-specific community messaging ("Southern Hospitality", "Local Pop-ups", etc.).
+*   **Cleaned**: Deleted all remaining World Cup legacy files, including `src/pages/matches.astro` and `src/components/world-cup`.
+
+## 📅 July 27, 2026 — Jacob Thompson Author Integration
+*   **Implemented**: Added Jacob Thompson as the unified author for all blog content.
+*   **Added**: Integrated his headshot into the About page (`src/pages/about.astro`) using modern layout conventions.
+*   **SEO & UI**: Updated blog posts, `BlogCardNeon.astro`, and the blog slug page (`src/pages/blog/[...slug].astro`) to render his avatar and emit valid JSON-LD `Person` author schema.
+
+## 📅 July 27, 2026 — Project Rebrand (OutATL -> Macon Me Hungry)
+*   **Rebranded**: Initiated complete project transition from OutATL to Macon Me Hungry, focusing on food, restaurants, and local vibes in Macon, GA.
+*   **Updated**: Changed site configuration, metadata, robots.txt, and llms.txt to reflect the new `macon-me-hungry-repo.pages.dev` domain.
+*   **Cleaned**: Purged legacy Atlanta-specific content and references.
+
 ## 📅 July 23, 2026 — Directory Filtering & Mode Fallback Resolution (`DirectoryFinder.tsx`)
 *   **Fixed**: Resolved zero-listing results bug in `DirectoryFinder.tsx` by relaxing operating mode filtering whenever a user conducts a text search or selects a specific category.
 *   **Implemented**: Added automatic `siteMode` switching ("day" vs "night") when parsing category URL hash parameters (e.g. `#bar-finder?category=Coffee%20Shop`).

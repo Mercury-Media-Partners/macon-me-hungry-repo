@@ -1,17 +1,17 @@
-# OUTATL DIRECTORY SERVICES AGREEMENT (PROMOTER TIER)
+# MACON ME HUNGRY DIRECTORY SERVICES AGREEMENT (PROMOTER TIER)
 
-This Directory Services Agreement (the **"Agreement"**) is entered into as of the date signed below (the **"Effective Date"**), by and between **OutATL LLC** ("OutATL", "we", "us", or "our") and the undersigned business entity (**"Advertiser"** or "you").
+This Directory Services Agreement (the **"Agreement"**) is entered into as of the date signed below (the **"Effective Date"**), by and between **Macon Me Hungry LLC** ("Macon Me Hungry", "we", "us", or "our") and the undersigned business entity (**"Advertiser"** or "you").
 
 ---
 
 ### 1. RECITALS
-* **OutATL** owns and operates the bilingual LGBTQ+ digital directory and World Cup visitor portal located at `outatl.com` (the **"Platform"**).
+* **Macon Me Hungry** owns and operates the bilingual LGBTQ+ digital directory and World Cup visitor portal located at `maconmehungry.com` (the **"Platform"**).
 * **Advertiser** desires to secure a premium listing on the Platform under the **Promoter Tier** to promote its business services, events, and location details to Platform visitors.
 
 ---
 
 ### 2. PROMOTER TIER SERVICES & SCOPE
-During the Term of this Agreement, OutATL shall provide the following features on the Platform for the Advertiser’s listing page:
+During the Term of this Agreement, Macon Me Hungry shall provide the following features on the Platform for the Advertiser’s listing page:
 1. **Direct Connections:** Active, clickable outbound links to the Advertiser's official website and up to three (3) social media channels (e.g., Instagram, Facebook).
 2. **Priority Placement:** Category-specific ranking prioritized above all "Free" listings.
 3. **Media Gallery:** Interactive media player supporting up to five (5) high-resolution photographs showcasing the venue, menu, or staff.
@@ -29,14 +29,14 @@ During the Term of this Agreement, OutATL shall provide the following features o
 ---
 
 ### 4. CONTENT & INTELLECTUAL PROPERTY LICENSE
-* **Grant of License:** Advertiser grants OutATL a non-exclusive, worldwide, royalty-free license to use, display, reproduce, and translate (English/Spanish) the business name, logos, taglines, hours, menus, images, and event details provided by Advertiser for placement on the Platform.
+* **Grant of License:** Advertiser grants Macon Me Hungry a non-exclusive, worldwide, royalty-free license to use, display, reproduce, and translate (English/Spanish) the business name, logos, taglines, hours, menus, images, and event details provided by Advertiser for placement on the Platform.
 * **Accuracy:** Advertiser represents that all listing details provided are accurate, represent active operating hours, and do not infringe on any third-party intellectual property rights.
 
 ---
 
 ### 5. LIMITATION OF LIABILITY
-* **Service Availability:** OutATL strives for maximum uptime but does not guarantee uninterrupted or error-free operation of the Platform.
-* **Maximum Liability:** To the maximum extent permitted by law, OutATL’s total liability for any claim arising out of this Agreement is strictly limited to the total fees paid by the Advertiser to OutATL during the three (3) months preceding the claim.
+* **Service Availability:** Macon Me Hungry strives for maximum uptime but does not guarantee uninterrupted or error-free operation of the Platform.
+* **Maximum Liability:** To the maximum extent permitted by law, Macon Me Hungry’s total liability for any claim arising out of this Agreement is strictly limited to the total fees paid by the Advertiser to Macon Me Hungry during the three (3) months preceding the claim.
 
 ---
 
@@ -44,7 +44,7 @@ During the Term of this Agreement, OutATL shall provide the following features o
 
 **IN WITNESS WHEREOF**, the parties hereto have executed this Directory Services Agreement as of the Effective Date.
 
-#### **OUTATL LLC**
+#### **MACON ME HUNGRY LLC**
 Authorized Signature: _____________________________________  
 Name: __________________________________________________  
 Title: ___________________________________________________  

@@ -7,7 +7,6 @@ import { EventsRadar } from '../components/events/EventsRadar';
 import { VenueQuickDrawer } from '../components/directory/VenueQuickDrawer';
 import { ItineraryBar } from '../components/directory/ItineraryBar';
 
-const lang = "en";
 const businesses = (await getCollection('businesses')).filter(b => !b.data.is_demo);
 
 const eventsList = businesses.flatMap(b => {
@@ -31,7 +30,7 @@ const combinedItems = businesses.map(b => ({ ...b, type: 'business' as const }))
 const eventsJsonLd = {
   "@context": "https://schema.org",
   "@type": "ItemList",
-  "name": "Macon LGBTQ+ Events & Nightlife Radar",
+  "name": "Macon Local Events & Pop-ups",
   "itemListElement": eventsList.map((evt, idx) => ({
     "@type": "ListItem",
     "position": idx + 1,
@@ -54,23 +53,23 @@ const eventsJsonLd = {
 ---
 
 <Layout
-  title="Macon LGBTQ+ Events & Nightlife Radar"
-  description="Discover Macon's top queer events, drag shows, weekend parties, and weekly specials."
+  title="Macon Local Events & Pop-ups"
+  description="Discover Macon's top local events, brewery pop-ups, trivia nights, and live music."
 >
   <script type="application/ld+json" slot="head" set:html={JSON.stringify(eventsJsonLd)} />
 
-  <Navbar lang={lang} />
+  <Navbar />
 
   <main class="pt-32 pb-24 min-h-screen">
     <div class="container max-w-6xl mx-auto px-4">
       {/* Header */}
       <div class="mb-10 text-center md:text-left">
-        <span class="section-label mb-2 block">Live Nightlife Calendar</span>
+        <span class="section-label mb-2 block">Live Local Calendar</span>
         <h1 class="font-display text-4xl md:text-6xl text-foreground uppercase tracking-tight leading-none mb-4">
-          MACON QUEER EVENTS RADAR
+          MACON LOCAL EVENTS RADAR
         </h1>
         <p class="text-muted-foreground text-base md:text-lg max-w-2xl font-body">
-          Drag brunches, DJ sets, trivia nights, and weekend parties handpicked across Midtown, East Macon, and Cheshire Bridge.
+          Brewery pop-ups, food truck festivals, trivia nights, and weekend specials handpicked across Downtown Macon, College Hill, and beyond.
         </p>
       </div>
 
@@ -81,5 +80,5 @@ const eventsJsonLd = {
     </div>
   </main>
 
-  <Footer lang={lang} />
+  <Footer />
 </Layout>

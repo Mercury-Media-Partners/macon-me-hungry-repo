@@ -16,9 +16,9 @@ import { MobileStickyBar } from '../components/list-business/MobileStickyBar';
 import { isPostWorldCup } from '../utils/transition';
 const postWorldCup = isPostWorldCup();
 
-const entry = await getEntry('landing_pages', 'list-your-business-en');
+const entry = await getEntry('landing_pages', 'list-your-business');
 if (!entry) {
-  throw new Error("Could not find English list-your-business page content");
+  throw new Error("Could not find list-your-business page content");
 }
 
 let content = { ...entry.data };
@@ -196,7 +196,7 @@ const businessNames = allBusinesses.map(b => b.data.title);
   title={content.title}
   description={content.description}
 >
-  <Navbar lang="en" />
+  <Navbar />
 
   {/*
     ── Netlify Form Detection ──
@@ -230,7 +230,7 @@ const businessNames = allBusinesses.map(b => b.data.title);
     <HeroSection content={content.hero} client:load />
     <FoundingMemberStrip marqueeLabel={content.marquee.label} businesses={businessNames} client:load />
     <HowItWorks content={content.how_it_works} client:load />
-    <OwnerOnboarding content={content.pricing} lang="en" client:load />
+    <OwnerOnboarding content={content.pricing} client:load />
     <TestimonialSlot content={content.testimonial} client:load />
     <FAQSection content={content.faq} client:load />
     <PartnerForm content={content.form} client:load />
@@ -238,7 +238,7 @@ const businessNames = allBusinesses.map(b => b.data.title);
     <MobileStickyBar content={content.sticky_bar} client:load />
   </main>
 
-  <Footer lang="en" />
+  <Footer />
 
   {/* FAQ JSON-LD Schema for SEO */}
   <script type="application/ld+json" set:text={JSON.stringify({

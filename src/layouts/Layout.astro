@@ -12,8 +12,8 @@ const umamiId = import.meta.env.PUBLIC_UMAMI_WEBSITE_ID;
 
 // Calculate alternate URLs dynamically for SEO index mappings
 const rawPath = Astro.url.pathname.replace(/^\/es(\/|$)/, '/');
-const enUrl = new URL(rawPath, 'https://maconmehungry.com').toString().replace(/\/$/, '') || 'https://maconmehungry.com';
-const esUrl = new URL('/es' + rawPath, 'https://maconmehungry.com').toString().replace(/\/$/, '') || 'https://maconmehungry.com/es';
+const enUrl = new URL(rawPath, 'https://macon-me-hungry-repo.pages.dev').toString().replace(/\/$/, '') || 'https://macon-me-hungry-repo.pages.dev';
+const esUrl = new URL('/es' + rawPath, 'https://macon-me-hungry-repo.pages.dev').toString().replace(/\/$/, '') || 'https://macon-me-hungry-repo.pages.dev/es';
 ---
 
 

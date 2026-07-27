@@ -19,12 +19,12 @@ const combinedItems = businesses.map(b => ({ ...b, type: 'business' as const }))
 const tickerItems = [
   "EAT LOCAL",
   "SUPPORT MACON",
-  "GRUB HUNTING",
-  "GOOD VIBES ONLY",
+  "SOUTHERN HOSPITALITY",
+  "MACON ME HUNGRY",
   "EAT LOCAL",
   "SUPPORT MACON",
-  "GRUB HUNTING",
-  "GOOD VIBES ONLY",
+  "SOUTHERN HOSPITALITY",
+  "MACON ME HUNGRY",
 ];
 
 // WebSite JSON-LD for homepage
@@ -32,12 +32,12 @@ const websiteJsonLd = {
   "@context": "https://schema.org",
   "@type": "WebSite",
   "name": "Macon Me Hungry",
-  "url": "https://maconmehungry.com",
+  "url": "https://macon-me-hungry-repo.pages.dev",
   "description": "Discover the best restaurants, food trucks, and hidden gems in Macon, GA.",
-  "inLanguage": ["en", "es"],
+  "inLanguage": "en",
   "potentialAction": {
     "@type": "SearchAction",
-    "target": "https://maconmehungry.com/#bar-finder?q={search_term_string}",
+    "target": "https://macon-me-hungry-repo.pages.dev/#bar-finder?q={search_term_string}",
     "query-input": "required name=search_term_string"
   }
 };
@@ -49,7 +49,7 @@ const websiteJsonLd = {
 >
   <script type="application/ld+json" slot="head" set:html={JSON.stringify(websiteJsonLd)} />
 
-  <Navbar lang="en" />
+  <Navbar />
 
   <main>
     {/* Hero Section */}
@@ -119,7 +119,7 @@ const websiteJsonLd = {
     </div>
 
     {/* Directory — with Dual State Master Switch */}
-    <DirectoryFinder initialBusinesses={combinedItems} client:idle lang="en" />
+    <DirectoryFinder initialBusinesses={combinedItems} client:idle />
 
     {/* Interactive Map Section */}
     <div id="map" class="py-20 relative z-10 border-t border-border/30">
@@ -133,12 +133,12 @@ const websiteJsonLd = {
             Navigate through Macon's vibrant neighborhoods and discover hidden culinary gems near you.
           </p>
         </div>
-        <InteractiveMap client:visible lang="en" />
+        <InteractiveMap client:visible />
       </div>
     </div>
   </main>
 
-  <Footer lang="en" />
+  <Footer />
 </Layout>
 
 <style>

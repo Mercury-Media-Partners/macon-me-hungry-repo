@@ -1,20 +1,12 @@
-# OutATL — Atlanta's Bilingual LGBTQ+ Guide
+# Macon Me Hungry — Discover Macon's Best Bites
 
-OutATL is the premier bilingual guide and interactive neighborhood map for Atlanta's LGBTQ+ community, locals, and visitors. Optimized for the 2026 World Cup, the platform showcases queer-owned/affirming bars, cafes, wellness centers, and cultural attractions, as well as transit connections and matches.
+Macon Me Hungry is your curated guide to the greatest restaurants, food trucks, and hidden gems in Macon, GA. From Downtown soul food to Mulberry St tacos, find exactly what you're craving.
 
 ## Core Navigation
-- [OutATL Homepage](https://outatl.com/)
-- [Interactive Map & Transit Guide](https://outatl.com/map)
-- [2026 Knockout Match Hub](https://outatl.com/matches)
-- [List Your Business & Onboarding](https://outatl.com/list-your-business)
-- [Editorial Blog](https://outatl.com/blog)
-
-## Spanish Version / Versión en Español
-- [Inicio en Español](https://outatl.com/es)
-- [Mapa Interactivo en Español](https://outatl.com/es/map)
-- [Calendario de Partidos en Español](https://outatl.com/es/matches)
-- [Anuncia tu Negocio en Español](https://outatl.com/es/list-your-business)
-- [Blog en Español](https://outatl.com/es/blog)
+- [Macon Me Hungry Homepage](https://macon-me-hungry-repo.pages.dev/)
+- [Interactive Map & Transit Guide](https://macon-me-hungry-repo.pages.dev/map)
+- [List Your Business & Onboarding](https://macon-me-hungry-repo.pages.dev/list-your-business)
+- [Editorial Blog](https://macon-me-hungry-repo.pages.dev/blog)
 
 ## Media Stewardship
 This site is built and maintained under the stewardship of **Mercury Media Partners**. We donate 5% of profits to Guiding Eyes for the Blind to support the infrastructure of professional service dog training. ♿️

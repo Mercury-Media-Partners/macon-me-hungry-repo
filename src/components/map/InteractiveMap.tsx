@@ -27,8 +27,8 @@ export const InteractiveMap: React.FC<Props> = ({ lang = 'en', businesses = [] }
     });
   }, []);
 
-  // Filter out businesses with missing coordinates
-  const pins = businesses.filter(b => b.data && b.data.lat && b.data.lng);
+  // Don't filter by lat/lng here, LeafletMapContainer handles fallbacks based on neighborhood
+  const pins = businesses;
 
   const filteredItems = activeFilter === 'all' ? pins : pins.filter(p => p.data.category_type === activeFilter);
 
