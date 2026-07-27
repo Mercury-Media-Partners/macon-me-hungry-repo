@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { useStore } from "@nanostores/react";
 import { $activeVenueSlug, closeVenueDrawer } from "@/stores/drawerStore";
-import { $itineraryStore, toggleItinerary } from "@/stores/itineraryStore";
 import { MapPin, Clock, Star, X, Plus, Check, ExternalLink, Navigation, Train } from "lucide-react";
 import { getOpenStatus } from "./DirectoryFinder";
 import { getCategoryLabel } from "../../utils/categoryTranslations";
@@ -36,12 +35,9 @@ interface VenueQuickDrawerProps {
 
 export const VenueQuickDrawer = ({ businesses }: VenueQuickDrawerProps) => {
   const activeSlug = useStore($activeVenueSlug);
-  const itinerary = useStore($itineraryStore);
   const lang = "en";
   
-
   const venue = businesses.find((b) => b.id === activeSlug);
-  const inItinerary = activeSlug ? itinerary.includes(activeSlug) : false;
 
   // Lock background scroll when drawer is open
   useEffect(() => {
@@ -196,27 +192,7 @@ export const VenueQuickDrawer = ({ businesses }: VenueQuickDrawerProps) => {
 
         {/* Action Buttons */}
         <div className="mt-auto pt-6 space-y-3">
-          {/* Add to Night Out */}
-          <button
-            onClick={() => toggleItinerary(venue.id)}
-            className={`w-full py-3.5 px-4 rounded-xl font-label text-sm uppercase tracking-wider font-bold flex items-center justify-center gap-2 transition-all ${
-              inItinerary
-                ? "bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 hover:bg-emerald-500/30"
-                : "bg-primary text-primary-foreground hover:bg-primary/90 glow-primary"
-            }`}
-          >
-            {inItinerary ? (
-              <>
-                <Check size={18} />
-                <span>{"Added to Night Out Plan"}</span>
-              </>
-            ) : (
-              <>
-                <Plus size={18} />
-                <span>{"Add to Night Out Plan"}</span>
-              </>
-            )}
-          </button>
+          {/* Removed Night Out Button */}
 
           {/* Links */}
           <div className="grid grid-cols-2 gap-3">

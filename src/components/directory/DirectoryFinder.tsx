@@ -4,7 +4,6 @@ import { MapPin, Clock, Zap, Music, Star, Coffee, Dumbbell, Briefcase, ShoppingB
 import { getCategoryLabel } from "../../utils/categoryTranslations";
 import { openVenueDrawer } from "@/stores/drawerStore";
 import { VenueQuickDrawer } from "./VenueQuickDrawer";
-import { ItineraryBar } from "./ItineraryBar";
 import { MerchantClaimCard } from "./MerchantClaimCard";
 import { MobileFilterSheet } from "./MobileFilterSheet";
 
@@ -595,7 +594,6 @@ export const DirectoryFinder = ({ initialBusinesses, lang: initialLang = "en" }:
 
       {/* Slide-over Drawer & Floating Itinerary Bar */}
       <VenueQuickDrawer businesses={initialBusinesses} />
-      <ItineraryBar businesses={initialBusinesses} />
     </section>
   );
 };

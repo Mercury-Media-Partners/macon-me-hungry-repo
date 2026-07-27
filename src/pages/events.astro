@@ -5,7 +5,6 @@ import Navbar from '../components/navigation/Navbar.astro';
 import Footer from '../components/navigation/Footer.astro';
 import { EventsRadar } from '../components/events/EventsRadar';
 import { VenueQuickDrawer } from '../components/directory/VenueQuickDrawer';
-import { ItineraryBar } from '../components/directory/ItineraryBar';
 
 const businesses = (await getCollection('businesses')).filter(b => !b.data.is_demo);
 const standaloneEvents = await getCollection('events');
@@ -91,7 +90,6 @@ const eventsJsonLd = {
       <EventsRadar events={eventsList} client:load />
 
       <VenueQuickDrawer businesses={combinedItems as any} client:idle />
-      <ItineraryBar businesses={combinedItems as any} client:idle />
     </div>
   </main>
 
