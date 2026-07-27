@@ -286,6 +286,7 @@ const jobs = defineCollection({
   schema: z.object({
     title: z.string(),
     business_slug: z.string(), // Links to business markdown filename
+    business_name: z.string().optional(), // Fallback if not in directory
     job_type: z.enum(['full-time', 'part-time', 'contract', 'freelance']),
     wage_range: z.string().optional(),
     apply_url: z.string(), // URL or mailto:

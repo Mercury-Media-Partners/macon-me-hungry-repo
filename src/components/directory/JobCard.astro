@@ -13,7 +13,7 @@ const t = en;
 
 // Fetch parent business for the name
 const business = await getEntry('businesses', job.data.business_slug);
-const businessName = business?.data.title || "Business";
+const businessName = business?.data.title || job.data.business_name || "Business";
 ---
 
 <div class="bg-card/50 backdrop-blur-xl border border-border rounded-lg p-6 hover:border-accent/30 transition-colors group flex flex-col justify-between h-full shadow-[4px_4px_0px_rgba(5,52,93,0.1)] hover:shadow-[6px_6px_0px_rgba(5,52,93,0.15)]">
