@@ -4,9 +4,12 @@ import Navbar from '../components/navigation/Navbar.astro';
 import Footer from '../components/navigation/Footer.astro';
 import { InteractiveMap } from '../components/map/InteractiveMap';
 import { en } from '../i18n/en';
+import { getCollection } from 'astro:content';
 
 const lang = "en";
 const t = en;
+const allBusinesses = await getCollection('businesses');
+const businesses = allBusinesses.map(b => ({ id: b.id, data: b.data }));
 ---
 
 <Layout title={`${t.interactiveMapTitle} | ${t.brand}`} description={t.interactiveMapDesc}>
@@ -32,7 +35,7 @@ const t = en;
         </p>
       </div>
 
-      <InteractiveMap client:load lang={lang} />
+      <InteractiveMap client:load lang={lang} businesses={businesses} />
 
     </div>
   </main>
