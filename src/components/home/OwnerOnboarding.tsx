@@ -109,45 +109,10 @@ export const OwnerOnboarding = ({ content, lang = "en" }: Props) => {
             <span className="text-gradient-primary">{content.title_line_2}</span>
           </h2>
 
-          {/* Billing Toggle */}
-          <div className="inline-flex items-center gap-4 bg-muted/40 border border-border rounded-full p-1.5 select-none">
-            <button
-              onClick={() => setIsAnnual(false)}
-              className={`px-5 py-2.5 rounded-full text-sm font-label font-bold uppercase tracking-widest transition-all duration-200 cursor-pointer ${
-                !isAnnual ? "bg-background text-foreground shadow-md" : "text-muted-foreground hover:text-foreground"
-              }`}
-            >
-              {content.billing_monthly}
-            </button>
-            <button
-              role="switch"
-              aria-checked={isAnnual}
-              onClick={() => setIsAnnual(!isAnnual)}
-              className="relative inline-flex h-7 w-12 shrink-0 items-center rounded-full border border-border bg-muted/50 p-0.5 transition-all duration-300 hover:border-primary/30 cursor-pointer"
-            >
-              <span
-                className={`flex h-5 w-5 items-center justify-center rounded-full bg-background shadow-md transform transition-all duration-300 ${
-                  isAnnual ? "translate-x-5" : "translate-x-0"
-                }`}
-                style={isAnnual ? { background: "var(--gradient-primary)" } : {}}
-              />
-            </button>
-            <button
-              onClick={() => setIsAnnual(true)}
-              className={`px-5 py-2.5 rounded-full text-sm font-label font-bold uppercase tracking-widest transition-all duration-200 cursor-pointer flex items-center gap-2 ${
-                isAnnual ? "bg-background text-foreground shadow-md" : "text-muted-foreground hover:text-foreground"
-              }`}
-            >
-              {content.billing_annual}
-              <span className="text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-accent/20 text-accent border border-accent/30 tracking-wider">
-                {content.billing_savings}
-              </span>
-            </button>
-          </div>
         </div>
 
         {/* Pricing cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto mb-12">
           {content.tiers.map((tier) => {
             const savings = getAnnualSavings(tier);
             return (
@@ -241,7 +206,7 @@ export const OwnerOnboarding = ({ content, lang = "en" }: Props) => {
                 {/* CTA */}
                 <button
                   onClick={() => scrollToForm(tier.id)}
-                  className={`block w-full py-3.5 rounded-full font-label text-center text-sm tracking-widest uppercase transition-all duration-200 hover:scale-105 hover:opacity-90 cursor-pointer ${tier.ctaClass}`}
+                  className={`btn w-full ${tier.ctaClass}`}
                   style={tier.ctaGradient ? { background: tier.ctaGradient } : {}}
                 >
                   {tier.cta}

@@ -2,6 +2,11 @@
 
 A chronological log tracking migrations, features, optimizations, and roadmap progress.
 
+## 📅 July 27, 2026 — DRY Button Architecture
+*   **Refactored**: Swept codebase and stripped all inline button class definitions across `.astro` and `.tsx` files.
+*   **Added**: Centralized utility classes `.btn`, `.btn-primary` and `.btn-secondary` in `global.css` for a single source of truth.
+*   **Updated**: Migrated all stray buttons (like the `rounded-full` Navbar CTA, Hero CTAs, mobile sticky bar, and Directory filtering buttons) to the strict `.btn-primary` and `.btn-secondary` architecture for absolute consistency.
+
 ## 📅 July 27, 2026 — UI Component Shape & Aesthetic Redesign (Classic & Grounded)
 *   **Refactored**: Removed all `rounded-full` pill-shaped buttons and `rounded-3xl` containers (legacy Out ATL styling) across `global.css`, `index.astro`, `DirectoryFinder.tsx`, `JobCard.astro`, and `SmartSidebar.astro`.
 *   **Updated**: Replaced bubbly styling with a "Classic & Grounded" aesthetic (`rounded-md` for buttons/tags, `rounded-lg` for cards) to better fit the Macon-Bibb demographic's preference for sturdy, traditional brick-and-mortar vibes.

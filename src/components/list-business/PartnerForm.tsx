@@ -9,18 +9,15 @@ export interface FormContent {
   submit_btn: string;
   submit_btn_submitting: string;
   select_tier_placeholder: string;
-  select_billing_placeholder: string;
   labels: {
     business_name: string;
     contact_name: string;
     email: string;
     phone: string;
     tier: string;
-    billing: string;
     message: string;
   };
   tiers: { value: string; label: string }[];
-  billing_options: { value: string; label: string }[];
 }
 
 interface Props {
@@ -35,7 +32,6 @@ export const PartnerForm = ({ content }: Props) => {
     email: "",
     phone: "",
     tier: "",
-    billing: "monthly",
     message: "",
     "bot-field": "",
   });
@@ -177,45 +173,25 @@ export const PartnerForm = ({ content }: Props) => {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-            <div>
-              <label className="block text-xs font-label font-bold text-muted-foreground uppercase tracking-widest mb-1.5">
-                {content.labels.tier} *
-              </label>
-              <select
-                id="form-tier"
-                name="tier"
-                required
-                value={formData.tier}
-                onChange={handleChange}
-                className={inputClass}
-              >
-                <option value="" disabled>{content.select_tier_placeholder}</option>
-                {content.tiers.map((t) => (
-                  <option key={t.value} value={t.value}>
-                    {t.label}
-                  </option>
-                ))}
-              </select>
-            </div>
-            <div>
-              <label className="block text-xs font-label font-bold text-muted-foreground uppercase tracking-widest mb-1.5">
-                {content.labels.billing}
-              </label>
-              <select
-                name="billing"
-                value={formData.billing}
-                onChange={handleChange}
-                className={inputClass}
-              >
-                <option value="" disabled>{content.select_billing_placeholder}</option>
-                {content.billing_options.map((b) => (
-                  <option key={b.value} value={b.value}>
-                    {b.label}
-                  </option>
-                ))}
-              </select>
-            </div>
+          <div className="mb-5">
+            <label className="block text-xs font-label font-bold text-muted-foreground uppercase tracking-widest mb-1.5">
+              {content.labels.tier} *
+            </label>
+            <select
+              id="form-tier"
+              name="tier"
+              required
+              value={formData.tier}
+              onChange={handleChange}
+              className={inputClass}
+            >
+              <option value="" disabled>{content.select_tier_placeholder}</option>
+              {content.tiers.map((t) => (
+                <option key={t.value} value={t.value}>
+                  {t.label}
+                </option>
+              ))}
+            </select>
           </div>
 
           <div>
