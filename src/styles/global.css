@@ -21,14 +21,14 @@
   --font-body: 'Garet Regular', 'Montserrat', 'Helvetica', sans-serif;
   --font-label: 'Garet Bold', 'Montserrat', 'Helvetica', sans-serif;
 
-  --color-background: #FBF8EF;
-  --color-foreground: #05345d;
+  --color-background: #05345d;
+  --color-foreground: #FBF8EF;
 
-  --color-card: #FBF8EF;
-  --color-card-foreground: #05345d;
+  --color-card: #05345d;
+  --color-card-foreground: #FBF8EF;
 
-  --color-popover: #E5E2D9;
-  --color-popover-foreground: #05345d;
+  --color-popover: #05345d;
+  --color-popover-foreground: #FBF8EF;
 
   --color-primary: #a3e35d;
   --color-primary-foreground: #05345d;
@@ -36,8 +36,8 @@
   --color-secondary: #E5E2D9;
   --color-secondary-foreground: #05345d;
 
-  --color-muted: #E5E2D9;
-  --color-muted-foreground: #05345d;
+  --color-muted: rgba(251, 248, 239, 0.1);
+  --color-muted-foreground: rgba(251, 248, 239, 0.7);
 
   --color-accent: #ffe57c;
   --color-accent-foreground: #05345d;
@@ -45,23 +45,23 @@
   --color-destructive: hsl(0 84% 60%);
   --color-destructive-foreground: hsl(0 0% 100%);
 
-  --color-border: #ffe57c;
-  --color-input: #E5E2D9;
-  --color-ring: #a3e35d;
+  --color-border: rgba(251, 248, 239, 0.1);
+  --color-input: rgba(251, 248, 239, 0.1);
+  --color-ring: #ffe57c;
 
   --animate-spin-slow: spin 8s linear infinite;
 
   --radius-lg: 1rem;
 
-  --shadow-deep: 8px 8px 0px rgba(5, 52, 93, 0.15);
+  --shadow-deep: 8px 8px 0px rgba(255, 229, 124, 0.15);
 
-  --shadow-glow-primary: 0 4px 15px rgba(5, 52, 93, 0.15);
-  --shadow-glow-gold: 0 0 30px color-mix(in srgb, var(--color-secondary), transparent 65%);
+  --shadow-glow-primary: 0 4px 15px rgba(163, 227, 93, 0.25);
+  --shadow-glow-gold: 0 0 30px rgba(255, 229, 124, 0.2);
 
   --gradient-primary: linear-gradient(135deg, #a3e35d, #8cc54d);
-  --gradient-gold: linear-gradient(135deg, #E5E2D9, #FBF8EF);
+  --gradient-gold: linear-gradient(135deg, #FBF8EF, #E5E2D9);
   --gradient-accent: linear-gradient(135deg, #ffe57c, #e6ce6f);
-  --gradient-hero: linear-gradient(160deg, #FBF8EF 0%, #E5E2D9 100%);
+  --gradient-hero: linear-gradient(160deg, #05345d 0%, #031D36 100%);
 }
 
 @layer base {

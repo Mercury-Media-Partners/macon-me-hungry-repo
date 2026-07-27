@@ -109,10 +109,10 @@ const websiteJsonLd = {
     </section>
 
     {/* Marquee Ticker */}
-    <div class="border-y border-foreground bg-foreground py-4 overflow-hidden">
+    <div class="border-y border-border bg-accent py-4 overflow-hidden shadow-glow-gold">
       <div class="flex animate-marquee whitespace-nowrap gap-12 w-max">
         {[...tickerItems, ...tickerItems].map((item, i) => (
-          <span key={i} class="text-xl text-accent font-bold uppercase tracking-widest font-display">
+          <span key={i} class="text-xl text-background font-bold uppercase tracking-widest font-display">
             {item}
           </span>
         ))}
