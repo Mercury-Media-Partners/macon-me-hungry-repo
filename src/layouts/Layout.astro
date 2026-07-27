@@ -7,14 +7,14 @@ interface Props {
 	description?: string;
 }
 
-const { title, description = "OutATL — Atlanta's bilingual LGBTQ+ hub for residents, locals & World Cup 2026 visitors." } = Astro.props;
+const { title, description = "Macon Me Hungry — Discover Macon's Best Bites" } = Astro.props;
 const isEs = Astro.url.pathname.startsWith('/es') || Astro.url.pathname.includes('/es/');
 const umamiId = import.meta.env.PUBLIC_UMAMI_WEBSITE_ID;
 
 // Calculate alternate URLs dynamically for SEO index mappings
 const rawPath = Astro.url.pathname.replace(/^\/es(\/|$)/, '/');
-const enUrl = new URL(rawPath, 'https://outatl.com').toString().replace(/\/$/, '') || 'https://outatl.com';
-const esUrl = new URL('/es' + rawPath, 'https://outatl.com').toString().replace(/\/$/, '') || 'https://outatl.com/es';
+const enUrl = new URL(rawPath, 'https://maconmehungry.com').toString().replace(/\/$/, '') || 'https://maconmehungry.com';
+const esUrl = new URL('/es' + rawPath, 'https://maconmehungry.com').toString().replace(/\/$/, '') || 'https://maconmehungry.com/es';
 ---
 
 
@@ -28,8 +28,9 @@ const esUrl = new URL('/es' + rawPath, 'https://outatl.com').toString().replace(
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<link rel="preload" href="/fonts/Outfit-VariableFont_wght.ttf" as="font" type="font/ttf" crossorigin />
-		<link rel="preload" href="/fonts/PlusJakartaSans-VariableFont_wght.ttf" as="font" type="font/ttf" crossorigin />
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
 		<slot name="preload" />
 
 		<!-- Theme Initialization (Inline to prevent flash of wrong settings) -->
@@ -73,9 +74,9 @@ const esUrl = new URL('/es' + rawPath, 'https://outatl.com').toString().replace(
 
 		
 		<!-- SEO -->
-		<title>{title} | OutATL</title>
+		<title>{title} | Macon Me Hungry</title>
 		<meta name="description" content={description} />
-		<meta name="author" content="OutATL Staff" />
+		<meta name="author" content="Macon Me Hungry Staff" />
 		<meta name="robots" content="index, follow" />
 		
 		<link rel="alternate" hreflang="en" href={enUrl} />

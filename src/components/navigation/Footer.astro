@@ -11,7 +11,7 @@ const colors = ["#E40303", "#FF8C00", "#FFED00", "#008026", "#004DFF", "#750787"
 const basePath = isEs ? "/es" : "";
 ---
 
-<footer class="border-t border-border bg-card/25 py-16 px-6 relative overflow-hidden">
+<footer id="about" class="border-t border-border bg-card/25 py-16 px-6 relative overflow-hidden">
   <!-- Dynamic grid background -->
   <div class="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none"></div>
 
@@ -20,18 +20,18 @@ const basePath = isEs ? "/es" : "";
     <div class="border border-border/40 bg-card/50 rounded-2xl px-6 py-4 mb-12 shadow-sm backdrop-blur-md">
       <div class="flex flex-col md:flex-row items-center justify-around gap-4 text-xs font-semibold tracking-wider uppercase text-muted-foreground/90">
         <div class="flex items-center gap-2">
-          <span class="text-base">🚆</span>
-          <span>{isEs ? "Curados con Acceso MARTA" : "Curated for MARTA Access"}</span>
+          <span class="text-base">🍔</span>
+          <span>{isEs ? "Come Local" : "Eat Local"}</span>
         </div>
         <div class="hidden md:block text-muted-foreground/20 text-lg">•</div>
         <div class="flex items-center gap-2">
-          <span class="text-base">💬</span>
-          <span>{isEs ? "Personal Bilingüe Disponible" : "Bilingual Staff Available"}</span>
+          <span class="text-base">🤝</span>
+          <span>{isEs ? "Apoya a Macon" : "Support Macon"}</span>
         </div>
         <div class="hidden md:block text-muted-foreground/20 text-lg">•</div>
         <div class="flex items-center gap-2">
-          <span class="text-base">🏳️‍🌈</span>
-          <span>{isEs ? "Espacios Queer y Aliados" : "Queer-Owned & Allied Spaces"}</span>
+          <span class="text-base">✨</span>
+          <span>{isEs ? "Solo Buenas Vibras" : "Good Vibes Only"}</span>
         </div>
       </div>
     </div>
@@ -41,16 +41,32 @@ const basePath = isEs ? "/es" : "";
       
       <!-- Column 1: Identity & Motto -->
       <div class="flex flex-col items-center md:items-start space-y-4 text-center md:text-left">
-        <div class="font-display text-4xl text-foreground tracking-widest leading-none">
-          OUT<span class="text-primary font-bold">ATL</span>
-        </div>
+        <a href={`${basePath}/`} class="flex items-center gap-2 font-display text-2xl tracking-widest text-foreground hover:text-primary transition-colors shrink-0">
+          <svg class="w-8 h-8 fill-current" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <path d="M 50 5 C 60 5, 65 10, 68 15 C 78 12, 85 18, 85 28 C 92 32, 95 40, 95 50 C 95 60, 92 68, 85 72 C 85 82, 78 88, 68 85 C 65 90, 60 95, 50 95 C 40 95, 35 90, 32 85 C 22 88, 15 82, 15 72 C 8 68, 5 60, 5 50 C 5 40, 8 32, 15 28 C 15 18, 22 12, 32 15 C 35 10, 40 5, 50 5 Z"/>
+            <g transform="translate(50,50) rotate(45) translate(-50,-50)">
+            <path d="M 38 25 L 38 45 A 12 12 0 0 0 62 45 L 62 25 L 56 25 L 56 42 A 6 6 0 0 1 44 42 L 44 25 Z" fill="var(--color-background)" />
+            <rect x="38" y="25" width="6" height="20" rx="3" fill="var(--color-background)" />
+            <rect x="47" y="25" width="6" height="20" rx="3" fill="var(--color-background)" />
+            <rect x="56" y="25" width="6" height="20" rx="3" fill="var(--color-background)" />
+            <rect x="46" y="55" width="8" height="35" rx="4" fill="var(--color-background)" />
+            <path d="M 44 45 L 56 45 L 54 58 L 46 58 Z" fill="var(--color-background)" />
+            </g>
+            <g transform="translate(50,50) rotate(-45) translate(-50,-50)">
+            <rect x="46" y="50" width="8" height="40" rx="4" fill="var(--color-background)" stroke="var(--color-foreground)" stroke-width="4" />
+            <rect x="46" y="50" width="8" height="40" rx="4" fill="var(--color-background)" />
+            <ellipse cx="50" cy="35" rx="12" ry="18" fill="var(--color-background)" stroke="var(--color-foreground)" stroke-width="3" />
+            <ellipse cx="50" cy="35" rx="12" ry="18" fill="var(--color-background)" />
+            </g>
+          </svg>
+          MACON ME HUNGRY
+        </a>
         <p class="text-sm text-muted-foreground leading-relaxed max-w-xs font-body">
           {isEs 
-            ? "Creado para la Gente Hermosa que Disfruta y Vive Atlanta." 
-            : "Built for the Beautiful People Out & About in Atlanta."}
+            ? "Tu guía de los mejores bocados en Macon, Georgia." 
+            : "Your guide to the best bites in Macon, Georgia."}
         </p>
       </div>
-
 
       <!-- Column 2: Navigation Links -->
       <div class="grid grid-cols-2 gap-6">
@@ -62,16 +78,6 @@ const basePath = isEs ? "/es" : "";
             <li>
               <a href={`${basePath}/#bar-finder`} class="text-muted-foreground hover:text-primary transition-colors">
                 🗂️ {isEs ? "Directorio" : "Directory"}
-              </a>
-            </li>
-            <li>
-              <a href={`${basePath}/outdoors-culture`} class="text-muted-foreground hover:text-primary transition-colors">
-                🌳 {isEs ? "Cultura y Aire Libre" : "Culture & Outdoors"}
-              </a>
-            </li>
-            <li>
-              <a href={`${basePath}/matches`} class="text-muted-foreground hover:text-primary transition-colors">
-                ⚽ {isEs ? "Copa del Mundo" : "World Cup"}
               </a>
             </li>
             <li>
@@ -90,16 +96,6 @@ const basePath = isEs ? "/es" : "";
             <li>
               <a href={`${basePath}/map`} class="text-muted-foreground hover:text-primary transition-colors">
                 🗺️ {isEs ? "Mapa Interactivo" : "Interactive Map"}
-              </a>
-            </li>
-            <li>
-              <a href={`${basePath}/#bar-finder?mode=night`} class="text-muted-foreground hover:text-primary transition-colors">
-                🌙 {isEs ? "Vida Nocturna" : "Nightlife"}
-              </a>
-            </li>
-            <li>
-              <a href={`${basePath}/#bar-finder?mode=day`} class="text-muted-foreground hover:text-primary transition-colors">
-                ☀️ {isEs ? "De Día" : "Out & About"}
               </a>
             </li>
           </ul>
@@ -122,16 +118,6 @@ const basePath = isEs ? "/es" : "";
               ❓ {isEs ? "Preguntas Frecuentes" : "FAQ"}
             </a>
           </li>
-          <li>
-            <a href="https://lnfy.org/" target="_blank" rel="noopener noreferrer" class="text-muted-foreground hover:text-primary transition-colors">
-              🏠 Lost-n-Found Youth
-            </a>
-          </li>
-          <li>
-            <a href="https://www.atlantapride.org/" target="_blank" rel="noopener noreferrer" class="text-muted-foreground hover:text-primary transition-colors">
-              🏳️‍🌈 Atlanta Pride Committee
-            </a>
-          </li>
         </ul>
       </div>
 
@@ -142,13 +128,8 @@ const basePath = isEs ? "/es" : "";
       <div>
         <p class="leading-relaxed font-body">
           {isEs 
-            ? "© 2026 OutATL · La Guía Queer Independiente de Atlanta." 
-            : "© 2026 OutATL · The Independent Queer Guide to Atlanta."}
-        </p>
-        <p class="text-[10px] text-muted-foreground/60 mt-1 font-body">
-          {isEs
-            ? "No afiliado oficialmente con la FIFA o el Gobierno de la Ciudad de Atlanta."
-            : "Not officially affiliated with FIFA or the City of Atlanta Government."}
+            ? "© 2026 Macon Me Hungry. Todos los derechos reservados." 
+            : "© 2026 Macon Me Hungry. All rights reserved."}
         </p>
         <div class="mt-4 flex flex-wrap gap-4 items-center justify-center md:justify-start">
           <a href={`${basePath}/privacy`} class="hover:text-primary transition-colors">{isEs ? "Privacidad" : "Privacy Policy"}</a>
@@ -170,11 +151,7 @@ const basePath = isEs ? "/es" : "";
     </div>
   </div>
 
-  <!-- Full-width Pride Rainbow strip at the absolute bottom -->
-  <div class="absolute bottom-0 left-0 right-0 h-1 flex">
-    {colors.map((c) => (
-      <div class="flex-1 h-full" style={{ backgroundColor: c }} />
-    ))}
-  </div>
+  <!-- Full-width strip at the absolute bottom using brand color -->
+  <div class="absolute bottom-0 left-0 right-0 h-1 bg-primary"></div>
 </footer>
 

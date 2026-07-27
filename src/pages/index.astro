@@ -4,14 +4,7 @@ import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/navigation/Navbar.astro';
 import Footer from '../components/navigation/Footer.astro';
 import { DirectoryFinder } from '../components/directory/DirectoryFinder';
-import WorldCupSection from '../components/home/WorldCupSection.astro';
 import { InteractiveMap } from '../components/map/InteractiveMap';
-import IntentGrid from '../components/home/IntentGrid.astro';
-import FanFestLineupBanner from '../components/world-cup/FanFestLineupBanner.astro';
-import VideoHero from '../components/home/VideoHero.astro';
-import { isPostWorldCup } from '../utils/transition';
-
-const postWorldCup = isPostWorldCup();
 
 const businesses = (await getCollection('businesses')).filter(b => !b.data.is_demo);
 
@@ -24,29 +17,27 @@ const heroImages = businesses
 const combinedItems = businesses.map(b => ({ ...b, type: 'business' as const }));
 
 const tickerItems = [
-  "🏳️‍🌈 Blake's on the Park",
-  "⚽ Mundial 2026 · Atlanta",
-  "🎭 Mary's EAV",
-  "☕ FiNCA to FiLTER",
-  "🔥 The Heretic",
-  "💃 Lips Atlanta",
-  "🌮 Guac y Margys",
-  "🏠 Elements Atlanta",
-  "🌎 Queer Atlanta 2026",
-  "🍺 Bulldogs Bar",
+  "EAT LOCAL",
+  "SUPPORT MACON",
+  "GRUB HUNTING",
+  "GOOD VIBES ONLY",
+  "EAT LOCAL",
+  "SUPPORT MACON",
+  "GRUB HUNTING",
+  "GOOD VIBES ONLY",
 ];
 
 // WebSite JSON-LD for homepage
 const websiteJsonLd = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  "name": "OutATL",
-  "url": "https://outatl.com",
-  "description": "Atlanta's bilingual LGBTQ+ hub — nightlife, community, and culture for World Cup 2026.",
+  "name": "Macon Me Hungry",
+  "url": "https://maconmehungry.com",
+  "description": "Discover the best restaurants, food trucks, and hidden gems in Macon, GA.",
   "inLanguage": ["en", "es"],
   "potentialAction": {
     "@type": "SearchAction",
-    "target": "https://outatl.com/#bar-finder?q={search_term_string}",
+    "target": "https://maconmehungry.com/#bar-finder?q={search_term_string}",
     "query-input": "required name=search_term_string"
   }
 };
@@ -54,9 +45,7 @@ const websiteJsonLd = {
 
 <Layout
   title="Home"
-  description={postWorldCup 
-    ? "OutATL — Atlanta's bilingual LGBTQ+ hub. Find queer bars, cafes, services & events in Atlanta."
-    : "OutATL — Atlanta's bilingual LGBTQ+ hub. Find queer bars, cafes, services & events for World Cup 2026."}
+  description="Macon Me Hungry — Discover the best restaurants, food trucks, and hidden gems in Macon, GA."
 >
   <script type="application/ld+json" slot="head" set:html={JSON.stringify(websiteJsonLd)} />
 
@@ -64,48 +53,45 @@ const websiteJsonLd = {
 
   <main>
     {/* Hero Section */}
-    <section class="relative min-h-[90vh] flex items-center justify-center pt-28 pb-12 px-4 overflow-hidden bg-background">
-      <VideoHero />
-
-      <div class="container max-w-6xl mx-auto text-center relative z-10 animate-fade-in text-white">
-        <span class="section-label mb-6 block drop-shadow-md">Atlanta's Bilingual Guide</span>
+    <section class="relative min-h-[70vh] flex items-center justify-center pt-28 pb-12 px-4 overflow-hidden bg-background food-pattern">
+      <div class="container max-w-6xl mx-auto text-center relative z-10 animate-fade-in text-foreground">
         
         <div>
-          <h1 class="font-display text-7xl md:text-9xl text-white leading-none mb-8 tracking-tighter uppercase drop-shadow-xl">
-            YOUR ATLANTA. <span class="text-gradient-primary">YOUR RULES.</span>
+          <h1 class="font-display text-5xl md:text-7xl text-foreground leading-none mb-8 tracking-tighter uppercase drop-shadow-xl">
+            DISCOVER MACON'S <span class="text-gradient-primary">BEST BITES</span>
           </h1>
-          <p class="text-white text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed font-body drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] font-medium">
-            The independent guide to Atlanta’s curated lifestyle. Discover design-forward cafes, local retail, wellness spaces, and nightlife pockets handpicked for those out and about.
+          <p class="text-foreground/90 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed font-body drop-shadow-sm font-medium">
+            Your curated guide to the greatest restaurants, food trucks, and hidden gems in Macon, GA.
           </p>
 
           <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">
             <a href="#bar-finder" class="px-8 py-4 bg-primary text-primary-foreground rounded-full font-label text-xl glow-primary hover:scale-105 transition-transform">
-              Explore Directory
+              FIND FOOD
             </a>
-            <a href="#map" class="px-8 py-4 bg-white/10 text-white border border-white/20 rounded-full font-label text-xl hover:bg-white/20 transition-all backdrop-blur-md">
-              Explore Map
+            <a href="#map" class="px-8 py-4 bg-foreground/10 text-foreground border border-foreground/20 rounded-full font-label text-xl hover:bg-foreground/20 transition-all backdrop-blur-md">
+              EXPLORE MAP
             </a>
           </div>
 
           {/* Hero Quick Search Integration */}
-          <div class="max-w-xl mx-auto mt-8 p-3 rounded-2xl bg-black/50 border border-white/20 backdrop-blur-md shadow-2xl text-left">
+          <div class="max-w-xl mx-auto mt-8 p-3 rounded-2xl bg-card/80 border border-border/50 backdrop-blur-md shadow-2xl text-left">
             <form action="#bar-finder" class="flex items-center gap-2">
               <input
                 type="text"
                 name="search"
-                placeholder="Search cafes, dance clubs, patios..."
-                class="w-full px-4 py-2.5 bg-transparent text-white placeholder:text-white/60 focus:outline-none text-sm font-label"
+                placeholder="Search by vibe, food, or name..."
+                class="w-full px-4 py-2.5 bg-transparent text-foreground placeholder:text-muted-foreground focus:outline-none text-sm font-label"
               />
               <button type="submit" class="px-5 py-2.5 bg-primary text-primary-foreground font-bold rounded-xl text-xs uppercase tracking-wider font-label whitespace-nowrap glow-primary hover:scale-105 transition-transform">
                 Search
               </button>
             </form>
-            <div class="flex flex-wrap items-center gap-2 mt-3 pt-3 border-t border-white/10 text-xs">
-              <span class="text-white/60 font-semibold uppercase text-[10px] tracking-wider">Quick:</span>
-              <a href="#bar-finder?filter=patio" class="px-2.5 py-1 rounded-full bg-white/10 hover:bg-white/20 text-white/90 transition-colors text-[11px]">🌳 Patios</a>
-              <a href="#bar-finder?category=Dance%20Club&mode=night" class="px-2.5 py-1 rounded-full bg-white/10 hover:bg-white/20 text-white/90 transition-colors text-[11px]">💃 Clubs</a>
-              <a href="#bar-finder?category=Coffee%20Shop&mode=day" class="px-2.5 py-1 rounded-full bg-white/10 hover:bg-white/20 text-white/90 transition-colors text-[11px]">☕ Cafes</a>
-              <a href="#bar-finder?hood=midtown" class="px-2.5 py-1 rounded-full bg-white/10 hover:bg-white/20 text-white/90 transition-colors text-[11px]">📍 Midtown</a>
+            <div class="flex flex-wrap items-center gap-2 mt-3 pt-3 border-t border-border/50 text-xs">
+              <span class="text-muted-foreground font-semibold uppercase text-[10px] tracking-wider">Quick:</span>
+              <a href="#bar-finder?filter=patio" class="px-2.5 py-1 rounded-full bg-muted hover:bg-muted-foreground/20 text-foreground transition-colors text-[11px]">🌳 Patios</a>
+              <a href="#bar-finder?category=Soul Food" class="px-2.5 py-1 rounded-full bg-muted hover:bg-muted-foreground/20 text-foreground transition-colors text-[11px]">🍗 Soul Food</a>
+              <a href="#bar-finder?category=Brewery" class="px-2.5 py-1 rounded-full bg-muted hover:bg-muted-foreground/20 text-foreground transition-colors text-[11px]">🍺 Breweries</a>
+              <a href="#bar-finder?hood=downtown" class="px-2.5 py-1 rounded-full bg-muted hover:bg-muted-foreground/20 text-foreground transition-colors text-[11px]">📍 Downtown</a>
             </div>
           </div>
         </div>
@@ -122,31 +108,18 @@ const websiteJsonLd = {
     </section>
 
     {/* Marquee Ticker */}
-    <div class="border-y border-primary/20 bg-primary/5 py-4 overflow-hidden">
+    <div class="border-y border-foreground bg-foreground py-4 overflow-hidden">
       <div class="flex animate-marquee whitespace-nowrap gap-12 w-max">
         {[...tickerItems, ...tickerItems].map((item, i) => (
-          <span key={i} class="text-sm text-muted-foreground font-medium uppercase tracking-widest font-label">
+          <span key={i} class="text-xl text-primary font-bold uppercase tracking-widest font-display">
             {item}
           </span>
         ))}
       </div>
     </div>
 
-    {!postWorldCup && <FanFestLineupBanner lang="en" />}
-
-    <IntentGrid lang="en" />
-
     {/* Directory — with Dual State Master Switch */}
     <DirectoryFinder initialBusinesses={combinedItems} client:idle lang="en" />
-
-
-
-    {/* World Cup Survival Guide */}
-    {!postWorldCup && (
-      <div>
-        <WorldCupSection lang="en" />
-      </div>
-    )}
 
     {/* Interactive Map Section */}
     <div id="map" class="py-20 relative z-10 border-t border-border/30">
@@ -157,7 +130,7 @@ const websiteJsonLd = {
             Interactive Neighborhood Map
           </h2>
           <p class="text-muted-foreground max-w-2xl mx-auto font-body text-base md:text-lg leading-relaxed">
-            Navigate through Atlanta's vibrant LGBTQ+ neighborhoods, public transit networks, and key match day destinations.
+            Navigate through Macon's vibrant neighborhoods and discover hidden culinary gems near you.
           </p>
         </div>
         <InteractiveMap client:visible lang="en" />

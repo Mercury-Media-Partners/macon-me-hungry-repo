@@ -2,14 +2,14 @@ import type { Translations } from './en';
 
 export const es: Translations = {
   // Navigation & General
-  brand: "OutATL",
-  tagline: "El centro queer de Atlanta: vida nocturna, comunidad y cultura",
+  brand: "Macon Me Hungry",
+  tagline: "El centro queer de Macon: vida nocturna, comunidad y cultura",
   listBusiness: "Anuncia tu Negocio",
   exploreHub: "EXPLORAR EL PORTAL",
   getMap: "OBTENER EL MAPA",
   areYouOwner: "¿Eres un negocio local de la comunidad o amigable?",
   getListed: "Regístrate aquí",
-  announcement: "La Copa Mundial 2026 viene a Atlanta: pon tu negocio frente a más de 500,000 visitantes.",
+  announcement: "La Copa Mundial 2026 viene a Macon: pon tu negocio frente a más de 500,000 visitantes.",
   claimListing: "Reclama tu perfil →",
 
   // Directory Finder
@@ -18,7 +18,7 @@ export const es: Translations = {
   findYourNight: "ENCUENTRA TU NOCHE",
   outAndAbout: "SALIR DE DÍA",
   nightDescription: "Bares, clubes, shows drag y comida nocturna. Actualizado para el Mundial 2026.",
-  dayDescription: "Cafés, gimnasios, inmobiliarias y servicios locales: tu día a día queer en Atlanta.",
+  dayDescription: "Cafés, gimnasios, inmobiliarias y servicios locales: tu día a día queer en Macon.",
   dayLabel: "De Día",
   nightLabel: "Noche",
   searchPlaceholder: "Buscar...",
@@ -65,9 +65,9 @@ export const es: Translations = {
   visitorPick: "Destacado Turistas",
 
   // Owner Onboarding
-  forOwners: "Para Dueños de Negocios en Atlanta",
+  forOwners: "Para Dueños de Negocios en Macon",
   pricingTitle: "MUESTRA TU NEGOCIO AL MUNDO ENTERO",
-  pricingDesc: "Más de 500,000 visitantes internacionales vendrán a Atlanta para la Copa Mundial 2026. Cuando busquen un lugar inclusivo queer, ¡te encontrarán a ti primero!",
+  pricingDesc: "Más de 500,000 visitantes internacionales vendrán a Macon para la Copa Mundial 2026. Cuando busquen un lugar inclusivo queer, ¡te encontrarán a ti primero!",
   annualBilling: "Ahorra 2 meses con facturación anual — Promoter $490/año · Headliner $1,490/año",
   mostPopular: "Más Popular",
   bestForClubs: "Ideal para Clubes",
@@ -81,7 +81,7 @@ export const es: Translations = {
 
   // Fan Fest Lineup
   fanFestTitle: "Calendario del FIFA Fan Festival",
-  fanFestDesc: "Conciertos diarios y activaciones destacadas en el Downtown de Atlanta durante el Mundial 2026.",
+  fanFestDesc: "Conciertos diarios y activaciones destacadas en el Downtown de Macon durante el Mundial 2026.",
   fanFestDates: "11 de Junio – 19 de Julio, 2026",
   featuredArtistToday: "Artista Destacado de Hoy",
   featuredArtists: "Artistas Destacados",
@@ -102,8 +102,8 @@ export const es: Translations = {
   getTicketsUrl: "https://fifafanfest.wrstbnd.io/p/fifa/atl26/events?step=SelectDate",
 
   // Interactive Map
-  interactiveMapTitle: "Mapa Interactivo de OutATL",
-  interactiveMapDesc: "Explora la vida nocturna de Atlanta, las rutas de tránsito y partidos en nuestra guía interactiva.",
+  interactiveMapTitle: "Mapa Interactivo de Macon Me Hungry",
+  interactiveMapDesc: "Explora la vida nocturna de Macon, las rutas de tránsito y partidos en nuestra guía interactiva.",
   zoomIn: "Acercar",
   zoomOut: "Alejar",
   resetZoom: "Restablecer",
@@ -115,7 +115,7 @@ export const es: Translations = {
   categoryFanFest: "FIFA Fan Fest",
   categoryParks: "Parques y Aire Libre",
   martaTransitLine: "Conexión MARTA disponible",
-  viewOnOutATL: "Ver Detalles en OutATL",
+  viewOnOutATL: "Ver Detalles en Macon Me Hungry",
   distanceToMBStadium: "Distancia al Estadio",
   minutesToStadium: "min al Mercedes-Benz Stadium",
   backToHome: "Volver al Inicio",
@@ -133,7 +133,7 @@ export const es: Translations = {
   jobsCurrentOpenings: "Vacantes Actuales",
 
   // Weather
-  weatherAtlanta: "Clima de Atlanta",
+  weatherMacon: "Clima de Macon",
   weatherClear: "Despejado",
   weatherCloudy: "Parcialmente Nublado",
   weatherOvercast: "Nublado",
@@ -146,7 +146,7 @@ export const es: Translations = {
 
   // FAQ Page (/faq)
   faqPageTitle: "Preguntas Frecuentes",
-  faqPageDesc: "Todo lo que necesitas saber para usar OutATL — el directorio, el Mundial y cómo funciona todo.",
+  faqPageDesc: "Todo lo que necesitas saber para usar Macon Me Hungry — el directorio, el Mundial y cómo funciona todo.",
   faqSectionLabel: "Preguntas y Respuestas",
   navFaq: "Preguntas Frecuentes",
   faqWorldCupAnchor: "world-cup-logistics",
@@ -168,8 +168,8 @@ export const es: Translations = {
     },
     {
       category: "Logística del Mundial",
-      q: "¿Cuándo son los partidos del Mundial en Atlanta?",
-      a: "Atlanta (Mercedes-Benz Stadium) albergará partidos de la fase de grupos y de eliminación directa en junio y julio de 2026.",
+      q: "¿Cuándo son los partidos del Mundial en Macon?",
+      a: "Macon (Mercedes-Benz Stadium) albergará partidos de la fase de grupos y de eliminación directa en junio y julio de 2026.",
     },
     {
       category: "Logística del Mundial",

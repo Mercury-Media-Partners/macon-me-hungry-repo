@@ -1,13 +1,13 @@
 export const en = {
   // Navigation & General
-  brand: "OutATL",
-  tagline: "Atlanta's Queer Hub — Nightlife, Community & Culture",
+  brand: "Macon Me Hungry",
+  tagline: "Macon's Queer Hub — Nightlife, Community & Culture",
   listBusiness: "List Business",
   exploreHub: "EXPLORE THE HUB",
   getMap: "GET THE MAP",
   areYouOwner: "Are you a local queer-owned or queer-friendly business?",
   getListed: "Get listed",
-  announcement: "World Cup 2026 is coming to Atlanta — get your business in front of 500K+ visitors.",
+  announcement: "World Cup 2026 is coming to Macon — get your business in front of 500K+ visitors.",
   claimListing: "Claim your listing →",
   
   // Directory Finder
@@ -16,7 +16,7 @@ export const en = {
   findYourNight: "FIND YOUR NIGHT",
   outAndAbout: "OUT & ABOUT",
   nightDescription: "Bars, clubs, drag shows & late night eats. Updated for World Cup 2026.",
-  dayDescription: "Cafes, gyms, real estate & local services — your day-to-day queer Atlanta.",
+  dayDescription: "Cafes, gyms, real estate & local services — your day-to-day queer Macon.",
   dayLabel: "Out & About",
   nightLabel: "After Hours",
   searchPlaceholder: "Search...",
@@ -63,9 +63,9 @@ export const en = {
   visitorPick: "Visitor Pick",
 
   // Owner Onboarding
-  forOwners: "For Atlanta Business Owners",
+  forOwners: "For Macon Business Owners",
   pricingTitle: "GET YOUR BUSINESS IN FRONT OF THE WORLD",
-  pricingDesc: "500,000+ international visitors are coming to Atlanta for the 2026 World Cup. When they search for a queer-friendly bar, cafe, or service — they'll find you first.",
+  pricingDesc: "500,000+ international visitors are coming to Macon for the 2026 World Cup. When they search for a queer-friendly bar, cafe, or service — they'll find you first.",
   annualBilling: "Save 2 months with annual billing — Promoter $490/yr · Headliner $1,490/yr",
   mostPopular: "Most Popular",
   bestForClubs: "Best for Clubs",
@@ -79,7 +79,7 @@ export const en = {
 
   // Fan Fest Lineup
   fanFestTitle: "FIFA Fan Festival Lineup",
-  fanFestDesc: "Daily featured concerts and activations in Downtown Atlanta during World Cup 2026.",
+  fanFestDesc: "Daily featured concerts and activations in Downtown Macon during World Cup 2026.",
   fanFestDates: "June 11 – July 19, 2026",
   featuredArtistToday: "Today's Featured Headliner",
   featuredArtists: "Featured Artists",
@@ -100,8 +100,8 @@ export const en = {
   getTicketsUrl: "https://fifafanfest.wrstbnd.io/p/fifa/atl26/events?step=SelectDate",
 
   // Interactive Map
-  interactiveMapTitle: "Interactive OutATL Map & Guide",
-  interactiveMapDesc: "Explore Atlanta's nightlife, transit routes, and matches on our interactive neighborhood guide.",
+  interactiveMapTitle: "Interactive Macon Me Hungry Map & Guide",
+  interactiveMapDesc: "Explore Macon's nightlife, transit routes, and matches on our interactive neighborhood guide.",
   zoomIn: "Zoom In",
   zoomOut: "Zoom Out",
   resetZoom: "Reset",
@@ -113,7 +113,7 @@ export const en = {
   categoryFanFest: "FIFA Fan Fest",
   categoryParks: "Parks & Outdoors",
   martaTransitLine: "MARTA connection available",
-  viewOnOutATL: "View Details on OutATL",
+  viewOnOutATL: "View Details on Macon Me Hungry",
   distanceToMBStadium: "Distance to Stadium",
   minutesToStadium: "min to Mercedes-Benz Stadium",
   backToHome: "Back to Home",
@@ -131,7 +131,7 @@ export const en = {
   jobsCurrentOpenings: "Current Openings",
 
   // Weather
-  weatherAtlanta: "Atlanta Weather",
+  weatherMacon: "Macon Weather",
   weatherClear: "Clear Sky",
   weatherCloudy: "Partly Cloudy",
   weatherOvercast: "Overcast",
@@ -144,7 +144,7 @@ export const en = {
 
   // FAQ Page (/faq)
   faqPageTitle: "Frequently Asked Questions",
-  faqPageDesc: "Everything you need to know about using OutATL — the directory, the World Cup, and how it all works.",
+  faqPageDesc: "Everything you need to know about using Macon Me Hungry — the directory, the World Cup, and how it all works.",
   faqSectionLabel: "Questions & Answers",
   navFaq: "FAQ",
   faqWorldCupAnchor: "world-cup-logistics",
@@ -166,8 +166,8 @@ export const en = {
     },
     {
       category: "World Cup Logistics",
-      q: "When are World Cup matches in Atlanta?",
-      a: "Atlanta (Mercedes-Benz Stadium) hosts group stage and knockout matches in June-July 2026.",
+      q: "When are World Cup matches in Macon?",
+      a: "Macon (Mercedes-Benz Stadium) hosts group stage and knockout matches in June-July 2026.",
     },
     {
       category: "World Cup Logistics",

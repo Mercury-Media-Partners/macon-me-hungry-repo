@@ -17,51 +17,51 @@
 }
 
 @theme {
-  --font-display: "Outfit", sans-serif;
-  --font-body: "Outfit", sans-serif;
-  --font-label: "Plus Jakarta Sans", sans-serif;
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body: 'Montserrat', Helvetica, sans-serif;
+  --font-label: 'Montserrat', Helvetica, sans-serif;
 
-  --color-background: hsl(224 30% 5%);
-  --color-foreground: hsl(0 0% 96%);
+  --color-background: #FBF8EF;
+  --color-foreground: #2B3210;
 
-  --color-card: hsl(224 25% 8%);
-  --color-card-foreground: hsl(0 0% 96%);
+  --color-card: #FBF8EF;
+  --color-card-foreground: #2B3210;
 
-  --color-popover: hsl(224 25% 8%);
-  --color-popover-foreground: hsl(0 0% 96%);
+  --color-popover: #E5E2D9;
+  --color-popover-foreground: #2B3210;
 
-  --color-primary: hsl(330 100% 58%);
-  --color-primary-foreground: hsl(330 90% 4%);
+  --color-primary: #ffc07d;
+  --color-primary-foreground: #2B3210;
 
-  --color-secondary: hsl(42 100% 52%);
-  --color-secondary-foreground: hsl(224 30% 5%);
+  --color-secondary: #E5E2D9;
+  --color-secondary-foreground: #2B3210;
 
-  --color-muted: hsl(224 20% 12%);
-  --color-muted-foreground: hsl(220 15% 55%);
+  --color-muted: #E5E2D9;
+  --color-muted-foreground: #828a5a;
 
-  --color-accent: hsl(175 90% 42%);
-  --color-accent-foreground: hsl(0 0% 100%);
+  --color-accent: #828a5a;
+  --color-accent-foreground: #FBF8EF;
 
   --color-destructive: hsl(0 84% 60%);
   --color-destructive-foreground: hsl(0 0% 100%);
 
-  --color-border: hsl(224 20% 15%);
-  --color-input: hsl(224 20% 12%);
-  --color-ring: hsl(330 100% 58%);
+  --color-border: #828a5a;
+  --color-input: #E5E2D9;
+  --color-ring: #ffc07d;
 
   --animate-spin-slow: spin 8s linear infinite;
 
   --radius-lg: 0.5rem;
 
-  --shadow-deep: 0 20px 60px hsl(224 30% 2% / 0.8);
+  --shadow-deep: 0 12px 24px rgba(43, 50, 16, 0.12);
 
-  --shadow-glow-primary: 0 0 30px color-mix(in srgb, var(--color-primary), transparent 65%);
+  --shadow-glow-primary: 0 8px 16px rgba(43, 50, 16, 0.15);
   --shadow-glow-gold: 0 0 30px color-mix(in srgb, var(--color-secondary), transparent 65%);
 
-  --gradient-primary: linear-gradient(135deg, hsl(330 100% 58%), hsl(300 90% 55%));
-  --gradient-gold: linear-gradient(135deg, hsl(42 100% 52%), hsl(35 100% 60%));
-  --gradient-accent: linear-gradient(135deg, hsl(175 90% 42%), hsl(150 80% 45%));
-  --gradient-hero: linear-gradient(160deg, var(--color-background) 0%, hsl(280 40% 8%) 50%, hsl(330 50% 10%) 100%);
+  --gradient-primary: linear-gradient(135deg, #ffc07d, #ffae57);
+  --gradient-gold: linear-gradient(135deg, #E5E2D9, #FBF8EF);
+  --gradient-accent: linear-gradient(135deg, #828a5a, #6c734b);
+  --gradient-hero: linear-gradient(160deg, #FBF8EF 0%, #E5E2D9 100%);
 }
 
 @layer base {
@@ -505,4 +505,40 @@ select option {
   animation-iteration-count: 1 !important;
   transition-duration: 0.001ms !important;
   scroll-behavior: auto !important;
+}
+
+/* ── Macon Me Hungry Bespoke Theming ── */
+::selection {
+  background-color: var(--color-primary);
+  color: var(--color-foreground);
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--color-accent);
+  border-radius: 6px;
+  border: 3px solid var(--color-secondary);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-foreground);
+}
+
+.food-pattern {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='500' height='500' viewBox='0 0 400 400' fill='none' stroke='%23828a5a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' opacity='0.25'%3E%3C!-- Burger --%3E%3Cg transform='translate(50, 50) rotate(-10) scale(1.5)'%3E%3Cpath d='M10 30 Q 30 5 50 30 Z' /%3E%3Crect x='8' y='32' width='44' height='6' rx='3' /%3E%3Cpath d='M10 40 Q 30 55 50 40 Z' /%3E%3C/g%3E%3C!-- Drink --%3E%3Cg transform='translate(280, 80) rotate(15) scale(1.5)'%3E%3Cpath d='M15 20 L 45 20 L 40 60 L 20 60 Z' /%3E%3Cpath d='M10 20 L 50 20 L 48 10 L 12 10 Z' /%3E%3Cline x1='30' y1='10' x2='35' y2='-10' /%3E%3C/g%3E%3C!-- Bowl --%3E%3Cg transform='translate(300, 300) rotate(-5) scale(1.5)'%3E%3Cpath d='M10 30 Q 30 60 50 30 Z' /%3E%3Cpath d='M10 30 L 50 30' /%3E%3Cpath d='M20 20 Q 25 10 30 20 T 40 20' /%3E%3C/g%3E%3C!-- Hot Dog --%3E%3Cg transform='translate(80, 280) rotate(25) scale(1.5)'%3E%3Cpath d='M10 20 Q 30 0 50 20 Q 55 35 30 35 Q 5 35 10 20' /%3E%3Crect x='15' y='16' width='30' height='8' rx='4' /%3E%3C/g%3E%3C!-- Pizza --%3E%3Cg transform='translate(180, 180) rotate(-20) scale(1.5)'%3E%3Cpath d='M10 10 L 40 10 Q 45 15 40 20 L 25 50 Z' /%3E%3Ccircle cx='22' cy='22' r='2' /%3E%3Ccircle cx='32' cy='18' r='2' /%3E%3Ccircle cx='27' cy='32' r='2' /%3E%3C/g%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 500px 500px;
+  animation: driftPattern 60s linear infinite;
+}
+
+@keyframes driftPattern {
+  from { background-position: 0 0; }
+  to { background-position: 500px 500px; }
 }

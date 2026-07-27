@@ -2,8 +2,6 @@
 import LanguageToggle from './LanguageToggle.astro';
 import ModeToggle from './ModeToggle.astro';
 import { WeatherBadge } from './WeatherBadge';
-import matchesData from '../../data/matches.json';
-import { getCountryFlag, translateTeam } from '../../utils/countryFlags';
 
 interface Props {
   lang?: string;
@@ -13,68 +11,11 @@ const { lang = "en" } = Astro.props;
 const isEs = lang === "es";
 const base = isEs ? "/es" : "";
 
-import { isPostWorldCup } from '../../utils/transition';
-
-// Find next upcoming match. We prioritize Atlanta matches, but if there are no upcoming
-// Atlanta matches (e.g. after July 15), we fall back to the next upcoming tournament match
-// (like the Final) to ensure we always show an upcoming match rather than a past one.
-const todayStr = new Date().toISOString().split('T')[0];
-const atlMatches = matchesData.filter(m => m.location === 'Atlanta');
-
-let nextMatch = atlMatches.find(m => m.status !== 'FT' && m.date >= todayStr);
-let isAtlMatch = true;
-
-if (!nextMatch) {
-  nextMatch = matchesData.find(m => m.status !== 'FT' && m.date >= todayStr);
-  isAtlMatch = false;
-}
-
-if (!nextMatch) {
-  nextMatch = atlMatches.length > 0 ? atlMatches[atlMatches.length - 1] : matchesData[matchesData.length - 1];
-  isAtlMatch = nextMatch.location === 'Atlanta';
-}
-
-const isPastMatch = nextMatch.status === 'FT' || nextMatch.date < todayStr;
-
-let bannerLabelEn = "";
-let bannerLabelEs = "";
-
-if (isPastMatch) {
-  bannerLabelEn = isAtlMatch ? "Latest ATL Result" : "Latest Match Result";
-  bannerLabelEs = isAtlMatch ? "Último Resultado en ATL" : "Último Resultado";
-} else {
-  if (nextMatch.group === "Final") {
-    bannerLabelEn = "World Cup Final";
-    bannerLabelEs = "Final de la Copa Mundial";
-  } else {
-    bannerLabelEn = isAtlMatch ? "Next ATL Match" : "Next Match";
-    bannerLabelEs = isAtlMatch ? "Próximo Partido en ATL" : "Próximo Partido";
-  }
-}
-
-// Localize display date
-let displayDate = nextMatch.displayDate;
-if (isEs) {
-  displayDate = displayDate
-    .replace('Thu', 'Jue')
-    .replace('Fri', 'Vie')
-    .replace('Sat', 'Sáb')
-    .replace('Sun', 'Dom')
-    .replace('Mon', 'Lun')
-    .replace('Tue', 'Mar')
-    .replace('Wed', 'Mié')
-    .replace('Jun', 'Junio')
-    .replace('Jul', 'Julio');
-}
-
 // Active-link detection (runs at SSR/SSG time — zero JS cost)
 const path = Astro.url.pathname;
 const isDirectoryActive = path === "/" || path === "/es" || path === "/es/";
-const isCultureActive   = path.startsWith("/outdoors-culture") || path.startsWith("/es/outdoors-culture");
-const isWorldCupActive  = path.startsWith("/matches") || path.startsWith("/es/matches");
 const isBlogActive      = path.startsWith("/blog") || path.startsWith("/es/blog");
-
-const postWorldCup = isPostWorldCup();
+const isMapActive      = path.startsWith("/map") || path.startsWith("/es/map");
 
 const navLinks = [
   {
@@ -83,22 +24,10 @@ const navLinks = [
     active: isDirectoryActive,
   },
   {
-    href: `${base}/outdoors-culture`,
-    label: isEs ? "Cultura" : "Culture",
-    active: isCultureActive,
+    href: `${base}/map`,
+    label: isEs ? "Mapa" : "Map",
+    active: isMapActive,
   },
-  ...(postWorldCup
-    ? [{
-        href: `${base}/map`,
-        label: isEs ? "Mapa" : "Map",
-        active: path.startsWith("/map") || path.startsWith("/es/map") || path.startsWith("/map/") || path.startsWith("/es/map/"),
-      }]
-    : [{
-        href: `${base}/matches`,
-        label: isEs ? "Copa del Mundo" : "World Cup",
-        active: isWorldCupActive,
-      }]
-  ),
   {
     href: `${base}/blog`,
     label: isEs ? "Editorial" : "Blog",
@@ -117,8 +46,25 @@ const navLinks = [
 >
   <!-- Header with Close Button -->
   <div class="container max-w-6xl mx-auto px-4 h-16 flex items-center justify-between shrink-0">
-    <a href={`${base}/`} class="font-display text-2xl tracking-widest text-foreground hover:text-primary transition-colors">
-      OUT<span class="text-primary">ATL</span>
+    <a href={`${base}/`} class="flex items-center gap-2 font-display text-2xl tracking-widest text-foreground hover:text-primary transition-colors">
+      <svg class="w-8 h-8 fill-current" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 50 5 C 60 5, 65 10, 68 15 C 78 12, 85 18, 85 28 C 92 32, 95 40, 95 50 C 95 60, 92 68, 85 72 C 85 82, 78 88, 68 85 C 65 90, 60 95, 50 95 C 40 95, 35 90, 32 85 C 22 88, 15 82, 15 72 C 8 68, 5 60, 5 50 C 5 40, 8 32, 15 28 C 15 18, 22 12, 32 15 C 35 10, 40 5, 50 5 Z"/>
+        <g transform="translate(50,50) rotate(45) translate(-50,-50)">
+        <path d="M 38 25 L 38 45 A 12 12 0 0 0 62 45 L 62 25 L 56 25 L 56 42 A 6 6 0 0 1 44 42 L 44 25 Z" fill="var(--color-background)" />
+        <rect x="38" y="25" width="6" height="20" rx="3" fill="var(--color-background)" />
+        <rect x="47" y="25" width="6" height="20" rx="3" fill="var(--color-background)" />
+        <rect x="56" y="25" width="6" height="20" rx="3" fill="var(--color-background)" />
+        <rect x="46" y="55" width="8" height="35" rx="4" fill="var(--color-background)" />
+        <path d="M 44 45 L 56 45 L 54 58 L 46 58 Z" fill="var(--color-background)" />
+        </g>
+        <g transform="translate(50,50) rotate(-45) translate(-50,-50)">
+        <rect x="46" y="50" width="8" height="40" rx="4" fill="var(--color-background)" stroke="var(--color-foreground)" stroke-width="4" />
+        <rect x="46" y="50" width="8" height="40" rx="4" fill="var(--color-background)" />
+        <ellipse cx="50" cy="35" rx="12" ry="18" fill="var(--color-background)" stroke="var(--color-foreground)" stroke-width="3" />
+        <ellipse cx="50" cy="35" rx="12" ry="18" fill="var(--color-background)" />
+        </g>
+      </svg>
+      MACON ME HUNGRY
     </a>
     <button
       id="nav-close"
@@ -167,35 +113,14 @@ const navLinks = [
 
 <!-- Announcement Banner -->
 <div class="fixed top-0 left-0 right-0 h-9 z-[60] bg-secondary border-b border-secondary/50 py-2 px-4 text-center text-xs text-secondary-foreground font-bold flex items-center justify-center gap-2 drop-shadow-sm">
-  {!postWorldCup && (
-    <span class="relative flex h-2 w-2 shrink-0">
-      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary-foreground opacity-75"></span>
-      <span class="relative inline-flex rounded-full h-2 w-2 bg-secondary-foreground"></span>
-    </span>
-  )}
-  {postWorldCup ? (
-    <>
-      <span class="truncate">
-        {isEs 
-          ? "🏳️‍🌈 ¡Explora los mejores bares, cafés y espacios LGBTQ+ de Atlanta!" 
-          : "🏳️‍🌈 Explore Atlanta's best LGBTQ+ bars, cafes, and community spaces!"}
-      </span>
-      <a href={isEs ? "/es/map" : "/map"} class="underline underline-offset-2 hover:opacity-80 transition-opacity whitespace-nowrap ml-1.5">
-        {isEs ? "Ver Mapa Interactivo →" : "View Interactive Map →"}
-      </a>
-    </>
-  ) : (
-    <>
-      <span class="truncate">
-        {isEs 
-          ? `${bannerLabelEs}: ${getCountryFlag(translateTeam(nextMatch.team1, true))} vs ${getCountryFlag(translateTeam(nextMatch.team2, true))} (${displayDate} ${isPastMatch ? '-' : 'a las'} ${nextMatch.timeOrScore})` 
-          : `${bannerLabelEn}: ${getCountryFlag(nextMatch.team1)} vs ${getCountryFlag(nextMatch.team2)} (${displayDate} ${isPastMatch ? '-' : 'at'} ${nextMatch.timeOrScore})`}
-      </span>
-      <a href={isEs ? "/es/matches" : "/matches"} class="underline underline-offset-2 hover:opacity-80 transition-opacity whitespace-nowrap ml-1.5">
-        {isEs ? "Ver Calendario →" : "View Match Hub →"}
-      </a>
-    </>
-  )}
+  <span class="truncate">
+    {isEs 
+      ? "🍖 ¡Descubre los mejores restaurantes y camiones de comida en Macon, GA!" 
+      : "🍖 Discover the best restaurants and food trucks in Macon, GA!"}
+  </span>
+  <a href={isEs ? "/es/map" : "/map"} class="underline underline-offset-2 hover:opacity-80 transition-opacity whitespace-nowrap ml-1.5">
+    {isEs ? "Ver Mapa Interactivo →" : "View Interactive Map →"}
+  </a>
 </div>
 
 <!-- Main Navbar -->
@@ -208,9 +133,26 @@ const navLinks = [
     <!-- Logo -->
     <a
       href={isEs ? "/es" : "/"}
-      class="font-display text-2xl tracking-widest text-foreground hover:text-primary transition-colors shrink-0"
+      class="flex items-center gap-2 font-display text-2xl tracking-widest text-foreground hover:text-primary transition-colors shrink-0"
     >
-      OUT<span class="text-primary">ATL</span>
+      <svg class="w-8 h-8 fill-current" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 50 5 C 60 5, 65 10, 68 15 C 78 12, 85 18, 85 28 C 92 32, 95 40, 95 50 C 95 60, 92 68, 85 72 C 85 82, 78 88, 68 85 C 65 90, 60 95, 50 95 C 40 95, 35 90, 32 85 C 22 88, 15 82, 15 72 C 8 68, 5 60, 5 50 C 5 40, 8 32, 15 28 C 15 18, 22 12, 32 15 C 35 10, 40 5, 50 5 Z"/>
+        <g transform="translate(50,50) rotate(45) translate(-50,-50)">
+        <path d="M 38 25 L 38 45 A 12 12 0 0 0 62 45 L 62 25 L 56 25 L 56 42 A 6 6 0 0 1 44 42 L 44 25 Z" fill="var(--color-background)" />
+        <rect x="38" y="25" width="6" height="20" rx="3" fill="var(--color-background)" />
+        <rect x="47" y="25" width="6" height="20" rx="3" fill="var(--color-background)" />
+        <rect x="56" y="25" width="6" height="20" rx="3" fill="var(--color-background)" />
+        <rect x="46" y="55" width="8" height="35" rx="4" fill="var(--color-background)" />
+        <path d="M 44 45 L 56 45 L 54 58 L 46 58 Z" fill="var(--color-background)" />
+        </g>
+        <g transform="translate(50,50) rotate(-45) translate(-50,-50)">
+        <rect x="46" y="50" width="8" height="40" rx="4" fill="var(--color-background)" stroke="var(--color-foreground)" stroke-width="4" />
+        <rect x="46" y="50" width="8" height="40" rx="4" fill="var(--color-background)" />
+        <ellipse cx="50" cy="35" rx="12" ry="18" fill="var(--color-background)" stroke="var(--color-foreground)" stroke-width="3" />
+        <ellipse cx="50" cy="35" rx="12" ry="18" fill="var(--color-background)" />
+        </g>
+      </svg>
+      MACON ME HUNGRY
     </a>
 
     <!-- Desktop Nav Links -->
