@@ -70,9 +70,12 @@ function getEventIsoDate(dayName: string, timeRangeStr: string, isEnd = false): 
 }
 
 // JSON-LD structured data for this business
+const isFood = /restaurant|cafe|brewpub|bar|food|burger|bistro|diner|eatery/i.test(data.category);
+const schemaType = isFood ? "Restaurant" : "LocalBusiness";
+
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "LocalBusiness",
+  "@type": schemaType,
   "name": data.title,
   "description": data.meta_desc ?? data.tagline,
   "address": {

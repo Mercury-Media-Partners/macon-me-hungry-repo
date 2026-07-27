@@ -1,0 +1,57 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/navigation/Navbar.astro';
+import Footer from '../../components/navigation/Footer.astro';
+import { getCollection } from 'astro:content';
+
+const allBusinesses = await getCollection('businesses');
+
+// Simple heuristic for soul food
+const soulFoodSpots = allBusinesses.filter(b => 
+  b.data.category.toLowerCase().includes('soul') || 
+  b.data.category.toLowerCase().includes('southern') ||
+  b.id === 'hh-soul-food'
+).slice(0, 10);
+
+---
+
+<Layout title="Authentic Soul Food in Macon, GA" description="Discover the rich culinary history of Macon with the best soul food spots in town.">
+  <Navbar lang="en" />
+  
+  <main class="bg-background pt-24 pb-20 min-h-screen">
+    <div class="container max-w-4xl mx-auto px-4">
+      <header class="mb-12 text-center">
+        <h1 class="text-4xl md:text-5xl font-display text-foreground mb-4">Authentic Soul Food in Macon</h1>
+        <p class="text-lg text-muted-foreground max-w-2xl mx-auto">From Mama Louise to modern Southern twists, these are the legendary spots keeping Macon's soul food tradition alive.</p>
+      </header>
+
+      <div class="grid gap-6">
+        {soulFoodSpots.map(spot => (
+          <a href={`/businesses/${spot.id}`} class="group block border border-border/40 bg-card rounded-2xl overflow-hidden hover:border-primary/50 transition-colors">
+            <div class="flex flex-col md:flex-row">
+              {spot.data.heroImage && (
+                <div class="md:w-1/3 aspect-video md:aspect-auto overflow-hidden relative">
+                  <img src={spot.data.heroImage} alt={spot.data.title} class="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500" />
+                </div>
+              )}
+              <div class="p-6 md:w-2/3 flex flex-col justify-center">
+                <div class="flex items-center justify-between mb-2">
+                  <span class="text-xs font-bold text-primary uppercase tracking-widest">{spot.data.category}</span>
+                  <span class="text-sm font-semibold flex items-center gap-1 text-muted-foreground"><span class="text-yellow-400">★</span> {spot.data.rating}</span>
+                </div>
+                <h3 class="text-2xl font-display mb-2 group-hover:text-primary transition-colors">{spot.data.title}</h3>
+                <p class="text-muted-foreground mb-4 line-clamp-2">{spot.data.tagline}</p>
+                <div class="text-sm font-medium text-foreground/80 flex gap-4">
+                  <span>📍 {spot.data.neighborhood}</span>
+                  <span>🕒 {spot.data.hours.split(',')[0]}</span>
+                </div>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </main>
+  
+  <Footer lang="en" />
+</Layout>
