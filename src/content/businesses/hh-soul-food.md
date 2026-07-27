@@ -1,6 +1,6 @@
 ---
 title: "H&H Soul Food"
-tagline: "A Macon institution serving up legendary meat-and-three plates."
+tagline: "A Macon institution serving up legendary meat-and-three plates and the famous Midnight Rider biscuit."
 category: "Soul Food"
 category_type: "lifestyle"
 neighborhood: "Downtown"
@@ -15,4 +15,4 @@ has_patio: true
 bilingual_staff: false
 ---
 
-Discover H&H Soul Food, located in Downtown.
+Discover H&H Soul Food, located in Downtown. A Macon institution serving up legendary meat-and-three plates and the famous Midnight Rider biscuit.
