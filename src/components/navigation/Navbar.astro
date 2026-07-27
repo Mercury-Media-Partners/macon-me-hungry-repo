@@ -1,5 +1,5 @@
 ---
-import ModeToggle from './ModeToggle.astro';
+
 import { WeatherBadge } from './WeatherBadge';
 
 interface Props {
@@ -105,7 +105,7 @@ const navLinks = [
   <!-- Footer Controls -->
   <div class="pb-10 pt-6 shrink-0 flex items-center justify-center gap-6">
     <WeatherBadge client:load lang={lang} />
-    <ModeToggle />
+
       </div>
 </div>
 
@@ -166,7 +166,7 @@ const navLinks = [
     <!-- Desktop Right Controls -->
     <div class="hidden md:flex items-center gap-3">
       <WeatherBadge client:load lang={lang} />
-      <ModeToggle />
+
             <a
         href={`${base}/map`}
         class="px-4 py-2 bg-primary/10 text-primary border border-primary/20 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-primary/20 transition-all"
